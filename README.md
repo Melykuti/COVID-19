@@ -66,23 +66,23 @@ The plots for each individual country present the observed total number of infec
 
 For Italy, the last day's data has not been entered into the table and this is the reason why the last two days share the same value.
 
-![Italy until 12 March 2020](https://github.com/Melykuti/COVID-19/plots/Italy_20200313_22-34-57.png)
+![Italy until 12 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_20200313_22-34-57.png)
 
 Denmark is the special case where the situation is more dire than what my exponential fit for the last 14 days suggests.
 
-![Denmark on 13 March 2020](https://github.com/Melykuti/COVID-19/plots/Denmark_20200313_22-34-57.png)
+![Denmark on 13 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_20200313_22-34-57.png)
 
 Germany is a case where the exponential approximation is fortunately no longer a good fit.
 
-![Germany on 13 March 2020](https://github.com/Melykuti/COVID-19/plots/Germany_20200313_22-34-57.png)
+![Germany on 13 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_20200313_22-34-57.png)
 
 Similarly to Italy, data for the last day is missing (it is identical to the previous day) for Japan.
 
-![Japan until 12 March 2020](https://github.com/Melykuti/COVID-19/plots/Japan_20200313_22-34-57.png)
+![Japan until 12 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_20200313_22-34-57.png)
 
 Austria is showing a faint good sign on the last day.
 
-![Austria on 13 March 2020](https://github.com/Melykuti/COVID-19/plots/Austria_20200313_22-34-57.png)
+![Austria on 13 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_20200313_22-34-57.png)
 
 ### Results
 
