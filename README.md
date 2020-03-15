@@ -54,7 +54,7 @@ So I project from my linear regression the number of infected three, respectivel
 
 The exponential curve is not always a good fit (a straight line is not always a good fit to the logarithm of the current case number). It seems that in several European countries, countermeasures do slow the spread from the uncontrolled exponential growth, although not much yet. To screen for this, I compute:
 
-4. The [R^2 or coefficient of determination](https://en.wikipedia.org/wiki/Coefficient_of_determination) of the linear regression fit (which I can't explain here). The closer to 1 it is, the better the match between data and my linear regression.
+4. The [R^2 or coefficient of determination](https://en.wikipedia.org/wiki/Coefficient_of_determination) of the linear regression fit (which I can't explain here). The closer it is to 1, the better the match between data and my linear regression.
 
 5. I also compute the difference between the value of the fitted straight line for the last day when we have data and the real observation (in the logarithmic space) for that last day. If the spread is slowing relative to the exponential rate, then this number will be high and the projection is definitely unreliable. If this difference is small, then the projection might well be good. When the difference is negative, it will be an underestimate! You can interpret this number as a factor between the data and the linear approximation (because it is a difference between  the logarithms).
 
@@ -66,23 +66,23 @@ The plots for each individual country present the observed total number of infec
 
 For Italy, the last day's data has not been entered into the table and this is the reason why the last two days share the same value.
 
-![Italy until 12 March 2020](Italy_20200313_22-34-57.png)
+![Italy until 12 March 2020](https://github.com/Melykuti/COVID-19/plots/Italy_20200313_22-34-57.png)
 
 Denmark is the special case where the situation is more dire than what my exponential fit for the last 14 days suggests.
 
-![Denmark on 13 March 2020](Denmark_20200313_22-34-57.png)
+![Denmark on 13 March 2020](https://github.com/Melykuti/COVID-19/plots/Denmark_20200313_22-34-57.png)
 
 Germany is a case where the exponential approximation is fortunately no longer a good fit.
 
-![Germany on 13 March 2020](Germany_20200313_22-34-57.png)
+![Germany on 13 March 2020](https://github.com/Melykuti/COVID-19/plots/Germany_20200313_22-34-57.png)
 
 Similarly to Italy, data for the last day is missing (it is identical to the previous day) for Japan.
 
-![Japan until 12 March 2020](Japan_20200313_22-34-57.png)
+![Japan until 12 March 2020](https://github.com/Melykuti/COVID-19/plots/Japan_20200313_22-34-57.png)
 
 Austria is showing a faint good sign on the last day.
 
-![Austria on 13 March 2020](Austria_20200313_22-34-57.png)
+![Austria on 13 March 2020](https://github.com/Melykuti/COVID-19/plots/Austria_20200313_22-34-57.png)
 
 ### Results
 
@@ -94,7 +94,7 @@ The columns have the following meaning:
 
 * Latest reported number of infectious cases
 
-* My estimate for number of infectious cases at present 
+* My estimate for number of infectious cases at present. (I describe at the end of the Analysis why it is missing in certain cases.)
 
 * R^2 of linear regression fit
 
