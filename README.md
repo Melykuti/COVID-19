@@ -1,5 +1,8 @@
 ## Analysis and projections for the spread of the SARS-CoV-2 coronavirus
 
+> * For plots and results, scroll down to the sections with these titles.
+> * [The analogous study for Germany and its federal states on the 15th March 2020 in German language.](https://github.com/Melykuti/COVID-19/blob/master/Deutschland.md)
+
 13 March 2020, Freiburg i. Br., Germany. -- As I am writing this analysis and documentation, I'm constantly surprised by the stream of unprecedented news and by the escalation of response to the COVID-19 coronavirus disease. Things that were unthinkable yesterday have become a reality today.
 
 The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
@@ -56,7 +59,7 @@ The exponential curve is not always a good fit (a straight line is not always a 
 
 4. The [R^2 or coefficient of determination](https://en.wikipedia.org/wiki/Coefficient_of_determination) of the linear regression fit (which I can't explain here). The closer it is to 1, the better the match between data and my linear regression.
 
-5. I also compute the difference between the value of the fitted straight line for the last day when we have data and the real observation (in the logarithmic space) for that last day. If the spread is slowing relative to the exponential rate, then this number will be high and the projection is definitely unreliable. If this difference is small, then the projection might well be good. When the difference is negative, it will be an underestimate! You can interpret this number as a factor between the data and the linear approximation (because it is a difference between  the logarithms).
+5. I also compute the difference between the value of the fitted straight line for the last day when we have data and the real observation (in the logarithmic space) for that last day. If the spread is slowing relative to the exponential rate, then this number will be high and the projection is definitely unreliable. If this difference is small, then the projection might well be good. When the difference is negative, it will be an underestimate! You can interpret this number as a factor between the linear approximation and the data (because it is a difference between the logarithms).
 
 If the R^2 is lower than 0.95 or this difference is greater than 0.5, then I do not show projections for the number of infected 3-to-5 days from now, which as I said is what I guess to be the real number of infected cases today.
 
@@ -124,13 +127,14 @@ I focus on countries with a large number of cases. China and South Korea are exa
 
 ### Requirements
 
-The following Python&nbsp;3 packages are required. The version numbers are what I have got installed but they are not strict requirements.
+The following Python&nbsp;3 packages are required. The version numbers are what I have got installed but they are not strict requirements. `beautifulsoup4` is used to parse Wikipedia tables for Germany (Deutschland.md).
 
 `python3==3.7.6`  
 `matplotlib==3.0.3`  
 `numpy==1.16.4`  
 `pandas==0.25.3`  
-`scikit-learn==0.21.3`
+`scikit-learn==0.21.3`  
+`beautifulsoup4==4.8.2`
 
 ### Please donate if you can
 

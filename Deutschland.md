@@ -1,0 +1,135 @@
+## Analyse und Projektionen für die exponentielle Verbreitung der SARS-CoV-2 Coronavirus-Pandemie in Deutschland und in den deutschen Bundesländern
+
+Freiburg i. Br., 16 März 2020 -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+
+Bisher stimmen die beobachteten Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die Pandemie sich zur Zeit ausbreitet. Konkret, mich interessiert wieviele _aktiv ansteckende Kranke_ es gibt, dass heißt, wieviele Leute die Krankheit bekommen haben, die sich noch nicht erholt haben und noch nicht gestorben sind.
+
+_Wie hoch ist die Wahrscheinlichkeit, dass ich mit einem Infizierten in Kontakt komme, wenn ich meine Wohnung verlasse?_ Diese Wahrscheinlichkeit kann ich nicht ausrechnen, sie wächst jedoch ungefähr proportional zur Gesamtanzahl der Ansteckenden.
+
+### Analyse
+
+Meine Methodologie habe ich [auf Englischem in Detail beschrieben.](https://github.com/Melykuti/COVID-19/blob/master/README.md) Für Deutschland und für die Bundesländer rechne ich für jeden Tag das Folgende aus:
+
+`Nr. der Ansteckenden = Nr. der Fälle - Nr. der Tode.`
+
+Ich möchte die `Nr. der Erholten` auch subtrahieren, aber diese Zahl ist bisher nicht veröffentlicht worden. In der Anfangsphase ist diese Zahl sowieso niedrig und sie verursacht keine große Ungenauigkeit.
+
+Ich nehme den Logarithmus auf Basis 2 der Anzahl der Ansteckenden. Dass diese Zahl tatsächlich exponentiell wächst, ist daran erkennbar, dass der Logarithmus nicht unter einer geraden Linie mit einer positiven Steigung fällt.
+
+Mit linearer Regression bestimme ich eine annährende Linie, und von deren Steigung kann ich vieles ausrechnen. Ich kann sagen, mit welchem Faktor die Anzahl von einem Tag bis zum nächsten wächst. Eng verbunden damit ist die Rate, wie lange es dauert, bis die Anzahl der Ansteckenden sich verdoppelt.
+
+### Schaubilder
+
+Die Anzahl der derzeit Infizierten (Ansteckenden) wird durch die gesamte Anzahl der Fälle minus die Anzahl der Tode gerechnet.
+
+Auf der linken Seite ist die Grafik auf normaler linearer Skala, auf der rechten Seite auf logarithmischer Skala auf Basis 10. Die blaue Kurve zeigt die Beobachtungen. Die orangenfarbige Linie ist die exponentielle Annäherung.
+
+Ich wähle immer die letzten 5-14 Tage aus, um die lineare Regression durchzuführen. Mit der Wahl der Länge des Zeitintervals versuche ich die beste Anpassung zu erreichen, gemessen an R^2 und an der Differenz zwischen dem letzten Tag in der geraden Strecke und dem letzten Datenpunkt.
+
+#### Die gesamte Bundesrepublik
+
+![Deutschland, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-15.png)
+
+#### Die einzelnen Bundesländer
+
+![Baden-Württemberg, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-15.png)
+
+![Bayern, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-15.png)
+
+![Berlin, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-15.png)
+
+![Brandenburg, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-15.png)
+
+![Bremen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-03-15.png)
+
+![Hamburg, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-15.png)
+
+![Hessen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-15.png)
+
+![Mecklenburg-Vorpommern, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-15.png)
+
+![Niedersachsen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-15.png)
+
+![Nordrhein-Westfalen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-15.png)
+
+![Rheinland-Pfalz, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-15.png)
+
+![Saarland, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-15.png)
+
+![Sachsen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-15.png)
+
+![Sachsen-Anhalt, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-15.png)
+
+![Schleswig-Holstein, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-15.png)
+
+![Thüringen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-15.png)
+
+
+### Resultate
+
+Diese Resultate sind die direkte numerische Folge der linearen Anpassungen im vorherigen Abschnitt.
+
+**Ich mache eine grobe Schätzung, wieviele Personen zur Zeit infiziert sein können.** Meine Annahme ist es, dass die gemeldeten Zahlen nur diejenigen zeigen, die schon getestet worden sind. Aber die Inkubationszeit der COVID-19 Krankheit beträgt im Schnitt fünf Tage (von 1 Tag bis 14 Tage), deshalb werden sich die heute infizierten erst in ungefähr fünf Tagen melden und testen lassen. Aber sie sind bereits unumkehrbar infiziert und wahrscheinlich ansteckend, und ich will diese Ansteckungsgefahr schätzen.
+
+Die Spalten haben die folgende Bedeutung:
+
+* Die Anzahl der derzeit Infizierten (und Ansteckenden) wächst täglich um diesen Faktor (prozentual ausgedrückt)
+
+* Die Zeitdauer bis die Anzahl der derzeit Infizierten sich verdoppelt
+
+* Die letzte gemeldete Anzahl der derzeit Infizierten.
+
+* Meine Schätzung der derzeit Infizierten. Konkret, die Extrapolation der angepassten exponentiellen Kurve auf 4, beziehungsweise, 6 Tage voraus. (Wenn R^2 kleiner als 0,945 oder die letzte Spalte größer als 0,5 ist, dann lasse ich diese Schätzung wegfallen, denn mein Vertrauen in ihr ist schwächer.)
+
+* R^2 oder Bestimmtheitsmaß oder Determinationskoeffizient der Anpassungsgüte der linearen Regression. Je näher es zu 1 ist, desto besser die Anpassung ist.
+
+* Differenz zwischen der linearen Annäherung und der wahren Beobachtung in logarithmischem Raum für den letzten Datenpunkt (für den letzten Tag). Man kann es als Exponent einer Potenz auf Basis 2 interpretieren für die Quote zwischen Schätzung und der letzten Beobachtung. Wenn diese Nummer groß ist, dann ist die Annäherung wenig gut. Wenn sie sogar negativ ist, dann ist die Annäherung viel zu niedrig und die Anzahl der Ansteckenden wird unterschätzt.
+
+
+Stand 15.03.2020
+
+    Baden-Württemberg      23,5%    3,28 Tage      824      [1732, 2644]  0,96 -0,15
+    Bayern                 25,6%    3,04 Tage      882      [2253, 3554]  0,99  0,04
+    Berlin                 34,3%    2,35 Tage      265       [928, 1674]  0,97  0,11
+    Brandenburg            37,9%    2,16 Tage       84        [301, 574]  1,00 -0,01
+    Bremen                 40,8%    2,02 Tage       53                    0,84  0,20
+    Hamburg                41,5%    2,00 Tage      162       [759, 1521]  0,96  0,23
+    Hessen                 42,0%    1,98 Tage      286      [1056, 2130]  0,96 -0,14
+    Mecklenburg-Vorpommern 30,5%    2,61 Tage       50        [150, 256]  0,99  0,05
+    Niedersachsen          39,0%    2,11 Tage      287      [1168, 2256]  0,95  0,13
+    Nordrhein-Westfalen    23,0%    3,34 Tage     1402      [3285, 4974]  0,95  0,03
+    Rheinland-Pfalz        41,4%    2,00 Tage      168       [649, 1299]  0,96 -0,05
+    Saarland               42,0%    1,98 Tage       32                    0,95  0,60
+    Sachsen                49,1%    1,73 Tage      130       [719, 1599]  0,98  0,16
+    Sachsen-Anhalt         46,1%    1,83 Tage       47                    0,87  0,46
+    Schleswig-Holstein     51,8%    1,66 Tage      103       [549, 1266]  0,95  0,01
+    Thüringen              55,4%    1,57 Tage       51        [312, 754]  0,95  0,07
+    
+    Deutschland            28,4%    2,78 Tage     4826    [13312, 21938]  0,98  0,02
+
+
+### Datenquelle
+
+Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html). Da ich auf der Webseite nur die aktuellen Fallzahlen finde, verwende ich [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland#Infektionsf%C3%A4lle_nach_Bundesl%C3%A4ndern), wo Freiwillige die ganzen Zeitreihen gespeichert haben.
+
+### Programmdateien
+
+* **DEU_download.py** ist das Skript um die Daten von [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland) herunterzuladen.
+
+* **DEU.py** ist das für Deutschland spezifische Skript, das hauptsächlich für die Vorbereitung der Daten von Wikipedia zuständig ist.
+
+* **country_plot.py** hat die Funktionen, die die Analyse und die Visualisierung durchführen.
+
+### Konklusion
+
+Unsere Intuition kann mit nichtlinearen Effekten schwer umgehen. Exponentielles Wachstum ist solch ein Beispiel. **Das Risiko, dass man sich mit der Krankheit auf der Straße ansteckt, wächst um den Faktor 25-40% täglich.** Es ist zu erwarten, dass man über die Erkrankung zunächst nur aus den Nachrichten hören wird, dann plötzlich wird sie überall im Bekanntenkreis auftauchen, wenn die Eindämmung nicht erfolgt.
+
+Wenn man die Ansteckung vermeiden will, dann ist es besser eine Besorgung noch heute und nicht morgen zu machen, und es ist besser morgen Vormittag als morgen Nachmittag das Zuhause zu verlassen.
+
+Neben der Nichtlinearität ist die durch die Inkubationszeit ausgelöste Zeitverzögerung ein zweiter überraschender Aspekt der Pandemie. **Die Anzahl der heute ansteckenden Erkrankten ist schon so viel, wie die Fallanzahl erst in ungefähr fünf Tagen (die durchschnittliche Inkubationszeit) gemeldet werden wird. Das Problem ist deshalb viel größer, als die aktuellen Fallzahlen es zeigen.**
+
+Für das medizinische Personal ist es zu erwarten, dass die Anzahl der neuen Patienten auch exponentiell mit der gleichen Rate wachsen wird. Wenn ein Tag schwierig war, dann wird der nächste 25-40% schwieriger, und der übernächste noch 25-40% schwieriger werden.
+
+### Bitte um Spenden
+
+Wenn Sie meine Arbeit unterstützen können, dann bitte ich Sie, mein [Ocean Plastic Detector](https://www.gofundme.com/OceanPlasticDetector) Projekt aufzusuchen und dort eine Spende durchzuführen. Danke!
