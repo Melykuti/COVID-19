@@ -1,6 +1,6 @@
 ## Analyse und Projektionen für die exponentielle Verbreitung der SARS-CoV-2 Coronavirus-Pandemie in Deutschland und in den deutschen Bundesländern
 
-Freiburg i. Br., 16 März 2020 -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 17 März 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bisher stimmen die beobachteten Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die Pandemie sich zur Zeit ausbreitet. Konkret, mich interessiert wieviele _aktiv ansteckende Kranke_ es gibt, dass heißt, wieviele Leute die Krankheit bekommen haben, die sich noch nicht erholt haben und noch nicht gestorben sind.
 
@@ -28,48 +28,48 @@ Ich wähle immer die letzten 5-14 Tage aus, um die lineare Regression durchzufü
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-15.png)
+![Deutschland, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-16.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-15.png)
+![Baden-Württemberg, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-16.png)
 
-![Bayern, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-15.png)
+![Bayern, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-16.png)
 
-![Berlin, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-15.png)
+![Berlin, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-16.png)
 
-![Brandenburg, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-15.png)
+![Brandenburg, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-16.png)
 
-![Bremen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-03-15.png)
+![Bremen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-03-16.png)
 
-![Hamburg, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-15.png)
+![Hamburg, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-16.png)
 
-![Hessen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-15.png)
+![Hessen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-16.png)
 
-![Mecklenburg-Vorpommern, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-15.png)
+![Mecklenburg-Vorpommern, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-16.png)
 
-![Niedersachsen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-15.png)
+![Niedersachsen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-16.png)
 
-![Nordrhein-Westfalen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-15.png)
+![Nordrhein-Westfalen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-16.png)
 
-![Rheinland-Pfalz, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-15.png)
+![Rheinland-Pfalz, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-16.png)
 
-![Saarland, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-15.png)
+![Saarland, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-16.png)
 
-![Sachsen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-15.png)
+![Sachsen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-16.png)
 
-![Sachsen-Anhalt, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-15.png)
+![Sachsen-Anhalt, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-16.png)
 
-![Schleswig-Holstein, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-15.png)
+![Schleswig-Holstein, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-16.png)
 
-![Thüringen, Stand 15.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-15.png)
+![Thüringen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-16.png)
 
 
 ### Resultate
 
 Diese Resultate sind die direkte numerische Folge der linearen Anpassungen im vorherigen Abschnitt.
 
-**Ich mache eine grobe Schätzung, wieviele Personen zur Zeit infiziert sein können.** Meine Annahme ist es, dass die gemeldeten Zahlen nur diejenigen zeigen, die schon getestet worden sind. Aber die Inkubationszeit der COVID-19 Krankheit beträgt im Schnitt fünf Tage (von 1 Tag bis 14 Tage), deshalb werden sich die heute infizierten erst in ungefähr fünf Tagen melden und testen lassen. Aber sie sind bereits unumkehrbar infiziert und wahrscheinlich ansteckend, und ich will diese Ansteckungsgefahr schätzen.
+**Ich mache eine grobe Schätzung, wieviele Personen zur Zeit infiziert sein können.** Meine Annahme ist es, dass die gemeldeten Zahlen nur diejenigen zeigen, die schon getestet worden sind. Aber die Inkubationszeit der COVID-19 Krankheit beträgt im Schnitt fünf Tage (von 1 Tag bis 14 Tage), deshalb werden sich die heute infizierten erst in ungefähr fünf Tagen melden und testen lassen, sogar später. Aber sie sind bereits unumkehrbar infiziert und wahrscheinlich ansteckend, und ich will diese Ansteckungsgefahr schätzen.
 
 Die Spalten haben die folgende Bedeutung:
 
@@ -84,6 +84,27 @@ Die Spalten haben die folgende Bedeutung:
 * R^2 oder Bestimmtheitsmaß oder Determinationskoeffizient der Anpassungsgüte der linearen Regression. Je näher es zu 1 ist, desto besser die Anpassung ist.
 
 * Differenz zwischen der linearen Annäherung und der wahren Beobachtung in logarithmischem Raum für den letzten Datenpunkt (für den letzten Tag). Man kann es als Exponent einer Potenz auf Basis 2 interpretieren für die Quote zwischen Schätzung und der letzten Beobachtung. Wenn diese Nummer groß ist, dann ist die Annäherung wenig gut. Wenn sie sogar negativ ist, dann ist die Annäherung viel zu niedrig und die Anzahl der Ansteckenden wird unterschätzt.
+
+Stand 16.03.2020
+
+    Baden-Württemberg      28,5%    2,77 Tage     1102      [2839, 4686]  0,97 -0,08
+    Bayern                 25,1%    3,09 Tage     1062      [2725, 4267]  0,99  0,07
+    Berlin                 22,0%    3,49 Tage      300       [692, 1030]  0,99  0,06
+    Brandenburg            34,1%    2,37 Tage       94        [334, 601]  0,97  0,14
+    Bremen                 37,3%    2,19 Tage       56                    0,91  0,38
+    Hamburg                41,3%    2,00 Tage      260      [1058, 2113]  0,97  0,03
+    Hessen                 41,6%    1,99 Tage      342      [1445, 2895]  0,97  0,07
+    Mecklenburg-Vorpommern 29,3%    2,70 Tage       51        [174, 292]  0,99  0,30
+    Niedersachsen          38,4%    2,13 Tage      391      [1547, 2964]  0,96  0,11
+    Nordrhein-Westfalen    22,6%    3,40 Tage     1536      [3856, 5798]  0,96  0,15
+    Rheinland-Pfalz        60,3%    1,47 Tage      325      [2100, 5396]  0,96 -0,03
+    Saarland               43,3%    1,93 Tage       85        [310, 636]  0,95 -0,21
+    Sachsen                40,4%    2,04 Tage      140       [668, 1317]  0,95  0,30
+    Sachsen-Anhalt         32,7%    2,45 Tage       77                    0,90 -0,02
+    Schleswig-Holstein     48,7%    1,75 Tage      123       [694, 1534]  0,96  0,21
+    Thüringen              49,0%    1,74 Tage       55        [329, 730]  0,95  0,28
+    
+    Deutschland            28,2%    2,79 Tage     5999    [16760, 27532]  0,98  0,05
 
 
 Stand 15.03.2020
@@ -122,14 +143,18 @@ Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](
 
 ### Konklusion
 
-Unsere Intuition kann mit nichtlinearen Effekten schwer umgehen. Exponentielles Wachstum ist solch ein Beispiel. **Das Risiko, dass man sich mit der Krankheit auf der Straße ansteckt, wächst um den Faktor 25-40% täglich.** Es ist zu erwarten, dass man über die Erkrankung zunächst nur aus den Nachrichten hören wird, dann plötzlich wird sie überall im Bekanntenkreis auftauchen, wenn die Eindämmung nicht erfolgt.
+Unsere Intuition kann mit nichtlinearen Effekten schwer umgehen. Exponentielles Wachstum ist solch ein Beispiel. **Das Risiko, dass man sich mit der Krankheit auf der Straße ansteckt, wächst um den Faktor 20-50% täglich.** Es ist zu erwarten, dass man über die Erkrankung zunächst nur aus den Nachrichten hören wird, dann plötzlich wird sie überall im Bekanntenkreis auftauchen, wenn die Eindämmung nicht erfolgt.
 
-Wenn man die Ansteckung vermeiden will, dann ist es besser eine Besorgung noch heute und nicht morgen zu machen, und es ist besser morgen Vormittag als morgen Nachmittag das Zuhause zu verlassen.
+Wenn man die Ansteckung vermeiden will, dann ist es besser eine Besorgung noch heute und nicht morgen zu machen, und es ist besser morgen Vormittag als morgen Nachmittag das Zuhause zu verlassen. (Angenommen, dass genau so viele Leute sich auf den Straßen und in den Supermärkten befinden werden. Wenn deren Anzahl zurückgeht, dann sinkt die Kontaktwahrscheinlichkeit auch.)
 
 Neben der Nichtlinearität ist die durch die Inkubationszeit ausgelöste Zeitverzögerung ein zweiter überraschender Aspekt der Pandemie. **Die Anzahl der heute ansteckenden Erkrankten ist schon so viel, wie die Fallanzahl erst in ungefähr fünf Tagen (die durchschnittliche Inkubationszeit) gemeldet werden wird. Das Problem ist deshalb viel größer, als die aktuellen Fallzahlen es zeigen.**
 
-Für das medizinische Personal ist es zu erwarten, dass die Anzahl der neuen Patienten auch exponentiell mit der gleichen Rate wachsen wird. Wenn ein Tag schwierig war, dann wird der nächste 25-40% schwieriger, und der übernächste noch 25-40% schwieriger werden.
+Für das medizinische Personal ist es zu erwarten, dass die Anzahl der neuen Patienten auch exponentiell mit der gleichen Rate wachsen wird. Wenn ein Tag schwierig war, dann wird der nächste 20-50% schwieriger, und der übernächste noch 20-50% schwieriger werden.
 
 ### Bitte um Spenden
 
 Wenn Sie meine Arbeit unterstützen können, dann bitte ich Sie, mein [Ocean Plastic Detector](https://www.gofundme.com/OceanPlasticDetector) Projekt aufzusuchen und dort eine Spende durchzuführen. Danke!
+
+Finden Sie mich auf [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), auf meiner Webseite/Blog: [Melykuti.me](https://melykuti.me), oder folgen Sie mir auf [Facebook](https://www.facebook.com/bence.melykuti) für meine öffentlichen Posts.
+
+Ich arbeite als selbständiger Data Scientist. Sie können mich mit Ihrem Projekt beauftragen.

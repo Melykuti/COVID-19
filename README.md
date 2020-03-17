@@ -139,3 +139,7 @@ The following Python&nbsp;3 packages are required. The version numbers are what 
 ### Please donate if you can
 
 If you can afford to support my work, then please consider donating to my [Ocean Plastic Detector](https://www.gofundme.com/OceanPlasticDetector) project.
+
+Find me on [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), on my website/blog: [Melykuti.me](https://melykuti.me), or follow me on [Facebook](https://www.facebook.com/bence.melykuti) for my public posts.
+
+I work as a data science freelancer. You can contact me with your project proposal.
