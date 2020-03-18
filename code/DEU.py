@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 
-from country_plot import analysis, select_window_length, print_header, print_results, plotting
+from utils import process_geounit, print_header, print_results, plotting
 
 allowed_values = \
     ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Freie Hansestadt Bremen',
@@ -20,8 +20,8 @@ allowed_values = \
 
 ### User input ###
 
-#selection = 'alle' # Choose one of the elements of allowed_values.
-selection = allowed_values[16] # Alternatively, choose an element index from allowed_values.
+selection = 'alle' # Choose one of the elements of allowed_values.
+#selection = allowed_values[3] # Alternatively, choose an element index from allowed_values.
 
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
 window_length_all = dict({bl: window_length for bl in allowed_values[:-1]})
@@ -38,6 +38,8 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
 
 save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
 # In the case of 'alle', 0 functions as -1.
+
+lang = 'de' # 'de' for German, anything else for English
 
 ### End of user input ###
 
@@ -160,7 +162,7 @@ def collect_data(rows, table_no):
     #print(pd.concat(bundeslaender + [s34, s35], axis=1))
     return pd.concat(bundeslaender + [s34, s35], axis=1)
 
-def data_preparation():
+def data_preparation_DEU():
     raw_html = open_data()
 
     soup = BeautifulSoup(raw_html, 'lxml')
@@ -195,7 +197,7 @@ def data_preparation():
     return figures_diff
 
 if __name__ == '__main__':
-    figures_diff = data_preparation()
+    figures_diff = data_preparation_DEU()
 
     print_header()
 
@@ -204,6 +206,39 @@ if __name__ == '__main__':
     if selection != 'alle': # single run
         df_ts = figures_diff[selection]
 
+        results, model, selected_window_length = process_geounit(df_ts, window_length)
+
+        print_results(selection, results, selected_window_length, lang)
+
+        if save_not_show in [0, 1]:
+            plotting(figures_diff[selection], model, save_not_show, selection,
+                selected_window_length, lang)
+
+    else: # analysis of all federal states and complete Germany
+
+        results_dict = dict()
+        selected_window_length_dict = dict()
+
+        for selection in allowed_values[:-1]:
+            print(selection)
+            df_ts = figures_diff[selection]
+            results, model, selected_window_length = process_geounit(df_ts, window_length)
+
+            results_dict[selection] = results
+            selected_window_length_dict[selection] = selected_window_length
+            if save_not_show == 1:
+                plotting(figures_diff[selection], model, save_not_show, selection,
+                    selected_window_length, lang)
+
+        for selection in allowed_values[:-1]:
+            if selection == 'Deutschland':
+                print()
+            if window_length_all[selection] > 0:
+                print_results(selection, results_dict[selection], window_length_all[selection], lang)
+            else:
+                print_results(selection, results_dict[selection], selected_window_length_dict[selection], lang)
+
+'''
         if window_length > 0:
             selected_window_length = window_length
             results, model = analysis(df_ts, window_length)
@@ -274,3 +309,4 @@ if __name__ == '__main__':
                 print_results(selection, results_dict[selection], window_length_all[selection], 'de')
             else:
                 print_results(selection, results_dict[selection], selected_window_length_dict[selection], 'de')
+'''

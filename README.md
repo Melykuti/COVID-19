@@ -1,9 +1,9 @@
 ## Analysis and projections for the spread of the SARS-CoV-2 coronavirus
 
 > * For plots and results, scroll down to the sections with these titles.
-> * [The analogous study for Germany and its federal states on the 15th March 2020 in German language.](https://github.com/Melykuti/COVID-19/blob/master/Deutschland.md)
+> * [The analogous study for Germany and its federal states in German language.](https://github.com/Melykuti/COVID-19/blob/master/Deutschland.md)
 
-13 March 2020, Freiburg i. Br., Germany. -- As I am writing this analysis and documentation, I'm constantly surprised by the stream of unprecedented news and by the escalation of response to the COVID-19 coronavirus disease. Things that were unthinkable yesterday have become a reality today.
+13 March 2020 (updated on 18 March 2020), Freiburg i. Br., Germany. -- As I am writing this analysis and documentation, I'm constantly surprised by the stream of unprecedented news and by the escalation of response to the COVID-19 coronavirus disease. Things that were unthinkable yesterday have become a reality today.
 
 The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
 
@@ -21,7 +21,7 @@ This means that from one day to the next, the total number of infected people in
 
 _What is the probability of coming into contact with the disease if I leave my home?_ While I cannot answer that, I try to give a proxy, which is the number of currently infected people.
 
-Some of the infected people will be in hospital, some at home, but some will be around us on the streets, in the shops, on public transport. I assume that the ratio between infected people in isolation (in hospital or at their home) and those among us is independent of how many people are infected in total. With the growth of the infected population, the count of infected people on the street grows proportionally. **From day to day, your chance of encountering an infected person in the street is growing by a fixed factor as long as the disease is spreading exponentially.**
+Some of the infected people will be in hospital, some at home, but some will be around us on the streets, in the shops, on public transport. I assume that the ratio between infected people in isolation (in hospital or at their home) and those among us is independent of how many people are infected in total. With the growth of the infected population, the count of infected people on the street and in grocery shops grows proportionally (unless social distancing takes hold and people start avoiding public spaces). **From day to day, your chance of encountering an infected person in the street is growing by a fixed factor as long as the disease is spreading exponentially.**
 
 ### Data
 
@@ -29,11 +29,13 @@ The Center for Systems Science and Engineering at the Johns Hopkins University i
 
 ### Program files
 
-* **countries_download.py** is a script to download the three csv data tables: the number of confirmed cases, the number of deaths due to the disease, and the number of recovered patients, broken down to countries. The script automatically inserts the timestamp of download into the file names so that later downloads do not overwrite downloaded data.
+* **download_JHU_CSSE.py** is a script to download the three csv data tables: the number of confirmed cases, the number of deaths due to the disease, and the number of recovered patients, broken down to countries. The script automatically inserts the timestamp of download into the file names so that later downloads do not overwrite downloaded data.
 
-* **country_plot.py** contains the data selection, preprocessing, analysis and plotting functionalities for a single country. It searches for the most recent download of `countries_download.py` in the current directory based on the timestamp in the file name.
+* **utils.py** contains the universal data selection, preprocessing, analysis and plotting functionalities. It searches for the most recent download of `download_JHU_CSSE.py` in the current directory based on the timestamp in the file name. If you want to select a particular one, then modify the variable `timestamp` in `open_csvs()`.
 
-* **joint_analysis.py** calls `country_plot.py` repeatedly on a list of countries.
+* **analysis_single.py** runs the analysis and plots or saves a graph for a single country.
+
+* **analysis_joint.py** calls the analysis and optionally saves plots repeatedly on a list of countries.
 
 ### Analysis
 
@@ -41,7 +43,7 @@ I compute the number of currently infectious people as the number of total cases
 
 `no. of currently infected = no. of cases - no. of deaths - no. of recovered.`
 
-The analysis is founded on the assumption that the growth of this number is exponential. Then I take the base 2 logarithm of this time series for a selected country, and fit a straight line to the last 14 days of data with _ordinary least squares (OLS)_. (If there is a day in this period when the number of patients was zero, then the program crashes.) If the growth is exponential or thereabouts, then this should fit quite well and the slope of this line will tell us the rate of growth.
+The analysis is founded on the assumption that the growth of this number is exponential. Then I take the base 2 logarithm of this time series for a selected country, and fit a straight line to the last 4-14 days of data with _ordinary least squares (OLS)_. If the growth is exponential or thereabouts, then this should fit quite well and the slope of this line will tell us the growth rate. The length of this time window is optimised to provide the best linear fit.
 
 From this slope I compute:
 
@@ -51,41 +53,58 @@ From this slope I compute:
 
 3. I make a crude estimate of what I guess the total number of infected people might currently be.
 
-This is only my guesswork and it will be controversial. The idea is that in the case of a SARS-CoV-2 infection, it takes on average 5-6 days to develop symptoms (fever, dry cough and others). This incubation time varies between 1 to 14 days. The people who were infected today will present symptoms and will be tested perhaps 5 days from now. They will enter the figure in the situation report only then. But they are likely to be already infectious sooner than that and that is what I want to estimate.
+This is only my guesswork and it will be controversial. The idea is that in the case of a SARS-CoV-2 infection, it takes on average 5-6 days to develop symptoms (fever, a usually dry cough and others). This incubation time varies between 1 to 14 days. The people who were infected today will present symptoms and will be tested perhaps 4-6 days from now. They will enter the figure in the situation report only then. But they are likely to be already infectious sooner than that and that is what I want to estimate.
 
-So I project from my linear regression the number of infected three, respectively, five days from the latest data point, and that is the estimate for the _currently infected_ people. This might be too conservative and might only be an underestimate.
+So I project from my linear regression the number of infected four, respectively, six days from the latest data point, and that is the estimate for the _currently infected_ people. This might be too conservative and might be a low estimate.
 
 The exponential curve is not always a good fit (a straight line is not always a good fit to the logarithm of the current case number). It seems that in several European countries, countermeasures do slow the spread from the uncontrolled exponential growth, although not much yet. To screen for this, I compute:
 
-4. The [R^2 or coefficient of determination](https://en.wikipedia.org/wiki/Coefficient_of_determination) of the linear regression fit (which I can't explain here). The closer it is to 1, the better the match between data and my linear regression.
+4. The [R^2 or coefficient of determination](https://en.wikipedia.org/wiki/Coefficient_of_determination) of the linear regression fit (which I can't explain here). The closer it is to 1, the better the match is between the data and my linear regression.
 
-5. I also compute the difference between the value of the fitted straight line for the last day when we have data and the real observation (in the logarithmic space) for that last day. If the spread is slowing relative to the exponential rate, then this number will be high and the projection is definitely unreliable. If this difference is small, then the projection might well be good. When the difference is negative, it will be an underestimate! You can interpret this number as a factor between the linear approximation and the data (because it is a difference between the logarithms).
+5. I also compute the difference between the value of the fitted straight line for the last day when we have data and the real observation (in the logarithmic space) for that last day. If the spread is slowing relative to the exponential rate, then this number will be high and the projection is definitely unreliable. If this difference is small, then the projection might well be good. When the difference is negative, then the projection will be an underestimate! You can interpret this number as a factor between the linear approximation and the data (because it is a difference between the logarithms).
 
-If the R^2 is lower than 0.95 or this difference is greater than 0.5, then I do not show projections for the number of infected 3-to-5 days from now, which as I said is what I guess to be the real number of infected cases today.
+The automatic selection of the window length minimises the l_2 norm of the two-dimensional vector  
+`(10 * (1-R^2), difference between projection and last data point in base 2 logarithmic space).`
+
+I show projections for the number of infected 4-to-6 days from now (which, as I said, is what I guess to be the real number of infected cases today) only if (the R^2 is greater than or equal to 0.95 and the above difference is not greater than 0.5) or if the difference is in [-0,2;&nbsp; 0,1].
 
 ### Plots
 
 The plots for each individual country present the observed total number of infected on the left panel, and the same data on logarithmic scale on the right panel. These lines are in blue. In orange is the fit of an exponential curve, which is the same as the fit of a straight line on logarithmic scale.
 
-For Italy, the last day's data has not been entered into the table and this is the reason why the last two days share the same value.
+18 March 2020
 
-![Italy until 12 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_20200313_22-34-57.png)
 
-Denmark is the special case where the situation is more dire than what my exponential fit for the last 14 days suggests.
+![Italy until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-03-17.png)
 
-![Denmark on 13 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_20200313_22-34-57.png)
+![Spain until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Spain_2020-03-17.png)
 
-Germany is a case where the exponential approximation is fortunately no longer a good fit.
+![Iran until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2020-03-17.png)
 
-![Germany on 13 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_20200313_22-34-57.png)
+![Germany until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2020-03-17.png)
 
-Similarly to Italy, data for the last day is missing (it is identical to the previous day) for Japan.
+![France until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-03-17.png)
 
-![Japan until 12 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_20200313_22-34-57.png)
+![Switzerland until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2020-03-17.png)
 
-Austria is showing a faint good sign on the last day.
+![United Kingdom until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/United_Kingdom_2020-03-17.png)
 
-![Austria on 13 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_20200313_22-34-57.png)
+![Netherlands until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Netherlands_2020-03-17.png)
+
+![Austria until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2020-03-17.png)
+
+![Sweden until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sweden_2020-03-17.png)
+
+![Denmark until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2020-03-17.png)
+
+![Japan until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2020-03-17.png)
+
+![Hungary until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2020-03-17.png)
+
+![South Korea until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-03-17.png)
+
+![China until 17 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2020-03-17.png)
+
 
 ### Results
 
@@ -103,7 +122,30 @@ The columns have the following meaning:
 
 * Difference between linear fit and real data in logarithmic space for the last data point
 
-I focus on countries with a large number of cases. China and South Korea are examples where the preventative measures have slowed down the epidemic spread massively below exponential growth.
+* (Since 18 March 2020) The number of days in the time window in which I fit the linear regression. It is automatically optimised to minimise the vector (10 * (1-R^2), difference) in l_2.
+
+I focus on countries with a large number of cases and on those where I have got some personal connection. China and South Korea are examples where the preventative measures have slowed down the epidemic spread massively.
+
+18 March 2020
+
+    Italy                   13.5%     5.5 days    26062    [43435, 55945]  1.00  0.01   4
+    Spain                   21.3%     3.6 days    10187    [22585, 33222]  0.99  0.04   5
+    Iran                    10.5%     7.0 days     9792    [15956, 19475]  0.97  0.13  12
+    Germany                 26.4%     3.0 days     9166    [23294, 37194]  1.00 -0.00   4
+    France                  24.7%     3.1 days     7647    [19099, 29683]  0.99  0.05  12
+    Switzerland             27.3%     2.9 days     2669     [7335, 11896]  0.98  0.06  12
+    United Kingdom          26.6%     2.9 days     1843      [4785, 7667]  0.99  0.02  14
+    Netherlands             20.4%     3.7 days     1659      [3474, 5037]  1.00 -0.01   5
+    Austria                 27.2%     2.9 days     1328      [3473, 5623]  0.99 -0.00   5
+    Sweden                   7.3%     9.8 days     1182      [1561, 1797]  1.00 -0.00   4
+    Denmark                  4.3%    16.4 days      926      [1099, 1196]  1.00  0.00   4
+    Japan                    7.2%    10.0 days      705       [983, 1130]  0.97  0.08  14
+    Hungary                 24.3%     3.2 days       47        [111, 171]  0.98 -0.01  10
+    Korea, South            -3.5%     nan days     6832      [5938, 5528]  0.84  0.00   4
+    China                    0.0% 11854.3 days    65162    [65183, 65190]  0.83  0.00   8
+
+
+12 March 2020
 
     Italy            22.3%    3.44 days    10590    [24045, 35971]  0.99   0.31
     France           33.5%    2.40 days     2278     [7271, 12962]  0.98   0.42

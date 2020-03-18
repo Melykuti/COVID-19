@@ -160,11 +160,11 @@ Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](
 
 ### Programmdateien
 
-* **DEU_download.py** ist das Skript um die Daten von [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland) herunterzuladen.
+* **download_DEU.py** ist das Skript um die Daten von [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland) herunterzuladen.
 
 * **DEU.py** ist das für Deutschland spezifische Skript, das hauptsächlich für die Vorbereitung der Daten von Wikipedia zuständig ist.
 
-* **country_plot.py** hat die Funktionen, die die Analyse und die Visualisierung durchführen.
+* **utils.py** hat die gemeinsame Funktionen, die die Analyse und die Visualisierung durchführen.
 
 ### Konklusion
 

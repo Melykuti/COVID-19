@@ -2,7 +2,7 @@
 Downloads the Wikipedia html file for the tables at
 https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland#Infektionsf%C3%A4lle_deutschlandweit
 
-exec(open('DEU_download.py','r').read())
+exec(open('download_DEU.py','r').read())
 16/3/2020
 '''
 

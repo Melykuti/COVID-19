@@ -1,5 +1,5 @@
 '''
-exec(open('countries_download.py','r').read())
+exec(open('download_JHU_CSSE.py','r').read())
 12/3/2020
 '''
 
