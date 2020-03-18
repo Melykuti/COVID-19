@@ -1,6 +1,6 @@
 ## Analyse und Projektionen für die exponentielle Verbreitung der SARS-CoV-2 Coronavirus-Pandemie in Deutschland und in den deutschen Bundesländern
 
-16 März 2020 (aktualisiert am 17 März 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 18 März 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bisher stimmen die beobachteten Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die Pandemie sich zur Zeit ausbreitet. Konkret, mich interessiert wieviele _aktiv ansteckende Kranke_ es gibt, dass heißt, wieviele Leute die Krankheit bekommen haben, die sich noch nicht erholt haben und noch nicht gestorben sind.
 
@@ -24,45 +24,45 @@ Die Anzahl der derzeit Infizierten (Ansteckenden) wird durch die gesamte Anzahl 
 
 Auf der linken Seite ist die Grafik auf normaler linearer Skala, auf der rechten Seite auf logarithmischer Skala auf Basis 10. Die blaue Kurve zeigt die Beobachtungen. Die orangenfarbige Linie ist die exponentielle Annäherung.
 
-Ich wähle immer die letzten 5-14 Tage aus, um die lineare Regression durchzuführen. Mit der Wahl der Länge des Zeitintervals versuche ich die beste Anpassung zu erreichen, gemessen an R^2 und an der Differenz zwischen dem letzten Tag in der geraden Strecke und dem letzten Datenpunkt.
+Ich wähle immer die letzten 5-14 Tage aus, um die lineare Regression durchzuführen. Mit der Wahl der Länge des Zeitintervals versuche ich die beste Anpassung zu erreichen, gemessen an R^2 und an der Differenz zwischen dem letzten Tag in der geraden Strecke und dem letzten Datenpunkt. Seit 18.03.2020 ist diese Optimierung automatisiert.
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-16.png)
+![Deutschland, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-18.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-16.png)
+![Baden-Württemberg, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-18.png)
 
-![Bayern, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-16.png)
+![Bayern, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-18.png)
 
-![Berlin, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-16.png)
+![Berlin, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-18.png)
 
-![Brandenburg, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-16.png)
+![Brandenburg, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-18.png)
 
-![Bremen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-03-16.png)
+![Freie Hansestadt Bremen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Freie_Hansestadt_Bremen_2020-03-18.png)
 
-![Hamburg, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-16.png)
+![Hamburg, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-18.png)
 
-![Hessen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-16.png)
+![Hessen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-18.png)
 
-![Mecklenburg-Vorpommern, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-16.png)
+![Mecklenburg-Vorpommern, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-18.png)
 
-![Niedersachsen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-16.png)
+![Niedersachsen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-18.png)
 
-![Nordrhein-Westfalen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-16.png)
+![Nordrhein-Westfalen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-18.png)
 
-![Rheinland-Pfalz, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-16.png)
+![Rheinland-Pfalz, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-18.png)
 
-![Saarland, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-16.png)
+![Saarland, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-18.png)
 
-![Sachsen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-16.png)
+![Sachsen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-18.png)
 
-![Sachsen-Anhalt, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-16.png)
+![Sachsen-Anhalt, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-18.png)
 
-![Schleswig-Holstein, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-16.png)
+![Schleswig-Holstein, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-18.png)
 
-![Thüringen, Stand 16.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-16.png)
+![Thüringen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-18.png)
 
 
 ### Resultate
@@ -79,11 +79,36 @@ Die Spalten haben die folgende Bedeutung:
 
 * Die letzte gemeldete Anzahl der derzeit Infizierten.
 
-* Meine Schätzung der derzeit Infizierten. Konkret, die Extrapolation der angepassten exponentiellen Kurve auf 4, beziehungsweise, 6 Tage voraus. (Wenn R^2 kleiner als 0,945 oder die letzte Spalte größer als 0,5 ist, dann lasse ich diese Schätzung wegfallen, denn mein Vertrauen in ihr ist schwächer.)
+* Meine Schätzung der derzeit Infizierten. Konkret, die Extrapolation der angepassten exponentiellen Kurve auf 4, beziehungsweise, 6 Tage voraus. (Bis 16.03.2020, wenn R^2 kleiner als 0,945 oder die letzte Spalte größer als 0,5 ist, dann lasse ich diese Schätzung wegfallen, denn mein Vertrauen in ihr ist schwächer. Ab 18.03.2020 zeige ich die Schätzung wenn R^2 nicht kleiner als 0,95 und die vorletzte Spalte nicht größer als 0,5 ist, oder wenn die vorletzte Spalte in [-0,2;&nbsp; 0,1] ist.)
 
-* R^2 oder Bestimmtheitsmaß oder Determinationskoeffizient der Anpassungsgüte der linearen Regression. Je näher es zu 1 ist, desto besser die Anpassung ist.
+* R^2 oder Bestimmtheitsmaß oder Determinationskoeffizient der Anpassungsgüte der linearen Regression. Je näher es an 1 ist, desto besser ist die Anpassung.
 
 * Differenz zwischen der linearen Annäherung und der wahren Beobachtung in logarithmischem Raum für den letzten Datenpunkt (für den letzten Tag). Man kann es als Exponent einer Potenz auf Basis 2 interpretieren für die Quote zwischen Schätzung und der letzten Beobachtung. Wenn diese Nummer groß ist, dann ist die Annäherung wenig gut. Wenn sie sogar negativ ist, dann ist die Annäherung viel zu niedrig und die Anzahl der Ansteckenden wird unterschätzt.
+
+* (Ab 18.03.2020) Die Anzahl der Tage im Zeitfenster, in dem die lineare Regression stattfindet. Sie wird automatisch optimiert, so dass der Vektor (10 * (1-R^2), Differenz) in l_2 kleinstmöglich ist.)
+
+
+Stand 18.03.2020
+
+    Baden-Württemberg       35,3%    2,3 Tage     1609     [5780, 10580]  0,96  0,10  8
+    Bayern                  15,8%    4,7 Tage     1243      [2265, 3035]  0,99  0,02  4
+    Berlin                  14,0%    5,3 Tage      391        [660, 857]  1,00  0,00  4
+    Brandenburg             17,4%    4,3 Tage       92        [170, 234]  0,98 -0,04  4
+    Freie Hansestadt Bremen 10,4%    7,0 Tage       69        [101, 123]  0,93 -0,02  7
+    Hamburg                 32,1%    2,5 Tage      358      [1189, 2076]  0,98  0,12  6
+    Hessen                  35,7%    2,3 Tage      432      [1587, 2924]  0,98  0,11  6
+    Mecklenburg-Vorpommern  22,7%    3,4 Tage       56        [126, 190]  0,99 -0,00  7
+    Niedersachsen           26,2%    3,0 Tage      478      [1141, 1819]  0,98 -0,09  6
+    Nordrhein-Westfalen     22,8%    3,4 Tage     2372      [5604, 8448]  0,99  0,06  7
+    Rheinland-Pfalz         45,8%    1,8 Tage      474      [2582, 5487]  0,97  0,27  7
+    Saarland                53,1%    1,6 Tage       88                    0,88  0,35  9
+    Sachsen                 40,7%    2,0 Tage      198       [924, 1830]  0,95  0,25  8
+    Sachsen-Anhalt          39,7%    2,1 Tage      105        [386, 754]  0,87 -0,05  8
+    Schleswig-Holstein      25,8%    3,0 Tage      159        [401, 636]  1,00  0,01  4
+    Thüringen               32,8%    2,4 Tage       74        [227, 401]  0,96 -0,02  8
+    
+    Deutschland             27,4%    2,9 Tage     8198    [22821, 37052]  1,00  0,08  9
+
 
 Stand 16.03.2020
 
@@ -143,13 +168,13 @@ Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](
 
 ### Konklusion
 
-Unsere Intuition kann mit nichtlinearen Effekten schwer umgehen. Exponentielles Wachstum ist solch ein Beispiel. **Das Risiko, dass man sich mit der Krankheit auf der Straße ansteckt, wächst um den Faktor 20-50% täglich.** Es ist zu erwarten, dass man über die Erkrankung zunächst nur aus den Nachrichten hören wird, dann plötzlich wird sie überall im Bekanntenkreis auftauchen, wenn die Eindämmung nicht erfolgt.
+Unsere Intuition kann mit nichtlinearen Effekten schwer umgehen. Exponentielles Wachstum ist solch ein Beispiel. **Das Risiko, dass man sich mit der Krankheit auf der Straße ansteckt, wächst um den Faktor 15-50% täglich.** Es ist zu erwarten, dass man über die Erkrankung zunächst nur aus den Nachrichten hören wird, dann plötzlich wird sie überall im Bekanntenkreis auftauchen, wenn die Eindämmung nicht erfolgt.
 
 Wenn man die Ansteckung vermeiden will, dann ist es besser eine Besorgung noch heute und nicht morgen zu machen, und es ist besser morgen Vormittag als morgen Nachmittag das Zuhause zu verlassen. (Angenommen, dass genau so viele Leute sich auf den Straßen und in den Supermärkten befinden werden. Wenn deren Anzahl zurückgeht, dann sinkt die Kontaktwahrscheinlichkeit auch.)
 
 Neben der Nichtlinearität ist die durch die Inkubationszeit ausgelöste Zeitverzögerung ein zweiter überraschender Aspekt der Pandemie. **Die Anzahl der heute ansteckenden Erkrankten ist schon so viel, wie die Fallanzahl erst in ungefähr fünf Tagen (die durchschnittliche Inkubationszeit) gemeldet werden wird. Das Problem ist deshalb viel größer, als die aktuellen Fallzahlen es zeigen.**
 
-Für das medizinische Personal ist es zu erwarten, dass die Anzahl der neuen Patienten auch exponentiell mit der gleichen Rate wachsen wird. Wenn ein Tag schwierig war, dann wird der nächste 20-50% schwieriger, und der übernächste noch 20-50% schwieriger werden.
+Für das medizinische Personal ist es zu erwarten, dass die Anzahl der neuen Patienten auch exponentiell mit der gleichen Rate wachsen wird. Wenn ein Tag schwierig war, dann wird der nächste 15-50% schwieriger, und der übernächste noch 15-50% schwieriger werden.
 
 ### Bitte um Spenden
 

@@ -1,34 +1,43 @@
 '''
 exec(open('DEU.py').read())
-15-16/3/2020
+15-18/3/2020
 '''
 
 import os, datetime
+import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 
-from country_plot import analysis, print_header, print_results, plotting
-
-### User input ###
+from country_plot import analysis, select_window_length, print_header, print_results, plotting
 
 allowed_values = \
-    ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen',
+    ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Freie Hansestadt Bremen',
     'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen',
     'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen',
     'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen',
     'Deutschland',
     'alle']
-selection = 'Baden-Württemberg'
-#selection = allowed_values[0]
-window_length = 10 # from present back into past
-window_length_all = dict({'Baden-Württemberg': window_length, 'Bayern': window_length,
-    'Berlin': 9, 'Brandenburg': 5, 'Bremen': 11,
-    'Hamburg': window_length, 'Hessen': window_length, 'Mecklenburg-Vorpommern': 12,
-    'Niedersachsen': 11, 'Nordrhein-Westfalen': 14,
-    'Rheinland-Pfalz': 14, 'Saarland': window_length, 'Sachsen': 7,
-    'Sachsen-Anhalt': 6, 'Schleswig-Holstein': 7, 'Thüringen': 11,
-    'Deutschland': 12})
-save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
+
+### User input ###
+
+#selection = 'alle' # Choose one of the elements of allowed_values.
+selection = allowed_values[16] # Alternatively, choose an element index from allowed_values.
+
+window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
+window_length_all = dict({bl: window_length for bl in allowed_values[:-1]})
+'''
+# You can select individual window lengths manually:
+window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
+    'Berlin': 5, 'Brandenburg': 5, 'Bremen': 15,
+    'Hamburg': 11, 'Hessen': 11, 'Mecklenburg-Vorpommern': 13,
+    'Niedersachsen': 12, 'Nordrhein-Westfalen': 15,
+    'Rheinland-Pfalz': 6, 'Saarland': window_length, 'Sachsen': 7,
+    'Sachsen-Anhalt': 6, 'Schleswig-Holstein': 8, 'Thüringen': 13,
+    'Deutschland': 13})
+'''
+
+save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+# In the case of 'alle', 0 functions as -1.
 
 ### End of user input ###
 
@@ -82,17 +91,21 @@ def convert_months_to_nr(s: str) -> int:
         print('ERROR at 2: Data format error, results are unreliable.')
         return -1
 
-def collect_dates(rows):
+def collect_dates(rows, table_no):
     # First 2 rows are the header: month and day.
     t = rows[0].find_all('th')
     months = []
-    for j in range(1, len(t)):
+    for j in range(1, len(t)-(table_no==0)):
         months += int(t[j]['colspan']) * [convert_months_to_nr(t[j].text)]
         #print(months)
     t = rows[1].find_all('th')
     days = []
-    for j in t:
-        days.append(j.text[:j.text.find('.')]) # cutting .\n from end
+    if table_no==0:
+        for j in t[:-1]:
+            days.append(j.text[:j.text.find('.')]) # cutting .\n from end
+    else:
+        for j in t:
+            days.append(j.text[:j.text.find('.')]) # cutting .\n from end
     #print(days)
     ymd = list()
     for m, d in zip(months, days):
@@ -100,19 +113,20 @@ def collect_dates(rows):
     dates = pd.to_datetime(ymd)
     return dates # pandas DatetimeIndex of dates
 
-def collect_data(rows):
-    dates = collect_dates(rows)
+def collect_data(rows, table_no):
+    dates = collect_dates(rows, table_no)
     cases_bl = dict()
     for i in range(2, len(rows)-2, 2): # runs from 2 by steps of 2 to 32 (inclusive)
         bundesland = rows[i].find_all('td')[2].find_all('a')[0].text
         #print(i, bundesland)
         cases_bl[bundesland] = list()
-        for j in range(3, len(rows[i].find_all('td'))):
+        # For the first table, leave out the last column (Erkr./100.000 Einw.)
+        for j in range(3, len(rows[i].find_all('td'))-(table_no==0)):
             try:
                 cases_bl[bundesland].append(int(rows[i].find_all('td')[j].text.replace('.','')))
             except:
                 cases_bl[bundesland].append(0)
-    #print(cases_bl)
+
     bundeslaender = list()
     for bl in cases_bl:
         bundeslaender.append(pd.Series(cases_bl[bl], name=bl, index=dates))
@@ -121,7 +135,7 @@ def collect_data(rows):
     #print(rows[34].find_all('th')[0].find_all('a')[1].text)
     i = 34
     cases = []
-    for j in range(1, len(rows[i].find_all('th'))):
+    for j in range(1, len(rows[i].find_all('th'))-(table_no==0)):
         try:
             cases.append(int(rows[i].find_all('th')[j].text.replace('.','')))
         except:
@@ -134,7 +148,7 @@ def collect_data(rows):
     #print(rows[35].find_all('th')[0].text)
     i = 35
     cases = []
-    for j in range(1, len(rows[i].find_all('th'))):
+    for j in range(1, len(rows[i].find_all('th'))-(table_no==0)):
         try:
             cases.append(int(rows[i].find_all('th')[j].text.replace('.','')))
         except:
@@ -155,21 +169,24 @@ def data_preparation():
     tables = soup.find_all('table', {'class':'wikitable sortable mw-collapsible'}) # I expect two tables: 'Bestätigte Infektionsfälle (kumuliert)', 'Bestätigte Todesfälle (kumuliert)'
 
 
-    if 'Bestätigte Infektionsfälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[1].text:
+    if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[2].text:
         print('ERROR at 0: Data format error, results are unreliable.')
 
-    for i in range(2):
+    for i in [0, 2]: #range(2):
         rows = tables[i].find_all('tr')
-        if (i==0 and ('Bundesland' not in rows[0].text or 'Februar' not in rows[0].text or 'März' not in rows[0].text)) or \
-           (i==1 and ('Bundesland' not in rows[0].text or 'März' not in rows[0].text)):
+         # or 'Februar' not in rows[0].text
+        if (i==0 and ('Bundesland' not in rows[0].text or 'März' not in rows[0].text)) or \
+           (i==2 and ('Bundesland' not in rows[0].text or 'März' not in rows[0].text)):
             print('ERROR at 1: Data format error with table {}, results are unreliable.'.format(i))
 
         #dates = collect_dates(rows)
         #print(dates)
         if i==0:
-            figures = collect_data(rows) # infections
-        else: # i==1
-            death_figures = collect_data(rows) # deaths
+            figures = collect_data(rows, i) # infections
+            #print(figures)
+        else: # i==2
+            death_figures = collect_data(rows, i) # deaths
+            #print(death_figures)
             # Extend it to the size of cases and fill missing values with 0
             death_figures = pd.DataFrame(death_figures, index=figures.index).fillna(value=0).astype('int64')
             #print(death_figures)
@@ -179,18 +196,81 @@ def data_preparation():
 
 if __name__ == '__main__':
     figures_diff = data_preparation()
-    #print(figures_diff[selection], window_length_all[selection])
-    print_header()
-    if selection != 'alle':
-        results, model = analysis(figures_diff[selection], window_length_all[selection])
-        print_header()
-        print_results(selection, results, 'de')
-        if save_not_show in [0, 1]:
-            plotting(figures_diff[selection], model, save_not_show, selection, window_length_all[selection], 'de')
-    else:
-        for selection in allowed_values[:-1]:
-            results, model = analysis(figures_diff[selection], window_length_all[selection])
-            print_results(selection, results, 'de')
-            if save_not_show in [0, 1]:
-                plotting(figures_diff[selection], model, save_not_show, selection, window_length_all[selection], 'de')
 
+    print_header()
+
+    #print(figures_diff[selection], window_length_all[selection])
+
+    if selection != 'alle': # single run
+        df_ts = figures_diff[selection]
+
+        if window_length > 0:
+            selected_window_length = window_length
+            results, model = analysis(df_ts, window_length)
+
+        else: # do a search over window_lengths for best possible fit
+            # minimum and maximum allowed window lengths; we test all in this closed interval
+            wl_lo = 4
+            wl_hi = 15 # this end point is not included
+            R = pd.DataFrame(np.zeros((wl_hi-wl_lo, 7)), index=range(wl_lo, wl_hi))
+            models = dict()
+            for wl in range(wl_lo, min(wl_hi, 1+len(df_ts[df_ts[df_ts>0].idxmin():]))):
+                result_wl, model = analysis(df_ts, wl)
+                R.iloc[wl-wl_lo, :] = result_wl
+                models[wl] = model
+            R = R.astype({2: int, 3: int, 4: int})
+
+            results, selected_window_length = select_window_length(R)
+            model = models[selected_window_length]
+
+        #results, model = analysis(figures_diff[selection], window_length_all[selection])
+
+        print_results(selection, results, selected_window_length, 'de')
+        if save_not_show in [0, 1]:
+            plotting(figures_diff[selection], model, save_not_show, selection,
+                selected_window_length, 'de')
+
+    else: # analysis of all federal states and complete Germany
+
+        results_dict = dict()
+        selected_window_length_dict = dict()
+
+        for selection in allowed_values[:-1]:
+            print(selection)
+            df_ts = figures_diff[selection]
+
+            if window_length_all[selection] > 0:
+                selected_window_length = window_length_all[selection]
+                results, model = analysis(df_ts, window_length)
+            else: # do a search over window_lengths for best possible fit
+                # minimum and maximum allowed window lengths; we test all in this closed interval
+                wl_lo = 4
+                wl_hi = 15 # this end point is not included
+                R = pd.DataFrame(np.zeros((wl_hi-wl_lo, 7)), index=range(wl_lo, wl_hi))
+                models = dict()
+                for wl in range(wl_lo, min(wl_hi, 1+len(df_ts[df_ts[df_ts>0].idxmin():]))):
+                    result_wl, model = analysis(df_ts, wl)
+                    R.iloc[wl-wl_lo, :] = result_wl
+                    models[wl] = model
+                R = R.astype({2: int, 3: int, 4: int})
+
+                results, selected_window_length = select_window_length(R)
+                selected_window_length_dict[selection] = selected_window_length
+                model = models[selected_window_length]
+
+            results_dict[selection] = results
+            if save_not_show == 1:
+                plotting(df_ts, model, 1, selection, selected_window_length, 'de')
+
+            #results, model = analysis(figures_diff[selection], window_length_all[selection])
+            #print_results(selection, results, 'de')
+            #if save_not_show in [0, 1]:
+            #    plotting(figures_diff[selection], model, save_not_show, selection, window_length_all[selection], 'de')
+
+        for selection in allowed_values[:-1]:
+            if selection == 'Deutschland':
+                print()
+            if window_length_all[selection] > 0:
+                print_results(selection, results_dict[selection], window_length_all[selection], 'de')
+            else:
+                print_results(selection, results_dict[selection], selected_window_length_dict[selection], 'de')
