@@ -9,7 +9,8 @@ exec(open('download_DEU.py','r').read())
 import os, time
 import requests
 
-website_url = requests.get('https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland').text
+#website_url = requests.get('https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland').text
+website_url = requests.get('https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Deutschland').text # since 19/3/2020
 
 datetime_str = time.strftime('%Y%m%d_%H-%M-%S', time.localtime(time.time()))
 #for source in files:

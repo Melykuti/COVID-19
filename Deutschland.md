@@ -1,6 +1,6 @@
 ## Analyse und Projektionen für die exponentielle Verbreitung der SARS-CoV-2 Coronavirus-Pandemie in Deutschland und in den deutschen Bundesländern
 
-16 März 2020 (aktualisiert am 18 März 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 19 März 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bisher stimmen die beobachteten Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die Pandemie sich zur Zeit ausbreitet. Konkret, mich interessiert wieviele _aktiv ansteckende Kranke_ es gibt, dass heißt, wieviele Leute die Krankheit bekommen haben, die sich noch nicht erholt haben und noch nicht gestorben sind.
 
@@ -28,41 +28,41 @@ Ich wähle immer die letzten 5-14 Tage aus, um die lineare Regression durchzufü
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-18.png)
+![Deutschland, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-19.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-18.png)
+![Baden-Württemberg, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-19.png)
 
-![Bayern, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-18.png)
+![Bayern, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-19.png)
 
-![Berlin, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-18.png)
+![Berlin, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-19.png)
 
-![Brandenburg, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-18.png)
+![Brandenburg, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-19.png)
 
-![Freie Hansestadt Bremen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Freie_Hansestadt_Bremen_2020-03-18.png)
+![Bremen, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-03-19.png)
 
-![Hamburg, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-18.png)
+![Hamburg, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-19.png)
 
-![Hessen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-18.png)
+![Hessen, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-19.png)
 
-![Mecklenburg-Vorpommern, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-18.png)
+![Mecklenburg-Vorpommern, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-19.png)
 
-![Niedersachsen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-18.png)
+![Niedersachsen, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-19.png)
 
-![Nordrhein-Westfalen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-18.png)
+![Nordrhein-Westfalen, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-19.png)
 
-![Rheinland-Pfalz, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-18.png)
+![Rheinland-Pfalz, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-19.png)
 
-![Saarland, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-18.png)
+![Saarland, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-19.png)
 
-![Sachsen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-18.png)
+![Sachsen, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-19.png)
 
-![Sachsen-Anhalt, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-18.png)
+![Sachsen-Anhalt, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-19.png)
 
-![Schleswig-Holstein, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-18.png)
+![Schleswig-Holstein, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-19.png)
 
-![Thüringen, Stand 18.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-18.png)
+![Thüringen, Stand 19.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-19.png)
 
 
 ### Resultate
@@ -87,6 +87,28 @@ Die Spalten haben die folgende Bedeutung:
 
 * (Ab 18.03.2020) Die Anzahl der Tage im Zeitfenster, in dem die lineare Regression stattfindet. Sie wird automatisch optimiert, so dass der Vektor (10 * (1-R^2), Differenz) in l_2 kleinstmöglich ist.)
 
+
+Stand 19.03.2020
+
+    Baden-Württemberg       34,6%     2,3 Tage     2149     [7415, 13425]  0,97  0,07   9
+    Bayern                  20,7%     3,7 Tage     1684      [3432, 4998]  0,98 -0,06   6
+    Berlin                  20,4%     3,7 Tage      573      [1102, 1597]  0,98 -0,13   8
+    Brandenburg             27,1%     2,9 Tage      134        [327, 529]  0,94 -0,10   4
+    Bremen                  10,9%     6,7 Tage       80        [116, 143]  0,95 -0,05   8
+    Hamburg                 18,8%     4,0 Tage      432       [858, 1212]  1,00 -0,00   4
+    Hessen                  39,3%     2,1 Tage      682      [2559, 4964]  0,99 -0,00   8
+    Mecklenburg-Vorpommern  27,3%     2,9 Tage       98        [212, 344]  0,97 -0,28   9
+    Niedersachsen           36,1%     2,2 Tage      669      [2238, 4148]  0,98 -0,04   4
+    Nordrhein-Westfalen     22,8%     3,4 Tage     3027     [6869, 10351]  0,99 -0,00   8
+    Rheinland-Pfalz         42,5%     2,0 Tage      637      [3075, 6248]  0,97  0,23   8
+    Saarland                40,2%     2,1 Tage       99                    0,88  0,29   9
+    Sachsen                 35,0%     2,3 Tage      275       [958, 1746]  0,96  0,07   8
+    Sachsen-Anhalt          54,5%     1,6 Tage      140       [836, 1998]  0,98  0,07   4
+    Schleswig-Holstein      24,8%     3,1 Tage      202        [485, 756]  1,00 -0,01   4
+    Thüringen               40,2%     2,1 Tage       98        [386, 760]  1,00  0,03   4
+    
+    Deutschland             26,8%     2,9 Tage    10979    [28209, 45329]  1,00 -0,01   7
+    
 
 Stand 18.03.2020
 
@@ -156,7 +178,7 @@ Stand 15.03.2020
 
 ### Datenquelle
 
-Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html). Da ich auf der Webseite nur die aktuellen Fallzahlen finde, verwende ich [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland#Infektionsf%C3%A4lle_nach_Bundesl%C3%A4ndern), wo Freiwillige die ganzen Zeitreihen gespeichert haben.
+Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html). Da ich auf der Webseite nur die aktuellen Fallzahlen finde, verwende ich [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Deutschland#Infektionsf%C3%A4lle_nach_Bundesl%C3%A4ndern), wo Freiwillige die ganzen Zeitreihen gespeichert haben.
 
 ### Programmdateien
 

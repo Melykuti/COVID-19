@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from utils import process_geounit, print_header, print_results, plotting
 
 allowed_values = \
-    ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Freie Hansestadt Bremen',
+    ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen',
     'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen',
     'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen',
     'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen',
@@ -36,7 +36,7 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
     'Deutschland': 13})
 '''
 
-save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
 # In the case of 'alle', 0 functions as -1.
 
 lang = 'de' # 'de' for German, anything else for English
