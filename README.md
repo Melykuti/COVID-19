@@ -3,7 +3,7 @@
 > * For plots and results, scroll down to the sections with these titles.
 > * [The analogous study for Germany and its federal states in German language.](https://github.com/Melykuti/COVID-19/blob/master/Deutschland.md)
 
-13 March 2020 (updated on 19 March 2020), Freiburg i. Br., Germany. -- As I am writing this analysis and documentation, I'm constantly surprised by the stream of unprecedented news and by the escalation of response to the COVID-19 coronavirus disease. Things that were unthinkable yesterday have become a reality today.
+13 March 2020 (updated on 20 March 2020), Freiburg i. Br., Germany, where a curfew is in force from 21 March 2020. -- As I am writing this analysis and documentation, I'm constantly surprised by the stream of unprecedented news and by the escalation of response to the COVID-19 coronavirus disease. Things that were unthinkable yesterday have become a reality today.
 
 The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
 
@@ -74,35 +74,35 @@ The plots for each individual country present the observed total number of infec
 
 19 March 2020
 
-![Italy until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-03-18.png)
+![Italy until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-03-19.png)
 
-![Spain until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Spain_2020-03-18.png)
+![Spain until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Spain_2020-03-19.png)
 
-![Germany until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2020-03-18.png)
+![Germany until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2020-03-19.png)
 
-![Iran until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2020-03-18.png)
+![Iran until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2020-03-19.png)
 
-![France until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-03-18.png)
+![France until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-03-19.png)
 
-![Switzerland until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2020-03-18.png)
+![Switzerland until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2020-03-19.png)
 
-![United Kingdom until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/United_Kingdom_2020-03-18.png)
+![United Kingdom until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/United_Kingdom_2020-03-19.png)
 
-![Netherlands until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Netherlands_2020-03-18.png)
+![Netherlands until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Netherlands_2020-03-19.png)
 
-![Austria until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2020-03-18.png)
+![Austria until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2020-03-19.png)
 
-![Sweden until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sweden_2020-03-18.png)
+![Sweden until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sweden_2020-03-19.png)
 
-![Denmark until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2020-03-18.png)
+![Denmark until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2020-03-19.png)
 
-![Japan until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2020-03-18.png)
+![Japan until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2020-03-19.png)
 
-![Hungary until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2020-03-18.png)
+![Hungary until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2020-03-19.png)
 
-![South Korea until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-03-18.png)
+![South Korea until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-03-19.png)
 
-![China until 18 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2020-03-18.png)
+![China until 19 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2020-03-19.png)
 
 
 ### Results
@@ -124,6 +124,24 @@ The columns have the following meaning:
 * (Since 18 March 2020) The number of days in the time window in which I fit the linear regression. It is automatically optimised to minimise the vector (10 * (1-R^2), difference) in l_2.
 
 I focus on countries with a large number of cases and on those where I have got some personal connection. China and South Korea are examples where the preventative measures have slowed down the epidemic spread massively.
+
+20 March 2020
+
+    Italy                   12.9%     5.7 days    33190    [53627, 68355]  1.00 -0.01   6
+    Spain                   21.5%     3.6 days    16026    [33714, 49788]  0.99 -0.05   7
+    Germany                 27.2%     2.9 days    15163    [39618, 64138]  1.00 -0.00   7
+    Iran                     7.1%    10.1 days    11413    [15093, 17316]  0.97  0.01   5
+    France                  17.9%     4.2 days    10864    [20807, 28939]  1.00 -0.01   4
+    Switzerland             26.4%     3.0 days     4019    [10758, 17183]  0.99  0.07  14
+    United Kingdom          25.4%     3.1 days     2487     [6940, 10907]  0.99  0.18  14
+    Netherlands             20.3%     3.8 days     2453      [5138, 7433]  1.00  0.00   4
+    Austria                 25.2%     3.1 days     1998      [4980, 7800]  1.00  0.02   6
+    Sweden                   8.3%     8.7 days     1412      [1919, 2252]  0.99 -0.02   5
+    Denmark                  5.5%    12.9 days     1077      [1311, 1460]  0.98 -0.03   6
+    Japan                    6.0%    11.9 days      745       [999, 1123]  0.97  0.09  14
+    Hungary                 23.3%     3.3 days       70        [160, 243]  1.00 -0.01   5
+    Korea, South            -2.1%     nan days     6934      [6177, 5917]  0.71 -0.04   6
+    China                   -0.0%     nan days    65149    [65130, 65120]  0.93  0.00   4
 
 19 March 2020
 
