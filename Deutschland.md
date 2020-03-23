@@ -1,6 +1,14 @@
 ## Analyse und Projektionen für die exponentielle Verbreitung der SARS-CoV-2 Coronavirus-Pandemie in Deutschland und in den deutschen Bundesländern
 
-16 März 2020 (aktualisiert am 20 März 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+Zusammenfassung am Montag, 23 März 2020:
+
+*  Das Wochenende brachte eine eintägige Verzögerung im Berichten der Fallzahl in Nordrhein-Westfalen. (Die Zahl am 22.03.2020 war viel zu niedrig.) Mit dem letzten Datenpunkt ist keine Verbesserung in der Zeitreihe zu sehen.
+* In Baden-Württemberg ist die heutige Zahl sehr suspekt. Im Fall BW rufe ich zu Geduld auf; ich denke nicht, dass die Lage sich so schnell entspannt hätte, wie dies zur Zeit aussieht. Warum sollte die Situation hier besser sein als in Bayern, wo die Wachstumsrate nicht nachlässt.
+* In Mecklenburg-Vorpommern oder Sachsen-Anhalt sind große Schwankungen wegen der relativ geringen Fallzahl zu erwarten. Ich gebe auch hier keine Entwarnung wegen des Effekts des Wochenendes.
+* In Baden-Württemberg, Berlin, Brandenburg, Bremen, Hamburg, Hessen, Mecklenburg-Vorpommern, Saarland, Sachsen, Sachsen-Anhalt war es schon vor sieben Tagen, am 16.03., eine nur vorübergehende Verlangsamung der Fallzahlen zu beobachten. Ich vermute, dass nur eine Verspätung der Datenübertragung am Wochenende deren zugrunde liegt.
+* **Überall, wo die heutigen Daten auf eine Verlangsamung hinweisen, gab es vor einer Woche, nach dem Wochenende, schon eine ähnliche Verlangsamung, ohne langfristigen Effekt an der Ausbreitung der Coronavirus-Pandemie.**
+
+16 März 2020 (aktualisiert am 23 März 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bisher stimmen die beobachteten Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die Pandemie sich zur Zeit ausbreitet. Konkret, mich interessiert wieviele _aktiv ansteckende Kranke_ es gibt, dass heißt, wieviele Leute die Krankheit bekommen haben, die sich noch nicht erholt haben und noch nicht gestorben sind.
 
@@ -28,41 +36,41 @@ Ich wähle immer die letzten 5-14 Tage aus, um die lineare Regression durchzufü
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-20.png)
+![Deutschland, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-23.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-20.png)
+![Baden-Württemberg, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-23.png)
 
-![Bayern, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-20.png)
+![Bayern, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-23.png)
 
-![Berlin, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-20.png)
+![Berlin, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-23.png)
 
-![Brandenburg, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-20.png)
+![Brandenburg, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-23.png)
 
-![Bremen, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-03-20.png)
+![Bremen, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-03-23.png)
 
-![Hamburg, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-20.png)
+![Hamburg, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-23.png)
 
-![Hessen, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-20.png)
+![Hessen, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-23.png)
 
-![Mecklenburg-Vorpommern, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-20.png)
+![Mecklenburg-Vorpommern, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-23.png)
 
-![Niedersachsen, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-20.png)
+![Niedersachsen, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-23.png)
 
-![Nordrhein-Westfalen, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-20.png)
+![Nordrhein-Westfalen, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-23.png)
 
-![Rheinland-Pfalz, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-20.png)
+![Rheinland-Pfalz, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-23.png)
 
-![Saarland, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-20.png)
+![Saarland, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-23.png)
 
-![Sachsen, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-20.png)
+![Sachsen, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-23.png)
 
-![Sachsen-Anhalt, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-20.png)
+![Sachsen-Anhalt, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-23.png)
 
-![Schleswig-Holstein, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-20.png)
+![Schleswig-Holstein, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-23.png)
 
-![Thüringen, Stand 20.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-20.png)
+![Thüringen, Stand 23.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-23.png)
 
 
 ### Resultate
@@ -87,6 +95,32 @@ Die Spalten haben die folgende Bedeutung:
 
 * (Ab 18.03.2020) Die Anzahl der Tage im Zeitfenster, in dem die lineare Regression stattfindet. Sie wird automatisch optimiert, so dass der Vektor (10 * (1-R^2), Differenz) in l_2 kleinstmöglich ist.)
 
+&nbsp;
+
+    Bundesland      Wachstumsrate Verdoppl.zeit Aktive Fälle  Schätzung    R^2  Diff.Fenstergröße
+
+
+Stand 23.03.2020
+
+    Baden-Württemberg       24,9%     3,1 Tage     3790    [11880, 18535]  0,98  0,37  12
+    Bayern                  30,6%     2,6 Tage     4866    [14334, 24459]  0,99  0,02   6
+    Berlin                  21,4%     3,6 Tage     1076      [2582, 3806]  0,99  0,14  12
+    Brandenburg             22,8%     3,4 Tage      288       [740, 1116]  0,95  0,18  13
+    Bremen                  20,5%     3,7 Tage      170        [396, 576]  0,96  0,15   8
+    Hamburg                 21,0%     3,6 Tage      943      [2055, 3007]  0,98  0,03   8
+    Hessen                  24,8%     3,1 Tage     1344      [3639, 5666]  0,98  0,16  11
+    Mecklenburg-Vorpommern  22,0%     3,5 Tage      172        [452, 674]  0,95  0,25  14
+    Niedersachsen           23,0%     3,3 Tage     1479      [3508, 5310]  0,99  0,05   5
+    Nordrhein-Westfalen     20,4%     3,7 Tage     5587    [11769, 17066]  0,97  0,00  14
+    Rheinland-Pfalz         13,5%     5,5 Tage     1175      [1970, 2538]  0,99  0,01   4
+    Saarland                19,9%     3,8 Tage      200                    0,93  0,18   7
+    Sachsen                 25,2%     3,1 Tage      653      [1777, 2786]  0,98  0,15  11
+    Sachsen-Anhalt          21,8%     3,5 Tage      212                    0,95  0,31  12
+    Schleswig-Holstein      12,9%     5,7 Tage      382        [628, 801]  0,99  0,02   4
+    Thüringen               18,3%     4,1 Tage      249        [496, 696]  0,99  0,02   4
+    
+    Deutschland             22,1%     3,5 Tage    22586    [52387, 78048]  0,99  0,06  10
+    
 
 Stand 20.03.2020
 
