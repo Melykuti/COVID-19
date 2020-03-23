@@ -1,6 +1,7 @@
 ## Analysis and projections for the spread of the SARS-CoV-2 coronavirus
 
 > * For plots and results, scroll down to the sections with these titles.
+> * [NEW! A comparison of countries how well they are tackling the pandemic in terms of innovative visualisations. (22 March 2020)](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 > * [The analogous study for Germany and its federal states in German language.](https://github.com/Melykuti/COVID-19/blob/master/Deutschland.md)
 
 13 March 2020 (updated on 20 March 2020), Freiburg i. Br., Germany, where a curfew is in force from 21 March 2020. -- As I am writing this analysis and documentation, I'm constantly surprised by the stream of unprecedented news and by the escalation of response to the COVID-19 coronavirus disease. Things that were unthinkable yesterday have become a reality today.

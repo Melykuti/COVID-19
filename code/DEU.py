@@ -20,8 +20,8 @@ allowed_values = \
 
 ### User input ###
 
-selection = 'alle' # Choose one of the elements of allowed_values.
-#selection = allowed_values[3] # Alternatively, choose an element index from allowed_values.
+#selection = 'alle' # Choose one of the elements of allowed_values.
+selection = allowed_values[0] # Alternatively, choose an element index from allowed_values.
 
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
 window_length_all = dict({bl: window_length for bl in allowed_values[:-1]})
@@ -36,7 +36,7 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
     'Deutschland': 13})
 '''
 
-save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
 # In the case of 'alle', 0 functions as -1.
 
 lang = 'de' # 'de' for German, anything else for English
@@ -183,12 +183,13 @@ def collect_data_colwise(rows): #, table_no):
     ymd = list()
     cases_date = dict()
     rows_list = list()
-    for r in rows[1:]:
+    for r in rows[1:-1]:
         #print(r.text)
         tds = r.find_all('td')
         # https://stackoverflow.com/a/1546251/9486169, we remove accidental multiple spaces from date:
         #print(tds[0].text)
-        day, month, year = ' '.join(tds[0].text.replace('\n','').split()).split(' ')
+        #print(' '.join(tds[0].text.replace('\n','').split()).split(' '))
+        day, month, year = ' '.join(tds[0].text.replace('\n','').split()).split(' ')[:3]
         #day, month, year = tds[0].text.replace('\n','').split(' ')
         ymd.append('{0}-{1}-{2}'.format(year, convert_months_to_nr(month), day.replace('.', '')))
         cases_date[ymd[-1]]=list()
@@ -206,20 +207,21 @@ def collect_data_colwise(rows): #, table_no):
     #return pd.concat(list(cases_date.values()), axis=0, columns=col_names)
     return pd.concat(rows_list, axis=1, keys=pd.to_datetime(ymd)).transpose()
 
-def data_preparation_DEU():
+def data_preparation_DEU(only_cases=False):
     raw_html = open_data()
 
     soup = BeautifulSoup(raw_html, 'lxml')
     #print(soup.prettify())
 
     #tables = soup.find_all('table', {'class':'wikitable sortable mw-collapsible'}) # I expect two tables: 'Bestätigte Infektionsfälle (kumuliert)', 'Bestätigte Todesfälle (kumuliert)'
-    tables = soup.find_all('table', {'class':'wikitable'}) # I expect ten tables
+    tables = soup.find_all('table', {'class':'wikitable'}) # I expect eight tables
 
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[2].text:
-    if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
+    #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
+    if 'Daten über Infektionsfälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[2].text:
         print('ERROR at 0: Data format error, results are unreliable.')
 
-    for i in [0, 3]:
+    for i in [0, 2]:
         rows = tables[i].find_all('tr')
          # or 'Februar' not in rows[0].text
         if (i==0 and ('Datum' not in rows[0].text or 'BW' not in rows[0].text)) or \
@@ -238,7 +240,11 @@ def data_preparation_DEU():
             # Extend it to the size of cases and fill missing values with 0
             death_figures = pd.DataFrame(death_figures, index=figures.index).fillna(value=0).astype('int64')
             print(death_figures)
-            figures_diff = pd.DataFrame(figures.iloc[:,:17] - death_figures.iloc[:,:17])
+
+    if only_cases==True:
+        figures_diff = pd.DataFrame(figures.iloc[:,:17])
+    else:
+        figures_diff = pd.DataFrame(figures.iloc[:,:17] - death_figures.iloc[:,:17])
     #print(figures_diff)
     return figures_diff
 

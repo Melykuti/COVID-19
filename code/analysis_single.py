@@ -15,12 +15,13 @@ from utils import open_csvs, data_preparation, process_geounit, print_header, pr
  
 ### User input ###
 
-country = 'Iran' #'Switzerland' #'Netherlands' #'Denmark' # Denmark, Spain, France, Germany, Sweden
+#country = 'Iran' #'Switzerland' #'Netherlands' #'Denmark' # Denmark, Spain, France, Germany, Sweden
 #country = 'Korea, South'
 #country = ['United Kingdom', 'United Kingdom']
+country = ['Northern Territory', 'Australia']
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
 # Iran used 11 for plot
-save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
+save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
 lang = 'en' # 'de' for German, anything else for English
 
 ### End of user input ###

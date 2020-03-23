@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 from sklearn import linear_model
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
+#import importlib
+from importlib import reload
 
 def open_csvs():
     '''
@@ -25,7 +27,7 @@ def open_csvs():
         df[labels[i]] = pd.read_csv(lists[i][-1])
     return df
 
-def data_preparation(df, country):
+def data_preparation(df, country, only_cases=False):
     l = list()
     for i in range(3):
         k = labels[i]
@@ -37,11 +39,51 @@ def data_preparation(df, country):
     dft = pd.concat(l, ignore_index=True)
     #print(dft)
     dft.rename(index={i: labels[i] for i in range(3)}, inplace=True)
-    df_ts = dft.loc['Confirmed']-dft.loc['Deaths']-dft.loc['Recovered']
+    if only_cases==True:
+        df_ts = dft.loc['Confirmed']
+    else:
+        df_ts = dft.loc['Confirmed']-dft.loc['Deaths']-dft.loc['Recovered']
     df_ts.rename(index={df_ts.index[i]: pd.to_datetime(df_ts.index)[i] for i in range(len(df_ts.index))}, inplace=True)
     return df_ts
 
+def rm_early_zeros(ts):
+    '''
+    Removes early zeros from a pandas time series. It finds last (most recent) zero in time series and
+    omits all elements before and including this last zero. Returns the remaining time series which is
+    free of zeros.
+    pd.Series([0,0,0,0,1,2,0,0,3,6]) -> pd.Series([3,6])
+    '''
+    zeroindices = ts[ts==0].index
+    if len(zeroindices)==0:
+        return ts
+    else:
+        successor = np.nonzero((ts.index==zeroindices.max()))[0][0] + 1
+        return ts[successor:]
+
+def rm_consecutive_early_zeros(ts, keep=1):
+    '''
+    Removes first consecutive subsequence of early zeros from a pandas time series
+    except for the last keep if there are that many.
+    rm_consecutive_early_zeros(pd.Series([0,0,0,0,1,2,3,6]), 2) -> pd.Series([0,0,1,2,3,6])
+    '''
+    zeroindices = ts[ts==0].index
+    if len(zeroindices)==0:
+        return ts
+    else:
+        first_pos_index = np.nonzero((ts.index==ts[ts>0].index[0]))[0][0]
+        if first_pos_index <= keep:
+            return ts
+        else:
+            return ts[first_pos_index-keep:]
+
 def analysis(df_ts, window_length):
+    '''
+    Because of log2, this requires all entries in df_ts to be positive.
+    '''
+    if len(df_ts)<=window_length:
+        results = 7 * [0]
+        results[-1] = 100
+        return results, None
     intl_lo_days = 4
     intl_hi_days = 6
     ylog2 = np.log2(df_ts.iloc[-window_length:].values)
@@ -74,7 +116,7 @@ def process_geounit(df_ts, window_length):
     This processes one geographical unit.
     df_ts is the time series.
     '''
-
+    df_ts = rm_early_zeros(df_ts)
     if window_length > 0:
         selected_window_length = window_length
         results, model = analysis(df_ts, window_length)
@@ -83,11 +125,15 @@ def process_geounit(df_ts, window_length):
         wl_lo = 4
         wl_hi = 15 # this end point is not included
         # Rule out zeros because we take logarithm; rule out windows longer than the time series df_ts.
-        wl_hi = min(wl_hi, 1+len(df_ts[df_ts[df_ts>0].idxmin():]), 1+len(df_ts))
+        #wl_hi = min(wl_hi, 1+len(df_ts[df_ts[df_ts>0].idxmin():]), 1+len(df_ts))
+        wl_hi = min(wl_hi, 1+len(df_ts))
+        if wl_hi <= wl_lo: # then abort
+            results, model = analysis([], 1)
+            return results, model, window_length
         R = pd.DataFrame(np.zeros((wl_hi-wl_lo, 7)), index=range(wl_lo, wl_hi))
         models = dict()
-        for wl in range(wl_lo, wl_hi):
-            result_wl, model = analysis(df_ts, wl)
+        for wl in range(wl_lo, wl_hi): # last wl_hi-1 points must be available and positive <==
+            result_wl, model = analysis(df_ts, wl) # last wl points must be available and positive
             R.iloc[wl-wl_lo, :] = result_wl
             models[wl] = model
         R = R.astype({2: int, 3: int, 4: int})
@@ -141,9 +187,12 @@ def plotting(df_ts, model, save_not_show, country, window_length, lang='en'):
         fig.suptitle(country + ', ' + df_ts.index[-1].strftime('%d %B %Y'))
     #fig.tight_layout()
     fig.subplots_adjust(bottom=0.2)
-    ax1.plot(df_ts[df_ts>0], label=line0)
-    ax1.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1)
-    ax2.plot(df_ts[df_ts>0], label=line0)
+    #ax1.plot(df_ts[df_ts>0], label=line0)
+    #ax1.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1)
+    ax1.plot(rm_consecutive_early_zeros(df_ts), label=line0)
+    ax1.plot(df_ts.iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1)
+    #ax2.plot(df_ts[df_ts>0], label=line0)
+    ax2.plot(rm_consecutive_early_zeros(df_ts), label=line0)
     ax2.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1)
     ax2.set_yscale("log")
     for tick in ax1.get_xticklabels():
@@ -160,6 +209,24 @@ def plotting(df_ts, model, save_not_show, country, window_length, lang='en'):
                   df_ts.index[-1].strftime('%Y-%m-%d') + '.png'
         plt.savefig(imgfile)
         plt.close(fig)
+
+def load_population_world():
+    pop = pd.read_csv('population_world.csv', sep='\t')
+    pop_ser=pd.Series(pop.Population.apply(lambda x: int(x.replace(',', ''))).values, index=pop.Country)
+    countries = dict()
+    for country in pop_ser.index:
+        country_new = country.strip()
+        countries[country_new] = pop_ser.loc[country]
+    return countries
+
+def load_population_DEU():
+    pop = pd.read_csv('population_DEU.csv', sep='\t')
+    pop_ser=pd.Series(pop.insgesamt.values, index=pop.Bundesland)
+    countries = dict()
+    for country in pop_ser.index:
+        country_new = country.strip()
+        countries[country_new] = pop_ser.loc[country]
+    return countries
 
 # Constants
 files = ['time_series_19-covid-Confirmed', 'time_series_19-covid-Deaths', 'time_series_19-covid-Recovered']
