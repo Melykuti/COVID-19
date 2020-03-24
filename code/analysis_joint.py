@@ -15,11 +15,12 @@ from utils import open_csvs, data_preparation, process_geounit, print_header, pr
 
 ### User input ###
 
-countries = ['Italy', 'Spain', 'France', 'Germany', 'Switzerland', ['United Kingdom', 'United Kingdom'], 'Netherlands', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', 'China']
+countries = ['Italy', 'US', 'Spain', 'Germany', 'Iran', 'France', 'Switzerland', 'United Kingdom', 'Netherlands', 'Austria', 'Belgium', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', ['Hubei', 'China']]
+#countries = ['United Kingdom']
 #countries = ['Italy', 'Japan', 'Denmark', 'France', 'Germany', 'Spain', 'Switzerland']
 #countries = ['Italy', 'France', 'Spain', 'Germany', 'Switzerland', 'Japan', 'Denmark', 'Netherlands', 'Sweden', 'United Kingdom', 'Austria', 'Korea, South', 'China'] # , 'Belgium'
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
-save_plots = 0 # if 1, then saves all plots; otherwise it neither shows nor saves
+save_plots = 1 # if 1, then saves all plots; otherwise it neither shows nor saves
 lang = 'en' # 'de' for German, anything else for English
 
 ### End of user input ###
@@ -39,8 +40,8 @@ if __name__ == '__main__':
             country_key = country[0].replace(',', '_').replace(' ', '_') + '__' +\
                           country[1].replace(',', '_').replace(' ', '_')
 
-        df_ts = data_preparation(df, country)
-
+        df_ts = data_preparation(df, country, True)
+        df_ts = rm_early_zeros(df_ts)
         results, model, selected_window_length = process_geounit(df_ts, window_length)
 
         results_dict[country_key] = results

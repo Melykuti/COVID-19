@@ -16,33 +16,35 @@ def open_csvs():
     timestamp = None
     #timestamp = '20200312_21-43'
     df=dict()
-    lists = list([list(), list(), list()])
+    lists = list([list(), list()])
     with os.scandir() as it:
         for entry in it:
-            for i in range(3):
+            for i in range(2):
                 if (timestamp==None or timestamp in entry.name) and files[i] in entry.name and entry.is_file():
                     lists[i].append(entry.name)
-    for i in range(3):
+    for i in range(2):
         lists[i].sort()
         df[labels[i]] = pd.read_csv(lists[i][-1])
     return df
 
 def data_preparation(df, country, only_cases=False):
     l = list()
-    for i in range(3):
+    for i in range(2):
         k = labels[i]
         if isinstance(country, str):
-            l.append(df[k][df[k]['Country/Region']==country].iloc[:,4:])
+            l.append(df[k][np.logical_and(df[k]['Province/State'].isna(),
+                                          df[k]['Country/Region']==country)].iloc[:,4:])
         elif len(country)==2: # if it's a pair of [Province/State, Country/Region]
             l.append(df[k][np.logical_and(df[k]['Province/State']==country[0],
                                           df[k]['Country/Region']==country[1])].iloc[:,4:])
     dft = pd.concat(l, ignore_index=True)
     #print(dft)
-    dft.rename(index={i: labels[i] for i in range(3)}, inplace=True)
+    dft.rename(index={i: labels[i] for i in range(2)}, inplace=True)
+    #print(dft)
     if only_cases==True:
-        df_ts = dft.loc['Confirmed']
+        df_ts = dft.loc['confirmed']
     else:
-        df_ts = dft.loc['Confirmed']-dft.loc['Deaths']-dft.loc['Recovered']
+        df_ts = dft.loc['confirmed']-dft.loc['deaths'] # -dft.loc['Recovered'] # Since 24 March 2020, recovered is not available
     df_ts.rename(index={df_ts.index[i]: pd.to_datetime(df_ts.index)[i] for i in range(len(df_ts.index))}, inplace=True)
     return df_ts
 
@@ -229,5 +231,8 @@ def load_population_DEU():
     return countries
 
 # Constants
-files = ['time_series_19-covid-Confirmed', 'time_series_19-covid-Deaths', 'time_series_19-covid-Recovered']
-labels = ['Confirmed', 'Deaths', 'Recovered']
+#files = ['time_series_19-covid-Confirmed', 'time_series_19-covid-Deaths', 'time_series_19-covid-Recovered']
+#labels = ['Confirmed', 'Deaths', 'Recovered']# until 23 March 2020
+# Since 24 March 2020
+files = ['time_series_covid19_confirmed_global', 'time_series_covid19_deaths_global']
+labels = ['confirmed', 'deaths']

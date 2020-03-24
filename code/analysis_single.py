@@ -11,16 +11,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import linear_model
-from utils import open_csvs, data_preparation, process_geounit, print_header, print_results, plotting
- 
+from utils import open_csvs, data_preparation, rm_early_zeros, process_geounit, print_header, print_results, plotting
+
 ### User input ###
 
-#country = 'Iran' #'Switzerland' #'Netherlands' #'Denmark' # Denmark, Spain, France, Germany, Sweden
+#country = 'US' #'Switzerland' 'United Kingdom' 'Netherlands' 'Denmark' 'Spain' 'France' 'Germany' 'Sweden'
 #country = 'Korea, South'
-#country = ['United Kingdom', 'United Kingdom']
-country = ['Northern Territory', 'Australia']
+country = ['New South Wales', 'Australia']
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
-# Iran used 11 for plot
 save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
 lang = 'en' # 'de' for German, anything else for English
 
@@ -30,6 +28,7 @@ lang = 'en' # 'de' for German, anything else for English
 if __name__ == '__main__':
     df = open_csvs()
     df_ts = data_preparation(df, country)
+    df_ts = rm_early_zeros(df_ts)
     results, model, selected_window_length = process_geounit(df_ts, window_length)
 
     print_header()

@@ -153,6 +153,7 @@ I focus on countries with a large number of cases and on those where I have got 
     Korea, South             1.2%    56.6 days     8961      [9445, 9680]  0.99  0.01  13
     Hubei                    0.0%     inf days    67800    [67800, 67800]  1.00  0.00   4
 
+&nbsp;
 
     Country             Growth rate   Doubling  Active cases  Estimate      R^2  Diff. Window size
     
