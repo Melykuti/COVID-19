@@ -51,11 +51,11 @@ As far as I know, the French army has flown out patients from Region Grand Est t
 
 I switched the language of plots to German.
 
-![Joint daily increase factor, absolute numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DIF_2020-03-24_0_-1.png)
+![Joint daily increase factor, absolute numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DIF_2020-03-25_0_-1.png)
 
 My state, Baden-Württemberg two other large states, Bavaria and North Rhine-Westphalia, are doing very poorly. In North Rhine-Westphalia there is a well-known outbreak around Heinsberg.
 
-![Joint daily increase factor, relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DIF_2020-03-24_1_-1.png)
+![Joint daily increase factor, relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DIF_2020-03-25_1_-1.png)
 
 #### The Visegrád Group (Poland, Czech Republic, Slovakia, Hungary) and some small countries
 
