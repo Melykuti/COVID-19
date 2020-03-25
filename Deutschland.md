@@ -3,7 +3,7 @@
 Zusammenfassung am Mittwoch, 25 März 2020:
 
 * In Baden-Württemberg, Bayern, Bremen, Mecklenburg-Vorpommern, Sachsen gibt es positive Zeichen, dass die Ausbreitung der Coronavirus-Pandemie sich einigermaßen verlangsamt.
-* In Berlin, Brandenburg, Hamburg, Hessen, Niedersachsen, Nordrhein-Westfalen, Rheinland-Pfalz, Schleswig-Holstein, Thüringen gibt es leider kaum Veränderung der Anstiegsrate der Fallzahl.
+* In Berlin, Brandenburg, Hamburg, Hessen, Niedersachsen, Nordrhein-Westfalen, Rheinland-Pfalz, Schleswig-Holstein, Thüringen gibt es leider kaum Veränderung der Anstiegsrate der Fallzahl. (Die Wachstumsraten hier sind jedoch im Schnitt sowieso niedriger.)
 * Die Ausgangssperren und öffentliche Aufklärungsarbeit werden bald ihre positive Wirkung zeigen.
 
 Zusammenfassung am Dienstag, 24 März 2020:
