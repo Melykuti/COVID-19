@@ -21,7 +21,7 @@ allowed_values = \
 ### User input ###
 
 #selection = 'alle' # Choose one of the elements of allowed_values.
-selection = allowed_values[0] # Alternatively, choose an element index from allowed_values.
+selection = allowed_values[5] # Alternatively, choose an element index from allowed_values.
 
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
 window_length_all = dict({bl: window_length for bl in allowed_values[:-1]})
@@ -167,6 +167,17 @@ def collect_data(rows, table_no):
     #print(pd.concat(bundeslaender + [s34, s35], axis=1))
     return pd.concat(bundeslaender + [s34, s35], axis=1)
 '''
+def extract_number(s):
+    '''
+    Maps a string with tailing text to an integer:
+    123.456 ^(f) -> 123456
+    '''
+    s = s.replace('\n','').replace('.','').replace('-','0')
+    for i in range(len(s)):
+        if s[:i+1].isnumeric():
+            t = s[:i+1]
+    return int(t)
+
 def collect_data_colwise(rows): #, table_no):
     # Header
     firstrowcells = rows[0].find_all('th')
@@ -197,7 +208,8 @@ def collect_data_colwise(rows): #, table_no):
             # The - character is not the standard minus, it's a longer one so safer to do with
             # try & except.
             try:
-                cases_date[ymd[-1]].append(int(j.text.replace('\n','').replace('.','').replace('-','0')))
+             #cases_date[ymd[-1]].append(int(j.text.replace('\n','').replace('.','').replace('-','0')))
+                cases_date[ymd[-1]].append(extract_number(j.text))
             except:
                 cases_date[ymd[-1]].append(0)
         rows_list.append(pd.Series(cases_date[ymd[-1]], index=col_names))

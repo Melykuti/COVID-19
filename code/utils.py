@@ -28,25 +28,38 @@ def open_csvs():
     return df
 
 def data_preparation(df, country, only_cases=False):
-    l = list()
-    for i in range(2):
-        k = labels[i]
-        if isinstance(country, str):
-            l.append(df[k][np.logical_and(df[k]['Province/State'].isna(),
-                                          df[k]['Country/Region']==country)].iloc[:,4:])
-        elif len(country)==2: # if it's a pair of [Province/State, Country/Region]
-            l.append(df[k][np.logical_and(df[k]['Province/State']==country[0],
-                                          df[k]['Country/Region']==country[1])].iloc[:,4:])
-    dft = pd.concat(l, ignore_index=True)
-    #print(dft)
-    dft.rename(index={i: labels[i] for i in range(2)}, inplace=True)
-    #print(dft)
-    if only_cases==True:
-        df_ts = dft.loc['confirmed']
+    sets = dict({'EU': ['Austria', 'Belgium', 'Bulgaria', 'Croatia', 'Cyprus', 'Czechia', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden'],
+'China': [['Anhui', 'China'], ['Beijing', 'China'], ['Chongqing', 'China'], ['Fujian', 'China'], ['Gansu', 'China'], ['Guangdong', 'China'], ['Guangxi', 'China'], ['Guizhou', 'China'], ['Hainan', 'China'], ['Hebei', 'China'], ['Heilongjiang', 'China'], ['Henan', 'China'], ['Hong Kong', 'China'], ['Hubei', 'China'], ['Hunan', 'China'], ['Inner Mongolia', 'China'], ['Jiangsu', 'China'], ['Jiangxi', 'China'], ['Jilin', 'China'], ['Liaoning', 'China'], ['Macau', 'China'], ['Ningxia', 'China'], ['Qinghai', 'China'], ['Shaanxi', 'China'], ['Shandong', 'China'], ['Shanghai', 'China'], ['Shanxi', 'China'], ['Sichuan', 'China'], ['Tianjin', 'China'], ['Tibet', 'China'], ['Xinjiang', 'China'], ['Yunnan', 'China'], ['Zhejiang', 'China']]})
+    #sets = dict({'EU': ['Croatia', 'Hungary']}) # test only
+    if country == 'EU' or country == 'China':
+        l_members = list()
+        for member in sets[country]:
+            print(member)
+            l_members.append(data_preparation(df, member, only_cases))
+        #print(l_members)
+        dft_members = pd.concat(l_members, axis=1)
+        #print(dft_members.sum(axis=1))
+        return dft_members.sum(axis=1)
     else:
-        df_ts = dft.loc['confirmed']-dft.loc['deaths'] # -dft.loc['Recovered'] # Since 24 March 2020, recovered is not available
-    df_ts.rename(index={df_ts.index[i]: pd.to_datetime(df_ts.index)[i] for i in range(len(df_ts.index))}, inplace=True)
-    return df_ts
+        l = list()
+        for i in range(2):
+            k = labels[i]
+            if isinstance(country, str):
+                l.append(df[k][np.logical_and(df[k]['Province/State'].isna(),
+                                              df[k]['Country/Region']==country)].iloc[:,4:])
+            elif len(country)==2: # if it's a pair of [Province/State, Country/Region]
+                l.append(df[k][np.logical_and(df[k]['Province/State']==country[0],
+                                              df[k]['Country/Region']==country[1])].iloc[:,4:])
+        dft = pd.concat(l, ignore_index=True)
+        #print(dft)
+        dft.rename(index={i: labels[i] for i in range(2)}, inplace=True)
+        #print(dft)
+        if only_cases==True:
+            df_ts = dft.loc['confirmed']
+        else:
+            df_ts = dft.loc['confirmed']-dft.loc['deaths'] # -dft.loc['Recovered'] # Since 24 March 2020, recovered is not available
+        df_ts.rename(index={df_ts.index[i]: pd.to_datetime(df_ts.index)[i] for i in range(len(df_ts.index))}, inplace=True)
+        return df_ts
 
 def rm_early_zeros(ts):
     '''
@@ -78,11 +91,30 @@ def rm_consecutive_early_zeros(ts, keep=1):
         else:
             return ts[first_pos_index-keep:]
 
+def separated(s, lang='en', k=3):
+    '''
+    Input must be a string. Puts a comma between blocks of k=3 digits:
+    '1000000' -> '1,000,000'
+    '''
+    if lang == 'de':
+        chr = '.'
+    else:
+        chr = ','
+    if len(s)>=5:
+        l=list()
+        for i in range(len(s)//k):
+            l.insert(0, s[len(s)-(i+1)*k:len(s)-i*k])
+        if len(s) % k !=0:
+            l.insert(0, s[:len(s)-(i+1)*k])
+        return chr.join(l)
+    else:
+        return s
+
 def analysis(df_ts, window_length):
     '''
     Because of log2, this requires all entries in df_ts to be positive.
     '''
-    if len(df_ts)<=window_length:
+    if len(df_ts)<window_length:
         results = 7 * [0]
         results[-1] = 100
         return results, None

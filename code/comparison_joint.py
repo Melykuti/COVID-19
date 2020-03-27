@@ -4,7 +4,7 @@ using the JHU CSSE dataset:
 https://github.com/CSSEGISandData
 
 exec(open('comparison_joint.py').read())
-12-22/3/2020
+12-26/3/2020
 '''
 
 import os, math
@@ -12,12 +12,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import linear_model
-from utils import open_csvs, data_preparation, rm_early_zeros, rm_consecutive_early_zeros, select_window_length, print_header, print_results, load_population_world, load_population_DEU
+from utils import open_csvs, data_preparation, rm_early_zeros, rm_consecutive_early_zeros, separated, select_window_length, print_header, print_results, load_population_world, load_population_DEU
 from importlib import reload
 
 ### User input ###
 
-lower_bound=0.8
+left_bound=0.8
+bottom_bound=-10.; top_bound=100.
+cycle_linestyle = 0 # if 0, then all lines are solid; if 1, then it cycles through solid, dotted, dashed, dash-dotted
 #normalise = 1 # 1 if you want to normalise by population size, o.w. 0
 normalise_by = int(1e5)
 
@@ -27,23 +29,26 @@ window_length = -1
 save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
 lang = 'en' # 'de' for German, anything else for English
 
-#countries = ['China', 'Italy', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', ['United Kingdom', 'United Kingdom'], 'Japan']; lower_bound=400; upper_bound=None; normalise = 0; filename = 'Joint'
-#countries = ['China', 'Italy', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', ['United Kingdom', 'United Kingdom'], 'Japan']; lower_bound=0.8; upper_bound=None; normalise = 1; filename = 'Joint'
+#countries = [['Hubei', 'China'], 'Italy', 'US', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=400; right_bound=None; normalise = 0; filename = 'Joint'; cycle_linestyle = 1
+#countries = [['Hubei', 'China'], 'Italy', 'US', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=0.8; right_bound=None; normalise = 1; filename = 'Joint'; cycle_linestyle = 1
 
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; lower_bound=50.; upper_bound=2000; normalise = 0; filename = 'Visegrad'
-countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; lower_bound=50*normalise_by/10e6; upper_bound=None; normalise = 1; filename = 'Visegrad'
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=50.; right_bound=2000; normalise = 0; filename = 'Visegrad'; cycle_linestyle = 1
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=50*normalise_by/10e6; right_bound=None; normalise = 1; filename = 'Visegrad'; cycle_linestyle = 1
 
-#countries = 'Deutschland'; lower_bound=50; upper_bound=None; normalise = 0; filename = 'Deutschland'; lang = 'de'
-#countries = 'Deutschland'; lower_bound=2; upper_bound=None; normalise = 1; filename = 'Deutschland'; lang = 'de'
+#countries = 'Deutschland'; left_bound=110; right_bound=None; bottom_bound=0.; top_bound=70.; normalise = 0; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1
+countries = 'Deutschland'; left_bound=9; right_bound=110; bottom_bound=0.; top_bound=70.; normalise = 1; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1
 
-#countries = ['Switzerland', ['United Kingdom', 'United Kingdom']]
+#countries = ['EU', 'China', 'US']; left_bound=500; right_bound=None; bottom_bound=-5.; top_bound=75.; normalise = 0; filename = 'world_powers'; lang = 'en'; cycle_linestyle = 0
+#countries = ['EU', 'China', 'US']; left_bound=0.1; right_bound=None; bottom_bound=-5.; top_bound=75.; normalise = 1; filename = 'world_powers'; lang = 'en'; cycle_linestyle = 0
+
+#countries = ['Switzerland', 'United Kingdom']
 #countries = ['Italy', 'Spain', 'France', 'Germany', 'Switzerland', ['United Kingdom', 'United Kingdom'], 'Netherlands', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', 'China']
-#countries = ['Hungary']; lower_bound=50*normalise_by/10e6; upper_bound=None; normalise = 1; filename = 'Visegrad'
-#countries = ['Iceland']; lower_bound=0.8; upper_bound=None; normalise = 0; filename = 'Iceland'
-#countries = ['Iceland']; lower_bound=0.8; upper_bound=None; normalise = 1; filename = 'Iceland'
+#countries = ['Hungary']; left_bound=50*normalise_by/10e6; right_bound=None; normalise = 1; filename = 'Visegrad'
+#countries = ['Iceland']; left_bound=0.8; right_bound=None; normalise = 0; filename = 'Iceland'
+#countries = ['Iceland']; left_bound=0.8; right_bound=None; normalise = 1; filename = 'Iceland'
 
 #, 'Netherlands', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', ]
-#countries = [ 'Japan']; lower_bound=400; upper_bound=None
+#countries = [ 'Japan']; left_bound=400; right_bound=None
 #countries = ['Italy']
 #countries = ['Italy', 'Japan', 'Denmark', 'France', 'Germany', 'Spain', 'Switzerland']
 #country = 'France' #'Switzerland' #'Netherlands' #'Denmark' # Denmark, Spain, France, Germany, Sweden
@@ -76,7 +81,7 @@ def analysis_minimal(df_ts, window_length):
     '''
     Because of log2, this requires all entries in df_ts to be positive.
     '''
-    if len(df_ts)<=window_length:
+    if len(df_ts)<window_length:
         results = 7 * [0]
         results[-1] = 100
         return results, None
@@ -126,9 +131,9 @@ def process_geounit_minimal(df_ts, window_length):
 
     return results, model, selected_window_length
 
-def plotting_countries(dif_all, save_not_show, latest_date, window_length, lower_bound=None, upper_bound=None, lang='en'):
+def plotting_countries(dif_all, save_not_show, latest_date, window_length, left_bound=None, right_bound=None, bottom_bound=None, top_bound=None, cycle_linestyle=0, lang='en'):
 
-    #lower_bound = 100
+    #left_bound = 100
     fig, ax1 = plt.subplots(1,1, figsize=(12., 8.))
     #fig, ax1 = plt.subplots(1,1, figsize=(9.6, 6.4))
     #fig, (ax1, ax2) = plt.subplots(1,2, figsize=(9.6, 4.8))
@@ -137,7 +142,7 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, lower
             ax1.set_title('Lineare Regression mit optimaler Fenstergröße.')
         else:
             ax1.set_title('Lineare Regression mit Fenstergröße von {} Datenpunkten.'.format(window_length))
-        ax1.set_xlabel('Fallzahl auf {} Einwohner'.format(normalise_by) if normalise==1 else 'Fallzahl')
+        ax1.set_xlabel('Fallzahl auf {} Einwohner'.format(separated(str(normalise_by), lang)) if normalise==1 else 'Fallzahl')
         ax1.set_ylabel('Wachstumsrate der Fallzahlen')
 
         #line0 = 'Mit Fenstergröße {}'.format(window_length)
@@ -152,25 +157,31 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, lower
             ax1.set_title('Linear regression with optimised window length.')
         else:
             ax1.set_title('Linear regression window length: {} data points.'.format(window_length))
-        ax1.set_xlabel('Number of cases per {} people'.format(normalise_by) if normalise==1 else 'Number of cases')
-        ax1.set_ylabel('Daily increase factor')
-        fig.suptitle('Daily increase factor of number of cases (' + latest_date.strftime('%d %B %Y') + ')')
+        ax1.set_xlabel('Number of cases per {} people'.format(separated(str(normalise_by), lang)) if normalise==1 else 'Number of cases')
+        ax1.set_ylabel('Daily growth rate')
+        fig.suptitle('Daily growth rate of number of cases (' + latest_date.strftime('%d %B %Y') + ')')
     #fig.tight_layout()
     #fig.subplots_adjust(bottom=0.2)
-    for country in dif_all:
-        ax1.plot(dif_all[country], label=country)
+    #for country in dif_all:
+        #ax1.plot(dif_all[country], label=country, linestyle=['solid', 'dotted', 'dashed', 'dashdot'][random.randrange(4)])
+    geounit_list = list(dif_all.keys())
+    for i in range(len(geounit_list)):
+        if cycle_linestyle==1:
+            ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], linestyle=['solid', 'dotted', 'dashed', 'dashdot'][i % 4])
+        else:
+            ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i])
         '''
-        if lower_bound==None:
-            if upper_bound==None:
+        if left_bound==None:
+            if right_bound==None:
                 ax1.plot(dif_all[country], label=country)
             else:
-                ax1.plot(dif_all[country][dif_all[country].index<=upper_bound], label=country)
+                ax1.plot(dif_all[country][dif_all[country].index<=right_bound], label=country)
         else:
-            if upper_bound==None:
-                ax1.plot(dif_all[country][dif_all[country].index>=lower_bound], label=country)
+            if right_bound==None:
+                ax1.plot(dif_all[country][dif_all[country].index>=left_bound], label=country)
             else:
-                ax1.plot(dif_all[country][np.logical_and(dif_all[country].index>=lower_bound,
-                    dif_all[country].index<=upper_bound)], label=country)
+                ax1.plot(dif_all[country][np.logical_and(dif_all[country].index>=left_bound,
+                    dif_all[country].index<=right_bound)], label=country)
         '''
     #ax1.plot(df_ts.iloc[:,1], label=line1)
     #ax1.plot(df_ts.iloc[:,2], label=line2)
@@ -182,29 +193,20 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, lower
     #for tick in ax1.get_yticklabels():
     #    tick = str(tick) + '%'
     ax1.set_xscale("log")
-    ax1.set_xlim(left=lower_bound, right=upper_bound)
-    ax1.set_ylim(bottom=-10., top=100.)
+    ax1.set_xlim(left=left_bound, right=right_bound)
+    ax1.set_xticklabels([float(tick) if float(tick)<1 else separated(str(int(tick)), lang) for tick in ax1.get_xticks()])
+    #ax1.set_ylim(bottom=-10., top=100.)
+    ax1.set_ylim(bottom=bottom_bound, top=top_bound)
     ax1.set_yticklabels([str(int(tick)) + '%' for tick in ax1.get_yticks()])
     ax1.legend()
     ax1.grid(True, axis='y')
-    plt.gcf().text(0.905, 0.87, "© Bence Mélykúti, Melykuti.me, 2020", fontsize=8, color='lightgray', rotation=90) # 0.905, 0.37
-    #plt.gcf().text(0.905, 0.615, "© Bence Mélykúti, Melykuti.me, 2020", fontsize=8, color='lightgray', rotation=90)
+    #plt.gcf().text(0.905, 0.87, "© Bence Mélykúti, Melykuti.me, 2020", fontsize=8, color='lightgray', rotation=90) # 0.905, 0.37
+    plt.gcf().text(0.905, 0.87, "© Bence Mélykúti, http://COVID19.Melykuti.Be, 2020", fontsize=8, color='lightgray', rotation=90)
     if save_not_show==0:
         plt.show()
 
     elif save_not_show==1:
-        '''
-        if country == 'Deutschland':
-            imgfile = filename + '_DIF_' +\
-                      latest_date.strftime('%Y-%m-%d') + '_' + str(normalise) + '_' +\
-                      str(window_length) + '.png'
-        else:
-            #imgfile = 'joint_DIF_' +\
-            imgfile = filename + '_DIF_' +\
-                      latest_date.strftime('%Y-%m-%d') + '_' + str(normalise) + '_' +\
-                      str(window_length) + '.png'
-        '''
-        imgfile = filename + '_DIF_' +\
+        imgfile = filename + '_DGR_' +\
                   latest_date.strftime('%Y-%m-%d') + '_' + str(normalise) + '_' +\
                   str(window_length) + '.png'
         plt.savefig(imgfile)
@@ -213,11 +215,13 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, lower
 if __name__ == '__main__':
     fixed_positive_window_length = 2
     if window_length < fixed_positive_window_length:
-        if window_length <= 0:
-            window_length_for_cutoffs = fixed_positive_window_length
-        else:
+        if window_length <= 0: # run rm_consecutive_early_zeros w. 0, for i in range from wl_lo=4
+            window_length_for_cutoffs = 4 #fixed_positive_window_length
+        else: # run rm_consecutive_early_zeros w. 0, for i in range from fixed_positive_window_length=2
             window_length = fixed_positive_window_length
             window_length_for_cutoffs = fixed_positive_window_length
+    else: # run rm_consecutive_early_zeros w. 0, for i in range from window_length
+        window_length_for_cutoffs = window_length
 
     dif_all = dict()
     latest_date = None
@@ -226,7 +230,9 @@ if __name__ == '__main__':
         if normalise==1:
             #from load_population import load_population_world
             pop_world = load_population_world()
-        labels = ['Confirmed', 'Deaths', 'Recovered']
+        #labels = ['Confirmed', 'Deaths', 'Recovered']
+        # Since 24 March 2020
+        labels = ['confirmed', 'deaths']
         df = open_csvs()
         for country in countries:
             print(country)
@@ -237,25 +243,24 @@ if __name__ == '__main__':
             if not isinstance(country, str): # If it's a province or state of a country or region.
                 country = country[0]
             if normalise==1:
-                if country=='China':
+                if country=='Hubei': #'China':
                     df_ts = normalise_by*df_ts/58500000 # Population of Hubei province
                 else:
                     df_ts = normalise_by*df_ts/pop_world[country]
             #print(df_ts)
-            df_ts = rm_consecutive_early_zeros(df_ts, window_length_for_cutoffs-2)
+            df_ts = rm_consecutive_early_zeros(df_ts, 0) #window_length_for_cutoffs-2)
+            #print(df_ts)
             if latest_date==None or latest_date<df_ts.index[-1]:
                 latest_date = df_ts.index[-1]
 
             for i in range(window_length_for_cutoffs-len(df_ts), 1):
-                #results, model, selected_window_length = process_geounit_minimal(df_ts[:len(df_ts)+i], window_length)
-                #dif_fixed.append(results[0])
                 results, model, selected_window_length = process_geounit_minimal(df_ts[:len(df_ts)+i], window_length)
+                #if len(df_ts)+i<=5:
+                #    print('index is', i, '  input is\n', df_ts[:len(df_ts)+i], '\nresult is\n', results)
                 dif_optim.append(results[0])
                 case_no.append(results[2])
-                #dif_trivi.append(((df_ts[len(df_ts)+i-1]/df_ts[len(df_ts)+i-2])-1)*100)
 
-            #if not isinstance(country, str): # If it's a province or state of a country or region.
-            #    country = country[0]
+            #print(dif_optim)
             #print(case_no, pop_world[country])
             dif_all[country] = pd.Series(dif_optim, index=case_no, name=country)
 
@@ -313,5 +318,5 @@ if __name__ == '__main__':
 
     if save_not_show in [0, 1]:
         #if normalise == 1:
-        #    lower_bound = lower_bound*normalise_by/pop_world[country] # but which country?
-        plotting_countries(dif_all, save_not_show, latest_date, window_length, lower_bound, upper_bound, lang)
+        #    left_bound = left_bound*normalise_by/pop_world[country] # but which country?
+        plotting_countries(dif_all, save_not_show, latest_date, window_length, left_bound, right_bound, bottom_bound, top_bound, cycle_linestyle, lang)
