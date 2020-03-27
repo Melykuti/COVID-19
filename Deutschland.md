@@ -1,5 +1,13 @@
 ## Analyse und Projektionen für die exponentielle Verbreitung der SARS-CoV-2 Coronavirus-Pandemie in Deutschland und in den deutschen Bundesländern
 
+Zusammenfassung am Freitag, 27 März 2020:
+
+* Wie Bundeskanzlerin Angela Merkel es [gestern erwähnt hat](https://www.faz.net/aktuell/politik/inland/angela-merkel-zu-shutdown-muss-deutsche-um-geduld-bitten-16698796.html), steht die Verdopplungszeit der Fallzahlen bei vier bis fünf Tagen. Sie hält die Ausgangsbeschränkungen nötig, bis diese Zeitspanne noch wesentlich länger gestreckt wird.
+* Ich sehe auch positive Entwicklungen: die tägliche Wachstumrate der Fallzahlen sank auf 10-20%.
+* In Freiburg ist heute der 7. Tag der Ausgangsbeschränkung. Mit einer Inkubationszeit von 5-7 Tagen im Schnitt (manchmal bis zu 14 Tagen), und mit weiteren 2-3 Tagen bis ein Kranker sich testen lässt und ein positives Resultat bei dem Robert Koch Institut eintrifft, ist es zu erwarten, dass die positive Wirkung der Ausgangssperren in den kommenden Tagen die Wachstumsraten weiter verringern.
+* Ich würde Hamburg hervorheben, wo die Situation relativ schlechter ist. Die tägliche Wachstumsrate liegt jetzt bei 18%, aber mit einem kürzeren Zeitfenster von 5-6 Tagen bekomme ich 13-15%, die dem bundesweiten Durchschnitt entspricht. Die Fallzahl pro 100.000 Einwohner ist in Hamburg am größten.
+* Laut der Grafik (besonders laut des rechten Schaubildes) ist Bremen in der schwieriger Situation, dass die Verbreitung der Pandemie über den letzten 6 Tagen sich noch weiter beschleunigt hat. Meine numerischen Schätzungen sind deswegen zu optimistisch.
+
 Zusammenfassung am Mittwoch, 25 März 2020:
 
 * In Baden-Württemberg, Bayern, Bremen, Mecklenburg-Vorpommern, Sachsen gibt es positive Zeichen, dass die Ausbreitung der Coronavirus-Pandemie sich einigermaßen verlangsamt.
@@ -21,7 +29,7 @@ Zusammenfassung am Montag, 23 März 2020:
 * **Überall, wo die heutigen Daten auf eine Verlangsamung hinweisen, gab es vor einer Woche, nach dem Wochenende, schon eine ähnliche Verlangsamung, ohne langfristigen Effekt an der Ausbreitung der Coronavirus-Pandemie.**
 * [Diese Vermutung bestätigt heute das Robert Koch Institut:](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html) „Am aktuellen Wochenende wurden nicht aus allen Ämtern Daten übermittelt, sodass der hier berichtete Anstieg der Fallzahlen nicht dem tatsächlichen Anstieg der Fallzahlen entspricht. Die Daten werden am Montag nachübermittelt und ab Dienstag auch in dieser Statistik verfügbar sein.“
 
-16 März 2020 (aktualisiert am 25 März 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 27 März 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bisher stimmen die beobachteten Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die Pandemie sich zur Zeit ausbreitet. Konkret, mich interessiert wieviele _aktiv ansteckende Kranke_ es gibt, dass heißt, wieviele Leute die Krankheit bekommen haben, die sich noch nicht erholt haben und noch nicht gestorben sind.
 
@@ -49,41 +57,45 @@ Ich wähle immer die letzten 5-14 Tage aus, um die lineare Regression durchzufü
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-25.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-27.png)
+
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-03-27_0_-1.png)
+
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-03-27_1_-1.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-25.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-27.png)
 
-![Bayern, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-25.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-27.png)
 
-![Berlin, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-25.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-27.png)
 
-![Brandenburg, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-25.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-27.png)
 
-![Bremen, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-03-25.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-03-27.png)
 
-![Hamburg, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-25.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-27.png)
 
-![Hessen, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-25.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-27.png)
 
-![Mecklenburg-Vorpommern, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-25.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-27.png)
 
-![Niedersachsen, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-25.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-27.png)
 
-![Nordrhein-Westfalen, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-25.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-27.png)
 
-![Rheinland-Pfalz, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-25.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-27.png)
 
-![Saarland, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-25.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-27.png)
 
-![Sachsen, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-25.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-27.png)
 
-![Sachsen-Anhalt, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-25.png)
+![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-27.png)
 
-![Schleswig-Holstein, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-25.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-27.png)
 
-![Thüringen, Stand 25.03.2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-25.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-27.png)
 
 
 ### Resultate
@@ -111,6 +123,28 @@ Die Spalten haben die folgende Bedeutung:
 &nbsp;
 
     Bundesland      Wachstumsrate Verdoppl.zeit Aktive Fälle  Schätzung    R^2  Diff. Fenstergröße
+
+Stand 27.03.2020
+
+    Baden-Württemberg       15,5%     4,8 Tage     8091    [14527, 19374]  0,99  0,01   4
+    Bayern                  17,9%     4,2 Tage     9426    [18062, 25126]  1,00 -0,01   5
+    Berlin                  16,8%     4,5 Tage     1947      [3610, 4924]  1,00 -0,00   4
+    Brandenburg             17,0%     4,4 Tage      536      [1036, 1419]  0,98  0,05   5
+    Bremen                   8,6%     8,4 Tage      240        [327, 386]  0,98 -0,03   5
+    Hamburg                 18,4%     4,1 Tage     1691      [3387, 4748]  0,98  0,03  12
+    Hessen                  14,4%     5,1 Tage     2316      [4040, 5289]  0,99  0,03   7
+    Mecklenburg-Vorpommern   9,5%     7,7 Tage      259        [376, 450]  0,99  0,02   4
+    Niedersachsen           16,6%     4,5 Tage     2800      [5172, 7035]  0,99 -0,00   6
+    Nordrhein-Westfalen     12,9%     5,7 Tage     9163    [14726, 18774]  1,00 -0,02   5
+    Rheinland-Pfalz         13,9%     5,3 Tage     1963      [3400, 4414]  1,00  0,04   8
+    Saarland                13,7%     5,4 Tage      503       [837, 1081]  0,98 -0,01   4
+    Sachsen                 17,2%     4,4 Tage     1298      [2473, 3398]  1,00  0,01   4
+    Sachsen-Anhalt          12,3%     6,0 Tage      456        [736, 929]  0,98  0,02   4
+    Schleswig-Holstein      19,1%     4,0 Tage      808      [1620, 2297]  1,00 -0,00   4
+    Thüringen               18,2%     4,1 Tage      538      [1060, 1481]  1,00  0,02   4
+    
+    Deutschland             15,5%     4,8 Tage    42035    [74587, 99432]  1,00 -0,00   4
+
 
 Stand 25.03.2020
 
@@ -299,13 +333,13 @@ Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](
 
 ### Konklusion
 
-Unsere Intuition kann mit nichtlinearen Effekten schwer umgehen. Exponentielles Wachstum ist solch ein Beispiel. **Das Risiko, dass man sich mit der Krankheit auf der Straße ansteckt, wächst um den Faktor 15-25% täglich.** Es ist zu erwarten, dass man über die Erkrankung zunächst nur aus den Nachrichten hören wird, dann plötzlich wird sie überall im Bekanntenkreis auftauchen, wenn die Eindämmung nicht erfolgt.
+Unsere Intuition kann mit nichtlinearen Effekten schwer umgehen. Exponentielles Wachstum ist solch ein Beispiel. **Das Risiko, dass man sich mit der Krankheit auf der Straße ansteckt, wächst um den Faktor 10-20% täglich.** Es ist zu erwarten, dass man über die Erkrankung zunächst nur aus den Nachrichten hören wird, dann plötzlich wird sie überall im Bekanntenkreis auftauchen, wenn die Eindämmung nicht erfolgt.
 
 Wenn man die Ansteckung vermeiden will, dann ist es besser eine Besorgung noch heute und nicht morgen zu machen, und es ist besser morgen Vormittag als morgen Nachmittag das Zuhause zu verlassen. (Angenommen, dass genau so viele Leute sich auf den Straßen und in den Supermärkten befinden werden. Wenn deren Anzahl zurückgeht, dann sinkt die Kontaktwahrscheinlichkeit auch.)
 
 Neben der Nichtlinearität ist die durch die Inkubationszeit ausgelöste Zeitverzögerung ein zweiter überraschender Aspekt der Pandemie. **Die Anzahl der heute ansteckenden Erkrankten ist schon so viel, wie die Fallanzahl erst in ungefähr fünf Tagen (die durchschnittliche Inkubationszeit) gemeldet werden wird. Das Problem ist deshalb viel größer, als die aktuellen Fallzahlen es zeigen.**
 
-Für das medizinische Personal ist es zu erwarten, dass die Anzahl der neuen Patienten auch exponentiell mit der gleichen Rate wachsen wird. Wenn ein Tag schwierig war, dann wird der nächste 15-25% schwieriger, und der übernächste noch 15-25% schwieriger werden.
+Für das medizinische Personal ist es zu erwarten, dass die Anzahl der neuen Patienten auch exponentiell mit der gleichen Rate wachsen wird. Wenn ein Tag schwierig war, dann wird der nächste 10-20% schwieriger, und der übernächste noch 10-20% schwieriger werden.
 
 ### Bitte um Spenden
 
