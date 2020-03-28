@@ -4,13 +4,13 @@
 > * [The analogous study for Germany and its federal states in German language.](https://github.com/Melykuti/COVID-19/blob/master/Deutschland.md)
 > * [NEW! A comparison of how well countries are tackling the pandemic using innovative visualisations.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-13 March 2020 (updated on 24 March 2020), Freiburg i. Br., Germany, where a lockdown is in force from 21 March 2020. -- The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
+13 March 2020 (updated on 28 March 2020), Freiburg i. Br., Germany, where a lockdown has been in force since 21 March 2020. -- The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
 
 Thinking in terms of the classical SIR model of epidemiology, the population comprises three groups: **S**usceptibles, **I**nfected and **R**emoved. _Removed_ are those who have recovered from or died of the disease and thereby are no longer infectious and can no longer catch the disease. _Infected_ are the current patients who are also all infectious. _Susceptibles_ are everybody else: people who have not been infected yet (and hopefully will never be).
 
 In the initial stage of an epidemic, we expect that most contacts by infected people will be with a susceptible person. This provides a fertile ground for the disease to spread. The number of infected people is rising exponentially (in the mathematical, not in the vague and overused marketing sense) until there are so many of them that it is becoming harder for the disease to find susceptibles.
 
-**Unfortunately, in many European countries we still observe exponential growth of case numbers. With lockdowns in force, I expect the growth to subside in a few days.**
+**Unfortunately, in many European countries we still observe exponential growth of case numbers. With lockdowns in force for several days now, a deceleration of growth is seen in Italy, Germany, France.**
 
 This means that from one day to the next, the total number of infected people increases not by a fixed number but by a fixed multiple. In any one hospital, the number of new patients per day is not the same as the number of new patients was yesterday. Instead, it is increasing by the same factor every day. For example, today the hospital gets 11 new patients, tomorrow 13, the day after 16, on day 4 already 19, on day 5 23. The stream doesn't stop, on day 10 it is 57 new patients, and so on. Each patient spends one to three weeks hospitalised, and the people being removed from the hospital are the lower numbers that arrived one to three weeks ago. If you are medical personnel and had a hard day at work, you can be sure that tomorrow will be even harder, the day after still harder. There is no system capable of meeting this demand.
 
@@ -29,6 +29,8 @@ Some of the infected people will be in hospital, some at home, but some will be 
 
 The Center for Systems Science and Engineering at the Johns Hopkins University is kindly providing [the time series data with daily sampling frequency in tabular format](https://github.com/CSSEGISandData).
 
+Remember that the true number of cases is probably multiple times higher than the number of confirmed cases. For an extreme example, on the 27 March, Scotland’s Chief Medical Officer Catherine Calderwood [estimated that more than 65,000 people in Scotland had the virus](https://www.bbc.com/news/live/world-52058788) when confirmed cases stood at 1059.
+
 ### Program files
 
 * **download_JHU_CSSE.py** is a script to download two csv data tables: the number of confirmed cases and the number of deaths due to the disease (before 24 March 2020 also the number of recovered patients), broken down to countries. The script automatically inserts the timestamp of download into the file names so that later downloads do not overwrite downloaded data.
@@ -41,21 +43,25 @@ The Center for Systems Science and Engineering at the Johns Hopkins University i
 
 ### Analysis
 
-**Since 24 March 2020, I report the total number of confirmed cases for each country only.** Originally, I was computing the number of currently infectious people as the number of total cases minus the number of deaths minus the number of recovered patients for all days where there is data: `no. of currently infected = no. of cases - no. of deaths - no. of recovered`. But the number of recoveries is no longer included in my dataset.
+I compute the number of currently infectious people as the number of total confirmed cases minus the number of deaths minus the number of recovered patients for all days where there is data:
+
+`no. of currently infected = no. of cases - no. of deaths - no. of recovered.`
+
+(On 24 March 2020, I reported the total number of confirmed cases for each country because the number of recoveries was not included in the JHU CSSE dataset.)
 
 The analysis is founded on the assumption that the growth of this number is exponential. Then I take the base 2 logarithm of this time series for a selected country, and fit a straight line to the last 4-14 days of data with _ordinary least squares (OLS)_. If the growth is exponential or thereabouts, then this should fit quite well and the slope of this line will tell us the growth rate. The length of this time window is optimised to provide the best linear fit.
 
 From this slope I compute:
 
-1. The growth factor per day, which I express in percentage terms. (What percentage more infected people we expect tomorrow than we had today.)
+1. The growth factor per day, which I express in percentage terms. (What percentage more infectious people we expect tomorrow than we had today.)
 
-2. How many days it takes for the number of infected people to double.
+2. How many days it takes for the number of infectious people to double.
 
 3. I make a crude estimate of what I guess the total number of infected people might currently be.
 
-This is only my guesswork and it will be controversial. The idea is that in the case of a SARS-CoV-2 infection, it takes on average 5-6 days to develop symptoms (fever, a usually dry cough and others). This incubation time varies between 1 to 14 days. The people who were infected today will present symptoms and will be tested perhaps 4-6 days from now. They will enter the figure in the situation report only then. Also, they are likely to be already infectious sooner than that and that is what worries us as common people.
+This is only my guesswork. The idea is that in the case of a SARS-CoV-2 infection, it takes on average 5-6 days to develop symptoms (fever, a usually dry cough and others). This incubation time varies between 1 to 14 days. The people who were infected today will present symptoms and will be tested perhaps 4-6 days from now. They will enter the figure in the situation report only thereafter. Also, they are likely to be already infectious sooner than that and that is what worries us as common people.
 
-So I project from my linear regression the number of infected four, respectively, six days from the latest data point, and that is the estimate for the current total case number. This is probably too conservative and may be a low estimate as many cases never get tested and recorded. There are also wide differences between how much testing different countries do.
+So I project from my linear regression the number of infected four, respectively, six days from the latest data point, and that is the estimate for the current total case number. This is probably too conservative and may be a low estimate not only because many cases never get tested and recorded but also because from developing symptoms, one still needs perhaps 1-3 days to get tested and for the test result to enter the international statistical tables. There are also wide differences between how much testing different countries do; low testing intensity is bound to bias the confirmed case number downwards.
 
 The exponential curve is not always a good fit (a straight line is not always a good fit to the logarithm of the current case number). It seems that in several European countries, countermeasures do slow the spread from the uncontrolled exponential growth, although not much yet. To screen for this, I compute:
 
@@ -64,7 +70,8 @@ The exponential curve is not always a good fit (a straight line is not always a 
 5. I also compute the difference between the value of the fitted straight line for the last day when we have data and the real observation (in the logarithmic space) for that last day. If the spread is slowing relative to the exponential rate, then this number will be high and the projection is definitely unreliable. If this difference is small, then the projection might well be good. When the difference is negative, then the projection will be an underestimate! You can interpret this number as a factor between the linear approximation and the data (because it is a difference between the logarithms).
 
 The automatic selection of the window length minimises the l_2 norm of the two-dimensional vector  
-`(10 * (1-R^2), difference between projection and last data point in base 2 logarithmic space).`
+`(10 * (1-R^2), difference between projection and last data point in base 2 logarithmic space).`  
+So I minimise both 1-R^2 and the difference between the fitted line and the true data point (only for the most recent date). The factor of 10 is there to weigh one relative to the other. Note that the difference is in log2 space so it is a factor in linear space. So R^2=0.99 gives first coordinate 10*0.01 = 0.1, and to get the same second coordinate of 0.1, you'd have a ratio of 2^0.1 = 1.072 between linear fit and actual data for the last available data point. This is how the two errors trade off in my window length selection.
 
 I show projections for the number of infected 4-to-6 days from now (which, as I said, is what I guess to be the real number of cumulative coronavirus cases today) only if (the R^2 is greater than or equal to 0.95 and the above difference is not greater than 0.5) or if the difference is in [-0,2;&nbsp; 0,1].
 
@@ -72,41 +79,43 @@ I show projections for the number of infected 4-to-6 days from now (which, as I 
 
 The plots for each individual country present the observed total number of infected on the left panel, and the same data on logarithmic scale on the right panel. These lines are in blue. In orange is the fit of an exponential curve, which is the same as the fit of a straight line on logarithmic scale.
 
-23 March 2020
+28 March 2020
 
-![Italy until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-03-23.png)
+![US](https://github.com/Melykuti/COVID-19/blob/master/plots/US_2020-03-27.png)
 
-![US until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/US_2020-03-23.png)
+![Italy](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-03-27.png)
 
-![Spain until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Spain_2020-03-23.png)
+![Spain](https://github.com/Melykuti/COVID-19/blob/master/plots/Spain_2020-03-27.png)
 
-![Germany until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2020-03-23.png)
+![Germany](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2020-03-27.png)
 
-![Iran until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2020-03-23.png)
+![France](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-03-27.png)
 
-![France until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-03-23.png)
+![Iran](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2020-03-27.png)
 
-![Switzerland until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2020-03-23.png)
+![United Kingdom](https://github.com/Melykuti/COVID-19/blob/master/plots/United_Kingdom_2020-03-27.png)
 
-![United Kingdom until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/United_Kingdom_2020-03-23.png)
+Switzerland added 1399 recovered patients on 27 March (cumulative number went from 131 to 1530). This is why the currently infected cases even dropped on the last data point.
 
-![Netherlands until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Netherlands_2020-03-23.png)
+![Switzerland](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2020-03-27.png)
 
-![Austria until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2020-03-23.png)
+![Netherlands](https://github.com/Melykuti/COVID-19/blob/master/plots/Netherlands_2020-03-27.png)
 
-![Belgium until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Belgium_2020-03-23.png)
+![Austria](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2020-03-27.png)
 
-![Sweden until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Sweden_2020-03-23.png)
+![Belgium](https://github.com/Melykuti/COVID-19/blob/master/plots/Belgium_2020-03-27.png)
 
-![Denmark until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2020-03-23.png)
+![Sweden](https://github.com/Melykuti/COVID-19/blob/master/plots/Sweden_2020-03-27.png)
 
-![Japan until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2020-03-23.png)
+![Denmark](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2020-03-27.png)
 
-![Hungary until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2020-03-23.png)
+![Japan](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2020-03-27.png)
 
-![South Korea until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-03-23.png)
+![Hungary](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2020-03-27.png)
 
-![Hubei province in China until 23 March 2020](https://github.com/Melykuti/COVID-19/blob/master/plots/Hubei_2020-03-23.png)
+![South Korea](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-03-27.png)
+
+![China](https://github.com/Melykuti/COVID-19/blob/master/plots/Hubei_2020-03-27.png)
 
 
 ### Results
@@ -131,9 +140,33 @@ I focus on countries with a large number of cases and on those where I have got 
 
 &nbsp;
 
-    Country             Growth rate   Doubling  Total cases  Estimate       R^2  Diff. Window size
+    Country             Growth rate   Doubling  Active cases  Estimate      R^2  Diff. Window size
+    
+28 March 2020
 
-24 March 2020
+    US                      23.5%     3.3 days    99207  [231517, 352961]  1.00  0.01   5
+    Italy                    7.2%    10.0 days    66414   [87627, 100681]  1.00 -0.00   4
+    Spain                   16.3%     4.6 days    51224   [97340, 131693]  1.00  0.05   9
+    Germany                 13.9%     5.3 days    43871    [73559, 95511]  1.00 -0.01   4
+    France                  12.1%     6.1 days    25269    [39851, 50080]  1.00 -0.00   4
+    Iran                    10.3%     7.1 days    18821    [27653, 33661]  1.00 -0.01   4
+    United Kingdom          21.4%     3.6 days    13649    [29127, 42913]  1.00 -0.02   5
+    Switzerland             17.3%     4.4 days    11167    [27007, 37131]  0.96  0.36  13
+    Netherlands             15.1%     4.9 days     8054    [14147, 18757]  1.00 -0.00   4
+    Austria                 19.2%     3.9 days     7374    [16478, 23430]  0.99  0.14  11
+    Belgium                 17.4%     4.3 days     6137    [11868, 16351]  0.99  0.03  13
+    Sweden                   9.5%     7.7 days     2948      [4233, 5072]  1.00  0.00  13
+    Denmark                  8.6%     8.4 days     1993      [2767, 3261]  1.00 -0.00   4
+    Japan                    5.2%    13.6 days     1047      [1274, 1412]  0.97 -0.01   8
+    Hungary                 18.8%     4.0 days      256        [530, 748]  1.00  0.06  11
+    Korea, South            -5.5%     nan days     4665      [3720, 3320]  0.97  0.00   5
+    China                   -7.6%     nan days     3881      [2868, 2451]  1.00  0.02  10
+
+&nbsp;
+
+    Country             Growth rate   Doubling  Total cases  Estimate       R^2  Diff. Window size
+    
+24 March 2020 (total number of confirmed cases without deaths or recoveries)
 
     Italy                   13.1%     5.6 days    63927  [108776, 139105]  1.00  0.06   9
     US                      31.8%     2.5 days    43290  [130768, 227080]  1.00  0.00   4
