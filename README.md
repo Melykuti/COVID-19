@@ -115,7 +115,7 @@ Switzerland added 1399 recovered patients on 27 March (cumulative number went fr
 
 ![South Korea](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-03-27.png)
 
-![China](https://github.com/Melykuti/COVID-19/blob/master/plots/Hubei_2020-03-27.png)
+![China](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2020-03-27.png)
 
 
 ### Results
