@@ -33,7 +33,7 @@ Remember that the true number of cases is probably multiple times higher than th
 
 ### Program files
 
-* **download_JHU_CSSE.py** is a script to download two csv data tables: the number of confirmed cases and the number of deaths due to the disease (before 24 March 2020 also the number of recovered patients), broken down to countries. The script automatically inserts the timestamp of download into the file names so that later downloads do not overwrite downloaded data.
+* **download_JHU_CSSE.py** is a script to download three csv data tables: the number of confirmed cases, the number of deaths due to the disease, and the number of recovered patients, broken down to countries. The script automatically inserts the timestamp of download into the file names so that later downloads do not overwrite downloaded data.
 
 * **utils.py** contains the universal data selection, preprocessing, analysis and plotting functionalities. It searches for the most recent download of `download_JHU_CSSE.py` in the current directory based on the timestamp in the file name. If you want to select a particular one, then modify the variable `timestamp` in `open_csvs()`.
 

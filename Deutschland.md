@@ -64,7 +64,7 @@ Ich wähle immer die letzten 5-14 Tage aus, um die lineare Regression durchzufü
 
 ![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-28.png)
 
-Auf diesen beiden Schaubildern verwende ich die kumulierten Infektionsfälle. (Ich subtrahiere die Todesfälle nicht.)
+Auf diesen beiden Schaubildern verwende ich die kumulierten Infektionsfälle. (Ich subtrahiere die Todesfälle nicht.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
 ![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-03-28_0_-1.png)
 
@@ -352,13 +352,17 @@ Stand 15.03.2020
 
 Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html). Da ich auf der Webseite nur die aktuellen Fallzahlen finde, verwende ich [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Deutschland#Infektionsf%C3%A4lle_nach_Bundesl%C3%A4ndern), wo Freiwillige die ganzen Zeitreihen gespeichert haben.
 
+Die zu den relativen Fallzahlen verwendeten Bevölkerungsgrößen stammen aus dem [Gemeinsamen Statistikportal der Statistischen Ämter des Bundes und der Länder](https://www.statistikportal.de/de/bevoelkerung/flaeche-und-bevoelkerung).
+
 ### Programmdateien
 
 * **download_DEU.py** ist das Skript um die Daten von [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland) herunterzuladen.
 
 * **DEU.py** ist das für Deutschland spezifische Skript, das hauptsächlich für die Vorbereitung der Daten von Wikipedia zuständig ist.
 
-* **utils.py** hat die gemeinsame Funktionen, die die Analyse und die Visualisierung durchführen.
+* **utils.py** hat die gemeinsamen Funktionen, die die Analyse und die Visualisierung durchführen.
+
+* **comparison_joint.py** beinhaltet die für die Datenverarbeitung und Grafik notwendige Funktionen, um die Ländervergleiche herzustellen.
 
 ### Konklusion
 
