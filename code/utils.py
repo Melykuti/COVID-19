@@ -6,7 +6,18 @@ from sklearn import linear_model
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
 #import importlib
-from importlib import reload
+#from importlib import reload
+
+# Constants
+#files = ['time_series_19-covid-Confirmed', 'time_series_19-covid-Deaths', 'time_series_19-covid-Recovered']
+#labels = ['Confirmed', 'Deaths', 'Recovered']# until 23 March 2020
+# Since 24 March 2020
+#files = ['time_series_covid19_confirmed_global', 'time_series_covid19_deaths_global']
+#labels = ['confirmed', 'deaths']
+# Since 28 March 2020
+files = ['time_series_covid19_confirmed_global', 'time_series_covid19_deaths_global', 'time_series_covid19_recovered_global']
+labels = ['confirmed', 'deaths', 'recovered']
+
 
 def open_csvs():
     '''
@@ -226,17 +237,18 @@ def plotting(df_ts, model, save_not_show, country, window_length, lang='en'):
     fig.subplots_adjust(bottom=0.2)
     #ax1.plot(df_ts[df_ts>0], label=line0)
     #ax1.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1)
-    ax1.plot(df_ts.iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1, color='tab:orange')
+    ax1.plot(df_ts.iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1, color='tab:orange', linewidth=3)
     ax1.plot(rm_consecutive_early_zeros(df_ts), label=line0, color='tab:blue')
     #ax2.plot(df_ts[df_ts>0], label=line0)
-    ax2.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1, color='tab:orange')
+    ax2.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1, color='tab:orange', linewidth=3)
     ax2.plot(rm_consecutive_early_zeros(df_ts), label=line0, color='tab:blue')
     ax2.set_yscale("log")
     for tick in ax1.get_xticklabels():
         tick.set_rotation(80)
     for tick in ax2.get_xticklabels():
         tick.set_rotation(80)
-    ax1.legend()
+    handles, labs = ax1.get_legend_handles_labels()
+    ax1.legend((handles[1], handles[0]), (labs[1], labs[0]))
     #plt.gcf().text(0.905, 0.615, "© Bence Mélykúti, Melykuti.me, 2020", fontsize=8, color='lightgray', rotation=90)
     plt.gcf().text(0.905, 0.862, "© Bence Mélykúti, http://COVID19.Melykuti.Be, 2020", fontsize=8, color='lightgray', rotation=90)
     if save_not_show==0:
@@ -264,14 +276,4 @@ def load_population_DEU():
         country_new = country.strip()
         countries[country_new] = pop_ser.loc[country]
     return countries
-
-# Constants
-#files = ['time_series_19-covid-Confirmed', 'time_series_19-covid-Deaths', 'time_series_19-covid-Recovered']
-#labels = ['Confirmed', 'Deaths', 'Recovered']# until 23 March 2020
-# Since 24 March 2020
-#files = ['time_series_covid19_confirmed_global', 'time_series_covid19_deaths_global']
-#labels = ['confirmed', 'deaths']
-# Since 28 March 2020
-files = ['time_series_covid19_confirmed_global', 'time_series_covid19_deaths_global', 'time_series_covid19_recovered_global']
-labels = ['confirmed', 'deaths', 'recovered']
 
