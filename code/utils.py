@@ -16,18 +16,21 @@ def open_csvs():
     timestamp = None
     #timestamp = '20200312_21-43'
     df=dict()
-    lists = list([list(), list()])
+    lists = list([list(), list(), list()])
     with os.scandir() as it:
         for entry in it:
-            for i in range(2):
+            for i in range(3):
                 if (timestamp==None or timestamp in entry.name) and files[i] in entry.name and entry.is_file():
                     lists[i].append(entry.name)
-    for i in range(2):
+    for i in range(3):
         lists[i].sort()
         df[labels[i]] = pd.read_csv(lists[i][-1])
     return df
 
 def data_preparation(df, country, only_cases=False):
+    '''
+    This is used for the JHU CSSE dataset.
+    '''
     sets = dict({'EU': ['Austria', 'Belgium', 'Bulgaria', 'Croatia', 'Cyprus', 'Czechia', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden'],
 'China': [['Anhui', 'China'], ['Beijing', 'China'], ['Chongqing', 'China'], ['Fujian', 'China'], ['Gansu', 'China'], ['Guangdong', 'China'], ['Guangxi', 'China'], ['Guizhou', 'China'], ['Hainan', 'China'], ['Hebei', 'China'], ['Heilongjiang', 'China'], ['Henan', 'China'], ['Hong Kong', 'China'], ['Hubei', 'China'], ['Hunan', 'China'], ['Inner Mongolia', 'China'], ['Jiangsu', 'China'], ['Jiangxi', 'China'], ['Jilin', 'China'], ['Liaoning', 'China'], ['Macau', 'China'], ['Ningxia', 'China'], ['Qinghai', 'China'], ['Shaanxi', 'China'], ['Shandong', 'China'], ['Shanghai', 'China'], ['Shanxi', 'China'], ['Sichuan', 'China'], ['Tianjin', 'China'], ['Tibet', 'China'], ['Xinjiang', 'China'], ['Yunnan', 'China'], ['Zhejiang', 'China']]})
     #sets = dict({'EU': ['Croatia', 'Hungary']}) # test only
@@ -42,7 +45,7 @@ def data_preparation(df, country, only_cases=False):
         return dft_members.sum(axis=1)
     else:
         l = list()
-        for i in range(2):
+        for i in range(3):
             k = labels[i]
             if isinstance(country, str):
                 l.append(df[k][np.logical_and(df[k]['Province/State'].isna(),
@@ -52,12 +55,12 @@ def data_preparation(df, country, only_cases=False):
                                               df[k]['Country/Region']==country[1])].iloc[:,4:])
         dft = pd.concat(l, ignore_index=True)
         #print(dft)
-        dft.rename(index={i: labels[i] for i in range(2)}, inplace=True)
+        dft.rename(index={i: labels[i] for i in range(3)}, inplace=True)
         #print(dft)
         if only_cases==True:
             df_ts = dft.loc['confirmed']
         else:
-            df_ts = dft.loc['confirmed']-dft.loc['deaths'] # -dft.loc['Recovered'] # Since 24 March 2020, recovered is not available
+            df_ts = dft.loc['confirmed']-dft.loc['deaths']-dft.loc['recovered'] # On 24 March 2020, recovered is not available; on 28 March 2020 it is there again.
         df_ts.rename(index={df_ts.index[i]: pd.to_datetime(df_ts.index)[i] for i in range(len(df_ts.index))}, inplace=True)
         return df_ts
 
@@ -223,19 +226,19 @@ def plotting(df_ts, model, save_not_show, country, window_length, lang='en'):
     fig.subplots_adjust(bottom=0.2)
     #ax1.plot(df_ts[df_ts>0], label=line0)
     #ax1.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1)
-    ax1.plot(rm_consecutive_early_zeros(df_ts), label=line0)
-    ax1.plot(df_ts.iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1)
+    ax1.plot(df_ts.iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1, color='tab:orange')
+    ax1.plot(rm_consecutive_early_zeros(df_ts), label=line0, color='tab:blue')
     #ax2.plot(df_ts[df_ts>0], label=line0)
-    ax2.plot(rm_consecutive_early_zeros(df_ts), label=line0)
-    ax2.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1)
+    ax2.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1, color='tab:orange')
+    ax2.plot(rm_consecutive_early_zeros(df_ts), label=line0, color='tab:blue')
     ax2.set_yscale("log")
     for tick in ax1.get_xticklabels():
         tick.set_rotation(80)
     for tick in ax2.get_xticklabels():
         tick.set_rotation(80)
     ax1.legend()
-    #plt.gcf().text(0.005, 0.43, "© Bence Mélykúti, Melykuti.me, 2020", fontsize=8, color='lightgray', rotation=90) # 0.482, 0.76
-    plt.gcf().text(0.905, 0.615, "© Bence Mélykúti, Melykuti.me, 2020", fontsize=8, color='lightgray', rotation=90)
+    #plt.gcf().text(0.905, 0.615, "© Bence Mélykúti, Melykuti.me, 2020", fontsize=8, color='lightgray', rotation=90)
+    plt.gcf().text(0.905, 0.862, "© Bence Mélykúti, http://COVID19.Melykuti.Be, 2020", fontsize=8, color='lightgray', rotation=90)
     if save_not_show==0:
         plt.show()
     elif save_not_show==1:
@@ -266,5 +269,9 @@ def load_population_DEU():
 #files = ['time_series_19-covid-Confirmed', 'time_series_19-covid-Deaths', 'time_series_19-covid-Recovered']
 #labels = ['Confirmed', 'Deaths', 'Recovered']# until 23 March 2020
 # Since 24 March 2020
-files = ['time_series_covid19_confirmed_global', 'time_series_covid19_deaths_global']
-labels = ['confirmed', 'deaths']
+#files = ['time_series_covid19_confirmed_global', 'time_series_covid19_deaths_global']
+#labels = ['confirmed', 'deaths']
+# Since 28 March 2020
+files = ['time_series_covid19_confirmed_global', 'time_series_covid19_deaths_global', 'time_series_covid19_recovered_global']
+labels = ['confirmed', 'deaths', 'recovered']
+

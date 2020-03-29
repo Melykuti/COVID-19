@@ -1,13 +1,13 @@
 '''
 exec(open('DEU.py').read())
-15-20/3/2020
+15-29/3/2020
 '''
 
 import os, datetime
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
-
+from importlib import reload
 from utils import process_geounit, print_header, print_results, plotting
 
 allowed_values = \
@@ -199,9 +199,11 @@ def collect_data_colwise(rows): #, table_no):
         tds = r.find_all('td')
         # https://stackoverflow.com/a/1546251/9486169, we remove accidental multiple spaces from date:
         #print(tds[0].text)
-        #print(' '.join(tds[0].text.replace('\n','').split()).split(' '))
-        day, month, year = ' '.join(tds[0].text.replace('\n','').split()).split(' ')[:3]
         #day, month, year = tds[0].text.replace('\n','').split(' ')
+        #print(' '.join(tds[0].text.replace('\n','').split()).split(' '))
+        #day, month, year = ' '.join(tds[0].text.replace('\n','').split()).split(' ')[:3]
+        day, month, year = tds[0].text.replace('\n','').split()[:3]
+        year = year[:4]
         ymd.append('{0}-{1}-{2}'.format(year, convert_months_to_nr(month), day.replace('.', '')))
         cases_date[ymd[-1]]=list()
         for j in tds[1:]:
@@ -226,7 +228,7 @@ def data_preparation_DEU(only_cases=False):
     #print(soup.prettify())
 
     #tables = soup.find_all('table', {'class':'wikitable sortable mw-collapsible'}) # I expect two tables: 'Bestätigte Infektionsfälle (kumuliert)', 'Bestätigte Todesfälle (kumuliert)'
-    tables = soup.find_all('table', {'class':'wikitable'}) # I expect eight tables
+    tables = soup.find_all('table', {'class':'wikitable'}) # I expect ten tables
 
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[2].text:
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
