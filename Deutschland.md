@@ -4,6 +4,7 @@ Zusammenfassung am Montag, 30 März 2020:
 
 * Am 29.3.2020 wurden keine Daten aus Sachsen-Anhalt übermittelt. Ich aktualisiere dessen Grafik und Resultate nicht.
 * Wie vor einer Woche sind die heute gemeldeten Daten und eventuelle Rückgänge der Wachstumsraten wegen des Wochenendes nicht besonder vertrauenswürdig (siehe Zusammenfassung am 23 März 2020).
+* Es gibt Stimmen in der Politik, dass man mit dem allmählichen Aufheben der Beschränkungen erst dann anfangen kann, wann die Verdopplungszeit 10 Tage erreicht. Dies entspricht eine tägliche Wachstumsrate von 7,2%.
 
 Zusammenfassung am Sonntag, 29 März 2020:
 
