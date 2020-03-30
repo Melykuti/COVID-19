@@ -1,10 +1,14 @@
 ## Analyse und Projektionen für die exponentielle Verbreitung der SARS-CoV-2 Coronavirus-Pandemie in Deutschland und in den deutschen Bundesländern
 
+Zusammenfassung am Montag, 30 März 2020:
+
+* Am 29.3.2020 wurden keine Daten aus Sachsen-Anhalt übermittelt. Ich aktualisiere dessen Grafik und Resultate nicht.
+* Wie vor einer Woche sind die heute gemeldeten Daten und eventuelle Rückgänge der Wachstumsraten wegen des Wochenendes nicht besonder vertrauenswürdig (siehe Zusammenfassung am 23 März 2020).
+
 Zusammenfassung am Sonntag, 29 März 2020:
 
 * Am 28.3.2020 wurden keine Daten aus Baden-Württemberg, Hessen und dem Saarland an das Robert Koch Institut übermittelt. Ich aktualisiere deren Grafiken und Resultate nicht.
 * Die Wachstumsraten zeigen zwar überall eine sinkende Tendenz, aber es war auch Samstag und die Vollständigkeit der Datenübergabe, wie vor einer Woche, auch heute suspekt ist.
-* Ich werde mir morgen die Aktualisierung wegen der Unzuverlässigkeit der Daten vom Wochenende ersparen (siehe Zusammenfassung am 23 März 2020).
 
 Zusammenfassung am Samstag, 28 März 2020:
 
@@ -68,7 +72,7 @@ Ich wähle immer die letzten 5-14 Tage aus, um die lineare Regression durchzufü
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-29.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-03-30.png)
 
 Auf diesen beiden Schaubildern verwende ich die kumulierten Infektionsfälle. (Ich subtrahiere die Todesfälle nicht.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
@@ -78,37 +82,37 @@ Auf diesen beiden Schaubildern verwende ich die kumulierten Infektionsfälle. (I
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-28.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-03-30.png)
 
-![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-29.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-03-30.png)
 
-![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-29.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-03-30.png)
 
-![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-29.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-03-30.png)
 
-![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-03-29.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-03-30.png)
 
-![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-29.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-03-30.png)
 
-![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-28.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-03-30.png)
 
-![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-29.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-03-30.png)
 
-![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-29.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-03-30.png)
 
-![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-29.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-03-30.png)
 
-![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-29.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-03-30.png)
 
-![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-28.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-03-30.png)
 
-![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-29.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-03-30.png)
 
 ![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-03-29.png)
 
-![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-29.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-03-30.png)
 
-![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-29.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-03-30.png)
 
 
 ### Resultate
@@ -125,13 +129,40 @@ Die Spalten haben die folgende Bedeutung:
 
 * Die letzte gemeldete Anzahl der derzeit Infizierten.
 
-* Meine Schätzung der derzeit Infizierten. Konkret, die Extrapolation der angepassten exponentiellen Kurve auf 4, beziehungsweise, 6 Tage voraus. (Bis 16.03.2020, wenn R^2 kleiner als 0,945 oder die letzte Spalte größer als 0,5 ist, dann lasse ich diese Schätzung wegfallen, denn mein Vertrauen in ihr ist schwächer. Ab 18.03.2020 zeige ich die Schätzung wenn R^2 nicht kleiner als 0,95 und die vorletzte Spalte nicht größer als 0,5 ist, oder wenn die vorletzte Spalte in [-0,2;&nbsp; 0,1] ist.)
+* (Ab 30.03.2020) Die letzte gemeldete Anzahl der derzeit Infizierten pro 100,000 Einwohner.
+
+* Meine Schätzung der derzeit Infizierten (ab 30.03.2020 auf 100,000 Einwohner). Konkret, die Extrapolation der angepassten exponentiellen Kurve auf 4, beziehungsweise, 6 Tage voraus. (Bis 16.03.2020, wenn R^2 kleiner als 0,945 oder die letzte Spalte größer als 0,5 ist, dann lasse ich diese Schätzung wegfallen, denn mein Vertrauen in ihr ist schwächer. Ab 18.03.2020 zeige ich die Schätzung wenn R^2 nicht kleiner als 0,95 und die vorletzte Spalte nicht größer als 0,5 ist, oder wenn die vorletzte Spalte in [-0,2;&nbsp; 0,1] ist.)
 
 * R^2 oder Bestimmtheitsmaß oder Determinationskoeffizient der Anpassungsgüte der linearen Regression. Je näher es an 1 ist, desto besser ist die Anpassung.
 
 * Differenz zwischen der linearen Annäherung und der wahren Beobachtung in logarithmischem Raum für den letzten Datenpunkt (für den letzten Tag). Man kann es als Exponent einer Potenz auf Basis 2 interpretieren für die Quote zwischen Schätzung und der letzten Beobachtung. Wenn diese Nummer groß ist, dann ist die Annäherung wenig gut. Wenn sie sogar negativ ist, dann ist die Annäherung viel zu niedrig und die Anzahl der Ansteckenden wird unterschätzt.
 
 * (Ab 18.03.2020) Die Anzahl der Tage im Zeitfenster, in dem die lineare Regression stattfindet. Sie wird automatisch optimiert, so dass der Vektor (10 * (1-R^2), Differenz) in l_2 kleinstmöglich ist.)
+
+&nbsp;
+
+Stand 30.03.2020
+
+    Bundesland     Wachstumsrate Verdoppl.zeit AktiveFälle pro100000 Schätzung  R^2  Diff. Fenstergröße
+
+    Baden-Württemberg       15,8%     4,7 Tage    10824     97      [195, 261]  0,97  0,15  12
+    Bayern                  16,9%     4,4 Tage    13862    106      [208, 285]  0,99  0,08   8
+    Berlin                  13,3%     5,5 Tage     2453     67      [120, 154]  0,99  0,12  11
+    Brandenburg             14,8%     5,0 Tage      759     30        [56, 73]  0,99  0,10  11
+    Bremen                   8,0%     9,0 Tage      284     41        [58, 68]  0,99  0,05  10
+    Hamburg                 11,9%     6,1 Tage     2048    111      [181, 227]  0,97  0,05   9
+    Hessen                  12,6%     5,8 Tage     3078     49       [81, 103]  0,98  0,04  10
+    Mecklenburg-Vorpommern  11,2%     6,5 Tage      355     22        [35, 43]  0,99  0,06   8
+    Niedersachsen            9,7%     7,5 Tage     3706     46        [67, 81]  0,99  0,01   4
+    Nordrhein-Westfalen     12,2%     6,0 Tage    12077     67      [111, 140]  0,99  0,06   8
+    Rheinland-Pfalz          9,3%     7,8 Tage     2566     62       [90, 108]  0,99  0,01   5
+    Saarland                11,7%     6,3 Tage      699     70      [106, 132]  0,97 -0,05   7
+    Sachsen                 11,4%     6,4 Tage     1786     43        [67, 83]  1,00 -0,00   4
+    Schleswig-Holstein      16,0%     4,7 Tage     1042     35        [72, 97]  0,99  0,16  11
+    Thüringen               17,7%     4,3 Tage      714     33       [73, 101]  0,98  0,19  11
+    
+    Deutschland             13,3%     5,6 Tage    56843     68      [117, 151]  0,99  0,06   7
+    
 
 &nbsp;
 
