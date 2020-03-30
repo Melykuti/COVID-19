@@ -20,8 +20,8 @@ allowed_values = \
 
 ### User input ###
 
-#selection = 'alle' # Choose one of the elements of allowed_values.
-selection = allowed_values[5] # Alternatively, choose an element index from allowed_values.
+selection = 'alle' # Choose one of the elements of allowed_values.
+#selection = allowed_values[5] # Alternatively, choose an element index from allowed_values.
 
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
 window_length_all = dict({bl: window_length for bl in allowed_values[:-1]})
@@ -36,10 +36,11 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
     'Deutschland': 13})
 '''
 
-save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
 # In the case of 'alle', 0 functions as -1.
 
 lang = 'de' # 'de' for German, anything else for English
+normalise_by = 1e5 # report case numbers per this many people
 
 ### End of user input ###
 
@@ -266,7 +267,7 @@ def data_preparation_DEU(only_cases=False):
 if __name__ == '__main__':
     figures_diff = data_preparation_DEU()
 
-    print_header()
+    print_header(normalise_by)
 
     #print(figures_diff[selection], window_length_all[selection])
 
@@ -275,7 +276,7 @@ if __name__ == '__main__':
 
         results, model, selected_window_length = process_geounit(df_ts, window_length)
 
-        print_results(selection, results, selected_window_length, lang)
+        print_results(selection, results, normalise_by, selected_window_length, lang)
 
         if save_not_show in [0, 1]:
             plotting(figures_diff[selection], model, save_not_show, selection,
@@ -301,7 +302,7 @@ if __name__ == '__main__':
             if selection == 'Deutschland':
                 print()
             if window_length_all[selection] > 0:
-                print_results(selection, results_dict[selection], window_length_all[selection], lang)
+                print_results(selection, results_dict[selection], normalise_by, window_length_all[selection], lang)
             else:
-                print_results(selection, results_dict[selection], selected_window_length_dict[selection], lang)
+                print_results(selection, results_dict[selection], normalise_by, selected_window_length_dict[selection], lang)
 

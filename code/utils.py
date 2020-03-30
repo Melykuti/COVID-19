@@ -191,35 +191,44 @@ def process_geounit(df_ts, window_length):
 
     return results, model, selected_window_length
 
-def print_header():
+def print_header(normalise_by):
     print('The number of currently infected people increases daily by /')
     print('Time it takes for the number of currently infected people to double /')
     print('Latest reported number of infectious cases /')
-    print('My estimation for number of infectious cases at present /')
+    print('Latest reported number of infectious cases per {} people /'.format(separated(str(int(normalise_by)))))
+    print('My estimation for number of infectious cases per {} people at present /'.format(separated(str(int(normalise_by)))))
     print('R^2 /')
     #print('Tail difference\n')
     print('Tail difference /')
     print('Window length\n')
 
-def print_results(country, results, wl, lang='en'):
+def print_results(country, results, normalise_by, wl, lang='en'):
     country_width = 23
-    interval_width = 16
+    interval_width = 14
+    if country in ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen',
+    'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen',
+    'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen',
+    'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen',
+    'Deutschland']:
+        pop = load_population_DEU()
+    else:
+        pop = load_population_world()
     if not isinstance(country, str): # If it's a province or state of a country or region.
         country = country[0]
     if (results[5]>=0.95 and results[6]<=0.5) or (results[6]>=-0.2 and results[6]<=0.1):
-        #print('{0} {1:4.1f}%  {2:6.2f} {3}  {4}  {5}  {6:4.2f} {7:5.2f}'.format(
-        # country.ljust(country_width), results[0], results[1], 'Tage' if lang=='de' else 'days',
-        # str(results[2]).rjust(7), ('[' + str(results[3]) +', '+ str(results[4]) + ']').rjust(interval_width), results[5], results[6]).replace('.', ',' if lang=='de' else '.'))
-        print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6:4.2f} {7:5.2f}  {8}'.format(
+        #print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6:4.2f} {7:5.2f}  {8}'.format(
+         #country.ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
+         #str(results[2]).rjust(7), ('[' + str(results[3]) +', '+ str(results[4]) + ']').rjust(interval_width), results[5], results[6], str(wl).rjust(2)).replace('.', ',' if lang=='de' else '.'))
+        print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6}  {7:4.2f} {8:5.2f}  {9}'.format(
          country.ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
-         str(results[2]).rjust(7), ('[' + str(results[3]) +', '+ str(results[4]) + ']').rjust(interval_width), results[5], results[6], str(wl).rjust(2)).replace('.', ',' if lang=='de' else '.'))
+         str(results[2]).rjust(7), str(int(normalise_by*results[2]/pop[country])).rjust(5), ('[' + str(int(normalise_by*results[3]/pop[country])) +', '+ str(int(normalise_by*results[4]/pop[country])) + ']').rjust(interval_width), results[5], results[6], str(wl).rjust(2)).replace('.', ',' if lang=='de' else '.'))
     else:
-        #print('{0} {1:4.1f}%  {2:6.2f} {3}  {4}  {5}  {6:4.2f} {7:5.2f}'.format(
-        # country.ljust(country_width), results[0], results[1], 'Tage' if lang=='de' else 'days',
-        # str(results[2]).rjust(7), ''.rjust(interval_width), results[5], results[6]).replace('.', ',' if lang=='de' else '.'))
-        print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6:4.2f} {7:5.2f}  {8}'.format(
+        #print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6:4.2f} {7:5.2f}  {8}'.format(
+        #country.ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
+        #str(results[2]).rjust(7), ''.rjust(interval_width), results[5], results[6], str(wl).rjust(2)).replace('.', ',' if lang=='de' else '.'))
+        print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6}  {7:4.2f} {8:5.2f}  {9}'.format(
         country.ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
-        str(results[2]).rjust(7), ''.rjust(interval_width), results[5], results[6], str(wl).rjust(2)).replace('.', ',' if lang=='de' else '.'))
+        str(results[2]).rjust(7), str(int(normalise_by*results[2]/pop[country])).rjust(5), ''.rjust(interval_width), results[5], results[6], str(wl).rjust(2)).replace('.', ',' if lang=='de' else '.'))
 
 def plotting(df_ts, model, save_not_show, country, window_length, lang='en'):
     if not isinstance(country, str): # If it's a province or state of a country or region.
@@ -240,7 +249,7 @@ def plotting(df_ts, model, save_not_show, country, window_length, lang='en'):
     ax1.plot(df_ts.iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1, color='tab:orange', linewidth=3)
     ax1.plot(rm_consecutive_early_zeros(df_ts), label=line0, color='tab:blue')
     #ax2.plot(df_ts[df_ts>0], label=line0)
-    ax2.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1, color='tab:orange', linewidth=3)
+    ax2.plot(df_ts.iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1, color='tab:orange', linewidth=3)
     ax2.plot(rm_consecutive_early_zeros(df_ts), label=line0, color='tab:blue')
     ax2.set_yscale("log")
     for tick in ax1.get_xticklabels():

@@ -140,7 +140,7 @@ I focus on countries with a large number of cases and on those where I have got 
 
 &nbsp;
 
-    Country             Growth rate Doubling  ActiveCases per100000 Estimate     R^2  Diff. Window size
+    Country             Growth rate  Doubling ActiveCases per100000  Estimate    R^2  Diff. Window size
 
 30 March 2020
 
