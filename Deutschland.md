@@ -44,7 +44,7 @@ Zusammenfassung am Montag, 23 März 2020:
 * **Überall, wo die heutigen Daten auf eine Verlangsamung hinweisen, gab es vor einer Woche, nach dem Wochenende, schon eine ähnliche Verlangsamung, ohne langfristigen Effekt an der Ausbreitung der Coronavirus-Pandemie.**
 * [Diese Vermutung bestätigt heute das Robert Koch Institut:](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html) „Am aktuellen Wochenende wurden nicht aus allen Ämtern Daten übermittelt, sodass der hier berichtete Anstieg der Fallzahlen nicht dem tatsächlichen Anstieg der Fallzahlen entspricht. Die Daten werden am Montag nachübermittelt und ab Dienstag auch in dieser Statistik verfügbar sein.“
 
-16 März 2020 (aktualisiert am 29 März 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 30 März 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bisher stimmen die beobachteten Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die Pandemie sich zur Zeit ausbreitet. Konkret, mich interessiert wieviele _aktiv ansteckende Kranke_ es gibt, dass heißt, wieviele Leute die Krankheit bekommen haben, die sich noch nicht erholt haben und noch nicht gestorben sind.
 
@@ -141,9 +141,9 @@ Die Spalten haben die folgende Bedeutung:
 
 &nbsp;
 
-Stand 30.03.2020
-
     Bundesland     Wachstumsrate Verdoppl.zeit AktiveFälle pro100000 Schätzung  R^2  Diff. Fenstergröße
+
+Stand 30.03.2020
 
     Baden-Württemberg       15,8%     4,7 Tage    10824     97      [195, 261]  0,97  0,15  12
     Bayern                  16,9%     4,4 Tage    13862    106      [208, 285]  0,99  0,08   8
