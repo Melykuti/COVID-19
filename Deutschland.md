@@ -4,7 +4,7 @@ Zusammenfassung am Montag, 30 März 2020:
 
 * Am 29.3.2020 wurden keine Daten aus Sachsen-Anhalt übermittelt. Ich aktualisiere dessen Grafik und Resultate nicht.
 * Wie vor einer Woche sind die heute gemeldeten Daten und eventuelle Rückgänge der Wachstumsraten wegen des Wochenendes nicht besonder vertrauenswürdig (siehe Zusammenfassung am 23 März 2020).
-* Es gibt Stimmen in der Politik, dass man mit dem allmählichen Aufheben der Beschränkungen erst dann anfangen kann, wann die Verdopplungszeit 10 Tage erreicht. Dies entspricht eine tägliche Wachstumsrate von 7,2%.
+* Es gibt Stimmen in der Politik, dass man mit dem allmählichen Lockern der Beschränkungen erst dann anfangen kann, wann die Verdopplungszeit 10 Tage erreicht. Dies entspricht eine tägliche Wachstumsrate von 7,2%.
 
 Zusammenfassung am Sonntag, 29 März 2020:
 
@@ -77,9 +77,9 @@ Ich wähle immer die letzten 5-14 Tage aus, um die lineare Regression durchzufü
 
 Auf diesen beiden Schaubildern verwende ich die kumulierten Infektionsfälle. (Ich subtrahiere die Todesfälle nicht.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-03-28_0_-1.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-03-30_0_-1.png)
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-03-28_1_-1.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-03-30_1_-1.png)
 
 #### Die einzelnen Bundesländer
 

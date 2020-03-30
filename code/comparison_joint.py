@@ -21,25 +21,25 @@ left_bound=0.8
 bottom_bound=-10.; top_bound=100.
 cycle_linestyle = 0 # if 0, then all lines are solid; if 1, then it cycles through solid, dotted, dashed, dash-dotted
 #normalise = 1 # 1 if you want to normalise by population size, o.w. 0
-normalise_by = int(1e5)
+normalise_by = int(1e5) # display case numbers per this many people
 
-#window_length = 4 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
-window_length = -1
+window_length = 4 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
+#window_length = -1
 
 save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
 lang = 'en' # 'de' for German, anything else for English
 
-#countries = [['Hubei', 'China'], 'Italy', 'US', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=400; right_bound=None; normalise = 0; filename = 'Joint'; cycle_linestyle = 1
-#countries = [['Hubei', 'China'], 'Italy', 'US', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=0.8; right_bound=None; normalise = 1; filename = 'Joint'; cycle_linestyle = 1
+#countries = ['US', 'Italy', 'China', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=600; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 0; filename = 'Joint'; cycle_linestyle = 1
+countries = ['US', 'Italy', 'China', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 1; filename = 'Joint'; cycle_linestyle = 1
 
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=50.; right_bound=2000; normalise = 0; filename = 'Visegrad'; cycle_linestyle = 1
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=50*normalise_by/10e6; right_bound=None; normalise = 1; filename = 'Visegrad'; cycle_linestyle = 1
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=50.; right_bound=4000.; bottom_bound=0.; top_bound=80.; normalise = 0; filename = 'Visegrad'; cycle_linestyle = 1
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 1; filename = 'Visegrad'; cycle_linestyle = 1
 
-#countries = 'Deutschland'; left_bound=110; right_bound=None; bottom_bound=0.; top_bound=70.; normalise = 0; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1
-countries = 'Deutschland'; left_bound=9; right_bound=110; bottom_bound=0.; top_bound=70.; normalise = 1; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1
+#countries = 'Deutschland'; left_bound=200; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 0; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1
+#countries = 'Deutschland'; left_bound=9; right_bound=120; bottom_bound=0.; top_bound=60.; normalise = 1; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1
 
-#countries = ['EU', 'China', 'US']; left_bound=500; right_bound=None; bottom_bound=-5.; top_bound=75.; normalise = 0; filename = 'world_powers'; lang = 'en'; cycle_linestyle = 0
-#countries = ['EU', 'China', 'US']; left_bound=0.1; right_bound=None; bottom_bound=-5.; top_bound=75.; normalise = 1; filename = 'world_powers'; lang = 'en'; cycle_linestyle = 0
+#countries = ['China', 'EU', 'US']; left_bound=500; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 0; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
+#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=150.; bottom_bound=0.; top_bound=60.; normalise = 1; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
 
 #countries = ['Switzerland', 'United Kingdom']
 #countries = ['Italy', 'Spain', 'France', 'Germany', 'Switzerland', ['United Kingdom', 'United Kingdom'], 'Netherlands', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', 'China']
@@ -132,7 +132,6 @@ def process_geounit_minimal(df_ts, window_length):
     return results, model, selected_window_length
 
 def plotting_countries(dif_all, save_not_show, latest_date, window_length, left_bound=None, right_bound=None, bottom_bound=None, top_bound=None, cycle_linestyle=0, lang='en'):
-
     #left_bound = 100
     fig, ax1 = plt.subplots(1,1, figsize=(12., 8.))
     #fig, ax1 = plt.subplots(1,1, figsize=(9.6, 6.4))
@@ -144,7 +143,6 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, left_
             ax1.set_title('Lineare Regression mit Fenstergröße von {} Datenpunkten.'.format(window_length))
         ax1.set_xlabel('Fallzahl auf {} Einwohner'.format(separated(str(normalise_by), lang)) if normalise==1 else 'Fallzahl')
         ax1.set_ylabel('Wachstumsrate der Fallzahlen')
-
         #line0 = 'Mit Fenstergröße {}'.format(window_length)
         #line1 = 'Mit optimaler Fenstergröße'
         #line2 = 'Triviale Quote'
@@ -168,6 +166,8 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, left_
     for i in range(len(geounit_list)):
         if cycle_linestyle==1:
             ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], linestyle=['solid', 'dotted', 'dashed', 'dashdot'][i % 4])
+        elif filename == 'great_powers':
+            ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], color=['tab:red', 'tab:blue', 'tab:gray'][i % 3])
         else:
             ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i])
         '''
@@ -204,7 +204,6 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, left_
     plt.gcf().text(0.905, 0.87, "© Bence Mélykúti, http://COVID19.Melykuti.Be, 2020", fontsize=8, color='lightgray', rotation=90)
     if save_not_show==0:
         plt.show()
-
     elif save_not_show==1:
         imgfile = filename + '_DGR_' +\
                   latest_date.strftime('%Y-%m-%d') + '_' + str(normalise) + '_' +\
@@ -213,6 +212,10 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, left_
         plt.close(fig)
 
 if __name__ == '__main__':
+    if window_length > 0: # we'll omit from time series the early part that is not plotted to save computation
+        wl_hi = window_length
+    else:
+        wl_hi = 15
     fixed_positive_window_length = 2
     if window_length < fixed_positive_window_length:
         if window_length <= 0: # run rm_consecutive_early_zeros w. 0, for i in range from wl_lo=4
@@ -247,8 +250,9 @@ if __name__ == '__main__':
                     df_ts = normalise_by*df_ts/58500000 # Population of Hubei province
                 else:
                     df_ts = normalise_by*df_ts/pop_world[country]
-            #print(df_ts)
             df_ts = rm_consecutive_early_zeros(df_ts, 0) #window_length_for_cutoffs-2)
+            #print(df_ts)
+            df_ts = df_ts[(df_ts>left_bound).idxmax()-wl_hi*pd.DateOffset():]
             #print(df_ts)
             if latest_date==None or latest_date<df_ts.index[-1]:
                 latest_date = df_ts.index[-1]

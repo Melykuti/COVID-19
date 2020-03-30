@@ -2,7 +2,7 @@
 
 > * For plots and results, scroll down to the sections with these titles.
 > * [The analogous study for Germany and its federal states in German language.](https://github.com/Melykuti/COVID-19/blob/master/Deutschland.md)
-> * [NEW! A comparison of how well countries are tackling the pandemic using innovative visualisations.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
+> * [NEW! A comparison of how well countries are tackling the pandemic using innovative visualisation.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
 13 March 2020 (updated on 30 March 2020), Freiburg i. Br., Germany, where a lockdown has been in force since 21 March 2020. -- The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
 
