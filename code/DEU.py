@@ -1,6 +1,6 @@
 '''
 exec(open('DEU.py').read())
-15-29/3/2020
+15/3-1/4/2020
 '''
 
 import os, datetime
@@ -183,13 +183,15 @@ def collect_data_colwise(rows): #, table_no):
     # Header
     firstrowcells = rows[0].find_all('th')
     col_names = list()
-    for t in range(1, len(firstrowcells)-2):
+    for t in range(1, len(firstrowcells)-3):
         col_names.append(convert_abbr_to_bl(firstrowcells[t].find('a').text))
     #for t in range(len(firstrowcells)-2, len(firstrowcells)):
     # Deutschland:
-    col_names.append(convert_abbr_to_bl(firstrowcells[len(firstrowcells)-2].text.replace('\n','')))
+    col_names.append(convert_abbr_to_bl(firstrowcells[len(firstrowcells)-3].text.replace('\n','')))
     # Diff.:
-    col_names.append(firstrowcells[len(firstrowcells)-1].text.replace('\n',''))
+    col_names.append(firstrowcells[len(firstrowcells)-2].text.replace('\n',''))
+    # Diff over week.:
+    col_names.append(firstrowcells[len(firstrowcells)-2].text.replace('\n',''))
 
     # Data rows
     ymd = list()
@@ -229,18 +231,18 @@ def data_preparation_DEU(only_cases=False):
     #print(soup.prettify())
 
     #tables = soup.find_all('table', {'class':'wikitable sortable mw-collapsible'}) # I expect two tables: 'Bestätigte Infektionsfälle (kumuliert)', 'Bestätigte Todesfälle (kumuliert)'
-    tables = soup.find_all('table', {'class':'wikitable'}) # I expect ten tables
+    tables = soup.find_all('table', {'class':'wikitable'}) # I expect eleven tables
 
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[2].text:
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
-    if 'Daten über Infektionsfälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[2].text:
+    if 'Daten über Infektionsfälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
         print('ERROR at 0: Data format error, results are unreliable.')
 
-    for i in [0, 2]:
+    for i in [0, 3]:
         rows = tables[i].find_all('tr')
          # or 'Februar' not in rows[0].text
         if (i==0 and ('Datum' not in rows[0].text or 'BW' not in rows[0].text)) or \
-           (i==2 and ('Datum' not in rows[0].text or 'BW' not in rows[0].text)):
+           (i==3 and ('Datum' not in rows[0].text or 'BW' not in rows[0].text)):
             print('ERROR at 1: Data format error with table {}, results are unreliable.'.format(i))
 
         #dates = collect_dates(rows)
@@ -249,7 +251,7 @@ def data_preparation_DEU(only_cases=False):
             #figures = collect_data(rows, i) # infections
             figures = collect_data_colwise(rows) # infections
             print(figures)
-        else: # i==2
+        else: # i==3
             death_figures = collect_data_colwise(rows) # deaths
             #print(death_figures)
             # Extend it to the size of cases and fill missing values with 0
