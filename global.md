@@ -1,4 +1,7 @@
-## Analysis and projections for the spread of the SARS-CoV-2 coronavirus
+## Analysis of the spread of the SARS-CoV-2 coronavirus
+
+> * Recall that on this page I examine the number of currently infected patients and not the cumulative number of all who have been infected and might have recovered or died.
+> * If you already know my methodology, just skip down to the Plots and the Results sections.
 
 13 March 2020 (updated on 11 April 2020), Freiburg i. Br., Germany, where a lockdown has been in force since 21 March 2020. -- The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
 
@@ -157,8 +160,8 @@ The columns have the following meaning:
 I focus on countries with a large number of cases and on those to which I have got some personal connection. China and South Korea are examples where the preventative measures have slowed down the epidemic spread massively.
 &nbsp;
 
-    Country             Growth rate  Doubling ActiveCases per100000  Estimate    R^2  Diff. Win- Exp/Lin
-                                                                                            dow
+    Country             Growth rate  Doubling    Active    per       Estimate    R^2  Diff. Win- Exp/Lin
+                                                 Cases   100,000                            dow
                                                                                             size
 
 11 April 2020

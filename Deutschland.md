@@ -1,153 +1,182 @@
-## Analyse und Projektionen für die exponentielle Verbreitung der SARS-CoV-2 Coronavirus-Pandemie in Deutschland und in den deutschen Bundesländern
+## Analyse der Verbreitung der SARS-CoV-2 Coronavirus-Pandemie in Deutschland und in den deutschen Bundesländern
 
-Zusammenfassung am Mittwoch, 1 April 2020:
+> * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 
-* Die starken Beschränkungen des Alltagslebens zeigen ihre positive Wirkung. Die tägliche Wachstumsrate der Fallzahlen ist in jedem Bundesland auf 5-12% gesunken.
-* Baden-Württemberg, Bayern, Hamburg sind die traurigen Vorreiter in Fallzahlen pro 100.000 Einwohner.
-* In Bremen ist sowohl die Fallzahl als auch die Wachstumsrate im Vergleich mit Hamburg niedrig. Ich weiß es jedoch nicht, was sie anders machen.
-* Berlin, Bremen, Rheinland-Pfalz haben ihre Verdopplungszeiten über 10 Tage gedrückt. Brandenburg, Hamburg, Nordrhein-Westfalen, Schleswig-Holstein sind fast da.
+16 März 2020 (aktualisiert am 12 April 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
-Zusammenfassung am Montag, 30 März 2020:
+Bis die allgemeinen Ausgangsbeschränkungen angefangen haben ihre Wirkung zu zeigen, stimmten die beobachteten Coronavirus-Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. Freiburg war die erste deutsche Großstadt, die am 21.03.2020 solch einen Lockdown angeordnet hat.
 
-* Am 29.3.2020 wurden keine Daten aus Sachsen-Anhalt übermittelt. Ich aktualisiere dessen Grafik und Resultate nicht.
-* Wie vor einer Woche sind die heute gemeldeten Daten und eventuelle Rückgänge der Wachstumsraten wegen des Wochenendes nicht besonder vertrauenswürdig (siehe Zusammenfassung am 23 März 2020).
-* Es gibt Stimmen in der Politik, dass man mit der allmählichen Lockerung der Beschränkungen erst dann anfangen kann, wann die Verdopplungszeit 10 Tage erreicht. Dies entspricht eine tägliche Wachstumsrate von 7,2%.
-
-Zusammenfassung am Sonntag, 29 März 2020:
-
-* Am 28.3.2020 wurden keine Daten aus Baden-Württemberg, Hessen und dem Saarland an das Robert Koch Institut übermittelt. Ich aktualisiere deren Grafiken und Resultate nicht.
-* Die Wachstumsraten zeigen zwar überall eine sinkende Tendenz, aber es war auch Samstag und die Vollständigkeit der Datenübergabe, wie vor einer Woche, auch heute suspekt ist.
-
-Zusammenfassung am Samstag, 28 März 2020:
-
-* Es überrascht mich, dass es **gar keine Verbesserung im Vergleich mit gestern** gibt: die täglichen Wachstumsraten sind nicht kleiner geworden.
-* Sachsen-Anhalt hat seine Fallzahlen nicht aktualisiert. Es geht nicht um eine Pause in der Pandemie.
-
-Zusammenfassung am Freitag, 27 März 2020:
-
-* Wie Bundeskanzlerin Angela Merkel es [gestern erwähnt hat](https://www.faz.net/aktuell/politik/inland/angela-merkel-zu-shutdown-muss-deutsche-um-geduld-bitten-16698796.html), steht die Verdopplungszeit der Fallzahlen bei vier bis fünf Tagen. Sie hält die Ausgangsbeschränkungen nötig, bis diese Zeitspanne noch wesentlich länger gestreckt wird.
-* Ich sehe auch positive Entwicklungen: die tägliche Wachstumrate der Fallzahlen sank auf 10-20%.
-* In Freiburg ist heute der 7. Tag der Ausgangsbeschränkung. Mit einer Inkubationszeit von 5-7 Tagen im Schnitt (manchmal bis zu 14 Tagen), und mit weiteren 2-3 Tagen bis ein Kranker sich testen lässt und ein positives Resultat bei dem Robert Koch Institut eintrifft, ist es zu erwarten, dass die positive Wirkung der Ausgangssperren in den kommenden Tagen die Wachstumsraten weiter verringern.
-* Ich würde Hamburg hervorheben, wo die Situation relativ schlechter ist. Die tägliche Wachstumsrate liegt jetzt bei 18%, aber mit einem kürzeren Zeitfenster von 5-6 Tagen bekomme ich 13-15%, die dem bundesweiten Durchschnitt entspricht. Die Fallzahl pro 100.000 Einwohner ist in Hamburg am größten.
-* Laut der Grafik (besonders laut des rechten Schaubildes) ist Bremen in der schwieriger Situation, dass die Verbreitung der Pandemie über den letzten 6 Tagen sich noch weiter beschleunigt hat. Meine numerischen Schätzungen sind deswegen zu optimistisch.
-
-Zusammenfassung am Mittwoch, 25 März 2020:
-
-* In Baden-Württemberg, Bayern, Bremen, Mecklenburg-Vorpommern, Sachsen gibt es positive Zeichen, dass die Ausbreitung der Coronavirus-Pandemie sich einigermaßen verlangsamt.
-* In Berlin, Brandenburg, Hamburg, Hessen, Niedersachsen, Nordrhein-Westfalen, Rheinland-Pfalz, Schleswig-Holstein, Thüringen gibt es leider kaum Veränderung der Anstiegsrate der Fallzahl. (Die Wachstumsraten hier sind jedoch im Schnitt sowieso niedriger.)
-* Die Ausgangssperren und öffentliche Aufklärungsarbeit werden bald ihre positive Wirkung zeigen.
-
-Zusammenfassung am Dienstag, 24 März 2020:
-
-* Die Daten vom Wochenende sind angekommen. **Die Lage ist ernst, wie ich dies gestern vorhersah. Diejenigen, die heute positiv gemeldet sind, können möglicherweise Beatmung in ein paar Tagen brauchen. Die Nachfrage nach Intensivpflege steigt mit einer gewissen Verzögerung.**
-* In vielen Bundesländern ist die tatsächliche Fallzahl ein bisschen niedgriger, als was meine beste exponentielle Annäherung vorhersagt. Siehe die Grafiken. Dies bedeutet, das die Ausbreitung immer noch exponentiell voranstreitet, aber ihre Rate sinkt ein wenig.
-* Um den Effekt der Ausgangssperren zu sehen muss man ein paar Tage noch warten, da die Inkubationszeit der Coronavirus-Infektion ca. 5-7 Tage ist, und für Testen und Datenübergabe würde ich mindestens 1-2 Tage einrechnen.
-
-Zusammenfassung am Montag, 23 März 2020:
-
-*  Das Wochenende brachte eine eintägige Verzögerung im Berichten der Fallzahl in Nordrhein-Westfalen. (Die Zahl am 22.03.2020 war viel zu niedrig.) Mit dem letzten Datenpunkt ist keine Verbesserung in der Zeitreihe zu sehen.
-* In Baden-Württemberg ist die heutige Zahl sehr suspekt. Im Fall BW rufe ich zu Geduld auf; ich denke nicht, dass die Lage sich so schnell entspannt hätte, wie dies zur Zeit aussieht. Warum sollte die Situation hier besser sein als in Bayern, wo die Wachstumsrate nicht nachlässt.
-* In Mecklenburg-Vorpommern oder Sachsen-Anhalt sind große Schwankungen wegen der relativ geringen Fallzahl zu erwarten. Ich gebe auch hier keine Entwarnung wegen des Effekts des Wochenendes.
-* In Baden-Württemberg, Berlin, Brandenburg, Bremen, Hamburg, Hessen, Mecklenburg-Vorpommern, Saarland, Sachsen, Sachsen-Anhalt war es schon vor sieben Tagen, am 16.03., eine nur vorübergehende Verlangsamung der Fallzahlen zu beobachten. Ich vermute, dass nur eine Verspätung der Datenübertragung am Wochenende deren zugrunde liegt.
-* **Überall, wo die heutigen Daten auf eine Verlangsamung hinweisen, gab es vor einer Woche, nach dem Wochenende, schon eine ähnliche Verlangsamung, ohne langfristigen Effekt an der Ausbreitung der Coronavirus-Pandemie.**
-* [Diese Vermutung bestätigt heute das Robert Koch Institut:](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html) „Am aktuellen Wochenende wurden nicht aus allen Ämtern Daten übermittelt, sodass der hier berichtete Anstieg der Fallzahlen nicht dem tatsächlichen Anstieg der Fallzahlen entspricht. Die Daten werden am Montag nachübermittelt und ab Dienstag auch in dieser Statistik verfügbar sein.“
-
-16 März 2020 (aktualisiert am 1 April 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
-
-Bisher stimmen die beobachteten Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die Pandemie sich zur Zeit ausbreitet. Konkret, mich interessiert wieviele _aktiv ansteckende Kranke_ es gibt, dass heißt, wieviele Leute die Krankheit bekommen haben, die sich noch nicht erholt haben und noch nicht gestorben sind.
-
-_Wie hoch ist die Wahrscheinlichkeit, dass ich mit einem Infizierten in Kontakt komme, wenn ich meine Wohnung verlasse?_ Diese Wahrscheinlichkeit kann ich nicht ausrechnen, sie wächst jedoch ungefähr proportional zur Gesamtanzahl der Ansteckenden.
+In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die COVID-19-Pandemie sich zur Zeit ausbreitet. Da ich die älteren Resultate unten immer behalte, ist es möglich, mit dem früheren Ablauf einen Vergleich zu machen.
 
 ### Analyse
 
-Meine Methodologie habe ich [auf Englischem in Detail beschrieben.](https://github.com/Melykuti/COVID-19/blob/master/README.md) Für Deutschland und für die Bundesländer rechne ich für jeden Tag das Folgende aus:
+Meine Methodologie habe ich [auf Englischem in Detail beschrieben.](https://github.com/Melykuti/COVID-19/blob/master/global.md) Für Deutschland und für die Bundesländer melde ich ab 12.04.2020 die kumulativen (gesamten) bestätigten Coronavirus-Fallzahlen.
 
-`Nr. der Ansteckenden = Nr. der Fälle - Nr. der Tode.`
+Bis 01.04.2020 rechnete ich für jeden Tag das Folgende aus: `Nr. der Ansteckenden = Nr. der Fälle - Nr. der Tode`. Da die Nummer der erholten PatientInnen stellte das Robert Koch Institut niemals zur Verfügung, war es nie möglich die aktuelle Anzahl der derzeit Infizierten auszurechnen. Denn es gibt immer mehr von den Genesenen und die Anzahl der Todesfälle ist vergleichsweise gering, macht es keinen Sinn mehr, diese ungenaue Annäherung zu machen. Deshalb bin ich auf die reine kumulative Fallzahl umgestiegen.
 
-Ich möchte die `Nr. der Erholten` auch subtrahieren, aber diese Zahl ist bisher nicht veröffentlicht worden. In der Anfangsphase ist diese Zahl sowieso niedrig und sie verursacht keine große Ungenauigkeit.
+Ich nehme den Logarithmus auf Basis 2 der Anzahl der Fälle. Dass diese Zahl tatsächlich exponentiell wächst, ist daran erkennbar, dass der Logarithmus nicht unter einer geraden Linie mit einer positiven Steigung fällt. Mit linearer Regression bestimme ich eine annährende Linie, und von deren Steigung kann ich vieles ausrechnen. Ich kann sagen, mit welchem Faktor die Anzahl von einem Tag bis zum nächsten wächst. Eng verbunden damit ist die Rate, wie lange es dauert, bis die Anzahl der Ansteckenden sich verdoppelt.
 
-Ich nehme den Logarithmus auf Basis 2 der Anzahl der Ansteckenden. Dass diese Zahl tatsächlich exponentiell wächst, ist daran erkennbar, dass der Logarithmus nicht unter einer geraden Linie mit einer positiven Steigung fällt.
+Seit 12.04.2020 verwende ich lineare Regression nicht nur auf den Logarithmus (was ich exponentielle Annäherung nenne mit Bezug auf exponentielles Wachstum) sondern auf die ursprünglichen Zahlen auch (was ich lineare Annäherung nenne, da sie einem linearen Wachstum entspricht). Ich vergleiche die beiden Modelle und wähle das bessere aus.
 
-Mit linearer Regression bestimme ich eine annährende Linie, und von deren Steigung kann ich vieles ausrechnen. Ich kann sagen, mit welchem Faktor die Anzahl von einem Tag bis zum nächsten wächst. Eng verbunden damit ist die Rate, wie lange es dauert, bis die Anzahl der Ansteckenden sich verdoppelt.
+Auch wenn die tägliche Differenz schon ziemlich stabil ist und das Wachstum sichtbar nur linear ist, kann es immer wieder vereinzelt vorkommen wenn beide Modelle im Zeitfenster sehr gut sind, dass die Optimierung die exponentielle Annäherung genauer findet als die lineare Annäherung. Man darf dem Vorzug des exponentiellen Modells vor dem linearen nicht allzu viel Bedeutung beimessen.
+
+### Datenquelle
+
+Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html). Da ich auf der Webseite nur die aktuellen Fallzahlen finde, verwende ich [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Deutschland#Infektionsf%C3%A4lle_nach_Bundesl%C3%A4ndern), wo Freiwillige die ganzen Zeitreihen gespeichert haben.
+
+Ich würde gerne schätzen können, wie hoch die Wahrscheinlichkeit ist, dass ich mit einem Infizierten in Kontakt komme, wenn ich meine Wohnung verlasse. Diese Wahrscheinlichkeit wächst ungefähr proportional zur Gesamtanzahl der Ansteckenden, die ich nur dann ausrechnen könnte, wenn ich nebst Fallzahlen und Todesfällen auch die Anzahl der Genesenen hätte. Diese Zeitreihe wird durch das RKI leider nicht veröffentlicht.
+
+Die zu den relativen Fallzahlen verwendeten Bevölkerungsgrößen stammen aus dem [Gemeinsamen Statistikportal der Statistischen Ämter des Bundes und der Länder](https://www.statistikportal.de/de/bevoelkerung/flaeche-und-bevoelkerung).
+
+### Programmdateien
+
+* **download_DEU.py** ist das Skript um die Daten von [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland) herunterzuladen.
+
+* **DEU.py** ist das für Deutschland spezifische Skript, das hauptsächlich für die Vorbereitung der Daten von Wikipedia zuständig ist.
+
+* **utils.py** hat die gemeinsamen Funktionen, die die Analyse und die Visualisierung durchführen.
+
+* **comparison_joint.py** beinhaltet die für die Datenverarbeitung und Grafik notwendige Funktionen, um die Ländervergleiche herzustellen.
 
 ### Schaubilder
 
-Die Anzahl der derzeit Infizierten (Ansteckenden) wird durch die gesamte Anzahl der Fälle minus die Anzahl der Tode gerechnet.
+Die Schaubilder zeigen die gesamte Anzahl der Infekten, das heißt, die gesamte Anzahl der Fälle.
 
-Auf der linken Seite ist die Grafik auf normaler linearer Skala, auf der rechten Seite auf logarithmischer Skala auf Basis 10. Die blaue Kurve zeigt die Beobachtungen. Die orangenfarbige Linie ist die exponentielle Annäherung.
+Auf der linken Seite ist die Grafik auf normaler linearer Skala, auf der rechten Seite auf logarithmischer Skala auf Basis&nbsp;10. Die blaue Kurve zeigt die Beobachtungen.
 
 Ich wähle immer die letzten 5-14 Tage aus, um die lineare Regression durchzuführen. Mit der Wahl der Länge des Zeitintervals versuche ich die beste Anpassung zu erreichen, gemessen an R^2 und an der Differenz zwischen dem letzten Tag in der geraden Strecke und dem letzten Datenpunkt. Seit 18.03.2020 ist diese Optimierung automatisiert.
 
+Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das lineare Modell ausgewählt wurde, vergleiche ich die beiden. Wenn die exponentielle Annäherung besser ist als die lineare, dann ist die orangenfarbige Linie die exponentielle Annäherung. Diese Linie ist eine gerade Strecke auf der rechten Seite. Im umgekehrten Fall ist die pinkfarbige Linie die lineare Annäherung, die eine gerade Strecke auf der linke Seite ist.
+
+
 #### Die gesamte Bundesrepublik
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-04-01.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-04-12.png)
 
-Auf diesen beiden Schaubildern verwende ich die kumulierten Infektionsfälle. (Ich subtrahiere die Todesfälle nicht.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
+Auf diesen beiden Schaubildern verwende ich nur das exponentielle Model. (Wenn ich das lineare Modell auch in das Rennen schicke, dann bekomme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Volatilität der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-01_0_-1.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-12_0_-1.png)
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-01_1_-1.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-12_1_-1.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-04-01.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-04-12.png)
 
-![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-04-01.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-04-12.png)
 
-![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-04-01.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-04-12.png)
 
-![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-04-01.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-04-12.png)
 
-![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-04-01.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-04-12.png)
 
-![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-04-01.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-04-12.png)
 
-![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-04-01.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-04-12.png)
 
-![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-04-01.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-04-12.png)
 
-![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-04-01.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-04-12.png)
 
-![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-04-01.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-04-12.png)
 
-![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-04-01.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-04-12.png)
 
-![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-04-01.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-04-12.png)
 
-![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-04-01.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-04-12.png)
 
-![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-04-01.png)
+![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-04-12.png)
 
-![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-04-01.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-04-12.png)
 
-![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-04-01.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-04-12.png)
 
 
 ### Resultate
 
 Diese Resultate sind die direkte numerische Folge der linearen Anpassungen im vorherigen Abschnitt.
 
-**Ich mache eine grobe Schätzung, wieviele Personen zur Zeit infiziert sein können.** Meine Annahme ist es, dass die gemeldeten Zahlen nur diejenigen zeigen, die schon getestet worden sind. Aber die Inkubationszeit der COVID-19 Krankheit beträgt im Schnitt fünf Tage (von 1 Tag bis 14 Tage), deshalb werden sich die heute infizierten erst in ungefähr fünf Tagen melden und testen lassen, sogar später. Aber sie sind bereits unumkehrbar infiziert und wahrscheinlich ansteckend, und ich will diese Ansteckungsgefahr schätzen.
+**Ich mache eine grobe Schätzung, wie hoch die wahre kumulierte Fallzahl zur Zeit sein kann.** Meine Annahme ist es, dass die gemeldeten Zahlen nur diejenigen zeigen, die schon getestet worden sind. Aber die Inkubationszeit der COVID-19 Krankheit beträgt im Schnitt fünf Tage (von 1 Tag bis 14 Tage), deshalb werden sich die heute infizierten erst in ungefähr fünf Tagen melden und testen lassen, sogar später. Aber sie sind bereits unumkehrbar infiziert.
 
 Die Spalten haben die folgende Bedeutung:
 
-* Die Anzahl der derzeit Infizierten (und Ansteckenden) wächst täglich um diesen Faktor (prozentual ausgedrückt)
+* Die Gesamtanzahl der Infekten wächst täglich um diesen Faktor (prozentual ausgedrückt)
 
-* Die Zeitdauer bis die Anzahl der derzeit Infizierten sich verdoppelt
+* Die Zeitdauer bis die Anzahl der Infekten sich verdoppelt. Dies ist ein Begriff, der zum exponentiellen Wachstum natürlich passt, aber bei nur linearem Wachstum nicht mehr so aussagekräftig ist. Bei exponentiellem Wachstum ist die Fallzahl nach 2 Verdopplungszeiten _viermal_ so hoch wie am Anfang. Bei linearem Wachstum ist sie nur _dreimal_ so hoch. Im Allgemeinen, nach `n` mal der Verdopplungszeit wird die Fallzahl bei exponentiellem Wachstum auf `2^n` mal die ursprüngliche gestiegen sein, bei linearem Wachstum nur auf `n+1` mal die ursprüngliche.
 
-* Die letzte gemeldete Anzahl der derzeit Infizierten.
+* Die letzte gemeldete Anzahl der Fälle.
 
-* (Ab 30.03.2020) Die letzte gemeldete Anzahl der derzeit Infizierten pro 100,000 Einwohner.
+* (Ab 30.03.2020) Die letzte gemeldete Anzahl der Coronavirus-Fälle pro 100,000 Einwohner.
 
-* Meine Schätzung der derzeit Infizierten (ab 30.03.2020 auf 100,000 Einwohner). Konkret, die Extrapolation der angepassten exponentiellen Kurve auf 4, beziehungsweise, 6 Tage voraus. (Bis 16.03.2020, wenn R^2 kleiner als 0,945 oder die letzte Spalte größer als 0,5 ist, dann lasse ich diese Schätzung wegfallen, denn mein Vertrauen in ihr ist schwächer. Ab 18.03.2020 zeige ich die Schätzung wenn R^2 nicht kleiner als 0,95 und die vorletzte Spalte nicht größer als 0,5 ist, oder wenn die vorletzte Spalte in [-0,2;&nbsp; 0,1] ist.)
+* Meine Schätzung der derzeitigen Fallzahl (ab 30.03.2020 auf 100,000 Einwohner). Konkret, die Extrapolation der angepassten exponentiellen oder linearen Kurve auf 4, beziehungsweise, 6 Tage voraus. (Bis 16.03.2020, wenn R^2 kleiner als 0,945 oder die letzte Spalte größer als 0,5 ist, dann lasse ich diese Schätzung wegfallen, denn mein Vertrauen in ihr ist schwächer. Ab 18.03.2020 zeige ich die Schätzung wenn R^2 nicht kleiner als 0,95 und die vorletzte Spalte nicht größer als 0,5 ist, oder wenn die vorletzte Spalte in [-0,2;&nbsp; 0,1] ist.)
 
 * R^2 oder Bestimmtheitsmaß oder Determinationskoeffizient der Anpassungsgüte der linearen Regression. Je näher es an 1 ist, desto besser ist die Anpassung.
 
-* Differenz zwischen der linearen Annäherung und der wahren Beobachtung in logarithmischem Raum für den letzten Datenpunkt (für den letzten Tag). Man kann es als Exponent einer Potenz auf Basis 2 interpretieren für die Quote zwischen Schätzung und der letzten Beobachtung. Wenn diese Nummer groß ist, dann ist die Annäherung wenig gut. Wenn sie sogar negativ ist, dann ist die Annäherung viel zu niedrig und die Anzahl der Ansteckenden wird unterschätzt.
+* Differenz zwischen der linearen Annäherung und der wahren Beobachtung in logarithmischem Raum für den letzten Datenpunkt (für den letzten Tag). Man kann es als Exponent einer Potenz auf Basis 2 interpretieren für die Quote zwischen Schätzung und der letzten Beobachtung. Wenn diese Nummer groß ist, dann ist die Annäherung wenig gut. Wenn sie sogar negativ ist, dann ist die Annäherung viel zu niedrig und die Anzahl der Fälle wird unterschätzt.
 
 * (Ab 18.03.2020) Die Anzahl der Tage im Zeitfenster, in dem die lineare Regression stattfindet. Sie wird automatisch optimiert, so dass der Vektor (10 * (1-R^2), Differenz) in l_2 kleinstmöglich ist.)
 
+* (Ab 12 April 2020) e wenn das exponentielle Modell, l wenn das lineare Modell die bessere Annäherung gab und die Zahlen in der dazugehörenden Reihe der Tabelle lieferte. Man darf dem Vorzug des exponentiellen Modells vor dem linearen nicht allzu viel Bedeutung beimessen wenn beides im Zeitfenster sehr genau ist.
+
 &nbsp;
+
+    Bundesland           Wachstums-  Verdoppl.   Gesamte   pro      Schätzung   R^2   Diff. Fenster Exp/Lin
+                            rate       zeit       Fälle  100,000                            größe
+
+Stand 12.04.2020
+
+    Baden-Württemberg        3,8%    18,5 Tage    24078    218      [254, 274]  1,00  0,01   8  e
+    Bayern                   3,9%    51,5 Tage    32282    247      [287, 307]  1,00  0,01   8  l
+    Berlin                   2,6%    75,9 Tage     4567    125      [139, 145]  0,99  0,00   4  l
+    Brandenburg              5,2%    38,8 Tage     1857     74        [89, 97]  1,00  0,00   6  l
+    Bremen                   2,6%    26,7 Tage      480     70        [78, 82]  0,99  0,00   4  e
+    Hamburg                  3,5%    57,1 Tage     3742    203      [233, 247]  0,99  0,00  14  l
+    Hessen                   3,8%    52,6 Tage     5859     94      [110, 117]  0,99  0,02  14  l
+    Mecklenburg-Vorpommern   2,2%    90,0 Tage      605     38        [41, 43]  0,98  0,01   9  l
+    Niedersachsen            3,5%    58,0 Tage     7602     95      [108, 115]  1,00  0,00   4  l
+    Nordrhein-Westfalen      3,4%    59,1 Tage    24267    135      [154, 164]  1,00  0,01   9  l
+    Rheinland-Pfalz          3,3%    61,1 Tage     4734    116      [132, 139]  1,00  0,01  10  l
+    Saarland                 5,2%    38,4 Tage     2058    208      [253, 275]  0,99  0,01  14  l
+    Sachsen                  3,6%    55,6 Tage     3600     88      [102, 109]  0,99  0,01   9  l
+    Sachsen-Anhalt           3,2%    61,9 Tage     1166     53        [60, 64]  0,99  0,01  12  l
+    Schleswig-Holstein       3,8%    53,2 Tage     2118     73        [85, 91]  0,99  0,02  12  l
+    Thüringen                4,0%    49,7 Tage     1464     68        [82, 87]  0,99  0,03  14  l
+    
+    Deutschland              3,6%    55,2 Tage   120479    145      [167, 178]  1,00  0,01   9  l
+
+&nbsp;
+
+Die nachfolgenden Tabellen zeigen Rechnungen ausschließlich mit `Nr. der Fälle - Nr. der Tode`.
+
+    Bundesland           Wachstums-  Verdoppl.   Aktive    pro      Schätzung   R^2   Diff. Fenster Exp/Lin
+                            rate       zeit       Fälle  100,000                            größe
+
+Stand 01.04.2020
+
+    Baden-Württemberg        9,0%    22,2 Tage    13213    119      [162, 184]  1,00  0,00   4  l
+    Bayern                   8,4%    23,9 Tage    16272    124      [166, 187]  0,99  0,01   9  l
+    Berlin                   6,4%    31,3 Tage     2738     75       [95, 104]  0,99  0,01  14  l
+    Brandenburg              7,6%    26,4 Tage      877     34        [45, 51]  0,99  0,01  10  l
+    Bremen                   5,1%    39,4 Tage      306     44        [54, 59]  0,99  0,02  13  l
+    Hamburg                  6,5%    30,8 Tage     2297    124      [157, 174]  0,99  0,01  14  l
+    Hessen                   6,4%    31,4 Tage     3424     54        [68, 75]  0,99 -0,00  14  l
+    Mecklenburg-Vorpommern   6,4%    31,0 Tage      403     25        [31, 34]  0,98  0,00  10  l
+    Niedersachsen            8,2%     8,8 Tage     4340     54        [74, 87]  1,00  0,00   4  e
+    Nordrhein-Westfalen      7,8%     9,3 Tage    14217     79      [106, 123]  1,00 -0,01   5  e
+    Rheinland-Pfalz          5,8%    34,4 Tage     2876     70        [86, 95]  1,00  0,00   5  l
+    Saarland                11,7%     6,3 Tage      821     82      [132, 164]  0,98  0,04   9  e
+    Sachsen                  7,6%    26,2 Tage     2017     49        [65, 72]  1,00  0,02  10  l
+    Sachsen-Anhalt           6,8%    29,2 Tage      743     33        [41, 46]  0,98 -0,04  12  l
+    Schleswig-Holstein       7,5%    26,8 Tage     1236     42        [55, 61]  0,99  0,00  11  l
+    Thüringen                7,6%    26,2 Tage      854     39        [52, 58]  1,00  0,00  11  l
+    
+    Deutschland              8,4%     8,6 Tage    66634     80      [110, 130]  1,00 -0,00   5  e
+
+&nbsp;
+
+In den nachfolgenden Tabellen haben alle Annäherungen ausschließlich das exponentielle Modell benutzt.
 
     Bundesland     Wachstumsrate Verdoppl.zeit AktiveFälle pro100000 Schätzung  R^2  Diff. Fenstergröße
 
@@ -433,31 +462,17 @@ Stand 15.03.2020
     Deutschland            28,4%    2,78 Tage     4826    [13312, 21938]  0,98  0,02
 
 
-### Datenquelle
 
-Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html). Da ich auf der Webseite nur die aktuellen Fallzahlen finde, verwende ich [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Deutschland#Infektionsf%C3%A4lle_nach_Bundesl%C3%A4ndern), wo Freiwillige die ganzen Zeitreihen gespeichert haben.
-
-Die zu den relativen Fallzahlen verwendeten Bevölkerungsgrößen stammen aus dem [Gemeinsamen Statistikportal der Statistischen Ämter des Bundes und der Länder](https://www.statistikportal.de/de/bevoelkerung/flaeche-und-bevoelkerung).
-
-### Programmdateien
-
-* **download_DEU.py** ist das Skript um die Daten von [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland) herunterzuladen.
-
-* **DEU.py** ist das für Deutschland spezifische Skript, das hauptsächlich für die Vorbereitung der Daten von Wikipedia zuständig ist.
-
-* **utils.py** hat die gemeinsamen Funktionen, die die Analyse und die Visualisierung durchführen.
-
-* **comparison_joint.py** beinhaltet die für die Datenverarbeitung und Grafik notwendige Funktionen, um die Ländervergleiche herzustellen.
 
 ### Konklusion
 
-Unsere Intuition kann mit nichtlinearen Effekten schwer umgehen. Exponentielles Wachstum ist solch ein Beispiel. **Das Risiko, dass man sich mit der Krankheit auf der Straße ansteckt, wächst um den Faktor 5-12% täglich.** Es ist zu erwarten, dass man über die Erkrankung zunächst nur aus den Nachrichten hören wird, dann plötzlich wird sie überall im Bekanntenkreis auftauchen, wenn die Eindämmung nicht erfolgt.
+Unsere Intuition kann mit nichtlinearen Effekten schwer umgehen. Exponentielles Wachstum ist solch ein Beispiel. **Das Risiko, dass man sich mit der Krankheit auf der Straße ansteckt, wuchs ursprünglich um den Faktor 25-50% täglich.** Es war zu erwarten, dass man über die Erkrankung zunächst nur aus den Nachrichten hören wird, dann plötzlich wird sie überall im Bekanntenkreis auftauchen, wenn die Eindämmung nicht erfolgt.
 
-Wenn man die Ansteckung vermeiden will, dann ist es besser eine Besorgung noch heute und nicht morgen zu machen, und es ist besser morgen Vormittag als morgen Nachmittag das Zuhause zu verlassen. (Angenommen, dass genau so viele Leute sich auf den Straßen und in den Supermärkten befinden werden. Wenn deren Anzahl zurückgeht, dann sinkt die Kontaktwahrscheinlichkeit auch.)
+Wenn man die Ansteckung vermeiden will, dann war es besser eine Besorgung noch heute und nicht morgen zu machen, und es war besser morgen Vormittag als morgen Nachmittag das Zuhause zu verlassen. (Angenommen, dass genau so viele Leute sich auf den Straßen und in den Supermärkten befinden werden. Wenn deren Anzahl zurückgeht, dann sinkt die Kontaktwahrscheinlichkeit auch.)
 
-Neben der Nichtlinearität ist die durch die Inkubationszeit ausgelöste Zeitverzögerung ein zweiter überraschender Aspekt der Pandemie. **Die Anzahl der heute ansteckenden Erkrankten ist schon so viel, wie die Fallanzahl erst in ungefähr fünf Tagen (die durchschnittliche Inkubationszeit) gemeldet werden wird. Das Problem ist deshalb viel größer, als die aktuellen Fallzahlen es zeigen.**
+Neben der Nichtlinearität ist die durch die Inkubationszeit ausgelöste Zeitverzögerung ein zweiter überraschender Aspekt der Pandemie. **Die Anzahl der heute ansteckenden Erkrankten ist so viel, wie die aktive Fallanzahl erst in ungefähr fünf Tagen (die durchschnittliche Inkubationszeit) gemeldet werden wird. Das Problem ist deshalb viel größer während der Ausbreitungsphase, als die aktuellen Fallzahlen es zeigen.**
 
-Für das medizinische Personal ist es zu erwarten, dass die Anzahl der neuen Patienten auch exponentiell mit der gleichen Rate wachsen wird. Wenn ein Tag schwierig war, dann wird der nächste 5-12% schwieriger, und der übernächste noch 5-12% schwieriger werden.
+Für das medizinische Personal war es zu erwarten, dass die Anzahl der neuen Patienten auch exponentiell mit der gleichen Rate wachsen wird. Wenn ein Tag schwierig war, dann wird der nächste z.B. 5-12% schwieriger, und der übernächste noch 5-12% schwieriger werden.
 
 ### Bitte um Spenden
 
@@ -466,3 +481,57 @@ Wenn Sie meine Arbeit unterstützen können, dann bitte ich Sie, mein [Ocean Pla
 Finden Sie mich auf [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), auf meiner Webseite/Blog: [Melykuti.me](https://melykuti.me), oder folgen Sie mir auf [Facebook](https://www.facebook.com/bence.melykuti) für meine öffentlichen Posts.
 
 Ich arbeite als selbständiger Data Scientist. Sie können mich mit Ihrem Projekt beauftragen.
+
+### Archiv
+
+Zusammenfassung am Mittwoch, 1 April 2020:
+
+* Die starken Beschränkungen des Alltagslebens zeigen ihre positive Wirkung. Die tägliche Wachstumsrate der Fallzahlen ist in jedem Bundesland auf 5-12% gesunken.
+* Baden-Württemberg, Bayern, Hamburg sind die traurigen Vorreiter in Fallzahlen pro 100.000 Einwohner.
+* In Bremen ist sowohl die Fallzahl als auch die Wachstumsrate im Vergleich mit Hamburg niedrig. Ich weiß es jedoch nicht, was sie anders machen.
+* Berlin, Bremen, Rheinland-Pfalz haben ihre Verdopplungszeiten über 10 Tage gedrückt. Brandenburg, Hamburg, Nordrhein-Westfalen, Schleswig-Holstein sind fast da.
+
+Zusammenfassung am Montag, 30 März 2020:
+
+* Am 29.3.2020 wurden keine Daten aus Sachsen-Anhalt übermittelt. Ich aktualisiere dessen Grafik und Resultate nicht.
+* Wie vor einer Woche sind die heute gemeldeten Daten und eventuelle Rückgänge der Wachstumsraten wegen des Wochenendes nicht besonder vertrauenswürdig (siehe Zusammenfassung am 23 März 2020).
+* Es gibt Stimmen in der Politik, dass man mit der allmählichen Lockerung der Beschränkungen erst dann anfangen kann, wann die Verdopplungszeit 10 Tage erreicht. Dies entspricht eine tägliche Wachstumsrate von 7,2%.
+
+Zusammenfassung am Sonntag, 29 März 2020:
+
+* Am 28.3.2020 wurden keine Daten aus Baden-Württemberg, Hessen und dem Saarland an das Robert Koch Institut übermittelt. Ich aktualisiere deren Grafiken und Resultate nicht.
+* Die Wachstumsraten zeigen zwar überall eine sinkende Tendenz, aber es war auch Samstag und die Vollständigkeit der Datenübergabe, wie vor einer Woche, auch heute suspekt ist.
+
+Zusammenfassung am Samstag, 28 März 2020:
+
+* Es überrascht mich, dass es **gar keine Verbesserung im Vergleich mit gestern** gibt: die täglichen Wachstumsraten sind nicht kleiner geworden.
+* Sachsen-Anhalt hat seine Fallzahlen nicht aktualisiert. Es geht nicht um eine Pause in der Pandemie.
+
+Zusammenfassung am Freitag, 27 März 2020:
+
+* Wie Bundeskanzlerin Angela Merkel es [gestern erwähnt hat](https://www.faz.net/aktuell/politik/inland/angela-merkel-zu-shutdown-muss-deutsche-um-geduld-bitten-16698796.html), steht die Verdopplungszeit der Fallzahlen bei vier bis fünf Tagen. Sie hält die Ausgangsbeschränkungen nötig, bis diese Zeitspanne noch wesentlich länger gestreckt wird.
+* Ich sehe auch positive Entwicklungen: die tägliche Wachstumrate der Fallzahlen sank auf 10-20%.
+* In Freiburg ist heute der 7. Tag der Ausgangsbeschränkung. Mit einer Inkubationszeit von 5-7 Tagen im Schnitt (manchmal bis zu 14 Tagen), und mit weiteren 2-3 Tagen bis ein Kranker sich testen lässt und ein positives Resultat bei dem Robert Koch Institut eintrifft, ist es zu erwarten, dass die positive Wirkung der Ausgangssperren in den kommenden Tagen die Wachstumsraten weiter verringern.
+* Ich würde Hamburg hervorheben, wo die Situation relativ schlechter ist. Die tägliche Wachstumsrate liegt jetzt bei 18%, aber mit einem kürzeren Zeitfenster von 5-6 Tagen bekomme ich 13-15%, die dem bundesweiten Durchschnitt entspricht. Die Fallzahl pro 100.000 Einwohner ist in Hamburg am größten.
+* Laut der Grafik (besonders laut des rechten Schaubildes) ist Bremen in der schwieriger Situation, dass die Verbreitung der Pandemie über den letzten 6 Tagen sich noch weiter beschleunigt hat. Meine numerischen Schätzungen sind deswegen zu optimistisch.
+
+Zusammenfassung am Mittwoch, 25 März 2020:
+
+* In Baden-Württemberg, Bayern, Bremen, Mecklenburg-Vorpommern, Sachsen gibt es positive Zeichen, dass die Ausbreitung der Coronavirus-Pandemie sich einigermaßen verlangsamt.
+* In Berlin, Brandenburg, Hamburg, Hessen, Niedersachsen, Nordrhein-Westfalen, Rheinland-Pfalz, Schleswig-Holstein, Thüringen gibt es leider kaum Veränderung der Anstiegsrate der Fallzahl. (Die Wachstumsraten hier sind jedoch im Schnitt sowieso niedriger.)
+* Die Ausgangssperren und öffentliche Aufklärungsarbeit werden bald ihre positive Wirkung zeigen.
+
+Zusammenfassung am Dienstag, 24 März 2020:
+
+* Die Daten vom Wochenende sind angekommen. **Die Lage ist ernst, wie ich dies gestern vorhersah. Diejenigen, die heute positiv gemeldet sind, können möglicherweise Beatmung in ein paar Tagen brauchen. Die Nachfrage nach Intensivpflege steigt mit einer gewissen Verzögerung.**
+* In vielen Bundesländern ist die tatsächliche Fallzahl ein bisschen niedgriger, als was meine beste exponentielle Annäherung vorhersagt. Siehe die Grafiken. Dies bedeutet, das die Ausbreitung immer noch exponentiell voranstreitet, aber ihre Rate sinkt ein wenig.
+* Um den Effekt der Ausgangssperren zu sehen muss man ein paar Tage noch warten, da die Inkubationszeit der Coronavirus-Infektion ca. 5-7 Tage ist, und für Testen und Datenübergabe würde ich mindestens 1-2 Tage einrechnen.
+
+Zusammenfassung am Montag, 23 März 2020:
+
+*  Das Wochenende brachte eine eintägige Verzögerung im Berichten der Fallzahl in Nordrhein-Westfalen. (Die Zahl am 22.03.2020 war viel zu niedrig.) Mit dem letzten Datenpunkt ist keine Verbesserung in der Zeitreihe zu sehen.
+* In Baden-Württemberg ist die heutige Zahl sehr suspekt. Im Fall BW rufe ich zu Geduld auf; ich denke nicht, dass die Lage sich so schnell entspannt hätte, wie dies zur Zeit aussieht. Warum sollte die Situation hier besser sein als in Bayern, wo die Wachstumsrate nicht nachlässt.
+* In Mecklenburg-Vorpommern oder Sachsen-Anhalt sind große Schwankungen wegen der relativ geringen Fallzahl zu erwarten. Ich gebe auch hier keine Entwarnung wegen des Effekts des Wochenendes.
+* In Baden-Württemberg, Berlin, Brandenburg, Bremen, Hamburg, Hessen, Mecklenburg-Vorpommern, Saarland, Sachsen, Sachsen-Anhalt war es schon vor sieben Tagen, am 16.03., eine nur vorübergehende Verlangsamung der Fallzahlen zu beobachten. Ich vermute, dass nur eine Verspätung der Datenübertragung am Wochenende deren zugrunde liegt.
+* **Überall, wo die heutigen Daten auf eine Verlangsamung hinweisen, gab es vor einer Woche, nach dem Wochenende, schon eine ähnliche Verlangsamung, ohne langfristigen Effekt an der Ausbreitung der Coronavirus-Pandemie.**
+* [Diese Vermutung bestätigt heute das Robert Koch Institut:](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html) „Am aktuellen Wochenende wurden nicht aus allen Ämtern Daten übermittelt, sodass der hier berichtete Anstieg der Fallzahlen nicht dem tatsächlichen Anstieg der Fallzahlen entspricht. Die Daten werden am Montag nachübermittelt und ab Dienstag auch in dieser Statistik verfügbar sein.“
