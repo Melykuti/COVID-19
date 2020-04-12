@@ -1,6 +1,6 @@
 '''
 exec(open('DEU.py').read())
-15/3-1/4/2020
+15/3-12/4/2020
 '''
 
 import os, datetime
@@ -20,8 +20,10 @@ allowed_values = \
 
 ### User input ###
 
-selection = 'alle' # Choose one of the elements of allowed_values.
-#selection = allowed_values[5] # Alternatively, choose an element index from allowed_values.
+#selection = 'alle' # Choose one of the elements of allowed_values.
+selection = allowed_values[-2] # Alternatively, choose an element index from allowed_values.
+
+cases = 'confirmed' # 'confirmed' or 'deaths' or 'confirmed_minus_deaths'
 
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
 window_length_all = dict({bl: window_length for bl in allowed_values[:-1]})
@@ -36,11 +38,13 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
     'Deutschland': 13})
 '''
 
-save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
 # In the case of 'alle', 0 functions as -1.
 
-lang = 'de' # 'de' for German, anything else for English
 normalise_by = 1e5 # report case numbers per this many people
+exp_or_lin = 'both' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
+max_display_length = 45 # in days; if positive, then it plots the most recent max_display_length days only
+lang = 'de' # 'de' for German, anything else for English
 
 ### End of user input ###
 
@@ -51,7 +55,7 @@ def open_data():
     Alternatively, specify a substring of requested timestamp to select which file to open.
     '''
     timestamp = None
-    #timestamp = '20200316_12-59-22'
+    #timestamp = '20200401_10-44-21'
     df=dict()
     lists = list()
     with os.scandir() as it:
@@ -64,6 +68,7 @@ def open_data():
     with open(lists[-1]) as t:
         return t.read()
 
+'''
 def convert_months_to_nr(s: str) -> int:
     s = s.replace('\n','')
     if s == 'Januar':
@@ -93,6 +98,15 @@ def convert_months_to_nr(s: str) -> int:
     else:
         print('ERROR at 2: Data format error, results are unreliable.')
         return -1
+'''
+
+def convert_months_to_nr(s: str) -> int:
+    for i in range(13):
+        if ['blank', 'Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'][i] in s:
+            return i
+    print('ERROR at 2: Data format error, results are unreliable.')
+    return -1
 
 def convert_abbr_to_bl(s: str) -> str:
     i = ['BW', 'BY', 'BE', 'BB', 'HB', 'HH', 'HE', 'MV', 'NI', 'NW', 'RP', 'SL', 'SN', 'ST', 'SH', 'TH',
@@ -183,15 +197,15 @@ def collect_data_colwise(rows): #, table_no):
     # Header
     firstrowcells = rows[0].find_all('th')
     col_names = list()
-    for t in range(1, len(firstrowcells)-3):
+    for t in range(1, len(firstrowcells)-2):
         col_names.append(convert_abbr_to_bl(firstrowcells[t].find('a').text))
     #for t in range(len(firstrowcells)-2, len(firstrowcells)):
     # Deutschland:
-    col_names.append(convert_abbr_to_bl(firstrowcells[len(firstrowcells)-3].text.replace('\n','')))
+    col_names.append(convert_abbr_to_bl(firstrowcells[len(firstrowcells)-2].text.replace('\n','')))
     # Diff.:
-    col_names.append(firstrowcells[len(firstrowcells)-2].text.replace('\n',''))
+    col_names.append(firstrowcells[len(firstrowcells)-1].text.replace('\n',' '))
     # Diff over week.:
-    col_names.append(firstrowcells[len(firstrowcells)-2].text.replace('\n',''))
+    #col_names.append(firstrowcells[len(firstrowcells)-1].text.replace('\n',''))
 
     # Data rows
     ymd = list()
@@ -205,8 +219,11 @@ def collect_data_colwise(rows): #, table_no):
         #day, month, year = tds[0].text.replace('\n','').split(' ')
         #print(' '.join(tds[0].text.replace('\n','').split()).split(' '))
         #day, month, year = ' '.join(tds[0].text.replace('\n','').split()).split(' ')[:3]
-        day, month, year = tds[0].text.replace('\n','').split()[:3]
+        #day, month, year = tds[0].text.replace('\n','').split()[:3] # until 1/4/2020
+        text_temp = tds[0].text.replace('\n','')
+        day, month, year = text_temp[text_temp.find('♠')+1:].split()[:3] # on 12/4/2020
         year = year[:4]
+        #print(day, month, year)
         ymd.append('{0}-{1}-{2}'.format(year, convert_months_to_nr(month), day.replace('.', '')))
         cases_date[ymd[-1]]=list()
         for j in tds[1:]:
@@ -224,50 +241,61 @@ def collect_data_colwise(rows): #, table_no):
     #return pd.concat(list(cases_date.values()), axis=0, columns=col_names)
     return pd.concat(rows_list, axis=1, keys=pd.to_datetime(ymd)).transpose()
 
-def data_preparation_DEU(only_cases=False):
+def data_preparation_DEU(output):
     raw_html = open_data()
 
     soup = BeautifulSoup(raw_html, 'lxml')
     #print(soup.prettify())
 
     #tables = soup.find_all('table', {'class':'wikitable sortable mw-collapsible'}) # I expect two tables: 'Bestätigte Infektionsfälle (kumuliert)', 'Bestätigte Todesfälle (kumuliert)'
-    tables = soup.find_all('table', {'class':'wikitable'}) # I expect eleven tables
+    tables = soup.find_all('table', {'class':'wikitable'}) # I expect eight tables
 
+    idx_Infektionsfaelle = 1
+    idx_Todesfaelle = 3
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[2].text:
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
-    if 'Daten über Infektionsfälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
+    #if 'Daten über Infektionsfälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
+    if 'Infektionsfälle (kumuliert)' not in tables[idx_Infektionsfaelle].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[idx_Todesfaelle].text:
         print('ERROR at 0: Data format error, results are unreliable.')
 
-    for i in [0, 3]:
+    for i in [idx_Infektionsfaelle, idx_Todesfaelle]:
         rows = tables[i].find_all('tr')
          # or 'Februar' not in rows[0].text
-        if (i==0 and ('Datum' not in rows[0].text or 'BW' not in rows[0].text)) or \
-           (i==3 and ('Datum' not in rows[0].text or 'BW' not in rows[0].text)):
+        if (i==idx_Infektionsfaelle and ('Datum' not in rows[0].text or 'BW' not in rows[0].text)) or \
+           (i==idx_Todesfaelle and ('Datum' not in rows[0].text or 'BW' not in rows[0].text)):
             print('ERROR at 1: Data format error with table {}, results are unreliable.'.format(i))
 
         #dates = collect_dates(rows)
         #print(dates)
-        if i==0:
+        if i==idx_Infektionsfaelle:
             #figures = collect_data(rows, i) # infections
             figures = collect_data_colwise(rows) # infections
+            figures.loc[pd.to_datetime('2020-04-07'),'Berlin'] = 3845 # temporary hack but I updated Wikipedia table
             print(figures)
-        else: # i==3
+        else: # i==idx_Todesfaelle
             death_figures = collect_data_colwise(rows) # deaths
             #print(death_figures)
             # Extend it to the size of cases and fill missing values with 0
             death_figures = pd.DataFrame(death_figures, index=figures.index).fillna(value=0).astype('int64')
             print(death_figures)
 
-    if only_cases==True:
+    #if only_cases==True:
+    if output == 'confirmed':
         figures_diff = pd.DataFrame(figures.iloc[:,:17])
-    else:
+    #else:
+    #    figures_diff = pd.DataFrame(figures.iloc[:,:17] - death_figures.iloc[:,:17])
+    elif output == 'deaths':
+        figures_diff = pd.DataFrame(death_figures.iloc[:,:17])
+    elif output == 'confirmed_minus_deaths':
         figures_diff = pd.DataFrame(figures.iloc[:,:17] - death_figures.iloc[:,:17])
     #print(figures_diff)
     return figures_diff
 
 
 if __name__ == '__main__':
-    figures_diff = data_preparation_DEU()
+    figures_diff = data_preparation_DEU(cases)
+    if max_display_length > 0:
+        figures_diff = figures_diff[-max_display_length:]
 
     print_header(normalise_by)
 
@@ -276,35 +304,41 @@ if __name__ == '__main__':
     if selection != 'alle': # single run
         df_ts = figures_diff[selection]
 
-        results, model, selected_window_length = process_geounit(df_ts, window_length)
+        results, model, selected_window_length, e_or_l = process_geounit(
+                                                                    df_ts, window_length, exp_or_lin)
 
-        print_results(selection, results, normalise_by, selected_window_length, lang)
+        print_results(selection, results, normalise_by, selected_window_length, e_or_l, lang)
 
         if save_not_show in [0, 1]:
             plotting(figures_diff[selection], model, save_not_show, selection,
-                selected_window_length, lang)
+                selected_window_length, e_or_l, lang)
 
     else: # analysis of all federal states and complete Germany
 
         results_dict = dict()
         selected_window_length_dict = dict()
+        exp_or_lin_dict = dict()
 
         for selection in allowed_values[:-1]:
             print(selection)
             df_ts = figures_diff[selection]
-            results, model, selected_window_length = process_geounit(df_ts, window_length)
+            results, model, selected_window_length, e_or_l = process_geounit(
+                                                                    df_ts, window_length, exp_or_lin)
 
             results_dict[selection] = results
             selected_window_length_dict[selection] = selected_window_length
+            exp_or_lin_dict[selection] = e_or_l
             if save_not_show == 1:
                 plotting(figures_diff[selection], model, save_not_show, selection,
-                    selected_window_length, lang)
+                    selected_window_length, e_or_l, lang)
 
         for selection in allowed_values[:-1]:
             if selection == 'Deutschland':
                 print()
             if window_length_all[selection] > 0:
-                print_results(selection, results_dict[selection], normalise_by, window_length_all[selection], lang)
+                print_results(selection, results_dict[selection], normalise_by,
+                              window_length_all[selection], exp_or_lin_dict[selection], lang)
             else:
-                print_results(selection, results_dict[selection], normalise_by, selected_window_length_dict[selection], lang)
+                print_results(selection, results_dict[selection], normalise_by,
+                              selected_window_length_dict[selection], exp_or_lin_dict[selection], lang)
 
