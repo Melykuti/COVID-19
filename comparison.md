@@ -1,10 +1,10 @@
 ## The race to squash the SARS-CoV-2 coronavirus pandemic
 
-22 March 2020 (updated on 30 March 2020), Freiburg i. Br., Germany -- There are different visualisations of the coronavirus pandemic mushrooming on the internet. Many of them are more alarmist than insightful. My goal on this page is to present an innovation in how to look at the problem.
+22 March 2020 (updated on 13 April 2020), Freiburg i. Br., Germany -- There are different visualisations of the spread of the coronavirus pandemic mushrooming on the internet. Many of them are more alarmist than insightful. My goal on this page is to present an innovation in how to look at the problem.
 
 ### Background
 
-[On my landing page](https://github.com/Melykuti/COVID-19/blob/master/README.md) I analyse and try to estimate the number of currently infected and thereby infectious people for you to understand the danger to your health. Many dashboards report cumulative numbers of all detected cases. This is informative about the extent of the problem but it is alarmist because it is ever less meaningful as many patients recover and some die. There are dashboards reporting the number of deaths caused by this disease. While the victims deserve our thoughts and every one of them should inspire us to step up our efforts, this information is not actionable. It's too late to help them.
+[On my first analysis page](https://github.com/Melykuti/COVID-19/blob/master/global.md) I analyse and try to estimate the number of currently infected and thereby infectious people for you to understand the danger to your health. Many dashboards report cumulative numbers of all detected cases. This is informative about the extent of the problem but it is alarmist because it is ever less meaningful as many patients recover and some die. There are dashboards reporting the number of deaths caused by this disease. While the victims deserve our thoughts and every one of them should inspire us to step up our efforts, this information is not actionable. It's too late to help them.
 
 In the exponential growth phase, it is beyond comprehension to digest number each day which is a significantly larger than the day before. It is more useful to present the growth rate from one day to the next. This number is rather sensitive to random effects, to the timing of data reporting and so on. For this reason I proposed to look at the problem in logarithmic space, so I take the logarithm of the case numbers. To flatten out random noise, I fit a linear regression to this curve in the logarithmic space over four to fourteen data points (days). From this fit, from the slope of the straght line, I compute the **daily increase rate** of the cumulative number of infected people and the **doubling time** of the same quantity. These quantities are both easy to comprehend and insightful. Moreover, their being time series, they enable the tracking of the success or inadequacy of pandemic control measures.
 
@@ -32,9 +32,9 @@ Point 3 is part a sanity check, part an enrichment of our study. Even Point 2 al
 
 Let us start with the countries with the largest number of cases and see how they compare to the first country to encounter the disease, China. In the first plot, I used automatic window size selection for linear regression. This finds the window size which provides the best fit but this window size tends not to be short and often misses the most recent trend from the last day or two. In exchange, it provides quite smooth curves.
 
-What is clear is that China has managed to drive down its curve to zero, where there are essentially no new cases. This is where each country should be trying to head. We know that Italy and Spain, and most recently the USA are in a particularly difficult situation. Any other country must try to be below their curves. Worryingly, Germany has had a period when it was anything but below Italy and Spain. In Freiburg, where I live, there is a lockdown in place since Saturday, 21 March. The states of Bavaria and Saarland introduced similar measures, a day later Rhineland-Palatinate. As I expected, these drastic measures have started showing results in the data by now. On 24 March, the WHO warned that the USA might become a new epicentre for the coronavirus disease, which our plot confirms.
+What is clear is that China has managed to drive down its curve to zero, where there are essentially no new cases. This is where each country should be trying to head. We know that Italy and Spain, and more recently the USA are in a particularly difficult situation. Any other country must try to be below their curves. Worryingly, Germany has had a period when it was anything but below Italy and Spain. In Freiburg, where I live, there is a lockdown in place since Saturday, 21 March. The states of Bavaria and Saarland introduced similar measures, a day later Rhineland-Palatinate. As I expected, these drastic measures have started showing results in the data by now. On 24 March, the WHO warned that the USA might become a new epicentre for the coronavirus disease, and so it did. Due to its population size, I chose to compare it with the whole European Union and China.
 
-![Joint daily growth rate, absolute numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-03-29_0_-1.png)
+![Joint daily growth rate, absolute numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-04-12_0_-1.png)
 
 For comparison, a window size of four data points captures the most recent changes better but its behaviour for lower case numbers is more volatile (see Appendix at the bottom). A window size of three is too noisy.
 
@@ -42,30 +42,30 @@ Next is the normalised case with automatic window size selection. For the normal
 
 Switzerland was on a particularly concerning path but the country has seen a significant slowdown in the spread over the past few days. (The case numbers still grow, but at a lower pace.) My place of residence, Freiburg is close to the Swiss border and also to the heavily affected Region Grand Est of France. These aspects were used to justify imposing a lockdown in Freiburg. These plots unequivocally support the urgency of aggressive countermeasures.
 
-![Joint daily growth rate, relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-03-29_1_-1.png)
+![Joint daily growth rate, relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-04-12_1_-1.png)
 
-The French army has flown out patients from Region Grand Est to other parts of the country. A few days later they asked the German armed forces, the Bundeswehr, to contribute helicopters to this effort. Today (28 March) I heard that Paris hospitals are desperate to send severe patients for treatement to other parts of France. Some days ago, the German cities of Freiburg, Karlsruhe, Mannheim and Heidelberg offered to treat French patients from Region Grand Est. Leipzig received patients from Italy on request of Italy. I do not criticise generosity but my plots show that Germany is in a way already in a more difficult situation than France. I hope that I won't be right but it is possible that in the next few days these German hospitals will be surprised by an onslaught of patients whose condition is turning worse just now. Although I also hear voices that Germany has a high number of beds in intensive care units relative to other countries.
+The French army has flown out patients from Region Grand Est to other parts of the country. A few days later they asked the German armed forces, the Bundeswehr, to contribute helicopters to this effort. On 28 March I heard that Paris hospitals are desperate to send severe patients for treatement to other parts of France. Some days before that, the German cities of Freiburg, Karlsruhe, Mannheim and Heidelberg had offered to treat French patients from Region Grand Est. Leipzig received patients from Italy on request of Italy. Germany was in a way already in a more difficult situation than France. But it seems that the high number of hospital and especially intensive care unit beds relative to population size gave enough buffer to manage this generosity.
 
 I moved the analogous plots for Germany and its federal states [to the page that focuses on Germany (in German).](https://github.com/Melykuti/COVID-19/blob/master/Deutschland.md)
 
 #### A comparison of the great powers China, European Union and the United States of America
 
-![Daily growth rates for China, EU, USA, absolute numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2020-03-29_0_-1.png)
+![Daily growth rates for China, EU, USA, absolute numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2020-04-12_0_-1.png)
 
-![Daily growth rates for China, EU, USA, relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2020-03-29_1_-1.png)
+![Daily growth rates for China, EU, USA, relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2020-04-12_1_-1.png)
 
 
 #### The Visegrád Group (Poland, Czech Republic, Slovakia, Hungary) and some small countries
 
-In this block there are East European countries. There is Iceland, which has a rather high infection rate. This might be more due to broad testing than to a comparatively bad situation. San Marino, being in Italy, is a proxy for the North Italian situation as its case numbers are from a small, concentrated region. The trajectories of Italy and Spain are included for comparison.
+In this block there are East European countries. There is Iceland, which has a rather high infection rate. This is more due to broad testing than to a comparatively bad situation. As far as I know, Iceland tests even random selected members of the population who do not show any symptoms to get a clearer idea of the extent of infections. San Marino, being in Italy, is a proxy for the North Italian situation as its case numbers are from a small, concentrated region. The trajectories of Italy and Spain are included for comparison.
 
-![Daily growth rates for East Europe, absolute numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2020-03-29_0_-1.png)
+![Daily growth rates for East Europe, absolute numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2020-04-12_0_-1.png)
 
 Both **San Marino**, which is an enclave microstate inside Italy, **and Iceland already carry a high burden of the coronavirus disease relative to their population sizes**. In the case of San Marino, there are some 34,000 inhabitants. Iceland has got about 350,000.
 
-![Daily growth rates for East Europe, relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2020-03-29_1_-1.png)
+![Daily growth rates for East Europe, relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2020-04-12_1_-1.png)
 
-It is quite quiet in Hungary currently. But I have a nagging feeling that this does not reflect the complete truth as much as it is due to low testing. Romania has apparently been subjected to the return of a wave of its citizens who work in Western Europe, including Italy. There are concerns that they have brought and will spread the disease in their home country. It will be interesting to monitor these countries over the coming days.
+The situation in Hungary deteriorated a lot by a spike in cases in a retirement home in Budapest. I also have a nagging feeling that any calm does not reflect the complete truth as much as it is due to low testing. Romania was apparently subjected in mid-March to the return of a wave of its citizens who work in Western Europe, including Italy. There were concerns that they brought and would spread the disease in their home country and the plots are concordant with this earlier projection.
 
 ### Data
 
@@ -94,8 +94,8 @@ I work as a data science freelancer. You can contact me with your project propos
 
 #### Countries with the largest case numbers, window size 4
 
-![Joint daily growth rate, absolute numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-03-29_0_4.png)
+![Joint daily growth rate, absolute numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-04-12_0_4.png)
 
 This plot about relative infection numbers was made with a fixed window size of 4. The lines bounce around rather strongly but this plot captures the trends of the last days more accurately.
 
-![Joint daily growth rate, relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-03-29_1_4.png)
+![Joint daily growth rate, relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-04-12_1_4.png)
