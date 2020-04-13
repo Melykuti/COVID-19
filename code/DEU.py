@@ -307,7 +307,7 @@ if __name__ == '__main__':
         results, model, selected_window_length, e_or_l = process_geounit(
                                                                     df_ts, window_length, exp_or_lin)
 
-        print_results(selection, results, normalise_by, selected_window_length, e_or_l, lang)
+        print_results(selection, results, normalise_by, 'DEU', selected_window_length, e_or_l, lang)
 
         if save_not_show in [0, 1]:
             plotting(figures_diff[selection], model, save_not_show, selection,
@@ -336,9 +336,9 @@ if __name__ == '__main__':
             if selection == 'Deutschland':
                 print()
             if window_length_all[selection] > 0:
-                print_results(selection, results_dict[selection], normalise_by,
+                print_results(selection, results_dict[selection], normalise_by, 'DEU',
                               window_length_all[selection], exp_or_lin_dict[selection], lang)
             else:
-                print_results(selection, results_dict[selection], normalise_by,
+                print_results(selection, results_dict[selection], normalise_by, 'DEU',
                               selected_window_length_dict[selection], exp_or_lin_dict[selection], lang)
 

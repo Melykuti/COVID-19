@@ -73,8 +73,8 @@ if __name__ == '__main__':
                           country[1].replace(',', '_').replace(' ', '_')
 
         if window_length > 0:
-            utils.print_results(country, results_dict[country_key], normalise_by,
+            utils.print_results(country, results_dict[country_key], normalise_by, 'world',
                                 window_length, exp_or_lin_dict[country_key])
         else:
-            utils.print_results(country, results_dict[country_key], normalise_by,
+            utils.print_results(country, results_dict[country_key], normalise_by, 'world',
                                 selected_window_length_dict[country_key], exp_or_lin_dict[country_key])

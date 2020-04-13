@@ -42,7 +42,7 @@ if __name__ == '__main__':
                                                         df_ts, window_length, exp_or_lin)
 
     utils.print_header(normalise_by)
-    utils.print_results(country, results, normalise_by, selected_window_length, e_or_l, lang)
+    utils.print_results(country, results, normalise_by, 'world', selected_window_length, e_or_l, lang)
     
     if save_not_show in [0, 1]:
         utils.plotting(df_ts, model, save_not_show, country, selected_window_length, e_or_l, lang)

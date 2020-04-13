@@ -26,16 +26,18 @@ normalise_by = int(1e5) # display case numbers per this many people
 #window_length = 4 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
 window_length = -1
 
-save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
+save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
 lang = 'en' # 'de' for German, anything else for English
 cases = 'confirmed' # 'confirmed' or 'deaths' or 'active' or 'recovered'
 exp_or_lin = 'exp' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
 
+#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 0; filename = 'Joint'; cycle_linestyle = 1
+#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 1; filename = 'Joint'; cycle_linestyle = 1
 #countries = ['US', 'Italy', 'China', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 0; filename = 'Joint'; cycle_linestyle = 1
-countries = ['US', 'Italy', 'China', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 1; filename = 'Joint'; cycle_linestyle = 1
+#countries = ['US', 'Italy', 'China', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 1; filename = 'Joint'; cycle_linestyle = 1
 
 #countries = ['China', 'EU', 'US']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=55.; normalise = 0; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
-#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=200.; bottom_bound=0.; top_bound=55.; normalise = 1; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
+countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=200.; bottom_bound=0.; top_bound=55.; normalise = 1; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
 
 #countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=50.; right_bound=10000; bottom_bound=0.; top_bound=80.; normalise = 0; filename = 'Visegrad'; cycle_linestyle = 1
 #countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 1; filename = 'Visegrad'; cycle_linestyle = 1
