@@ -196,7 +196,7 @@ def analysis_lin(df_ts, window_length):
     return results, model
 
 
-def select_window_length(R):
+def select_window_length(R, round_output=True):
     # This selects the window length that is good on two aspects: R^2 and matching last value
     nr_col = R.shape[1]
     if nr_col==7: # If we're calling this from pick_exp_vs_lin() with window_selection, then we already have this so no need to compute it again and add it as new column.
@@ -208,8 +208,11 @@ def select_window_length(R):
         R = R.sort_values(7, axis=0, ascending=True)
         #print(R)
     output = list()
-    for i in range(R.shape[1]):
-        output.append(int(R.iloc[0,i]) if i in [2, 3, 4] else R.iloc[0,i])
+    if round_output==True:
+        for i in range(R.shape[1]):
+            output.append(int(round(R.iloc[0,i])) if i in [2, 3, 4] else R.iloc[0,i])
+    else:
+        output = [R.iloc[0,i] for i in range(R.shape[1])]
     return output, R.index[0]
     #return [R.iloc[0,i] for i in range(nr_col+1)], R.index[0] # This maintains integer elements as integers, R.iloc[0,:] would cast them as float bc it creates a Series with a shared type.
     #return R.iloc[0,:], R.index[0]
@@ -322,25 +325,30 @@ def print_header(normalise_by):
     print('Window length /')
     print('Exponential (e) or linear (l) approximation\n')
 
-def print_results(country, results, normalise_by, wl, exp_or_lin, lang='en'):
+def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin, lang='en'):
     country_width = 23
     interval_width = 14
-    if country in ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen',
-    'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen',
-    'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen',
-    'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen',
-    'Deutschland']:
+    #if country in ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen',
+    #'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen',
+    #'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen',
+    #'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen',
+    #'Deutschland']:
+    if population_csv=='DEU':
         pop = load_population_DEU()
-    else:
+    elif population_csv=='world':
         pop = load_population_world()
+    elif population_csv=='BW':
+        pop = load_population_BW()
+    else:
+        pop = normalise_by # We don't normalise.
     if not isinstance(country, str): # If it's a province or state of a country or region.
         country = country[0]
     if (results[5]>=0.95 and results[6]<=0.5) or (results[6]>=-0.2 and results[6]<=0.1):
         #print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6:4.2f} {7:5.2f}  {8}'.format(
          #country.ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
          #str(results[2]).rjust(7), ('[' + str(results[3]) +', '+ str(results[4]) + ']').rjust(interval_width), results[5], results[6], str(wl).rjust(2)).replace('.', ',' if lang=='de' else '.'))
-        print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6}  {7:4.2f} {8:5.2f}  {9}  {10}'.format(
-         country.ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
+        print('{0} {1:5.1f}% {2:7.1f} {3}  {4}  {5}  {6}  {7:4.2f} {8:5.2f}  {9}  {10}'.format(
+         country[:country_width].ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
          str(results[2]).rjust(7), str(int(round(normalise_by*results[2]/pop[country]))).rjust(5),
          ('[' + str(int(round(normalise_by*results[3]/pop[country]))) +', '+ str(int(round(normalise_by*results[4]/pop[country]))) + ']').rjust(interval_width), results[5], results[6], str(wl).rjust(2),
          'e' if exp_or_lin=='exp' else 'l').replace('.', ',' if lang=='de' else '.'))
@@ -348,8 +356,8 @@ def print_results(country, results, normalise_by, wl, exp_or_lin, lang='en'):
         #print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6:4.2f} {7:5.2f}  {8}'.format(
         #country.ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
         #str(results[2]).rjust(7), ''.rjust(interval_width), results[5], results[6], str(wl).rjust(2)).replace('.', ',' if lang=='de' else '.'))
-        print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6}  {7:4.2f} {8:5.2f}  {9}  {10}'.format(
-        country.ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
+        print('{0} {1:5.1f}% {2:7.1f} {3}  {4}  {5}  {6}  {7:4.2f} {8:5.2f}  {9}  {10}'.format(
+        country[:country_width].ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
         str(results[2]).rjust(7), str(int(round(normalise_by*results[2]/pop[country]))).rjust(5),
         ''.rjust(interval_width), results[5], results[6], str(wl).rjust(2),
         'e' if exp_or_lin=='exp' else 'l').replace('.', ',' if lang=='de' else '.'))
@@ -418,3 +426,11 @@ def load_population_DEU():
         countries[country_new] = pop_ser.loc[country]
     return countries
 
+def load_population_BW():
+    pop = pd.read_csv('population_BW.csv', sep=',')
+    pop_ser=pd.Series(pop['Bevölkerung insgesamt'].values, index=pop.Regionalname)
+    countries = dict()
+    for country in pop_ser.index:
+        #country_new = country.strip()
+        countries[country] = pop_ser.loc[country]
+    return countries

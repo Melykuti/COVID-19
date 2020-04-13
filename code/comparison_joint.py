@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import linear_model
-from utils import open_csvs, data_preparation, rm_early_zeros, rm_consecutive_early_zeros, separated, select_window_length, pick_exp_vs_lin, print_header, print_results, load_population_world, load_population_DEU
+from utils import open_csvs, data_preparation, rm_early_zeros, rm_consecutive_early_zeros, separated, select_window_length, pick_exp_vs_lin, print_header, load_population_world, load_population_DEU
 from importlib import reload
 
 ### User input ###
@@ -31,17 +31,18 @@ lang = 'en' # 'de' for German, anything else for English
 cases = 'confirmed' # 'confirmed' or 'deaths' or 'active' or 'recovered'
 exp_or_lin = 'exp' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
 
-#countries = ['US', 'Italy', 'China', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=600; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 0; filename = 'Joint'; cycle_linestyle = 1
-#countries = ['US', 'Italy', 'China', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 1; filename = 'Joint'; cycle_linestyle = 1
+#countries = ['US', 'Italy', 'China', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 0; filename = 'Joint'; cycle_linestyle = 1
+countries = ['US', 'Italy', 'China', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 1; filename = 'Joint'; cycle_linestyle = 1
 
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=50.; right_bound=4000.; bottom_bound=0.; top_bound=80.; normalise = 0; filename = 'Visegrad'; cycle_linestyle = 1
+#countries = ['China', 'EU', 'US']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=55.; normalise = 0; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
+#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=200.; bottom_bound=0.; top_bound=55.; normalise = 1; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
+
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=50.; right_bound=10000; bottom_bound=0.; top_bound=80.; normalise = 0; filename = 'Visegrad'; cycle_linestyle = 1
 #countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 1; filename = 'Visegrad'; cycle_linestyle = 1
 
 #countries = 'Deutschland'; left_bound=200; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 0; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1
-countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 1; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1
+#countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 1; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1
 
-#countries = ['China', 'EU', 'US']; left_bound=500; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 0; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
-#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=150.; bottom_bound=0.; top_bound=60.; normalise = 1; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
 
 #countries = ['Switzerland', 'United Kingdom']; left_bound=10.; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 1; filename = 'test';
 #countries = ['Italy', 'Spain', 'France', 'Germany', 'Switzerland', ['United Kingdom', 'United Kingdom'], 'Netherlands', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', 'China']
@@ -158,10 +159,10 @@ def process_geounit_minimal(df_ts, window_length, exp_or_lin='both'):
                 R_l.iloc[wl-wl_lo, :] = result_wl
                 models_l[wl] = model
         if exp_or_lin in ['exp', 'both']:
-            results_e, selected_window_length_e = select_window_length(R_e)
+            results_e, selected_window_length_e = select_window_length(R_e, round_output=False)
             model_e = models_e[selected_window_length_e]
         if exp_or_lin in ['lin', 'both']:
-            results_l, selected_window_length_l = select_window_length(R_l)
+            results_l, selected_window_length_l = select_window_length(R_l, round_output=False)
             model_l = models_l[selected_window_length_l]
         if exp_or_lin == 'exp':
             results, model, selected_window_length = results_e[:-1], model_e, selected_window_length_e
@@ -277,6 +278,7 @@ if __name__ == '__main__':
                                                         df_ts[:len(df_ts)+i], window_length, exp_or_lin)
                 #if len(df_ts)+i<=5:
                 #    print('index is', i, '  input is\n', df_ts[:len(df_ts)+i], '\nresult is\n', results)
+                #print(results)
                 dif_optim.append(results[0])
                 case_no.append(results[2])
 
