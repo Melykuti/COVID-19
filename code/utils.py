@@ -101,14 +101,30 @@ def data_preparation(df, country, output):
     #print(df_ts)
     return df_ts
 
+'''
 def rm_early_zeros(ts):
-    '''
+    
     Removes early zeros from a pandas time series. It finds last (most recent) zero in time series and
     omits all elements before and including this last zero. Returns the remaining time series which is
     free of zeros.
     pd.Series([0,0,0,0,1,2,0,0,3,6]) -> pd.Series([3,6])
-    '''
+    
     zeroindices = ts[ts==0].index
+    if len(zeroindices)==0:
+        return ts
+    else:
+        successor = np.nonzero((ts.index==zeroindices.max()))[0][0] + 1
+        return ts[successor:]
+'''
+
+def rm_early_zeros(ts):
+    '''
+    Removes early zeros and NaNs from a pandas time series. It finds last (most recent) zero or NaN in
+    time series and omits all elements before and including this last zero or NaN. Returns the remaining
+    time series which is free of zeros and NaN.
+    pd.Series([0,0,0,0,1,2,0,0,3,6]) -> pd.Series([3,6])
+    '''
+    zeroindices = ts[(ts==0) | ts.isna()].index
     if len(zeroindices)==0:
         return ts
     else:
@@ -150,15 +166,35 @@ def separated(s, lang='en', k=3):
     else:
         return s
 
+'''
+def x2str(x, width):
+    
+    Rounds a number to tenths. If width is greater than its length, then it pads it with space.
+    If width<0, then it does no padding.
+    
+    if x<10 and x>-10:
+        s = str(round(x*10)/10)
+    else:
+        s = str(int(round(x)))
+    if width > len(s):
+        return s.rjust(width)
+    else:
+        return s
+'''
+
 def x2str(x, width):
     '''
     Rounds a number to tenths. If width is greater than its length, then it pads it with space.
     If width<0, then it does no padding.
     '''
-    if x<10 and x>-10:
-        s = str(round(x*10)/10)
+    #if x<0.1 and x>-0.1 and width>=6:
+    #    s = '{:.3f}'.format(x) #str(round(x*1000)/1000)
+    if x<1 and x>-1 and width>=5:
+        s = '{:.2f}'.format(x) #str(round(x*100)/100)
+    elif x<10 and x>-10 and width>=4:
+        s = '{:.1f}'.format(x) #str(round(x*10)/10)
     else:
-        s = str(int(round(x)))
+        s = '{:.0f}'.format(x) #str(int(round(x)))
     if width > len(s):
         return s.rjust(width)
     else:
@@ -394,8 +430,12 @@ def print_header(normalise_by, population_csv=None):
     print('Window length /')
     print('Exponential (e) or linear (l) approximation\n')
 
-def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin, lang='en'):
-    country_width = 23
+def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin, frmt='normal', lang='en'):
+    '''
+    frmt (format) can be 'deaths' or other. For 'deaths', there is one more decimal digit displayed for
+    cases per 100,000 and estimate interval is not displayed.
+    '''
+    country_width = 23 if frmt!='deaths' else 24
     interval_width = 14
     #if country in ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen',
     #'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen',
@@ -414,11 +454,11 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
         country = country[0]
 
     if population_csv is not None:
-        incr_per_ppl = x2str(normalise_by*results[0]/pop[country], 4)
+        incr_per_ppl = x2str(normalise_by*results[0]/pop[country], 4 if frmt!='deaths' else 6)
     else:
-        incr_per_ppl = ' ' * 4
+        incr_per_ppl = ' ' * 4 if frmt!='deaths' else ' ' * 6
     if ((results[6]>=0.95 and results[7]<=0.5) or (results[7]>=-0.2 and results[7]<=0.1)) and\
-        results[0]>0:
+        results[0]>0 and frmt!='deaths':
         #print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6:4.2f} {7:5.2f}  {8}'.format(
          #country.ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
          #str(results[2]).rjust(7), ('[' + str(results[3]) +', '+ str(results[4]) + ']').rjust(interval_width), results[5], results[6], str(wl).rjust(2)).replace('.', ',' if lang=='de' else '.'))
@@ -437,7 +477,10 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
             nr_cases_per_ppl = x2str(normalise_by*results[3]/pop[country], int(math.log10(normalise_by))+1)
         else:
             nr_cases_per_ppl = ' ' * int(math.log10(normalise_by))
-        interval = ' ' * interval_width
+        if frmt!='deaths':
+            interval = ' ' * interval_width
+        else:
+            interval = '  '
 
     print('{0} {1} {2} {3:5.1f}% {4:7.1f} {5} {6} {7} {8} {9:4.2f} {10:5.2f}  {11}  {12}'.format(
         country[:country_width].ljust(country_width),
@@ -462,10 +505,12 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
         line0 = 'Beobachtungen'
         line1 = 'Exponentielle Annäherung' if exp_or_lin=='exp' else 'Lineare Annäherung'
         fig.suptitle(country + ', Stand ' + df_ts.index[-1].strftime('%d.%m.%Y'))
+        plt.gcf().text(0.905, 0.86, "© Bence Mélykúti, 2020. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     else:
         line0 = 'Observations'
         line1 = 'Exponential approximation' if exp_or_lin=='exp' else 'Linear approximation'
         fig.suptitle(country + ', ' + df_ts.index[-1].strftime('%d %B %Y'))
+        plt.gcf().text(0.905, 0.862, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     #fig.tight_layout()
     fig.subplots_adjust(bottom=0.2)
     #ax1.plot(df_ts[df_ts>0], label=line0)
@@ -491,12 +536,12 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
     handles, labs = ax1.get_legend_handles_labels()
     ax1.legend((handles[1], handles[0]), (labs[1], labs[0]))
     #plt.gcf().text(0.905, 0.615, "© Bence Mélykúti, Melykuti.me, 2020", fontsize=8, color='lightgray', rotation=90)
-    plt.gcf().text(0.905, 0.862, "© Bence Mélykúti, http://COVID19.Melykuti.Be, 2020", fontsize=8, color='lightgray', rotation=90)
+    #plt.gcf().text(0.905, 0.862, "© Bence Mélykúti, http://COVID19.Melykuti.Be, 2020", fontsize=8, color='lightgray', rotation=90)
     if save_not_show==0:
         plt.show()
     elif save_not_show==1:
-        imgfile = country.replace(',', '_').replace(' ', '_') + '_' +\
-                  df_ts.index[-1].strftime('%Y-%m-%d') + '.png'
+        imgfile = country.replace(',', '_').replace(' ', '_').replace('(', '_').replace(')', '_')\
+                  + '_' + df_ts.index[-1].strftime('%Y-%m-%d') + '.png'
         plt.savefig(imgfile)
         plt.close(fig)
 

@@ -8,7 +8,8 @@ import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 from importlib import reload
-from utils import rm_early_zeros, process_geounit, print_header, print_results, plotting
+import utils
+#from utils import rm_early_zeros, process_geounit, print_header, print_results, plotting
 
 allowed_values = \
     ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen',
@@ -20,8 +21,8 @@ allowed_values = \
 
 ### User input ###
 
-selection = 'alle' # Choose one of the elements of allowed_values.
-#selection = allowed_values[0] # Alternatively, choose an element index from allowed_values.
+#selection = 'alle' # Choose one of the elements of allowed_values.
+selection = allowed_values[0] # Alternatively, choose an element index from allowed_values.
 
 cases = 'confirmed' # 'confirmed' or 'deaths' or 'confirmed_minus_deaths'
 
@@ -38,7 +39,7 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
     'Deutschland': 13})
 '''
 
-save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
 # In the case of 'alle', 0 functions as -1.
 
 normalise_by = 1e5 # report case numbers per this many people
@@ -300,18 +301,19 @@ if __name__ == '__main__':
     if max_display_length > 0:
         figures_diff = figures_diff[-max_display_length:]
 
-    print_header(normalise_by, pop_csv)
+    utils.print_header(normalise_by, pop_csv)
 
     if selection != 'alle': # single run
         df_ts = figures_diff[selection]
-        df_ts = rm_early_zeros(df_ts)
-        results, model, selected_window_length, e_or_l = process_geounit(
+        df_ts = utils.rm_early_zeros(df_ts)
+        results, model, selected_window_length, e_or_l = utils.process_geounit(
                                                                     df_ts, window_length, exp_or_lin)
 
-        print_results(selection, results, normalise_by, pop_csv, selected_window_length, e_or_l, lang)
+        utils.print_results(selection, results, normalise_by, pop_csv, selected_window_length, e_or_l,
+                             lang)
 
         if save_not_show in [0, 1]:
-            plotting(figures_diff[selection], model, save_not_show, selection,
+            utils.plotting(figures_diff[selection], model, save_not_show, selection,
                 selected_window_length, e_or_l, lang)
 
     else: # analysis of all federal states and complete Germany
@@ -323,24 +325,24 @@ if __name__ == '__main__':
         for selection in allowed_values[:-1]:
             print(selection)
             df_ts = figures_diff[selection]
-            df_ts = rm_early_zeros(df_ts)
-            results, model, selected_window_length, e_or_l = process_geounit(
+            df_ts = utils.rm_early_zeros(df_ts)
+            results, model, selected_window_length, e_or_l = utils.process_geounit(
                                                                     df_ts, window_length, exp_or_lin)
 
             results_dict[selection] = results
             selected_window_length_dict[selection] = selected_window_length
             exp_or_lin_dict[selection] = e_or_l
             if save_not_show == 1:
-                plotting(figures_diff[selection], model, save_not_show, selection,
+                utils.plotting(figures_diff[selection], model, save_not_show, selection,
                     selected_window_length, e_or_l, lang)
 
         for selection in allowed_values[:-1]:
             if selection == 'Deutschland':
                 print()
             if window_length_all[selection] > 0:
-                print_results(selection, results_dict[selection], normalise_by, pop_csv,
+                utils.print_results(selection, results_dict[selection], normalise_by, pop_csv,
                               window_length_all[selection], exp_or_lin_dict[selection], lang)
             else:
-                print_results(selection, results_dict[selection], normalise_by, pop_csv,
+                utils.print_results(selection, results_dict[selection], normalise_by, pop_csv,
                               selected_window_length_dict[selection], exp_or_lin_dict[selection], lang)
 
