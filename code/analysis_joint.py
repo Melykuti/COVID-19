@@ -17,14 +17,15 @@ from importlib import reload
 
 ### User input ###
 
-countries = ['US', 'Italy', 'France', 'Spain', 'Germany', 'United Kingdom', 'Iran', 'Netherlands', 'Belgium', 'Switzerland', 'Sweden', 'Austria', 'Japan', 'Denmark', 'Hungary', 'Korea, South', 'China']
+countries = ['US', 'Italy', 'Spain', 'France', 'United Kingdom', 'Germany', 'Netherlands', 'Iran',  'Belgium', 'Switzerland', 'Sweden', 'Japan', 'Austria', 'Denmark', 'Hungary', 'Korea, South', 'China']
+#countries = ['US', 'Italy', 'France', 'Spain', 'Germany', 'United Kingdom', 'Iran', 'Netherlands', 'Belgium', 'Switzerland', 'Sweden', 'Austria', 'Japan', 'Denmark', 'Hungary', 'Korea, South', 'China']
 #countries = ['US', 'Italy', 'Spain', 'Germany', 'France', 'Iran', 'United Kingdom', 'Switzerland', 'Netherlands', 'Belgium', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', 'China'] # ['Hubei', 'China']]
 #countries = ['United Kingdom']
 #countries = ['Korea, South']
 #countries = ['Italy', 'Spain', 'Japan', 'Korea, South', 'China']
 #countries = ['Italy', 'Japan', 'Denmark', 'France', 'Germany', 'Spain', 'Switzerland']
 #countries = ['Italy', 'France', 'Spain', 'Germany', 'Switzerland', 'Japan', 'Denmark', 'Netherlands', 'Sweden', 'United Kingdom', 'Austria', 'Korea, South', 'China'] # , 'Belgium'
-cases = 'confirmed' # 'confirmed' or 'deaths' or 'active' or 'recovered'
+cases = 'active' # 'confirmed' or 'deaths' or 'active' or 'recovered'
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
 save_plots = 0 # if 1, then saves all plots; otherwise it neither shows nor saves
 lang = 'en' # 'de' for German, anything else for English
