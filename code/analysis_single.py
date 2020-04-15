@@ -33,6 +33,7 @@ max_display_length = 45 # in days; if positive, then it plots the most recent ma
 
 
 if __name__ == '__main__':
+    pop_csv = None#'world'
     df = utils.open_csvs()
     df_ts = utils.data_preparation(df, country, cases)
     df_ts = utils.rm_early_zeros(df_ts)
@@ -41,8 +42,8 @@ if __name__ == '__main__':
     results, model, selected_window_length, e_or_l = utils.process_geounit(
                                                         df_ts, window_length, exp_or_lin)
 
-    utils.print_header(normalise_by)
-    utils.print_results(country, results, normalise_by, 'world', selected_window_length, e_or_l, lang)
+    utils.print_header(normalise_by, pop_csv)
+    utils.print_results(country, results, normalise_by, pop_csv, selected_window_length, e_or_l, lang)
     
     if save_not_show in [0, 1]:
         utils.plotting(df_ts, model, save_not_show, country, selected_window_length, e_or_l, lang)
