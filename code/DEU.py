@@ -1,6 +1,6 @@
 '''
 exec(open('DEU.py').read())
-15/3-12/4/2020
+15/3-14/4/2020
 '''
 
 import os, datetime
@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 from importlib import reload
-from utils import process_geounit, print_header, print_results, plotting
+from utils import rm_early_zeros, process_geounit, print_header, print_results, plotting
 
 allowed_values = \
     ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen',
@@ -20,8 +20,8 @@ allowed_values = \
 
 ### User input ###
 
-#selection = 'alle' # Choose one of the elements of allowed_values.
-selection = allowed_values[-2] # Alternatively, choose an element index from allowed_values.
+selection = 'alle' # Choose one of the elements of allowed_values.
+#selection = allowed_values[0] # Alternatively, choose an element index from allowed_values.
 
 cases = 'confirmed' # 'confirmed' or 'deaths' or 'confirmed_minus_deaths'
 
@@ -38,7 +38,7 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
     'Deutschland': 13})
 '''
 
-save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
 # In the case of 'alle', 0 functions as -1.
 
 normalise_by = 1e5 # report case numbers per this many people
@@ -271,6 +271,8 @@ def data_preparation_DEU(output):
             #figures = collect_data(rows, i) # infections
             figures = collect_data_colwise(rows) # infections
             figures.loc[pd.to_datetime('2020-04-07'),'Berlin'] = 3845 # temporary hack but I updated Wikipedia table
+            figures.loc[pd.to_datetime('2020-03-20'),'Rheinland-Pfalz'] = 801
+            figures.loc[pd.to_datetime('2020-03-31'),'Sachsen-Anhalt'] = 680
             print(figures)
         else: # i==idx_Todesfaelle
             death_figures = collect_data_colwise(rows) # deaths
@@ -293,21 +295,20 @@ def data_preparation_DEU(output):
 
 
 if __name__ == '__main__':
+    pop_csv = 'DEU'
     figures_diff = data_preparation_DEU(cases)
     if max_display_length > 0:
         figures_diff = figures_diff[-max_display_length:]
 
-    print_header(normalise_by)
-
-    #print(figures_diff[selection], window_length_all[selection])
+    print_header(normalise_by, pop_csv)
 
     if selection != 'alle': # single run
         df_ts = figures_diff[selection]
-
+        df_ts = rm_early_zeros(df_ts)
         results, model, selected_window_length, e_or_l = process_geounit(
                                                                     df_ts, window_length, exp_or_lin)
 
-        print_results(selection, results, normalise_by, 'DEU', selected_window_length, e_or_l, lang)
+        print_results(selection, results, normalise_by, pop_csv, selected_window_length, e_or_l, lang)
 
         if save_not_show in [0, 1]:
             plotting(figures_diff[selection], model, save_not_show, selection,
@@ -322,6 +323,7 @@ if __name__ == '__main__':
         for selection in allowed_values[:-1]:
             print(selection)
             df_ts = figures_diff[selection]
+            df_ts = rm_early_zeros(df_ts)
             results, model, selected_window_length, e_or_l = process_geounit(
                                                                     df_ts, window_length, exp_or_lin)
 
@@ -336,9 +338,9 @@ if __name__ == '__main__':
             if selection == 'Deutschland':
                 print()
             if window_length_all[selection] > 0:
-                print_results(selection, results_dict[selection], normalise_by, 'DEU',
+                print_results(selection, results_dict[selection], normalise_by, pop_csv,
                               window_length_all[selection], exp_or_lin_dict[selection], lang)
             else:
-                print_results(selection, results_dict[selection], normalise_by, 'DEU',
+                print_results(selection, results_dict[selection], normalise_by, pop_csv,
                               selected_window_length_dict[selection], exp_or_lin_dict[selection], lang)
 
