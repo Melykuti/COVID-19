@@ -2,7 +2,7 @@
 
 > * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 
-16 März 2020 (aktualisiert am 12 April 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 15 April 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bis die allgemeinen Ausgangsbeschränkungen angefangen haben ihre Wirkung zu zeigen, stimmten die beobachteten Coronavirus-Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. Freiburg war die erste deutsche Großstadt, die am 21.03.2020 solch einen Lockdown angeordnet hat.
 
@@ -51,7 +51,7 @@ Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das l
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-04-12.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-04-15.png)
 
 Auf diesen beiden Schaubildern verwende ich nur das exponentielle Model. (Wenn ich das lineare Modell auch in das Rennen schicke, dann bekomme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Volatilität der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
@@ -61,37 +61,37 @@ Auf diesen beiden Schaubildern verwende ich nur das exponentielle Model. (Wenn i
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-04-12.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-04-15.png)
 
-![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-04-12.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-04-15.png)
 
-![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-04-12.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-04-15.png)
 
-![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-04-12.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-04-15.png)
 
-![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-04-12.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-04-15.png)
 
-![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-04-12.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-04-15.png)
 
-![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-04-12.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-04-15.png)
 
-![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-04-12.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-04-15.png)
 
-![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-04-12.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-04-15.png)
 
-![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-04-12.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-04-15.png)
 
-![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-04-12.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-04-15.png)
 
-![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-04-12.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-04-15.png)
 
-![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-04-12.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-04-15.png)
 
-![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-04-12.png)
+![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-04-15.png)
 
-![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-04-12.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-04-15.png)
 
-![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-04-12.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-04-15.png)
 
 
 ### Resultate
@@ -102,15 +102,19 @@ Diese Resultate sind die direkte numerische Folge der linearen Anpassungen im vo
 
 Die Spalten haben die folgende Bedeutung:
 
+* (Ab 15.04.2020) Die Gesamtanzahl der Infekten wächst täglich um diese Zahl
+
+* (Ab 15.04.2020) Die Gesamtanzahl der Infekten pro 100.000 Einwohner wächst täglich um diese Zahl
+
 * Die Gesamtanzahl der Infekten wächst täglich um diesen Faktor (prozentual ausgedrückt)
 
 * Die Zeitdauer bis die Anzahl der Infekten sich verdoppelt. Dies ist ein Begriff, der zum exponentiellen Wachstum natürlich passt, aber bei nur linearem Wachstum nicht mehr so aussagekräftig ist. Bei exponentiellem Wachstum ist die Fallzahl nach 2 Verdopplungszeiten _viermal_ so hoch wie am Anfang. Bei linearem Wachstum ist sie nur _dreimal_ so hoch. Im Allgemeinen, nach `n` mal der Verdopplungszeit wird die Fallzahl bei exponentiellem Wachstum auf `2^n` mal die ursprüngliche gestiegen sein, bei linearem Wachstum nur auf `n+1` mal die ursprüngliche.
 
 * Die letzte gemeldete Anzahl der Fälle.
 
-* (Ab 30.03.2020) Die letzte gemeldete Anzahl der Coronavirus-Fälle pro 100,000 Einwohner.
+* (Ab 30.03.2020) Die letzte gemeldete Anzahl der Coronavirus-Fälle pro 100.000 Einwohner.
 
-* Meine Schätzung der derzeitigen Fallzahl (ab 30.03.2020 auf 100,000 Einwohner). Konkret, die Extrapolation der angepassten exponentiellen oder linearen Kurve auf 4, beziehungsweise, 6 Tage voraus. (Bis 16.03.2020, wenn R^2 kleiner als 0,945 oder die letzte Spalte größer als 0,5 ist, dann lasse ich diese Schätzung wegfallen, denn mein Vertrauen in ihr ist schwächer. Ab 18.03.2020 zeige ich die Schätzung wenn R^2 nicht kleiner als 0,95 und die vorletzte Spalte nicht größer als 0,5 ist, oder wenn die vorletzte Spalte in [-0,2;&nbsp; 0,1] ist.)
+* Meine Schätzung der derzeitigen Fallzahl (ab 30.03.2020 auf 100.000 Einwohner). Konkret, die Extrapolation der angepassten exponentiellen oder linearen Kurve auf 4, beziehungsweise, 6 Tage voraus. (Bis 16.03.2020, wenn R^2 kleiner als 0,945 oder die letzte Spalte größer als 0,5 ist, dann lasse ich diese Schätzung wegfallen, denn mein Vertrauen in ihr ist schwächer. Ab 18.03.2020 zeige ich die Schätzung wenn R^2 nicht kleiner als 0,95 und die vorletzte Spalte nicht größer als 0,5 ist, oder wenn die vorletzte Spalte in [-0,2;&nbsp; 0,1] ist.)
 
 * R^2 oder Bestimmtheitsmaß oder Determinationskoeffizient der Anpassungsgüte der linearen Regression. Je näher es an 1 ist, desto besser ist die Anpassung.
 
@@ -122,8 +126,36 @@ Die Spalten haben die folgende Bedeutung:
 
 &nbsp;
 
+    Bundesland               Zu- Zuwachs Wachst.- Verdoppl.  Gesamte   pro     Schätzung   R^2  Diff. Fenster Exp/Lin
+                           wachs   pro    rate      zeit      Fälle  100.000                          größe
+                                 100.000
+
+Stand 15.04.2020
+
+    Baden-Württemberg          460  4,2   1,8%   109,6 Tage   25438    230     [247, 255] 1,00  0,00   5  l
+    Bayern                     659  5,0   1,9%   103,0 Tage   34294    262     [282, 292] 1,00 -0,00   4  l
+    Berlin                      54  1,5   1,2%    60,5 Tage    4722    130     [136, 139] 0,99 -0,00   4  e
+    Brandenburg                 32  1,3   1,7%    41,9 Tage    1950     78       [83, 86] 0,99 -0,00   4  e
+    Bremen                     6,7  1,0   1,4%    51,4 Tage     500     73       [77, 79] 1,00 -0,00   4  e
+    Hamburg                     48  2,6   1,2%   160,6 Tage    3869    210     [220, 226] 0,97 -0,00   5  l
+    Hessen                     203  3,2   3,2%    61,7 Tage    6347    101     [116, 123] 0,98  0,02  14  l
+    Mecklenburg-Vorpommern      12  0,7   1,9%   105,5 Tage     624     39       [42, 44] 0,97  0,02  12  l
+    Niedersachsen              145  1,8   1,8%    38,3 Tage    8019    100     [108, 112] 1,00  0,00   4  e
+    Nordrhein-Westfalen        561  3,1   2,2%    91,2 Tage   25835    144     [157, 163] 1,00  0,00   6  l
+    Rheinland-Pfalz             94  2,3   1,9%    36,6 Tage    5004    123     [132, 137] 0,99 -0,00   5  e
+    Saarland                    31  3,1   1,5%   136,4 Tage    2145    217     [229, 235] 0,99 -0,00   5  l
+    Sachsen                     78  1,9   2,1%    34,1 Tage    3819     94     [102, 106] 0,99  0,00   4  e
+    Sachsen-Anhalt              34  1,5   2,8%    72,3 Tage    1223     55       [63, 66] 0,99  0,03  14  l
+    Schleswig-Holstein          69  2,4   3,1%    64,1 Tage    2245     78       [89, 94] 0,98  0,02  14  l
+    Thüringen                   27  1,2   1,8%    40,0 Tage    1550     72       [77, 80] 0,98 -0,01   6  e
+    
+    Deutschland               2340  2,8   1,9%   108,0 Tage  127584    154     [165, 171] 1,00 -0,00   4  l
+
+
+&nbsp;
+
     Bundesland           Wachstums-  Verdoppl.   Gesamte   pro      Schätzung   R^2   Diff. Fenster Exp/Lin
-                            rate       zeit       Fälle  100,000                            größe
+                            rate       zeit       Fälle  100.000                            größe
 
 Stand 12.04.2020
 
@@ -151,7 +183,7 @@ Stand 12.04.2020
 Die nachfolgenden Tabellen zeigen Rechnungen ausschließlich mit `Nr. der Fälle - Nr. der Tode`.
 
     Bundesland           Wachstums-  Verdoppl.   Aktive    pro      Schätzung   R^2   Diff. Fenster Exp/Lin
-                            rate       zeit       Fälle  100,000                            größe
+                            rate       zeit       Fälle  100.000                            größe
 
 Stand 01.04.2020
 
