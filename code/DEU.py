@@ -38,7 +38,7 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
     'Deutschland': 13})
 '''
 
-save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
 # In the case of 'alle', 0 functions as -1.
 
 normalise_by = 1e5 # report case numbers per this many people
@@ -271,6 +271,8 @@ def data_preparation_DEU(output):
             #figures = collect_data(rows, i) # infections
             figures = collect_data_colwise(rows) # infections
             figures.loc[pd.to_datetime('2020-04-07'),'Berlin'] = 3845 # temporary hack but I updated Wikipedia table
+            figures.loc[pd.to_datetime('2020-03-20'),'Rheinland-Pfalz'] = 801
+            figures.loc[pd.to_datetime('2020-03-31'),'Sachsen-Anhalt'] = 680
             print(figures)
         else: # i==idx_Todesfaelle
             death_figures = collect_data_colwise(rows) # deaths
