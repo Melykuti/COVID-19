@@ -4,6 +4,7 @@
 
 * [An overview of many countries and a description of my methodology.](https://github.com/Melykuti/COVID-19/blob/master/global.md)
 * [The analogous study for Germany and its federal states in German language.](https://github.com/Melykuti/COVID-19/blob/master/Deutschland.md)
+* [The analogous study for Baden-Württemberg and its districts in German language.](https://github.com/Melykuti/COVID-19/blob/master/BW.md)
 * [A comparison of how well countries are controlling the spread of the pandemic using innovative visualisation.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
 
