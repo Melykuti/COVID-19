@@ -62,6 +62,9 @@ Es ist zu beachten, dass es auch in einem Bundesland Unterschiede geben kann, wi
 
 Warum Freiburg solch eine merkwürdige Position in der Grafik hat weiß ich nicht. Das Universitätsklinikum hat einen ausgezeichneten Ruf und es kann sein, dass viele Schwerkranke hierher gebracht werden. Gegen Ende März boten Freiburg, Karlsruhe, Mannheim und Heidelberg an, Corona-PatientInnen aus der schwer betroffenen Grenzenregion Frankreichs, Region Grand Est zu übernehmen. Dies mag die Lage in Freiburg erklären, jedoch sieht man keine ähnliche Wirkung in den anderen drei Städten. Eventuell hat es mit der Grenzennähe und GrenzgängerInnen zu tun, die von Freiburg nach Basel und die aus dem Elsass hierher pendeln. Basel hat mehr Fälle pro 100.000 EinwohnerInnen als zum Beispiel das Grenzengebiet gegenüber Konstanz.
 
+Eine andere Erklärung ist auch wohl möglich, die mit meinem früheren Forschungsgebiet zu tun hat: dass es eine Erklärung gibt, die aber nicht nützt. Wir sind in der Anfangsphase – ich meine es nicht zeitlich sondern daran gemessen, dass z.B. nur 500-1000 von 100.000 sich angesteckt haben und keine 10.000. In der Anfangsphase haben zufällige, stochastische Effekte sehr große Wirkung. Unter dem Namen Superspreader (Personen und Ereignisse) meint man in der Epidemiologie solche Effekte. Wenn es früh einen Coronavirus-Fall in Freiburg gab, der weitere zehn Personen angesteckt hat, dann hätte Freiburg einen Frühstart in der Epidemie im Verglech mit anderen Landkreisen gehabt. Solche Ereignisse sind zufällig und man könnte von denen nicht schlussfolgern, dass etwas in einigen Landkreisen systematisch anders läuft.
+
+
 ### Resultate
 
 Diese Resultate sind die direkte numerische Folge der linearen Anpassungen.

@@ -55,7 +55,7 @@ The French army flew out patients from Region Grand Est to other parts of the co
 
 I moved the analogous plots for Germany and its federal states [to the page that focuses on Germany (in German).](https://github.com/Melykuti/COVID-19/blob/master/Deutschland.md)
 
-#### A comparison of the great powers China, European Union and the United States of America
+#### A comparison of the great powers China, the European Union and the United States of America
 
 
 ![Daily relative increments for China, EU, USA through time](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2020-04-15_xy_-1_exp_date_incr.png)
