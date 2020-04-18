@@ -102,7 +102,7 @@ If the exponential model fits better, then orange is the fit of the exponential 
 
 ![Italy](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-04-17.png)
 
-![Spain](https://github.com/Melykuti/COVID-19/blob/master/plots/Spain_2020-04-17.png)
+![Spain](https://github.com/Melykuti/COVID-19/blob/master/plots/Spain_2020-04-16.png)
 
 ![France](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-04-17.png)
 
@@ -173,14 +173,14 @@ I focus on countries with a large number of cases and on those to which I have g
 &nbsp;
 
     Country              Increment Incr. Growth   Doubling  Active     per      Estimate   R^2  Diff. Win- Exp/Lin
-                                    per   rate               Cases   100,000                          dow
+                                    per   rate      time     Cases   100,000                          dow
                                   100,000                                                             size
 
 18 April 2020
 
     US                       25014  7.5   4.2%    16.8 days  604388    182     [214, 233] 1.00  0.00   4  e
     Italy                     1381  2.2   1.3%   154.6 days  106962    171     [182, 187] 0.99  0.01  13  l
-    Spain                     3114  6.2   3.3%    21.1 days   96040    192     [217, 231] 0.92 -0.02   4  e
+    Spain                      721  1.4   0.8%   248.1 days   90836    182     [186, 189] 0.88 -0.01  13  l [1 day earlier]
     France                    3795  5.6   4.0%    17.7 days   94868    140     [165, 178] 0.91  0.01   6  e
     United Kingdom            4189  6.4   4.6%    43.8 days   94116    143     [168, 181] 1.00 -0.00   8  l
     Germany                  -2066 -2.6  -3.7%     nan days   53931     67                0.99  0.00   6  l
