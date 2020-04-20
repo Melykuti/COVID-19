@@ -2,7 +2,7 @@
 
 > * On this page I examine the cumulative number of all confirmed coronavirus patients who may be ill or may have recovered or died by now.
 
-22 March 2020 (updated on 16 April 2020), Freiburg i. Br., Germany -- There are different visualisations of the spread of the coronavirus pandemic mushrooming on the internet. Many of them are more alarmist than insightful. My goal on this page is to present an innovation in how to look at the problem.
+22 March 2020 (updated on 20 April 2020), Freiburg i. Br., Germany -- There are different visualisations of the spread of the coronavirus pandemic mushrooming on the internet. Many of them are more alarmist than insightful. My goal on this page is to present an innovation in how to look at the problem.
 
 ### Background
 
@@ -41,15 +41,15 @@ What is clear is that China has managed to drive down its curve to zero, where t
 
 Let us start with a plot of daily increments of coronavirus cases per 100,000 population indexed simply by time.
 
-![Joint relative increments through time](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-04-15_xy_-1_exp_date_incr.png)
+![Joint relative increments through time](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-04-19_xy_-1_exp_date_incr.png)
 
 Next is the case where I measure progress in terms of cumulative case numbers and not time. For the normalisation with the population sizes, in the case of China I had used the population of Hubei province and not of the entire country for plots created until 24th March 2020. This choice used to present their effort in a more critical light (it suggested that they succeeded only after more people had caught the disease). In general, China being the first country to face the epidemic, I think it is unfair to criticise them harshly. All other countries, which have seen the Chinese example, had a warning to prepare and had the opportunity to learn from the effect of Chinese measures on the pandemic spread. They are fair targets.
 
-![Joint relative increments against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-04-15_xy_-1_exp_cases_incr.png)
+![Joint relative increments against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-04-19_xy_-1_exp_cases_incr.png)
 
 Switzerland was on a particularly concerning path but the country has seen a significant slowdown in the spread over the past few days. (The case numbers still grow, but at a lower pace.) My place of residence, Freiburg is close to the Swiss border and also to the heavily affected Region Grand Est of France. These aspects were used to justify imposing a lockdown in Freiburg. These plots unequivocally support the urgency of aggressive countermeasures.
 
-![Joint daily growth rates against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-04-15_xy_-1_exp_cases_rate.png)
+![Joint daily growth rates against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2020-04-19_xy_-1_exp_cases_rate.png)
 
 The French army flew out patients from Region Grand Est to other parts of the country. A few days later they asked the German armed forces, the Bundeswehr, to contribute helicopters to this effort. On 28 March I heard that Paris hospitals are desperate to send severe patients for treatement to other parts of France. Some days before that, the German cities of Freiburg, Karlsruhe, Mannheim and Heidelberg had offered to treat French patients from Region Grand Est. Leipzig received patients from Italy on request of Italy. Germany was in a way already in a more difficult situation than France. But it seems that the high number of hospital and especially intensive care unit beds relative to population size gave enough buffer to manage this generosity.
 
@@ -58,26 +58,26 @@ I moved the analogous plots for Germany and its federal states [to the page that
 #### A comparison of the great powers China, the European Union and the United States of America
 
 
-![Daily relative increments for China, EU, USA through time](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2020-04-15_xy_-1_exp_date_incr.png)
+![Daily relative increments for China, EU, USA through time](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2020-04-19_xy_-1_exp_date_incr.png)
 
-![Daily relative increments for China, EU, USA against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2020-04-15_xy_-1_exp_cases_incr.png)
+![Daily relative increments for China, EU, USA against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2020-04-19_xy_-1_exp_cases_incr.png)
 
-![Daily growth rates for China, EU, USA against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2020-04-15_xy_-1_exp_cases_rate.png)
+![Daily growth rates for China, EU, USA against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2020-04-19_xy_-1_exp_cases_rate.png)
 
 
 #### The Visegrád Group (Poland, Czech Republic, Slovakia, Hungary) and some small countries
 
 In this block there are East European countries. There is Iceland, which has a rather high infection rate. This is more due to broad testing than to a comparatively bad situation. As far as I know, Iceland tests even random selected members of the population who do not show any symptoms to get a clearer idea of the extent of infections. San Marino, being in Italy, is a proxy for the North Italian situation as its case numbers are from a small, concentrated region. The trajectories of Italy and Spain are included for comparison.
 
-![Daily relative increments for East Europe through time](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2020-04-15_xy_-1_exp_date_incr.png)
+![Daily relative increments for East Europe through time](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2020-04-19_xy_-1_exp_date_incr.png)
 
 Both **San Marino**, which is an enclave microstate inside Italy, **and Iceland already carry a high burden of the coronavirus disease relative to their population sizes**. In the case of San Marino, there are some 34,000 inhabitants. Iceland has got about 350,000.
 
-![Daily relative increments for East Europe against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2020-04-15_xy_-1_exp_cases_incr.png)
+![Daily relative increments for East Europe against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2020-04-19_xy_-1_exp_cases_incr.png)
 
-On 9 April, the situation in Hungary deteriorated by a spike in cases in a retirement home in Budapest. I also have a nagging feeling that any calm does not reflect the complete truth as much as it is due to low testing. Romania was apparently subjected in mid-March to the return of a wave of its citizens who work in Western Europe, including Italy. There were concerns that they brought and would spread the disease in their home country and the plots are concordant with this earlier projection.
+On 9 April, the situation in Hungary deteriorated by a spike in cases in a retirement home in Budapest. I also have a nagging feeling that any calm does not reflect the complete truth as much as it is due to low testing. Romania was subjected in mid-March to the return of a wave of its citizens who work in Western Europe, including Italy. There were concerns that they had brought and would spread the disease in their home country. To counter this, [a 10pm curfew was introduced](https://www.theguardian.com/world/commentisfree/2020/apr/16/western-europe-food-east-european-workers-coronavirus) on 23&nbsp;March, then [a lockdown from 25&nbsp;March](https://www.reuters.com/article/health-coronavirus-romania/romania-to-enforce-strict-lockdown-to-slow-coronavirus-idUSL8N2BH4LL), enforced by the police and the army by fines: citizens were allowed on the street only for grocery shopping and to go to work if they carried a note from their employer. The plots do show a run-up in cases in the second half of March which stabilised from the beginning of April, which is consistent with the restrictions considering the incubation period of the coronavirus disease COVID-19.
 
-![Daily growth rates for East Europe against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2020-04-15_xy_-1_exp_cases_rate.png)
+![Daily growth rates for East Europe against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2020-04-19_xy_-1_exp_cases_rate.png)
 
 ### Data
 
