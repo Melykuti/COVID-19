@@ -2,7 +2,7 @@
 
 > * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 
-Zusammenfassung am Freitag, 22 April 2020:
+Zusammenfassung am Mittwoch, 22 April 2020:
 
 * Aufgrund technischer Probleme wurden am 21.04.2020 am Robert Koch Institut keine Daten aus Hamburg empfangen.
 * Die neuen Infektionszahlen gehen schön zurück. Bayern kann sich über eine deutlichere Senkung der täglichen neuen Fälle freuen. Damit ist die Anzahl der neuen Infekten pro Tag und Bevölkerung in Baden-Württemberg am größten.
