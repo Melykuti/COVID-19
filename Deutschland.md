@@ -2,12 +2,12 @@
 
 > * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 
-Zusammenfassung am Freitag, 17 April 2020:
+Zusammenfassung am Freitag, 22 April 2020:
 
-* In Bremen gab es einen Ausbruch in einem Flüchtlingsheim, wohin eine Person nach zweiwöchiger Isolation zurückkehrte, und offenbar immer noch ansteckend war.
-* Ich beobachte eine kleine aber merkbare Beschleunigung im Zuwachs der Fallzahlen in fast jedem Bundesland. Was heute beobachtet wird sind Infektionen von vor einer Woche oder häufig mehr. Es könnte auf eine nachlassende Vorsichtigkeit der Bevölkerung hindeuten. Aber es könnte dadurch zu erklären sein, dass weniger Tests zu Ostern durchgeführt wurden, oder die Labors die Arbeit erst später in der Woche nachholen.
+* Aufgrund technischer Probleme wurden am 21.04.2020 am Robert Koch Institut keine Daten aus Hamburg empfangen.
+* Die neuen Infektionszahlen gehen schön zurück. Bayern kann sich über eine deutlichere Senkung der täglichen neuen Fälle freuen. Damit ist die Anzahl der neuen Infekten pro Tag und Bevölkerung in Baden-Württemberg am größten.
 
-16 März 2020 (aktualisiert am 18 April 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 22 April 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bis die allgemeinen Ausgangsbeschränkungen angefangen haben ihre Wirkung zu zeigen, stimmten die beobachteten Coronavirus-Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. Freiburg war die erste deutsche Großstadt, die am 21.03.2020 solch einen Lockdown angeordnet hat.
 
@@ -56,49 +56,49 @@ Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das l
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-04-18.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-04-22.png)
 
 Auf diesen drei Schaubildern verwende ich nur das exponentielle Model. (Wenn ich das lineare Modell auch in das Rennen schicke, dann bekomme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Volatilität der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-18_xy_-1_exp_date_incr.png)
+![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-22_xy_-1_exp_date_incr_confirmed.png)
 
-![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-18_xy_-1_exp_cases_incr.png)
+![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-22_xy_-1_exp_cases_incr_confirmed.png)
 
-![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-18_xy_-1_exp_cases_rate.png)
+![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-22_xy_-1_exp_cases_rate_confirmed.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-04-18.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-04-22.png)
 
-![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-04-18.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-04-22.png)
 
-![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-04-18.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-04-22.png)
 
-![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-04-18.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-04-22.png)
 
-![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-04-18.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-04-22.png)
 
-![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-04-18.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-04-21.png)
 
-![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-04-18.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-04-22.png)
 
-![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-04-18.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-04-22.png)
 
-![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-04-18.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-04-22.png)
 
-![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-04-18.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-04-22.png)
 
-![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-04-18.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-04-22.png)
 
-![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-04-18.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-04-22.png)
 
-![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-04-18.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-04-22.png)
 
-![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-04-18.png)
+![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-04-22.png)
 
-![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-04-18.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-04-22.png)
 
-![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-04-18.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-04-22.png)
 
 
 ### Resultate
@@ -136,6 +136,27 @@ Die Spalten haben die folgende Bedeutung:
     Bundesland               Zu- Zuwachs Wachst.- Verdoppl.  Gesamte   pro     Schätzung   R^2  Diff. Fenster Exp/Lin
                            wachs   pro    rate      zeit      Fälle  100.000                          größe
                                  100.000
+
+Stand 22.04.2020
+
+    Baden-Württemberg          510  4.6   1.8%   112.9 days   28898    261     [282, 291] 0.99  0.01  12  l
+    Bayern                     477  3.6   1.2%    56.4 days   38814    297     [312, 319] 1.00 -0.00   4  e
+    Berlin                      82  2.2   1.6%   129.0 days    5312    146     [156, 160] 0.99  0.01  13  l
+    Brandenburg                 55  2.2   2.3%    85.3 days    2389     95     [103, 107] 0.99 -0.01  13  l
+    Bremen                      14  2.0   2.2%    89.0 days     624     91     [100, 104] 0.98  0.00   6  l
+    Hamburg                     60  3.3   1.4%   138.9 days    4204    228     [244, 251] 0.98  0.01  12  l [1 Tag früher]
+    Hessen                     150  2.4   2.1%    97.4 days    7380    118     [128, 133] 0.99  0.01  13  l
+    Mecklenburg-Vorpommern     1.7  0.1   0.3%   771.2 days     656     41       [41, 41] 0.98  0.00   4  l
+    Niedersachsen              172  2.2   1.9%   106.5 days    9236    116     [125, 129] 1.00  0.00  12  l
+    Nordrhein-Westfalen        593  3.3   2.0%   100.5 days   30185    168     [181, 188] 1.00 -0.00  13  l
+    Rheinland-Pfalz             94  2.3   1.7%   118.3 days    5593    137     [148, 153] 0.99  0.01  12  l
+    Saarland                    33  3.3   1.4%   143.2 days    2367    239     [254, 261] 0.97  0.01  12  l
+    Sachsen                     27  0.7   0.6%   312.3 days    4273    105     [108, 109] 0.97  0.00   4  l
+    Sachsen-Anhalt              25  1.1   1.8%   112.0 days    1395     63       [68, 71] 0.99  0.01  14  l
+    Schleswig-Holstein          41  1.4   1.7%   119.0 days    2496     86       [93, 95] 0.97  0.01  14  l
+    Thüringen                   46  2.1   2.5%    28.2 days    1872     87      [96, 101] 0.99 -0.00  14  e
+    
+    Deutschland               1955  2.4   1.4%    51.6 days  145694    175     [185, 190] 1.00 -0.00   4  e
 
 Stand 18.04.2020
 
@@ -566,6 +587,11 @@ Finden Sie mich auf [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), a
 Ich arbeite als selbständiger Data Scientist. Sie können mich mit Ihrem Projekt beauftragen.
 
 ### Archiv
+
+Zusammenfassung am Freitag, 17 April 2020:
+
+* In Bremen gab es einen Ausbruch in einem Flüchtlingsheim, wohin eine Person nach zweiwöchiger Isolation zurückkehrte, und offenbar immer noch ansteckend war.
+* Ich beobachte eine kleine aber merkbare Beschleunigung im Zuwachs der Fallzahlen in fast jedem Bundesland. Was heute beobachtet wird sind Infektionen von vor einer Woche oder häufig mehr. Es könnte auf eine nachlassende Vorsichtigkeit der Bevölkerung hindeuten. Aber es könnte dadurch zu erklären sein, dass weniger Tests zu Ostern durchgeführt wurden, oder die Labors die Arbeit erst später in der Woche nachholen.
 
 Zusammenfassung am Mittwoch, 1 April 2020:
 
