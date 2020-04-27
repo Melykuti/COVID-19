@@ -2,12 +2,13 @@
 
 > * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 
-Zusammenfassung am Mittwoch, 22 April 2020:
+Zusammenfassung am Montag, 27 April 2020:
 
-* Aufgrund technischer Probleme wurden am 21.04.2020 am Robert Koch Institut keine Daten aus Hamburg empfangen.
-* Die neuen Infektionszahlen gehen schön zurück. Bayern kann sich über eine deutlichere Senkung der täglichen neuen Fälle freuen. Damit ist die Anzahl der neuen Infekten pro Tag und Bevölkerung in Baden-Württemberg am größten.
+* Wie man es von den Nachrichten auch spürt, ist die Lage ruhig in Deutschland.
+* Die tägliche Anzahl der neuen bestätigten Infektionen ist unter 4 pro 100.000 EinwohnerInnen in jedem Bundesland. Die Anzahl der neuen Infekten pro Tag und Bevölkerung ist in Bayern, in Baden-Württemberg und in Nordrhein-Westfalen am größten.
+* Mit der Ausnahme von Brandenburg und Thüringen ist die Anzahl der täglichen neuen Infekten pro 100.000 jetzt niedriger als am 23.03.2020, der Anfang der Kontaktbeschränkungen.
 
-16 März 2020 (aktualisiert am 22 April 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 27 April 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bis die allgemeinen Ausgangsbeschränkungen angefangen haben ihre Wirkung zu zeigen, stimmten die beobachteten Coronavirus-Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. Freiburg war die erste deutsche Großstadt, die am 21.03.2020 solch einen Lockdown angeordnet hat.
 
@@ -56,49 +57,49 @@ Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das l
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-04-22.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-04-27.png)
 
 Auf diesen drei Schaubildern verwende ich nur das exponentielle Model. (Wenn ich das lineare Modell auch in das Rennen schicke, dann bekomme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Volatilität der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-22_xy_-1_exp_date_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-27_xy_-1_exp_date_incr_confirmed.png)
 
-![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-22_xy_-1_exp_cases_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-27_xy_-1_exp_cases_incr_confirmed.png)
 
-![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-22_xy_-1_exp_cases_rate_confirmed.png)
+![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-27_xy_-1_exp_cases_rate_confirmed.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-04-22.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-04-27.png)
 
-![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-04-22.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-04-27.png)
 
-![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-04-22.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-04-27.png)
 
-![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-04-22.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-04-27.png)
 
-![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-04-22.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-04-27.png)
 
-![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-04-21.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-04-27.png)
 
-![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-04-22.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-04-27.png)
 
-![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-04-22.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-04-27.png)
 
-![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-04-22.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-04-27.png)
 
-![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-04-22.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-04-27.png)
 
-![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-04-22.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-04-27.png)
 
-![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-04-22.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-04-27.png)
 
-![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-04-22.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-04-27.png)
 
-![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-04-22.png)
+![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-04-27.png)
 
-![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-04-22.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-04-27.png)
 
-![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-04-22.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-04-27.png)
 
 
 ### Resultate
@@ -136,6 +137,27 @@ Die Spalten haben die folgende Bedeutung:
     Bundesland               Zu- Zuwachs Wachst.- Verdoppl.  Gesamte   pro     Schätzung   R^2  Diff. Fenster Exp/Lin
                            wachs   pro    rate      zeit      Fälle  100.000                          größe
                                  100.000
+
+Stand 27.04.2020
+
+    Baden-Württemberg          422  3.8   1.4%    51.1 days   31043    280     [296, 304] 1.00  0.00   9  e
+    Bayern                     492  3.8   1.2%   166.6 days   41070    314     [331, 339] 0.99  0.01  10  l
+    Berlin                      68  1.9   1.2%    58.0 days    5638    155     [162, 166] 0.98  0.00  10  e
+    Brandenburg                 75  3.0   2.8%    25.4 days    2721    108     [122, 129] 0.99  0.01  14  e
+    Bremen                      17  2.4   2.2%    31.4 days     754    110     [121, 126] 0.99  0.00   4  e
+    Hamburg                     38  2.1   0.9%    80.6 days    4475    243     [251, 256] 0.99 -0.00   4  e
+    Hessen                     142  2.3   1.8%   112.3 days    7979    127     [138, 143] 0.99  0.02  14  l
+    Mecklenburg-Vorpommern     4.0  0.2   0.6%   116.9 days     674     42       [43, 43] 0.97  0.00   6  e
+    Niedersachsen              144  1.8   1.5%   136.4 days    9847    123     [132, 135] 0.99  0.01  11  l
+    Nordrhein-Westfalen        533  3.0   1.7%   119.3 days   31879    178     [193, 199] 0.98  0.02  14  l
+    Rheinland-Pfalz             55  1.3   0.9%   214.7 days    5879    144     [149, 152] 0.99  0.00   9  l
+    Saarland                    19  1.9   0.8%   265.2 days    2503    253     [260, 264] 0.99 -0.00   4  l
+    Sachsen                     27  0.7   0.6%   115.5 days    4458    109     [112, 113] 1.00 -0.00   4  e
+    Sachsen-Anhalt              24  1.1   1.6%   125.9 days    1515     69       [73, 75] 0.99  0.00  14  l
+    Schleswig-Holstein          32  1.1   1.2%   162.6 days    2638     91       [96, 98] 0.98  0.01  13  l
+    Thüringen                   48  2.3   2.3%    87.3 days    2120     99     [109, 113] 0.99  0.01  14  l
+    
+    Deutschland               2041  2.5   1.3%   151.6 days  155193    187     [198, 203] 1.00  0.01  10  l
 
 Stand 22.04.2020
 
@@ -587,6 +609,11 @@ Finden Sie mich auf [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), a
 Ich arbeite als selbständiger Data Scientist. Sie können mich mit Ihrem Projekt beauftragen.
 
 ### Archiv
+
+Zusammenfassung am Mittwoch, 22 April 2020:
+
+* Aufgrund technischer Probleme wurden am 21.04.2020 am Robert Koch Institut keine Daten aus Hamburg empfangen.
+* Die neuen Infektionszahlen gehen schön zurück. Bayern kann sich über eine deutlichere Senkung der täglichen neuen Fälle freuen. Damit ist die Anzahl der neuen Infekten pro Tag und Bevölkerung in Baden-Württemberg am größten.
 
 Zusammenfassung am Freitag, 17 April 2020:
 
