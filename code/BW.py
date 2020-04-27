@@ -30,6 +30,7 @@ allowed_values = ['Alb-Donau-Kreis', 'Baden-Baden (Stadtkreis)', 'Biberach', 'B�
 
 selection = 'alle' # Choose one of the elements of allowed_values.
 #selection = allowed_values[10] # Alternatively, choose an element index from allowed_values.
+#selection = 'Pforzheim (Stadtkreis)'
 
 cases = 'both' # 'confirmed' or 'deaths' or 'both'
 
@@ -87,7 +88,7 @@ def open_data():
 
 # Scatter plot
 def scp(sc_save_not_show, case_type='confirmed'):
-    lk2kz = {'Baden-Baden (Stadtkreis)': 'BAD', 'Böblingen': 'BB', 'Breisgau-Hochschwarzwald': 'FR*', 'Emmendingen': 'EM', 'Esslingen': 'ES', 'Freiburg im Breisgau (Stadtkreis)': 'FR', 'Freudenstadt': 'FDS', 'Heidelberg (Stadtkreis)': 'HD', 'Heidenheim': 'HDH', 'Heilbronn (Stadtkreis)': 'HN', 'Heilbronn': 'HN*', 'Hohenlohekreis': 'KÜN', 'Karlsruhe (Stadtkreis)': 'KA', 'Konstanz': 'KN', 'Ludwigsburg': 'LB', 'Mannheim (Stadtkreis)': 'MA', 'Ortenaukreis': 'OG', 'Ostalbkreis': 'AA/GD', 'Pforzheim (Stadtkreis)': 'PF', 'Reutlingen': 'RT', 'Rhein-Neckar-Kreis': 'HD*', 'Rottweil': 'RW', 'Schwäbisch Hall': 'SHA', 'Sigmaringen': 'SIG', 'Stuttgart': 'S', 'Tuttlingen': 'TUT', 'Tübingen': 'TÜ', 'Ulm (Stadtkreis)': 'UL', 'Waldshut': 'WT', 'Zollernalbkreis': 'BL'}
+    lk2kz = {'Baden-Baden (Stadtkreis)': 'BAD', 'Böblingen': 'BB', 'Breisgau-Hochschwarzwald': 'FR*', 'Emmendingen': 'EM', 'Esslingen': 'ES', 'Freiburg im Breisgau (Stadtkreis)': 'FR', 'Freudenstadt': 'FDS', 'Heidelberg (Stadtkreis)': 'HD', 'Heidenheim': 'HDH', 'Heilbronn (Stadtkreis)': 'HN', 'Heilbronn': 'HN*', 'Hohenlohekreis': 'KÜN', 'Karlsruhe (Stadtkreis)': 'KA', 'Konstanz': 'KN', 'Lörrach': 'LÖ', 'Ludwigsburg': 'LB', 'Mannheim (Stadtkreis)': 'MA', 'Ortenaukreis': 'OG', 'Ostalbkreis': 'AA/GD', 'Pforzheim (Stadtkreis)': 'PF', 'Reutlingen': 'RT', 'Rhein-Neckar-Kreis': 'HD*', 'Rottweil': 'RW', 'Schwäbisch Hall': 'SHA', 'Schwarzwald-Baar-Kreis': 'VS', 'Sigmaringen': 'SIG', 'Stuttgart': 'S', 'Tuttlingen': 'TUT', 'Tübingen': 'TÜ', 'Ulm (Stadtkreis)': 'UL', 'Waldshut': 'WT', 'Zollernalbkreis': 'BL'}
     figures = open_data()
     if case_type=='confirmed':
         fallzahl = 'Fallzahl auf {0} Einwohner'.format(utils.separated(str(int(normalise_by)), lang))

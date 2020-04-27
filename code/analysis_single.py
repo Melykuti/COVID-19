@@ -17,7 +17,7 @@ from importlib import reload
 
 ### User input ###
 
-country = 'Germany' # 'US', 'Switzerland' 'United Kingdom' 'Netherlands' 'Denmark' 'Spain' 'France' 'Germany' 'Sweden' 'Singapore'
+country = 'Germany' # 'US', 'Switzerland' 'United Kingdom' 'Netherlands' 'Denmark' 'Spain' 'France' 'Germany' 'Sweden' 'Singapore' 'Saudi Arabia' 'Tunisia' 'Turkey'
 #country = 'Korea, South'
 #country = ['New South Wales', 'Australia']
 #country = 'EU'
@@ -28,17 +28,21 @@ lang = 'en' # 'de' for German, anything else for English
 normalise_by = 1e5 # report case numbers per this many people
 exp_or_lin = 'both' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
 max_display_length = 45 # in days; if positive, then it plots the most recent max_display_length days only
+latest_date = None
+#latest_date = 1
 
 ### End of user input ###
 
 
 if __name__ == '__main__':
-    pop_csv = None#'world'
+    pop_csv = 'world' #None
     df = utils.open_csvs()
     df_ts = utils.data_preparation(df, country, cases)
     df_ts = utils.rm_early_zeros(df_ts)
     if max_display_length > 0:
         df_ts = df_ts[-max_display_length:]
+    if latest_date != None:
+        df_ts = df_ts[:-latest_date]
     results, model, selected_window_length, e_or_l = utils.process_geounit(
                                                         df_ts, window_length, exp_or_lin)
 

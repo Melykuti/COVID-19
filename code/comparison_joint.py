@@ -44,13 +44,13 @@ countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Ki
 #countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 # New
 #countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
-countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
+#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
 
 '''
 # Drop-in replacement for original:
 countries = ['China', 'EU', 'US']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=55.; normalise = None; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 '''
-#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=200.; bottom_bound=0.; top_bound=55.; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
+#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=55.; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 # New
 #countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
 #countries = ['China', 'EU', 'US']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
@@ -59,10 +59,20 @@ countries = ['China', 'EU', 'US']; left_bound=1000; right_bound=None; bottom_bou
 # Drop-in replacement for original:
 countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=50.; right_bound=10000; bottom_bound=0.; top_bound=80.; normalise = None; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 '''
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=40.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 # New
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=40.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=40.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
+
+# Nordic countries
+#countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
+#countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
+#countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
+
+# DACH
+#countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'DACH'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
+#countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'DACH'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
+#countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'DACH'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
 
 '''
 # Drop-in replacement for original:
@@ -71,10 +81,16 @@ countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'C
 #countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 # New
 #countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
-#countries = 'Deutschland'; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
+countries = 'Deutschland'; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date';# exp_or_lin = 'exp'
 
 
 # Testing
+
+#countries = 'Deutschland'; left_bound=1; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'; cases = 'deaths'
+#countries = 'Deutschland'; left_bound=1; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'; cases = 'deaths'
+#countries = 'Deutschland'; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'; cases = 'deaths'
+
+
 #countries = ['China', 'EU', 'US']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=None; normalise = None; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
 #countries = ['China', 'EU', 'US']; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'y'; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
 
@@ -268,48 +284,75 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, exp_o
     #fig, ax1 = plt.subplots(1,1, figsize=(9.6, 6.4))
     space_below = 0.2 # in the case of dates which are rotated
     if lang=='de':
+        if cases=='confirmed':
+            case_txt_0 = 'Fallzahlen'
+            case_txt_1 = 'Fallzahl'
+        elif cases=='deaths':
+            case_txt_0 = 'Todesfälle'
+            case_txt_1 = 'Todesfälle'
         if window_length<0:
-            ax1.set_title('Lineare Regression auf {}Fallzahlen mit optimaler Fenstergröße.'.format('den Logarithmus der ' if exp_or_lin=='exp' else ''))
+            ax1.set_title('Lineare Regression auf {0}{1} mit optimaler Fenstergröße.'.format('den Logarithmus der ' if exp_or_lin=='exp' else '', case_txt_0))
         else:
-            ax1.set_title('Lineare Regression auf {0}Fallzahlen mit Fenstergröße von {1} Datenpunkten.'.format('den Logarithmus der ' if exp_or_lin=='exp' else '', window_length))
+            ax1.set_title('Lineare Regression auf {0}{1} mit Fenstergröße von {2} Datenpunkten.'.format('den Logarithmus der ' if exp_or_lin=='exp' else '', case_txt_0, window_length))
 
         if xaxis == 'cases':
-            ax1.set_xlabel('Fallzahl auf {} Einwohner'.format(utils.separated(str(normalise_by), lang)) if normalise=='xy' else 'Fallzahl')
+            if normalise=='xy':
+                ax1.set_xlabel('{0} auf {1} Einwohner'.format(case_txt_1, utils.separated(str(normalise_by), lang)) if normalise=='xy' else case_txt_1)
+            else:
+                ax1.set_xlabel(case_txt_1)
+            '''
+            if cases=='confirmed':
+                ax1.set_xlabel('{0} auf {1} Einwohner'.format(case_txt_1, utils.separated(str(normalise_by), lang)) if normalise=='xy' else 'Fallzahl')
+            elif cases=='deaths':
+                ax1.set_xlabel('{0} auf {1} Einwohner'.format(case_txt_1, utils.separated(str(normalise_by), lang)) if normalise=='xy' else 'Todesfälle')
+            '''
         #else:
         #    fig.subplots_adjust(bottom=space_below)
 
         if incr_or_rate == 'rate':
-            ax1.set_ylabel('Wachstumsrate der Fallzahlen')
-            fig.suptitle('Tägliche Wachstumsrate der Fallzahlen, Stand ' + latest_date.strftime('%d.%m.%Y'))
+            ax1.set_ylabel('Wachstumsrate der {}'.format(case_txt_0))
+            fig.suptitle('Tägliche Wachstumsrate der {}, Stand '.format(case_txt_0) + latest_date.strftime('%d.%m.%Y'))
         else:
             if normalise is None:
                 ax1.set_ylabel('Täglicher Zuwachs')
-                fig.suptitle('Täglicher Zuwachs der Fallzahlen, Stand ' + latest_date.strftime('%d.%m.%Y'))
+                fig.suptitle('Täglicher Zuwachs der {}, Stand '.format(case_txt_0) + latest_date.strftime('%d.%m.%Y'))
             else:
                 ax1.set_ylabel('Täglicher Zuwachs auf {} Einwohner'.format( utils.separated(str(normalise_by), lang)))
-                fig.suptitle('Täglicher Zuwachs der Fallzahlen auf {0} Einwohner, Stand {1}'.format(utils.separated(str(normalise_by), lang), latest_date.strftime('%d.%m.%Y')))
+                fig.suptitle('Täglicher Zuwachs der {0} auf {1} Einwohner, Stand {2}'.format(case_txt_0, utils.separated(str(normalise_by), lang), latest_date.strftime('%d.%m.%Y')))
 
     else: # i.e. 'en'
+        if cases=='confirmed':
+            case_txt_0 = 'case numbers'
+            case_txt_1 = 'cases'
+        elif cases=='deaths':
+            case_txt_0 = 'number of deaths'
+            case_txt_1 = 'deaths'
+
         if window_length<0:
-            ax1.set_title('Linear regression for {}case numbers with optimised window length.'.format('logarithm of ' if exp_or_lin=='exp' else ''))
+            ax1.set_title('Linear regression for {0}{1} with optimised window length.'.format('logarithm of ' if exp_or_lin=='exp' else '', case_txt_0))
         else:
-            ax1.set_title('Linear regression for {0}case numbers. Window length: {1} data points.'.format('logarithm of ' if exp_or_lin=='exp' else '', window_length))
+            ax1.set_title('Linear regression for {0}{1}. Window length: {2} data points.'.format('logarithm of ' if exp_or_lin=='exp' else '', case_txt_0, window_length))
 
         if xaxis == 'cases':
-            ax1.set_xlabel('Number of cases per {} people'.format(utils.separated(str(normalise_by), lang)) if normalise=='xy' else 'Number of cases')
+            if cases=='confirmed':
+                ax1.set_xlabel('Number of {0} per {1} people'.format(case_txt_1, utils.separated(str(normalise_by), lang)) if normalise=='xy' else 'Number of cases')
+            elif cases=='deaths':
+                ax1.set_xlabel('Number of {0} per {1} people'.format(case_txt_1, utils.separated(str(normalise_by), lang)) if normalise=='xy' else 'Number of deaths')
         #else:
         #    fig.subplots_adjust(bottom=space_below)
 
         if incr_or_rate == 'rate':
             ax1.set_ylabel('Daily growth rate')
-            fig.suptitle('Daily growth rate of number of cases ('+latest_date.strftime('%d %B %Y')+')')
+            fig.suptitle('Daily growth rate of number of {} ('.format(case_txt_1) +\
+             latest_date.strftime('%d %B %Y')+')')
         else:
             if normalise is None:
                 ax1.set_ylabel('Daily increment')
-                fig.suptitle('Daily increment of number of cases ('+latest_date.strftime('%d %B %Y')+')')
+                fig.suptitle('Daily increment of number of {} ('.format(case_txt_1) +\
+                 latest_date.strftime('%d %B %Y')+')')
             else:
                 ax1.set_ylabel('Daily increment per {} people'.format(utils.separated(str(normalise_by), lang)))
-                fig.suptitle('Daily increment of number of cases per {0} people ({1})'.format(utils.separated(str(normalise_by), lang), latest_date.strftime('%d %B %Y')))
+                fig.suptitle('Daily increment of number of {0} per {1} people ({2})'.format(case_txt_1, utils.separated(str(normalise_by), lang), latest_date.strftime('%d %B %Y')))
 
     #fig.tight_layout()
 
@@ -340,14 +383,15 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, exp_o
     ax1.legend()
     ax1.grid(True, axis='y')
     #plt.gcf().text(0.905, 0.87, "© Bence Mélykúti, Melykuti.me, 2020", fontsize=8, color='lightgray', rotation=90) # 0.905, 0.37
-    plt.gcf().text(0.905, 0.87, "© Bence Mélykúti, http://COVID19.Melykuti.Be, 2020", fontsize=8, color='lightgray', rotation=90)
+    plt.gcf().text(0.905, 0.87, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     if save_not_show==0:
         plt.show()
     elif save_not_show==1:
         imgfile = filename + '_DGR_'\
                   + latest_date.strftime('%Y-%m-%d') + '_' \
                   + (normalise if normalise is not None else '0') + '_' \
-                  + str(window_length) + '_' + exp_or_lin + '_' + xaxis + '_' + incr_or_rate + '.png'
+                  + str(window_length) + '_' + exp_or_lin + '_' + xaxis + '_' \
+                  + incr_or_rate + '_' + cases + '.png'
         plt.savefig(imgfile)
         plt.close(fig)
 

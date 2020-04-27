@@ -21,8 +21,9 @@ allowed_values = \
 
 ### User input ###
 
-#selection = 'alle' # Choose one of the elements of allowed_values.
-selection = allowed_values[0] # Alternatively, choose an element index from allowed_values.
+selection = 'alle' # Choose one of the elements of allowed_values.
+#selection = allowed_values[0] # Alternatively, choose an element index from allowed_values.
+#selection = 'Hamburg'
 
 cases = 'confirmed' # 'confirmed' or 'deaths' or 'confirmed_minus_deaths'
 
@@ -39,7 +40,7 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
     'Deutschland': 13})
 '''
 
-save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
 # In the case of 'alle', 0 functions as -1.
 
 normalise_by = 1e5 # report case numbers per this many people
@@ -298,6 +299,7 @@ def data_preparation_DEU(output):
 if __name__ == '__main__':
     pop_csv = 'DEU'
     figures_diff = data_preparation_DEU(cases)
+    #figures_diff = figures_diff.iloc[:-1,:]
     if max_display_length > 0:
         figures_diff = figures_diff[-max_display_length:]
 

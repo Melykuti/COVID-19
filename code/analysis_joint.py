@@ -17,7 +17,7 @@ from importlib import reload
 
 ### User input ###
 
-countries = ['US', 'Italy', 'Spain', 'France', 'United Kingdom', 'Germany', 'Netherlands', 'Iran',  'Belgium', 'Switzerland', 'Sweden', 'Japan', 'Austria', 'Denmark', 'Hungary', 'Korea, South', 'China']
+countries = ['US', 'United Kingdom', 'Italy', 'Spain', 'France', 'Russia', 'Germany', 'Netherlands', 'Belgium', 'Iran',  'Sweden', 'Saudi Arabia', 'Japan', 'Singapore', 'Switzerland', 'Belarus', 'Austria', 'Denmark', 'Hungary', 'Korea, South', 'China']
 #countries = ['US', 'Italy', 'France', 'Spain', 'Germany', 'United Kingdom', 'Iran', 'Netherlands', 'Belgium', 'Switzerland', 'Sweden', 'Austria', 'Japan', 'Denmark', 'Hungary', 'Korea, South', 'China']
 #countries = ['US', 'Italy', 'Spain', 'Germany', 'France', 'Iran', 'United Kingdom', 'Switzerland', 'Netherlands', 'Belgium', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', 'China'] # ['Hubei', 'China']]
 #countries = ['United Kingdom']
