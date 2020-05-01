@@ -3,13 +3,13 @@
 > * Recall that on this page I examine the number of currently infected patients and not the cumulative number of all who have been infected and might have recovered or died.
 > * If you already know my methodology, just skip down to the Plots and the Results sections.
 
-13 March 2020 (updated on 23 April 2020), Freiburg i. Br., Germany, where a lockdown has been in force since 21 March 2020. -- The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
+13 March 2020 (updated on 1 May 2020), Freiburg i. Br., Germany, where a lockdown has been in force since 21 March 2020. -- The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
 
 Thinking in terms of the classical SIR model of epidemiology, the population comprises three groups: **S**usceptibles, **I**nfected and **R**emoved. _Removed_ are those who have recovered from or died of the disease and thereby are no longer infectious and can no longer catch the disease. _Infected_ are the current patients who are also all infectious. _Susceptibles_ are everybody else: people who have not been infected yet (and hopefully will never be).
 
 In the initial stage of an epidemic, we expect that most contacts by infected people will be with a susceptible person. This provides a fertile ground for the disease to spread. The number of infected people is rising exponentially (in the mathematical, not in the vague and overused marketing sense) until there are so many of them that it is becoming harder for the disease to find susceptibles.
 
-**Unfortunately, most countries saw exponential growth of case numbers without introducing lockdowns. (As far as I know, Singapore, South Korea, Taiwan are a few which have avoided this.) With lockdowns in force for three weeks now, a deceleration of growth is seen in Italy, Spain, Germany, France.**
+**Unfortunately, most countries saw exponential growth of case numbers without introducing lockdowns. (As far as I know, Singapore, South Korea, Taiwan are a few which have avoided this.) With lockdowns of varying stringency in force for several weeks now, a slowdown of the epidemic is seen in Italy, Spain, France, Germany.**
 
 Exponential growth means that from one day to the next, the total number of infected people increases not by a fixed number but by a fixed multiple. In any one hospital, the number of new patients per day is not the same as the number of new patients was yesterday. Instead, it is increasing by the same factor every day. For example, today the hospital gets 11 new patients, tomorrow 13, the day after 16, on day&nbsp;4 already 19, on day&nbsp;5 23. If the stream doesn't stop, then on day&nbsp;10 it will be 57 new patients, and so on. Each patient spends one to three weeks hospitalised, and the people being removed from the hospital are the lower numbers that arrived one to three weeks ago. If you are medical personnel and had a hard day at work, you can be sure that tomorrow will be even harder, the day after still harder. There is no system capable of meeting this demand.
 
@@ -48,110 +48,118 @@ I compute the number of currently infectious people as the number of total confi
 
 (On 24 March 2020, I reported the total number of confirmed cases for each country because the number of recoveries was not included in the JHU CSSE dataset.)
 
-#### Exponential growth model
+#### Exponential and linear growth models for cumulative case numbers
 
-Originally, my analysis was founded on the assumption that the growth of this number is exponential. In this case, I take the base&nbsp;2 logarithm of this time series for a selected country, and fit a straight line to the last 4-14 days of data with _ordinary least squares (OLS)_. If the growth is exponential or thereabouts, then this should fit quite well and the slope of this line will tell us the growth rate. The length of this time window is optimised to provide the best linear fit.
-
-From this slope I compute:
-
-1. The growth factor per day, which I express in percentage terms. (What percentage more infectious people we expect tomorrow than we had today.)
-
-2. How many days it takes for the number of infectious people to double.
-
-3. I make a crude estimate of what I guess the total number of infected people might currently be.
-
-The third one is only my guesswork. The idea is that in the case of a SARS-CoV-2 infection, it takes on average 5-6 days to develop symptoms (fever, a usually dry cough and others). This incubation time varies between 1 to 14 days. The people who were infected today will present symptoms and will be tested perhaps 4-6 days from now. They will enter the figure in the situation report only thereafter. Also, they are likely to be already infectious sooner than that and that is what worries us as common people.
-
-So I project from my linear regression the number of infected four, respectively, six days from the latest data point, and that is the estimate for the current total case number. This is probably too conservative and may be a low estimate not only because many cases never get tested and recorded but also because from developing symptoms, one still needs perhaps 1-3 days to get tested and for the test result to enter the international statistical tables. There are also wide differences between how much testing different countries do; low testing intensity is bound to bias the confirmed case number downwards.
-
-The exponential curve is not always a good fit (a straight line is not always a good fit to the logarithm of the current case number). Especially after the introduction of draconian countermeasures, such as a lockdown, the growth slowed substantially.
-
-#### Linear growth model
+Originally, my analysis was founded on the assumption that the growth of this number is exponential. In this case, I took the base&nbsp;2 logarithm of this time series for a selected country, and fitted a straight line to the last 4-14 days of data with _ordinary least squares (OLS)_. If the growth is exponential or thereabouts, then this should fit quite well and the slope of this line will tell us the growth rate. The length of this time window is optimised to provide the best linear fit.
 
 As long as I was fitting exponential models, the interpretation could only be that growth was exponential. Towards the end of March and beginning of April, this no longer held for many countries. Once the daily new case number starts to stabilise, it is natural to fit a linear model. The procedure is the same but I fit to the case numbers and not to their logarithms.
 
-The first dataset is the 30 March 2020 where I tried fitting linear models in addition to the exponentials as well. I had originally presented exponential fits exclusively. Upon the switchover to the new methodology, I also show the fits where I selected the best of exponential and linear fits for comparison. The last column in the table now displays `e` for the case when the exponential model is a better fit, `l` when the linear model.
+The first dataset is the 30 March 2020 where I tried fitting linear models in addition to the exponentials as well. I had originally presented exponential fits exclusively. Upon the switchover to the new methodology, I also showed the fits where I selected the best of exponential and linear fits for comparison. The last column in the table now displays `e` for the case when the exponential model is a better fit, `l` when the linear model.
 
-The _doubling time_ is by nature a notion best suited for exponential growth. I compute it for linear growth, too, although it is less meaningful. In exponential growth, after twice the doubling time, there will be four times the original case number. After `n` times the doubling time, you have got `2^n` times the original count. In linear growth, after twice the doubling time, you have got only three times the original count. After `n` times the doubling time, you have got `n+1` times the original count.
+#### Exponential and linear model fits for daily new case numbers
 
-The next columns of the table are used to compare the two models and to compare different window lengths:
+The COVID-19 pandemic has been a forced learning process for all of us. I learnt to appreciate that fitting curves to the daily new cases is much preferable to fitting to cumulative numbers. The cumulative numbers exhibit strong dependency (autocorrelation) and any fit will appear much better than it really is. By moving to fitting to daily changes, I get more meaningful uncertainties for my fits. Here are [two](https://thelancet.com/journals/lancet/article/PIIS0140-6736(03)13335-1/fulltext) [publications](https://royalsocietypublishing.org/doi/full/10.1098/rspb.2015.0347) that explain this. My new code was ready for the 1 May 2020 but for comparison, I ran it also for the last report done with the old one on 23 April.
 
-4. The [R^2 or coefficient of determination](https://en.wikipedia.org/wiki/Coefficient_of_determination) of the linear regression fit (which I can't explain here). The closer it is to 1, the better the match is between the data and my linear regression. This is straightforward for both the exponential and the linear models, it is just so that for the exponential model, the linear fit happens for the logarithm of the time series.
+From this fit I compute:
 
-5. I also compute the difference between the value of the fitted straight line for the last day when we have data and the real observation _in the logarithmic space_ for that last day.  
-For the _exponential model_, this is indeed a difference. You can interpret this number as a ratio between the linear approximation and the data because it is a difference between the logarithms. For the _linear model_, this is the ratio of the fitted line on the last available day and the real observation for the last available day, minus 1.  
-If the spread is slowing relative to the exponential rate, then this number will be great and the projection is definitely unreliable. If this difference is small, then the projection might well be good. When the difference is negative, then the projection will be an underestimate of the true case number!
+1. The daily change in the number of cases. It would be easy to report the change of cumulative numbers between the last and the penutimate days but I derive this value from my fit. You can interpret the fitting process as a smoothing over the last several days.
+
+2. How many days it takes for the number of infectious people to double, i.e. starting today to produce the current cumulative number of cases once more. This is also computed from the fit by an integral. It is to note that even if the current growth rate is positive, the fit might be such that it is dropping sufficiently fast that under the projection implied by the fit, the new cases will never reach the current cumulative case number. In this case, the doubling time is reported as infinity.
+
+3. The growth factor per day, which I express in percentage terms. (What percentage more infectious people we expect tomorrow than we had today.) This is computed from the doubling time, if it is finite, by assuming uniform geometric progression. Here like for the daily change in the number of cases I use the fit and not the trivial operation from the raw data as the latter is bound to be very noisy.
+
+4. I make a crude estimate of what I guess the total number of infected people might currently be.
+
+The third one is only my guesswork. The idea is that in the case of a SARS-CoV-2 infection, it takes on average 5-6 days to develop symptoms (fever, a usually dry cough and others). This incubation time varies between 1 to 14 days. The people who were infected today will present symptoms and will be tested perhaps 4-6 days from now. They will enter the figure in the situation report only thereafter. Also, they are likely to be already infectious sooner than that and that is what worries us as ordinary people.
+
+So I project from my curve fit the number of infected four, respectively, six days from the latest data point, and that is the estimate for the current total case number. This is probably too conservative and may be a low estimate not only because many cases never get tested and recorded but also because from developing symptoms, one still needs perhaps 1-5 days to get tested and for the test result to enter the international statistical tables. There are also wide differences between how much testing different countries do; low testing intensity is bound to bias the confirmed case number downwards.
+
+
+There are two columns of the table that I use to compare the exponential and linear models and to compare different window lengths:
+
+5. The [R^2 or coefficient of determination](https://en.wikipedia.org/wiki/Coefficient_of_determination) of the linear regression fit (which I can't explain here). The closer it is to 1, the better the match is between the data and my linear regression. This is straightforward for both the exponential and the linear models, it is just so that for the exponential model, the linear fit happens for the logarithm of the time series. Very clearly, this value dropped by a great amount at the switch to fitting to daily increments from fitting to cumulative numbers on 1 May 2020. See the comparison for the data on 23 April.
+
+6. I also compute the difference between the change in cumulative numbers over the time window implied by the model fit and the real change in the data over the same time window, normalised by the latter, the real change in the data.  
+You can also see it as the ratio of the change in cumulative numbers over the time window from the model fit and of the change in cumulative numbers over the time window from the real data, minus&nbsp;1.  
+If the total number is increasing, then this number is positive if the fit overestimates the actual increase and negative, if the fit underestimates it.  
+If we study active cases and their number is decreasing, then the denominator is negative. In this case, if the fit overestimates the absolute rate of decrease (it is a negative number which is smaller than the real data), then this indicator is positive. If the fit underestimates the absolute rate of decrease, then this number is negative.  
+For example, if the spread of the disease is slowing relative to the fitted curve, then this number will be great and the projection in bulletpoint&nbsp;4. is definitely unreliable. If this difference is small, then the projection might well be good. When the difference is negative, then the projection will be an underestimate of the true case number!
 
 The automatic selection of the window length minimises the l_2 norm of the two-dimensional vector  
-`(10 * (1-R^2), difference between projection and last data point in base 2 logarithmic space).`  
-So I minimise both 1-R^2 and the difference between the fitted line and the true data point (only for the most recent date). The factor of 10 is there to weigh one relative to the other. Note that the difference is in log2 space so it is a factor in linear space. So R^2=0.99 gives first coordinate 10*0.01 = 0.1, and to get the same second coordinate of 0.1, you'd have a ratio of 2^0.1 = 1.072 between linear fit and actual data for the last available data point. This is how the two errors trade off in my window length selection.
+`(10 * (1-R^2), normalised difference between projected and realised changes in cases over the time window).`  
+So I minimise both 1-R^2 and the normalised difference between change for the fitted line and change in the real data (over the selected time window). The factor of 10 is there to weigh one relative to the other. So R^2=0.99 gives first coordinate 10*0.01 = 0.1, and to get the same second coordinate of 0.1, you'd have a difference of 10% between curve fit and actual data for the change over the time window. This is how the two errors trade off in my window length selection.
 
 To choose between the exponential and the linear models, once I have selected the optimal window size independently for each, I choose the model where this l_2 norm is smaller.
 
-Even when the daily increments have stabilised and the growth is clearly only linear, it can happen that both the exponential and the linear models fit well in the time window and the optimisation selects the exponential as the slightly better one. Therefore one should not attribute too much importance to preference for the exponential model over the linear one.
+Even when the daily increments have stabilised and the spread of the COVID-19 pandemic is clearly only linear, it can happen that both the exponential and the linear models fit well in the time window and the optimisation selects the exponential as the slightly better one. Therefore one should not attribute too much importance to preference for the exponential model over the linear one.
 
-I show projections for the number of infected 4-to-6 days from now (which, as I said, is what I guess to be the real number of cumulative coronavirus cases today) only if (the R^2 is greater than or equal to 0.95 and the above difference is not greater than 0.5) or if the difference is in [-0,2;&nbsp; 0,1]. Since 15 April 2020, I have omitted the projections also when active case numbers are decreasing.
+I show projections for the number of infected 4-to-6 days from now (which, as I said, is what I guess to be the real number of cumulative coronavirus cases today) only if (the R^2 is greater than or equal to 0.75 and the above normalised difference is not greater than 0.5) or if the normalised difference is in [-0.3;&nbsp; 0.3]. (Before switching the fit to the daily new cases from cumulative numbers, the condition was: (the R^2 was greater than or equal to 0.95 and an earlier difference was not greater than 0.5) or if the earlier difference was in [-0.2;&nbsp; 0.1]).) Since 15 April 2020, I have omitted the projections also when active case numbers are decreasing.
 
 ### Plots
 
-The plots for each individual country present the observed total number of infected on the left panel, and the same data on logarithmic scale on the right panel. These lines are in blue.
+Since 1 May 2020, when I started fitting curves to daily change instead of cumulative numbers, I display the daily change for each individual country on the left panel, together with the fitted curve.
 
-If the exponential model fits better, then orange is the fit of the exponential curve, which is the same as the fit of a straight line on logarithmic scale (on the right panel). If the linear model fits better, then pink is the linear fit, which is the same as the fit of a straight line on natural scale (on the left panel).
+The plots present the observed total number of infected on the middle panel, and the same data on logarithmic scale on the right panel. These lines are in blue.
 
-![US](https://github.com/Melykuti/COVID-19/blob/master/plots/US_2020-04-22.png)
+If the linear model fits better, then pink is the linear fit, which is the same as the fit of a straight line on natural scale on the left panel. If the exponential model fits better, then orange is the fit of the exponential curve, which is the same as the fit of a straight line on logarithmic y-scale (not actually shown) for the data on the left panel.
 
-![United Kingdom](https://github.com/Melykuti/COVID-19/blob/master/plots/United_Kingdom_2020-04-22.png)
+![US](https://github.com/Melykuti/COVID-19/blob/master/plots/US_2020-04-30.png)
 
-![Italy](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-04-22.png)
+![United Kingdom](https://github.com/Melykuti/COVID-19/blob/master/plots/United_Kingdom_2020-04-30.png)
 
-![Spain](https://github.com/Melykuti/COVID-19/blob/master/plots/Spain_2020-04-22.png)
+![Italy](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-04-30.png)
 
-![France](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-04-22.png)
+![Russia](https://github.com/Melykuti/COVID-19/blob/master/plots/Russia_2020-04-30.png)
 
-![Russia](https://github.com/Melykuti/COVID-19/blob/master/plots/Russia_2020-04-22.png)
+![France](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-04-30.png)
 
-![Germany](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2020-04-22.png)
+![Spain](https://github.com/Melykuti/COVID-19/blob/master/plots/Spain_2020-04-30.png)
 
-![Netherlands](https://github.com/Melykuti/COVID-19/blob/master/plots/Netherlands_2020-04-22.png)
+![Netherlands](https://github.com/Melykuti/COVID-19/blob/master/plots/Netherlands_2020-04-30.png)
 
-![Belgium](https://github.com/Melykuti/COVID-19/blob/master/plots/Belgium_2020-04-22.png)
+![Germany](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2020-04-30.png)
 
-![Iran](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2020-04-22.png)
+![Belgium](https://github.com/Melykuti/COVID-19/blob/master/plots/Belgium_2020-04-30.png)
 
-![Sweden](https://github.com/Melykuti/COVID-19/blob/master/plots/Sweden_2020-04-22.png)
+![Saudi Arabia](https://github.com/Melykuti/COVID-19/blob/master/plots/Saudi_Arabia_2020-04-30.png)
 
-![Saudi Arabia](https://github.com/Melykuti/COVID-19/blob/master/plots/Saudi_Arabia_2020-04-22.png)
+![Sweden](https://github.com/Melykuti/COVID-19/blob/master/plots/Sweden_2020-04-30.png)
 
-![Japan](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2020-04-22.png)
+![Singapore](https://github.com/Melykuti/COVID-19/blob/master/plots/Singapore_2020-04-30.png)
 
-![Singapore](https://github.com/Melykuti/COVID-19/blob/master/plots/Singapore_2020-04-22.png)
+![Iran](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2020-04-30.png)
+
+![Belarus](https://github.com/Melykuti/COVID-19/blob/master/plots/Belarus_2020-04-30.png)
+
+![Japan](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2020-04-30.png)
 
 Switzerland added 1399 recovered patients on 27 March (cumulative number went from 131 to 1530). This is why the currently infected cases dropped substantially on that date.
 
-![Switzerland](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2020-04-22.png)
-
-![Belarus](https://github.com/Melykuti/COVID-19/blob/master/plots/Belarus_2020-04-22.png)
-
-![Austria](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2020-04-22.png)
+![Switzerland](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2020-04-30.png)
 
 Denmark added 893 recovered patients on 1 April (cumulative number went from 1 to 894). This is why the currently infected cases dropped so much on that date.
 
-![Denmark](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2020-04-22.png)
+![Denmark](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2020-04-30.png)
 
-![Hungary](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2020-04-22.png)
+![Austria](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2020-04-30.png)
 
-![South Korea](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-04-22.png)
+![Hungary](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2020-04-30.png)
 
-![China](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2020-04-22.png)
+![South Korea](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-04-30.png)
 
+![Australia](https://github.com/Melykuti/COVID-19/blob/master/plots/Australia_2020-04-30.png)
+
+![China](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2020-04-30.png)
+
+![New Zealand](https://github.com/Melykuti/COVID-19/blob/master/plots/New_Zealand_2020-04-30.png)
 
 ### Results
 
 The columns have the following meaning:
 
-* (Since 15 April 2020) The number of currently infected people changes daily by this number right now
+* (Since 15 April 2020) The number of currently infected people changes daily by this number right now. This is computed from the model fit and not from the last two data points.
 
-* (Since 15 April 2020) The number of currently infected people per 100,000 population changes daily by this number right now
+* (Since 15 April 2020) The number of currently infected people per 100,000 population changes daily by this number right now. This is computed from the model fit and not from the last two data points.
 
 * The number of currently infected people increases daily by this percentage
 
@@ -165,14 +173,71 @@ The columns have the following meaning:
 
 * R^2 of linear regression fit
 
-* Difference between linear fit and real data in logarithmic space for the last data point
+* Normalised difference between change in active cases over the selected time window between curve fit and real data
 
-* (Since 18 March 2020) The number of days in the time window in which I fit the linear regression. It is automatically optimised to minimise the vector (10 * (1-R^2), difference) in l_2.
+* (Since 18 March 2020) The number of days in the time window in which I fit the linear regression. It is automatically optimised to minimise the vector (10 * (1-R^2), normalised difference) in l_2.
 
 * (Since 11 April 2020) e if the exponential model, l if the linear model provides the better fit and yielded the entries in the specific row of the table.
 
 I focus on countries with a large number of cases and on those to which I have got some personal connection. China and South Korea are examples where the preventative measures have slowed down the epidemic spread massively.
 &nbsp;
+
+    Country              Increment Incr. Growth   Doubling  Active     per      Estimate   R^2  Diff. Win- Exp/Lin
+                                    per   rate      time     Cases   100,000                          dow
+                                  100,000                                                             size
+
+1 May 2020
+
+    US                        3882  1.2   0.5%     inf days  852481    256     [236, 249] 0.63  0.19   6  l
+    United Kingdom            4578  7.0   4.1%    17.3 days  144482    220     [253, 273] 0.30  0.00   4  l
+    Italy                    -2256 -3.6  -2.2%     nan days  101551    163                0.72 -0.24   5  l
+    Russia                    5327  3.8   4.5%    15.6 days   93806     66       [82, 90] 0.17 -0.03  14  e
+    France                   -2730 -4.0  -3.0%     nan days   91912    135                0.48 -0.77   4  l
+    Spain                    -3328 -6.7  -4.3%     nan days   76842    154                0.46 -0.10   6  l
+    Netherlands                230  1.3   0.7%     inf days   34521    200     [201, 202] 0.82  0.06  14  l
+    Germany                  -2352 -2.9  -7.0%     nan days   32886     41                0.56 -0.31   6  l
+    Belgium                     95  0.8   0.3%     inf days   29349    250                0.56  0.31   7  l
+    Saudi Arabia              1154  3.4   4.8%    14.7 days   19428     57       [71, 78] 0.64 -0.02  14  l
+    Sweden                     716  7.0   6.1%    11.7 days   17501    172     [210, 237] 0.68 -0.17   4  l
+    Singapore                  452  7.3   3.1%     inf days   14910    240     [260, 262] 0.79  0.07  11  l
+    Iran                      -261 -0.3  -1.9%     nan days   13509     16                0.74  0.12   9  l
+    Belarus                    762  8.0   6.9%    10.4 days   11552    122     [159, 182] 0.41 -0.06  10  e
+    Japan                     -222 -0.2  -2.0%     nan days   11198    8.9                0.45  0.78   8  l
+    Switzerland               -210 -2.5  -4.4%     nan days    4449     53                0.18  0.07  11  l
+    Denmark                    -79 -1.3  -3.6%     nan days    2160     37                0.60 -0.49   6  l
+    Austria                    -66 -0.7  -3.3%     nan days    1961     22                0.55  0.08  10  l
+    Hungary                    4.6  0.0   0.2%     inf days    1882     19                0.71  0.35   4  l
+    Korea, South               -32 -0.1  -2.2%     nan days    1454    2.8                0.40  0.24   8  l
+    Australia                  7.0  0.0  10.7%     6.8 days     931    3.7         [5, 7] 0.79  0.44   6  l
+    China                      -27 -0.0  -3.3%     nan days     796   0.06                0.65  0.20   5  l
+    New Zealand               -3.4 -0.1  -1.6%     nan days     208    4.2                0.89  0.32   5  l
+
+23 April 2020
+
+    US                       23716  7.1   3.6%    19.6 days  715726    215     [247, 265] 0.84 -0.04   4  l
+    United Kingdom            3343  5.1   2.9%     inf days  115395    175     [189, 191] 0.78  0.10   4  l
+    Italy                     -312 -0.5  -0.3%     nan days  107699    173                0.84  0.16  12  l
+    Spain                     -341 -0.7  -0.3%     nan days  100757    201                0.32  0.75   6  l
+    France                   -3445 -5.1  -3.6%     nan days   93863    138                0.91 -1.33   4  l
+    Russia                    5943  4.2  11.8%     6.2 days   53066     37       [59, 73] 0.91 -0.06  14  e
+    Germany                  -2601 -3.2  -5.5%     nan days   45969     57                0.78 -0.15   5  l
+    Netherlands                610  3.5   2.0%     inf days   30788    178     [188, 189] 0.83  0.06   6  l
+    Belgium                    349  3.0   1.3%     inf days   26194    223     [230, 231] 0.49 -0.11   4  e
+    Iran                     -1075 -1.3  -6.0%     nan days   17492     21                0.48 -0.31   4  l
+    Sweden                     399  3.9   3.0%     inf days   13517    132     [146, 151] 0.33  0.06   6  l
+    Saudi Arabia              1104  3.2  10.9%     6.7 days   10846     32       [48, 59] 0.88 -0.06  14  e
+    Japan                       24  0.0   0.2%     inf days    9875    7.9                0.51  0.60   6  l
+    Singapore                 1374   22  16.9%     4.4 days    9233    149     [277, 384] 0.88 -0.10  13  e
+    Switzerland               -600 -7.1  -8.5%     nan days    6859     82                0.43 -0.10   7  l
+    Belarus                    667  7.0  12.0%     6.1 days    6454     68     [107, 135] 0.10 -0.20   5  l
+    Austria                   -143 -1.6  -4.4%     nan days    3087     35                0.60  0.19   7  l
+    Denmark                   -234 -4.0  -9.3%     nan days    2441     42                0.66 -0.15  14  l
+    Hungary                     64  0.7   6.8%    10.5 days    1648     17       [20, 23] 0.48 -0.12   5  e
+    Korea, South               -63 -0.1  -2.8%     nan days    2179    4.2                0.42  0.04   5  l
+    China                      -30 -0.0  -2.1%     nan days    1371   0.10                0.36  0.18   6  l
+
+
+In the following tables, all curve fitting used the cumulative case numbers, not the daily increments.
 
     Country              Increment Incr. Growth   Doubling  Active     per      Estimate   R^2  Diff. Win- Exp/Lin
                                     per   rate      time     Cases   100,000                          dow
