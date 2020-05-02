@@ -62,11 +62,11 @@ The COVID-19 pandemic has been a forced learning process for all of us. I learnt
 
 From this fit I compute:
 
-1. The daily change in the number of cases. It would be easy to report the change of cumulative numbers between the last and the penutimate days but I derive this value from my fit. You can interpret the fitting process as a smoothing over the last several days.
+1. The daily change in the number of cases. It would be easy to report the change of cumulative numbers between the last and the penultimate days but I derive this value from my fit. You can interpret the fitting process as a smoothing over the last several days.
 
 2. How many days it takes for the number of infectious people to double, i.e. starting today to produce the current cumulative number of cases once more. This is also computed from the fit by an integral. It is to note that even if the current growth rate is positive, the fit might be such that it is dropping sufficiently fast that under the projection implied by the fit, the new cases will never reach the current cumulative case number. In this case, the doubling time is reported as infinity.
 
-3. The growth factor per day, which I express in percentage terms. (What percentage more infectious people we expect tomorrow than we had today.) This is computed from the doubling time, if it is finite, by assuming uniform geometric progression. Here like for the daily change in the number of cases I use the fit and not the trivial operation from the raw data as the latter is bound to be very noisy.
+3. The growth factor per day, which I express in percentage terms. (What percentage more infectious people we expect tomorrow than we had today.) This is computed from the doubling time, if it is finite, by assuming uniform geometric progression. Here, like for the daily change in the number of cases, I use the fit and not the trivial operation from the raw data as the latter is bound to be very noisy. If the doubling time is estimated to be infinity, then I divide the daily change in the number of cases (as computed in Point&nbsp;1.) by the arithmetic mean of the last two cumulative case numbers.
 
 4. I make a crude estimate of what I guess the total number of infected people might currently be.
 
@@ -83,7 +83,7 @@ There are two columns of the table that I use to compare the exponential and lin
 You can also see it as the ratio of the change in cumulative numbers over the time window from the model fit and of the change in cumulative numbers over the time window from the real data, minus&nbsp;1.  
 If the total number is increasing, then this number is positive if the fit overestimates the actual increase and negative, if the fit underestimates it.  
 If we study active cases and their number is decreasing, then the denominator is negative. In this case, if the fit overestimates the absolute rate of decrease (it is a negative number which is smaller than the real data), then this indicator is positive. If the fit underestimates the absolute rate of decrease, then this number is negative.  
-For example, if the spread of the disease is slowing relative to the fitted curve, then this number will be great and the projection in bulletpoint&nbsp;4. is definitely unreliable. If this difference is small, then the projection might well be good. When the difference is negative, then the projection will be an underestimate of the true case number!
+For example, if the spread of the disease is slowing relative to the fitted curve, then this number will be great and the projection in Point&nbsp;4. is definitely unreliable. If this difference is small, then the projection might well be good. When the difference is negative, then the projection will be an underestimate of the true case number!
 
 The automatic selection of the window length minimises the l_2 norm of the two-dimensional vector  
 `(10 * (1-R^2), normalised difference between projected and realised changes in cases over the time window).`  
