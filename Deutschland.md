@@ -2,35 +2,35 @@
 
 > * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 
-Zusammenfassung am Montag, 27 April 2020:
+Zusammenfassung am Sonntag, 3 Mai 2020:
 
 * Wie man es von den Nachrichten auch spürt, ist die Lage ruhig in Deutschland.
-* Die tägliche Anzahl der neuen bestätigten Infektionen ist unter 4 pro 100.000 EinwohnerInnen in jedem Bundesland. Die Anzahl der neuen Infekten pro Tag und Bevölkerung ist in Bayern, in Baden-Württemberg und in Nordrhein-Westfalen am größten.
-* Mit der Ausnahme von Brandenburg und Thüringen ist die Anzahl der täglichen neuen Infekten pro 100.000 jetzt niedriger als am 23.03.2020, der Anfang der Kontaktbeschränkungen.
+* Die tägliche Anzahl der neuen bestätigten Infektionen ist unter 2 pro 100.000 EinwohnerInnen in jedem Bundesland. Die Anzahl der neuen Infekten pro Tag und Bevölkerung ist in Sachsen, in Baden-Württemberg (1,5), in Bayern, in Nordrhein-Westfalen (1,1) und in Berlin (1,0) am größten.
+* Sachsen und Bremen zeigen gerade eine leichte Erhöhung der täglichen neuen Infekten.
 
-16 März 2020 (aktualisiert am 27 April 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierter Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 3 Mai 2020), Freiburg i. Br. -- In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierten Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
-Bis die allgemeinen Ausgangsbeschränkungen angefangen haben ihre Wirkung zu zeigen, stimmten die beobachteten Coronavirus-Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. Freiburg war die erste deutsche Großstadt, die am 21.03.2020 solch einen Lockdown angeordnet hat.
+Bis die allgemeinen Ausgangsbeschränkungen angefangen haben ihre Wirkung zu zeigen, stimmten die beobachteten Coronavirus-Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. Freiburg war die erste deutsche Großstadt, die solch einen Lockdown am 21.03.2020 angeordnet hat.
 
 In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die COVID-19-Pandemie sich zur Zeit ausbreitet. Da ich die älteren Resultate unten immer behalte, ist es möglich, mit dem früheren Ablauf einen Vergleich zu machen.
 
 ### Analyse
 
-Meine Methodologie habe ich [auf englischem in Detail beschrieben.](https://github.com/Melykuti/COVID-19/blob/master/global.md) Für Deutschland und für die Bundesländer melde ich ab 12.04.2020 die kumulativen (gesamten) bestätigten Coronavirus-Fallzahlen.
+Meine Methodologie habe ich [auf Englisch in Detail beschrieben.](https://github.com/Melykuti/COVID-19/blob/master/global.md) Für Deutschland und für die Bundesländer melde ich seit 12.04.2020 die kumulativen (gesamten) bestätigten Coronavirus-Fallzahlen.
 
-Bis 01.04.2020 rechnete ich für jeden Tag das Folgende aus: `Nr. der Ansteckenden = Nr. der Fälle - Nr. der Tode`. Da die Nummer der erholten PatientInnen stellte das Robert Koch Institut niemals zur Verfügung, war es nie möglich die aktuelle Anzahl der derzeit Infizierten auszurechnen. Denn es gibt immer mehr von den Genesenen und die Anzahl der Todesfälle ist vergleichsweise gering, macht es keinen Sinn mehr, diese ungenaue Annäherung zu machen. Deshalb bin ich auf die reine kumulative Fallzahl umgestiegen.
+Bis 01.04.2020 rechnete ich für jeden Tag das Folgende aus: `Nr. der Ansteckenden = Nr. der Fälle - Nr. der Tode`. Da die Nummer der erholten PatientInnen das Robert Koch Institut lange nicht zur Verfügung stellte, war es nie möglich die aktuelle Anzahl der derzeit Infizierten auszurechnen. Denn es gibt immer mehr von den Genesenen und die Anzahl der Todesfälle ist vergleichsweise gering, macht es keinen Sinn mehr, diese ungenaue Annäherung zu machen. Deshalb bin ich auf die reine kumulative Fallzahl umgestiegen.
 
-Ich nehme den Logarithmus auf Basis 2 der Anzahl der Fälle. Dass diese Zahl tatsächlich exponentiell wächst, ist daran erkennbar, dass der Logarithmus nicht unter einer geraden Linie mit einer positiven Steigung fällt. Mit linearer Regression bestimme ich eine annährende Linie, und von deren Steigung kann ich vieles ausrechnen. Ich kann sagen, mit welchem Faktor die Anzahl von einem Tag bis zum nächsten wächst. Eng verbunden damit ist die Rate, wie lange es dauert, bis die Anzahl der Infekten sich verdoppelt.
-
-Seit 12.04.2020 verwende ich lineare Regression nicht nur auf den Logarithmus (was ich exponentielle Annäherung nenne mit Bezug auf exponentielles Wachstum) sondern auf die ursprünglichen Zahlen auch (was ich lineare Annäherung nenne, da sie einem linearen Wachstum entspricht). Ich vergleiche die beiden Modelle und wähle das bessere aus.
+Seit 03.05.2020 bestimme ich eine annähernde Linie der täglich meldeten neuen Coronavirus-Fälle. (Davor hatte ich immer die kumulativen Zahlen angenähert.) Ich verwende lineare Regression auf diesen täglichen Zuwachs, und nenne dieses Modell das _lineare_ Modell. Ich wiederhole das gleiche mit dem Logarithmus des täglichen Zuwachses, und nenne das resultierende Modell das _exponentielle_ Model. Ich wähle die Fensterlänge (wieviele Tage, das heißt, wieviele Datenpunkte die beste Annäherung ergeben) und das bessere der beiden Modelle automatisiert aus. In der frühen, mit exponentiellem Wachstum gekennzeichneten Phase der Pandemie ist das exponentielle Modell genauer.
 
 Auch wenn die tägliche Differenz schon ziemlich stabil ist und das Wachstum sichtbar nur linear ist, kann es immer wieder vereinzelt vorkommen wenn beide Modelle im Zeitfenster sehr gut sind, dass die Optimierung die exponentielle Annäherung genauer findet als die lineare Annäherung. Man darf dem Vorzug des exponentiellen Modells vor dem linearen nicht allzu viel Bedeutung beimessen.
+
+Von der durch lineare Regression bestimmten annähernden Linie rechne ich vieles aus: den jetzigen täglichen Zuwachs; die Rate, wie lange es dauert, bis die Anzahl der Infekten sich verdoppelt; oder den Faktor, mit dem die Anzahl von einem Tag bis zum Nächsten wächst.
+
+Mich interessiert sehr, **wie hoch die Wahrscheinlichkeit ist, dass ich mich mit dem SARS-CoV-2-Coronavirus infiziere**. Wenn wir die nicht bestätigten Fälle ignorieren, dann ist es unser Ziel, nicht in den täglichen Zuwachs der neu infizierten zu geraten. Ich drücke diesen Zuwachs pro 100.000 Einwohner aus, was ich am informativsten finde. Man kann diese Spalte durch die Zeit verfolgen oder die Zeitreihe direkt auf der Grafik sehen.
 
 ### Datenquelle
 
 Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html). Da ich auf der Webseite nur die aktuellen Fallzahlen finde, verwende ich [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Deutschland#Infektionsf%C3%A4lle_nach_Bundesl%C3%A4ndern), wo Freiwillige die ganzen Zeitreihen gespeichert haben.
-
-Ich würde gerne schätzen können, wie hoch die Wahrscheinlichkeit ist, dass ich mit einem Infizierten in Kontakt komme, wenn ich meine Wohnung verlasse. Diese Wahrscheinlichkeit wächst ungefähr proportional zur Gesamtanzahl der Ansteckenden, die ich nur dann ausrechnen könnte, wenn ich nebst Fallzahlen und Todesfällen auch die Anzahl der Genesenen hätte. Diese Zeitreihe wird durch das RKI leider nicht veröffentlicht.
 
 Die zu den relativen Fallzahlen verwendeten Bevölkerungsgrößen stammen aus dem [Gemeinsamen Statistikportal der Statistischen Ämter des Bundes und der Länder](https://www.statistikportal.de/de/bevoelkerung/flaeche-und-bevoelkerung).
 
@@ -46,60 +46,60 @@ Die zu den relativen Fallzahlen verwendeten Bevölkerungsgrößen stammen aus de
 
 ### Schaubilder
 
-Die Schaubilder zeigen die gesamte Anzahl der Infekten, das heißt, die gesamte Anzahl der Fälle.
+Die Schaubilder zeigen sowohl den täglichen Zuwachs der bestätigten COVID-19-Fälle als auch die gesamte Anzahl der Infekten, das heißt, die gesamte Anzahl der Fälle.
 
-Auf der linken Seite ist die Grafik auf normaler linearer Skala, auf der rechten Seite auf logarithmischer Skala auf Basis&nbsp;10. Die blaue Kurve zeigt die Beobachtungen.
+Auf der linken Seite ist die Zunahme gegenüber dem Vortag. In der Mitte ist die kumulierte Fallzahl auf normaler linearer Skala. Auf der rechten Seite ist sie auf logarithmischer Skala auf Basis&nbsp;10. Die blaue Kurve zeigt die Beobachtungen.
 
-Ich wähle immer die letzten 4-14 Tage aus, um die lineare Regression durchzuführen. Mit der Wahl der Länge des Zeitintervals versuche ich die beste Anpassung zu erreichen, gemessen an R^2 und an der Differenz zwischen dem letzten Tag in der geraden Strecke und dem letzten Datenpunkt. Seit 18.03.2020 ist diese Optimierung automatisiert.
+Ich wähle immer die letzten 4-14 Tage aus, um die lineare Regression durchzuführen. Mit der Wahl der Länge des Zeitintervals versuche ich die beste Anpassung zu erreichen, gemessen an R^2 und an der Quote zwischen dem aus der Annäherung errechneten Zuwachs im Zeitfenster und dem wahren Zuwachs. Seit 18.03.2020 ist diese Optimierung automatisiert.
 
-Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das lineare Modell ausgewählt wurde, vergleiche ich die beiden. Wenn die exponentielle Annäherung besser ist als die lineare, dann ist die orangenfarbige Linie die exponentielle Annäherung. Diese Linie ist eine gerade Strecke auf der rechten Seite. Im umgekehrten Fall ist die pinkfarbige Linie die lineare Annäherung, die eine gerade Strecke auf der linke Seite ist.
+Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das lineare Modell ausgewählt wurde, vergleiche ich die beiden. Wenn die exponentielle Annäherung besser ist als die lineare, dann markiere ich das Resultat mit einer orangenfarbigen Linie. Im umgekehrten Fall ist die Annäherung mit pinkfarbiger Linie markiert.
 
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-04-27.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-05-03.png)
 
-Auf diesen drei Schaubildern verwende ich nur das exponentielle Model. (Wenn ich das lineare Modell auch in das Rennen schicke, dann bekomme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Volatilität der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
+Auf diesen drei Schaubildern verwende ich nur das lineare Model. (Wenn ich das exponentielle Modell auch in das Rennen schicken würde, dann bekäme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Varianz der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-27_xy_-1_exp_date_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-05-03_xy_-1_lin_date_incr_confirmed.png)
 
-![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-27_xy_-1_exp_cases_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-05-03_xy_-1_lin_cases_incr_confirmed.png)
 
-![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-04-27_xy_-1_exp_cases_rate_confirmed.png)
+![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-05-03_xy_-1_lin_cases_rate_confirmed.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-04-27.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-05-03.png)
 
-![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-04-27.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-05-03.png)
 
-![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-04-27.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-05-03.png)
 
-![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-04-27.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-05-03.png)
 
-![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-04-27.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-05-03.png)
 
-![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-04-27.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-05-03.png)
 
-![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-04-27.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-05-03.png)
 
-![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-04-27.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-05-03.png)
 
-![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-04-27.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-05-03.png)
 
-![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-04-27.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-05-03.png)
 
-![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-04-27.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-05-03.png)
 
-![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-04-27.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-05-03.png)
 
-![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-04-27.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-05-03.png)
 
-![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-04-27.png)
+![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-05-03.png)
 
-![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-04-27.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-05-03.png)
 
-![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-04-27.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-05-03.png)
 
 
 ### Resultate
@@ -110,25 +110,25 @@ Diese Resultate sind die direkte numerische Folge der linearen Anpassungen im vo
 
 Die Spalten haben die folgende Bedeutung:
 
-* (Ab 15.04.2020) Die Gesamtanzahl der Infekten wächst täglich um diese Zahl
+* (Ab 15.04.2020) Die Gesamtanzahl der Infekten wächst täglich um diese Zahl. Sie wird aus der Annäherung errechnet und nicht direkt aus dem Zuwachs zwischen den letzten beiden Tagen.
 
-* (Ab 15.04.2020) Die Gesamtanzahl der Infekten pro 100.000 Einwohner wächst täglich um diese Zahl
+* (Ab 15.04.2020) Die Gesamtanzahl der Infekten pro 100.000 Einwohner wächst täglich um diese Zahl. Sie wird aus der Annäherung errechnet und nicht direkt aus dem Zuwachs zwischen den letzten beiden Tagen.
 
 * Die Gesamtanzahl der Infekten wächst täglich um diesen Faktor (prozentual ausgedrückt)
 
-* Die Zeitdauer bis die Anzahl der Infekten sich verdoppelt. Dies ist ein Begriff, der zum exponentiellen Wachstum natürlich passt, aber bei nur linearem Wachstum nicht mehr so aussagekräftig ist. Bei exponentiellem Wachstum ist die Fallzahl nach 2 Verdopplungszeiten _viermal_ so hoch wie am Anfang. Bei linearem Wachstum ist sie nur _dreimal_ so hoch. Im Allgemeinen, nach `n` mal der Verdopplungszeit wird die Fallzahl bei exponentiellem Wachstum auf `2^n` mal die ursprüngliche gestiegen sein, bei linearem Wachstum nur auf `n+1` mal die ursprüngliche.
+* Die Zeitdauer bis die Anzahl der Infekten sich verdoppelt. Seit 03.05.2020 wird sie anders berechnet: das Wachstum kann so langsam sein, dass laut Extrapolation es nicht mehr zu einer Verdoppelung kommen wird. In diesem Fall melde ich `inf` (unendlich).
 
 * Die letzte gemeldete Anzahl der Fälle.
 
 * (Ab 30.03.2020) Die letzte gemeldete Anzahl der Coronavirus-Fälle pro 100.000 Einwohner.
 
-* Meine Schätzung der derzeitigen Fallzahl (ab 30.03.2020 auf 100.000 Einwohner). Konkret, die Extrapolation der angepassten exponentiellen oder linearen Kurve auf 4, beziehungsweise, 6 Tage voraus. (Bis 16.03.2020, wenn R^2 kleiner als 0,945 oder die letzte Spalte größer als 0,5 ist, dann lasse ich diese Schätzung wegfallen, denn mein Vertrauen in ihr ist schwächer. Ab 18.03.2020 zeige ich die Schätzung wenn R^2 nicht kleiner als 0,95 und die vorletzte Spalte nicht größer als 0,5 ist, oder wenn die vorletzte Spalte in [-0,2;&nbsp; 0,1] ist.)
+* Meine Schätzung der derzeitigen Fallzahl (ab 30.03.2020 auf 100.000 Einwohner). Konkret, die Extrapolation der angepassten Kurve auf 4, beziehungsweise, 6 Tage voraus. (Bis 16.03.2020, wenn R^2 kleiner als 0,945 oder die letzte Spalte größer als 0,5 ist, dann lasse ich diese Schätzung wegfallen, denn mein Vertrauen in ihr ist schwächer. Ab 18.03.2020 zeige ich die Schätzung wenn R^2 nicht kleiner als 0,95 und die `Diff.` Spalte nicht größer als 0,5 ist, oder wenn die `Diff.` Spalte in [-0,2;&nbsp; 0,1] ist. Ab 03.05.2020 zeige ich die Schätzung wenn R^2 nicht kleiner als 0,75 und die vorvorletzte Spalte nicht größer als 0,5 ist, oder wenn die vorvorletzte Spalte in [-0,3;&nbsp; 0,3] ist.)
 
 * R^2 oder Bestimmtheitsmaß oder Determinationskoeffizient der Anpassungsgüte der linearen Regression. Je näher es an 1 ist, desto besser ist die Anpassung.
 
-* Differenz zwischen der linearen Annäherung und der wahren Beobachtung in logarithmischem Raum für den letzten Datenpunkt (für den letzten Tag). Man kann es als Exponent einer Potenz auf Basis 2 interpretieren für die Quote zwischen Schätzung und der letzten Beobachtung. Wenn diese Nummer groß ist, dann ist die Annäherung wenig gut. Wenn sie sogar negativ ist, dann ist die Annäherung viel zu niedrig und die Anzahl der Fälle wird unterschätzt.
+* Normalisierte Differenz zwischen Zuwachs im ausgewählten Zeitfenster aus der Annäherung und in den Daten. (Bis 27.04.2020 war es die Differenz der linearen Annäherung und der wahren Beobachtung in logarithmischem Raum für den letzten Datenpunkt (für den letzten Tag). Man konnte es als Exponent einer Potenz auf Basis 2 interpretieren für die Quote zwischen Schätzung und der letzten Beobachtung. Wenn diese Nummer groß ist, dann ist die Annäherung wenig gut. Wenn sie sogar negativ ist, dann ist die Annäherung viel zu niedrig und die Anzahl der Fälle wird unterschätzt.)
 
-* (Ab 18.03.2020) Die Anzahl der Tage im Zeitfenster, in dem die lineare Regression stattfindet. Sie wird automatisch optimiert, so dass der Vektor (10 * (1-R^2), Differenz) in l_2 kleinstmöglich ist.)
+* (Ab 18.03.2020) Die Anzahl der Tage im Zeitfenster, in dem die lineare Regression stattfindet. Sie wird automatisch optimiert, so dass der Vektor (10 * (1-R^2), normalisierte Differenz) in l_2 kleinstmöglich ist.)
 
 * (Ab 12 April 2020) e wenn das exponentielle Modell, l wenn das lineare Modell die bessere Annäherung gab und die Zahlen in der dazugehörenden Reihe der Tabelle lieferte. Man darf dem Vorzug des exponentiellen Modells vor dem linearen nicht allzu viel Bedeutung beimessen wenn beides im Zeitfenster sehr genau ist.
 
@@ -138,90 +138,139 @@ Die Spalten haben die folgende Bedeutung:
                            wachs   pro    rate      zeit      Fälle  100.000                          größe
                                  100.000
 
+Stand 03.05.2020
+
+    Baden-Württemberg          165  1,5   0,5%     inf Tage   32291    292     [296, 297] 0,74  0,03   4  e
+    Bayern                     146  1,1   0,3%     inf Tage   42792    327     [330, 331] 0,68  0,09   5  e
+    Berlin                      35  1,0   0,6%     inf Tage    5976    164     [166, 167] 0,93  0,18   4  e
+    Brandenburg                 10  0,4   0,4%     inf Tage    2905    116     [116, 116] 0,83  0,39   4  l
+    Bremen                     6,0  0,9   0,7%     inf Tage     875    128     [128, 128] 0,88  0,19   5  l
+    Hamburg                     13  0,7   0,3%     inf Tage    4631    252     [252, 252] 0,61  0,13  11  l
+    Hessen                      50  0,8   0,6%     inf Tage    8524    136     [137, 137] 0,74  0,17   5  l
+    Mecklenburg-Vorpommern     1,9  0,1   0,3%     inf Tage     698     43                0,53  0,42   5  e
+    Niedersachsen               46  0,6   0,4%     inf Tage   10283    129     [130, 130] 0,67  0,08  13  l
+    Nordrhein-Westfalen        192  1,1   0,6%     inf Tage   33428    186     [190, 192] 0,55 -0,02  14  e
+    Rheinland-Pfalz             30  0,7   0,5%     inf Tage    6133    150     [152, 153] 0,44  0,07   8  l
+    Saarland                   7,3  0,7   0,3%     inf Tage    2605    263     [263, 263] 0,99  0,29   4  l
+    Sachsen                     60  1,5   2,7%    26,0 Tage    4696    115     [123, 128] 0,36 -0,12   5  l
+    Sachsen-Anhalt             4,7  0,2   0,3%     inf Tage    1576     71       [72, 72] 0,98  0,31   4  e
+    Schleswig-Holstein          10  0,4   0,4%     inf Tage    2738     95       [96, 96] 0,48  0,06  12  e
+    Thüringen                  1,9  0,1   0,1%     inf Tage    2345    109     [109, 109] 0,88  0,44   4  l
+    
+    Deutschland                808  1,0   0,5%     inf Tage  162496    196     [198, 199] 0,80  0,05   4  e
+
 Stand 27.04.2020
 
-    Baden-Württemberg          422  3.8   1.4%    51.1 days   31043    280     [296, 304] 1.00  0.00   9  e
-    Bayern                     492  3.8   1.2%   166.6 days   41070    314     [331, 339] 0.99  0.01  10  l
-    Berlin                      68  1.9   1.2%    58.0 days    5638    155     [162, 166] 0.98  0.00  10  e
-    Brandenburg                 75  3.0   2.8%    25.4 days    2721    108     [122, 129] 0.99  0.01  14  e
-    Bremen                      17  2.4   2.2%    31.4 days     754    110     [121, 126] 0.99  0.00   4  e
-    Hamburg                     38  2.1   0.9%    80.6 days    4475    243     [251, 256] 0.99 -0.00   4  e
-    Hessen                     142  2.3   1.8%   112.3 days    7979    127     [138, 143] 0.99  0.02  14  l
-    Mecklenburg-Vorpommern     4.0  0.2   0.6%   116.9 days     674     42       [43, 43] 0.97  0.00   6  e
-    Niedersachsen              144  1.8   1.5%   136.4 days    9847    123     [132, 135] 0.99  0.01  11  l
-    Nordrhein-Westfalen        533  3.0   1.7%   119.3 days   31879    178     [193, 199] 0.98  0.02  14  l
-    Rheinland-Pfalz             55  1.3   0.9%   214.7 days    5879    144     [149, 152] 0.99  0.00   9  l
-    Saarland                    19  1.9   0.8%   265.2 days    2503    253     [260, 264] 0.99 -0.00   4  l
-    Sachsen                     27  0.7   0.6%   115.5 days    4458    109     [112, 113] 1.00 -0.00   4  e
-    Sachsen-Anhalt              24  1.1   1.6%   125.9 days    1515     69       [73, 75] 0.99  0.00  14  l
-    Schleswig-Holstein          32  1.1   1.2%   162.6 days    2638     91       [96, 98] 0.98  0.01  13  l
-    Thüringen                   48  2.3   2.3%    87.3 days    2120     99     [109, 113] 0.99  0.01  14  l
+    Baden-Württemberg          329  3,0   1,1%     inf Tage   31043    280     [290, 294] 0,30  0,04  11  l
+    Bayern                     209  1,6   0,5%     inf Tage   41070    314     [315, 315] 0,80  0,11   4  l
+    Berlin                      41  1,1   0,7%     inf Tage    5638    155     [157, 157] 0,83  0,25   4  e
+    Brandenburg                 37  1,5   1,4%     inf Tage    2721    108     [110, 110] 0,83  0,11   4  l
+    Bremen                     9,8  1,4   1,3%     inf Tage     754    110     [111, 111] 0,71  0,27   5  l
+    Hamburg                     31  1,7   0,7%     inf Tage    4475    243     [245, 245] 0,68  0,15   5  l
+    Hessen                      46  0,7   0,6%     inf Tage    7979    127     [128, 128] 0,84  0,24   5  l
+    Mecklenburg-Vorpommern     2,1  0,1   0,3%     inf Tage     674     42       [42, 42] 0,15  0,24  10  l
+    Niedersachsen               65  0,8   0,7%     inf Tage    9847    123     [124, 124] 0,93  0,13   4  l
+    Nordrhein-Westfalen        183  1,0   0,6%     inf Tage   31879    178     [180, 180] 0,88  0,21   4  e
+    Rheinland-Pfalz             39  0,9   0,7%     inf Tage    5879    144     [146, 147] 0,52  0,05  13  l
+    Saarland                    13  1,3   0,5%     inf Tage    2503    253                0,61  0,40   4  l
+    Sachsen                     22  0,5   0,5%     inf Tage    4458    109     [110, 110] 0,73  0,13   5  l
+    Sachsen-Anhalt              17  0,8   1,1%     inf Tage    1515     69       [71, 73] 0,11 -0,07  11  e
+    Schleswig-Holstein          12  0,4   0,4%     inf Tage    2638     91       [92, 92] 0,69  0,17   6  e
+    Thüringen                   22  1,0   1,0%     inf Tage    2120     99     [101, 101] 0,81  0,35   4  e
     
-    Deutschland               2041  2.5   1.3%   151.6 days  155193    187     [198, 203] 1.00  0.01  10  l
+    Deutschland               1146  1,4   0,7%     inf Tage  155193    187     [189, 189] 0,94  0,11   4  l
+
+In den nachfolgenden Tabellen wurden die kumulativen Fallzahlen und nicht die täglichen Zuwächse für die Annäherungen verwendet.
+
+
+    Bundesland               Zu- Zuwachs Wachst.- Verdoppl.  Gesamte   pro     Schätzung   R^2  Diff. Fenster Exp/Lin
+                           wachs   pro    rate      zeit      Fälle  100.000                          größe
+                                 100.000
+
+Stand 27.04.2020
+
+    Baden-Württemberg          422  3.8   1.4%    51.1 Tage   31043    280     [296, 304] 1.00  0.00   9  e
+    Bayern                     492  3.8   1.2%   166.6 Tage   41070    314     [331, 339] 0.99  0.01  10  l
+    Berlin                      68  1.9   1.2%    58.0 Tage    5638    155     [162, 166] 0.98  0.00  10  e
+    Brandenburg                 75  3.0   2.8%    25.4 Tage    2721    108     [122, 129] 0.99  0.01  14  e
+    Bremen                      17  2.4   2.2%    31.4 Tage     754    110     [121, 126] 0.99  0.00   4  e
+    Hamburg                     38  2.1   0.9%    80.6 Tage    4475    243     [251, 256] 0.99 -0.00   4  e
+    Hessen                     142  2.3   1.8%   112.3 Tage    7979    127     [138, 143] 0.99  0.02  14  l
+    Mecklenburg-Vorpommern     4.0  0.2   0.6%   116.9 Tage     674     42       [43, 43] 0.97  0.00   6  e
+    Niedersachsen              144  1.8   1.5%   136.4 Tage    9847    123     [132, 135] 0.99  0.01  11  l
+    Nordrhein-Westfalen        533  3.0   1.7%   119.3 Tage   31879    178     [193, 199] 0.98  0.02  14  l
+    Rheinland-Pfalz             55  1.3   0.9%   214.7 Tage    5879    144     [149, 152] 0.99  0.00   9  l
+    Saarland                    19  1.9   0.8%   265.2 Tage    2503    253     [260, 264] 0.99 -0.00   4  l
+    Sachsen                     27  0.7   0.6%   115.5 Tage    4458    109     [112, 113] 1.00 -0.00   4  e
+    Sachsen-Anhalt              24  1.1   1.6%   125.9 Tage    1515     69       [73, 75] 0.99  0.00  14  l
+    Schleswig-Holstein          32  1.1   1.2%   162.6 Tage    2638     91       [96, 98] 0.98  0.01  13  l
+    Thüringen                   48  2.3   2.3%    87.3 Tage    2120     99     [109, 113] 0.99  0.01  14  l
+    
+    Deutschland               2041  2.5   1.3%   151.6 Tage  155193    187     [198, 203] 1.00  0.01  10  l
 
 Stand 22.04.2020
 
-    Baden-Württemberg          510  4.6   1.8%   112.9 days   28898    261     [282, 291] 0.99  0.01  12  l
-    Bayern                     477  3.6   1.2%    56.4 days   38814    297     [312, 319] 1.00 -0.00   4  e
-    Berlin                      82  2.2   1.6%   129.0 days    5312    146     [156, 160] 0.99  0.01  13  l
-    Brandenburg                 55  2.2   2.3%    85.3 days    2389     95     [103, 107] 0.99 -0.01  13  l
-    Bremen                      14  2.0   2.2%    89.0 days     624     91     [100, 104] 0.98  0.00   6  l
-    Hamburg                     60  3.3   1.4%   138.9 days    4204    228     [244, 251] 0.98  0.01  12  l [1 Tag früher]
-    Hessen                     150  2.4   2.1%    97.4 days    7380    118     [128, 133] 0.99  0.01  13  l
-    Mecklenburg-Vorpommern     1.7  0.1   0.3%   771.2 days     656     41       [41, 41] 0.98  0.00   4  l
-    Niedersachsen              172  2.2   1.9%   106.5 days    9236    116     [125, 129] 1.00  0.00  12  l
-    Nordrhein-Westfalen        593  3.3   2.0%   100.5 days   30185    168     [181, 188] 1.00 -0.00  13  l
-    Rheinland-Pfalz             94  2.3   1.7%   118.3 days    5593    137     [148, 153] 0.99  0.01  12  l
-    Saarland                    33  3.3   1.4%   143.2 days    2367    239     [254, 261] 0.97  0.01  12  l
-    Sachsen                     27  0.7   0.6%   312.3 days    4273    105     [108, 109] 0.97  0.00   4  l
-    Sachsen-Anhalt              25  1.1   1.8%   112.0 days    1395     63       [68, 71] 0.99  0.01  14  l
-    Schleswig-Holstein          41  1.4   1.7%   119.0 days    2496     86       [93, 95] 0.97  0.01  14  l
-    Thüringen                   46  2.1   2.5%    28.2 days    1872     87      [96, 101] 0.99 -0.00  14  e
+    Baden-Württemberg          510  4.6   1.8%   112.9 Tage   28898    261     [282, 291] 0.99  0.01  12  l
+    Bayern                     477  3.6   1.2%    56.4 Tage   38814    297     [312, 319] 1.00 -0.00   4  e
+    Berlin                      82  2.2   1.6%   129.0 Tage    5312    146     [156, 160] 0.99  0.01  13  l
+    Brandenburg                 55  2.2   2.3%    85.3 Tage    2389     95     [103, 107] 0.99 -0.01  13  l
+    Bremen                      14  2.0   2.2%    89.0 Tage     624     91     [100, 104] 0.98  0.00   6  l
+    Hamburg                     60  3.3   1.4%   138.9 Tage    4204    228     [244, 251] 0.98  0.01  12  l [1 Tag früher]
+    Hessen                     150  2.4   2.1%    97.4 Tage    7380    118     [128, 133] 0.99  0.01  13  l
+    Mecklenburg-Vorpommern     1.7  0.1   0.3%   771.2 Tage     656     41       [41, 41] 0.98  0.00   4  l
+    Niedersachsen              172  2.2   1.9%   106.5 Tage    9236    116     [125, 129] 1.00  0.00  12  l
+    Nordrhein-Westfalen        593  3.3   2.0%   100.5 Tage   30185    168     [181, 188] 1.00 -0.00  13  l
+    Rheinland-Pfalz             94  2.3   1.7%   118.3 Tage    5593    137     [148, 153] 0.99  0.01  12  l
+    Saarland                    33  3.3   1.4%   143.2 Tage    2367    239     [254, 261] 0.97  0.01  12  l
+    Sachsen                     27  0.7   0.6%   312.3 Tage    4273    105     [108, 109] 0.97  0.00   4  l
+    Sachsen-Anhalt              25  1.1   1.8%   112.0 Tage    1395     63       [68, 71] 0.99  0.01  14  l
+    Schleswig-Holstein          41  1.4   1.7%   119.0 Tage    2496     86       [93, 95] 0.97  0.01  14  l
+    Thüringen                   46  2.1   2.5%    28.2 Tage    1872     87      [96, 101] 0.99 -0.00  14  e
     
-    Deutschland               1955  2.4   1.4%    51.6 days  145694    175     [185, 190] 1.00 -0.00   4  e
+    Deutschland               1955  2.4   1.4%    51.6 Tage  145694    175     [185, 190] 1.00 -0.00   4  e
 
 Stand 18.04.2020
 
-    Baden-Württemberg          538  4.9   2.0%    35.0 days   27258    246     [265, 276] 0.99 -0.01   8  e
-    Bayern                     865  6.6   2.4%    84.3 days   36881    282     [308, 322] 1.00  0.00   4  l
-    Berlin                     113  3.1   2.3%    88.7 days    5066    139     [151, 158] 1.00 -0.00   4  l
-    Brandenburg                 69  2.7   3.2%    62.0 days    2161     86      [98, 104] 0.98  0.02  14  l
-    Bremen                      16  2.3   2.8%    25.3 days     567     83       [91, 96] 0.97 -0.02  14  e
-    Hamburg                     78  4.3   1.9%    36.3 days    4118    224     [241, 250] 0.99 -0.01   5  e
-    Hessen                     193  3.1   2.8%    24.8 days    6916    110     [123, 130] 0.99 -0.00   5  e
-    Mecklenburg-Vorpommern     6.0  0.4   0.9%   212.3 days     645     40       [41, 42] 0.97 -0.00   8  l
-    Niedersachsen              223  2.8   2.6%    26.9 days    8649    108     [120, 126] 1.00 -0.00   4  e
-    Nordrhein-Westfalen        644  3.6   2.3%    29.9 days   28006    156     [170, 178] 0.99 -0.01   9  e
-    Rheinland-Pfalz            114  2.8   2.2%    32.3 days    5324    130     [142, 148] 1.00 -0.00   5  e
-    Saarland                    46  4.7   2.0%    98.1 days    2289    231     [250, 260] 0.99  0.00   5  l
-    Sachsen                    105  2.6   2.6%    27.4 days    4140    102     [112, 118] 1.00  0.00   6  e
-    Sachsen-Anhalt              32  1.4   2.5%    28.6 days    1315     60       [65, 69] 1.00 -0.00   4  e
-    Schleswig-Holstein          48  1.7   2.0%    98.5 days    2387     82       [89, 93] 1.00  0.00   4  l
-    Thüringen                   60  2.8   3.5%    20.0 days    1717     80       [92, 99] 0.99  0.01   5  e
+    Baden-Württemberg          538  4.9   2.0%    35.0 Tage   27258    246     [265, 276] 0.99 -0.01   8  e
+    Bayern                     865  6.6   2.4%    84.3 Tage   36881    282     [308, 322] 1.00  0.00   4  l
+    Berlin                     113  3.1   2.3%    88.7 Tage    5066    139     [151, 158] 1.00 -0.00   4  l
+    Brandenburg                 69  2.7   3.2%    62.0 Tage    2161     86      [98, 104] 0.98  0.02  14  l
+    Bremen                      16  2.3   2.8%    25.3 Tage     567     83       [91, 96] 0.97 -0.02  14  e
+    Hamburg                     78  4.3   1.9%    36.3 Tage    4118    224     [241, 250] 0.99 -0.01   5  e
+    Hessen                     193  3.1   2.8%    24.8 Tage    6916    110     [123, 130] 0.99 -0.00   5  e
+    Mecklenburg-Vorpommern     6.0  0.4   0.9%   212.3 Tage     645     40       [41, 42] 0.97 -0.00   8  l
+    Niedersachsen              223  2.8   2.6%    26.9 Tage    8649    108     [120, 126] 1.00 -0.00   4  e
+    Nordrhein-Westfalen        644  3.6   2.3%    29.9 Tage   28006    156     [170, 178] 0.99 -0.01   9  e
+    Rheinland-Pfalz            114  2.8   2.2%    32.3 Tage    5324    130     [142, 148] 1.00 -0.00   5  e
+    Saarland                    46  4.7   2.0%    98.1 Tage    2289    231     [250, 260] 0.99  0.00   5  l
+    Sachsen                    105  2.6   2.6%    27.4 Tage    4140    102     [112, 118] 1.00  0.00   6  e
+    Sachsen-Anhalt              32  1.4   2.5%    28.6 Tage    1315     60       [65, 69] 1.00 -0.00   4  e
+    Schleswig-Holstein          48  1.7   2.0%    98.5 Tage    2387     82       [89, 93] 1.00  0.00   4  l
+    Thüringen                   60  2.8   3.5%    20.0 Tage    1717     80       [92, 99] 0.99  0.01   5  e
     
-    Deutschland               3417  4.1   2.5%    27.9 days  137439    166     [183, 192] 1.00 -0.00   4  e
+    Deutschland               3417  4.1   2.5%    27.9 Tage  137439    166     [183, 192] 1.00 -0.00   4  e
 
 
 Stand 17.04.2020
 
-    Baden-Württemberg          500  4.5   1.9%    36.7 days   26543    240     [258, 268] 1.00 -0.00   7  e
-    Bayern                     851  6.5   2.4%    29.3 days   36027    276     [303, 317] 1.00 -0.00   4  e
-    Berlin                      84  2.3   1.7%    40.6 days    4945    136     [145, 150] 0.98 -0.01   8  e
-    Brandenburg                 71  2.8   3.4%    59.0 days    2120     84      [97, 102] 0.99  0.01  14  l
-    Bremen                      13  1.9   2.4%    82.3 days     556     81       [86, 90] 0.96 -0.03  14  l
-    Hamburg                     68  3.7   1.7%   117.9 days    4005    218     [232, 240] 0.99  0.00   4  l
-    Hessen                     175  2.8   2.7%    26.4 days    6705    107     [118, 125] 0.99 -0.01   4  e
-    Mecklenburg-Vorpommern      11  0.7   1.7%   118.7 days     634     39       [43, 44] 0.96  0.03  14  l
-    Niedersachsen              178  2.2   2.1%    93.5 days    8442    106     [114, 119] 0.99 -0.00   8  l
-    Nordrhein-Westfalen        592  3.3   2.2%    31.6 days   27030    151     [164, 172] 1.00 -0.00   4  e
-    Rheinland-Pfalz            101  2.5   2.0%    35.7 days    5211    128     [137, 143] 1.00 -0.00   7  e
-    Saarland                    50  5.0   2.2%    31.4 days    2254    228     [248, 259] 0.99 -0.00   4  e
-    Sachsen                    104  2.6   2.6%    26.9 days    4048     99     [110, 116] 0.99 -0.00   5  e
-    Sachsen-Anhalt              22  1.0   1.7%   114.4 days    1279     58       [62, 64] 0.99 -0.00   8  l
-    Schleswig-Holstein          60  2.1   2.6%    77.2 days    2348     81       [90, 94] 0.99  0.00   4  l
-    Thüringen                   62  2.9   3.7%    18.8 days    1682     78       [90, 97] 0.98 -0.01   4  e
+    Baden-Württemberg          500  4.5   1.9%    36.7 Tage   26543    240     [258, 268] 1.00 -0.00   7  e
+    Bayern                     851  6.5   2.4%    29.3 Tage   36027    276     [303, 317] 1.00 -0.00   4  e
+    Berlin                      84  2.3   1.7%    40.6 Tage    4945    136     [145, 150] 0.98 -0.01   8  e
+    Brandenburg                 71  2.8   3.4%    59.0 Tage    2120     84      [97, 102] 0.99  0.01  14  l
+    Bremen                      13  1.9   2.4%    82.3 Tage     556     81       [86, 90] 0.96 -0.03  14  l
+    Hamburg                     68  3.7   1.7%   117.9 Tage    4005    218     [232, 240] 0.99  0.00   4  l
+    Hessen                     175  2.8   2.7%    26.4 Tage    6705    107     [118, 125] 0.99 -0.01   4  e
+    Mecklenburg-Vorpommern      11  0.7   1.7%   118.7 Tage     634     39       [43, 44] 0.96  0.03  14  l
+    Niedersachsen              178  2.2   2.1%    93.5 Tage    8442    106     [114, 119] 0.99 -0.00   8  l
+    Nordrhein-Westfalen        592  3.3   2.2%    31.6 Tage   27030    151     [164, 172] 1.00 -0.00   4  e
+    Rheinland-Pfalz            101  2.5   2.0%    35.7 Tage    5211    128     [137, 143] 1.00 -0.00   7  e
+    Saarland                    50  5.0   2.2%    31.4 Tage    2254    228     [248, 259] 0.99 -0.00   4  e
+    Sachsen                    104  2.6   2.6%    26.9 Tage    4048     99     [110, 116] 0.99 -0.00   5  e
+    Sachsen-Anhalt              22  1.0   1.7%   114.4 Tage    1279     58       [62, 64] 0.99 -0.00   8  l
+    Schleswig-Holstein          60  2.1   2.6%    77.2 Tage    2348     81       [90, 94] 0.99  0.00   4  l
+    Thüringen                   62  2.9   3.7%    18.8 Tage    1682     78       [90, 97] 0.98 -0.01   4  e
 
-    Deutschland               2774  3.3   2.1%    33.4 days  133830    161     [175, 182] 1.00 -0.00   7  e
+    Deutschland               2774  3.3   2.1%    33.4 Tage  133830    161     [175, 182] 1.00 -0.00   7  e
 
 
 Stand 15.04.2020
@@ -609,6 +658,12 @@ Finden Sie mich auf [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), a
 Ich arbeite als selbständiger Data Scientist. Sie können mich mit Ihrem Projekt beauftragen.
 
 ### Archiv
+
+Zusammenfassung am Montag, 27 April 2020:
+
+* Wie man es von den Nachrichten auch spürt, ist die Lage ruhig in Deutschland.
+* Die tägliche Anzahl der neuen bestätigten Infektionen ist unter 4 pro 100.000 EinwohnerInnen in jedem Bundesland. Die Anzahl der neuen Infekten pro Tag und Bevölkerung ist in Bayern, in Baden-Württemberg und in Nordrhein-Westfalen am größten.
+* Mit der Ausnahme von Brandenburg und Thüringen ist die Anzahl der täglichen neuen Infekten pro 100.000 jetzt niedriger als am 23.03.2020, der Anfang der Kontaktbeschränkungen.
 
 Zusammenfassung am Mittwoch, 22 April 2020:
 
