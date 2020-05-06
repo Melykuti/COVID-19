@@ -105,6 +105,8 @@ If the linear model fits better, then pink is the linear fit, which is the same 
 
 ![US](https://github.com/Melykuti/COVID-19/blob/master/plots/US_2020-05-04.png)
 
+As the United Kingdom does not release the _number of recovered patients_ (last time I checked: 5 May 2020), the data presented both here and in the table below is the `no. of confirmed cases - no. of deaths`.
+
 ![United Kingdom](https://github.com/Melykuti/COVID-19/blob/master/plots/United_Kingdom_2020-05-04.png)
 
 ![Italy](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-05-04.png)
