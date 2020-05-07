@@ -9,7 +9,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from importlib import reload
 import utils
-#from utils import rm_early_zeros, process_geounit, print_header, print_results, plotting
 
 allowed_values = \
     ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen',
@@ -46,6 +45,7 @@ save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; otherwise it
 normalise_by = 1e5 # report case numbers per this many people
 exp_or_lin = 'both' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
 max_display_length = 45 # in days; if positive, then it plots the most recent max_display_length days only
+#max_display_length = -1
 lang = 'de' # 'de' for German, anything else for English
 
 ### End of user input ###
@@ -57,7 +57,7 @@ def open_data():
     Alternatively, specify a substring of requested timestamp to select which file to open.
     '''
     timestamp = None
-    #timestamp = '20200401_10-44-21'
+    #timestamp = '20200427_14-37-31'
     df=dict()
     lists = list()
     with os.scandir() as it:
@@ -272,9 +272,9 @@ def data_preparation_DEU(output):
         if i==idx_Infektionsfaelle:
             #figures = collect_data(rows, i) # infections
             figures = collect_data_colwise(rows) # infections
-            figures.loc[pd.to_datetime('2020-04-07'),'Berlin'] = 3845 # temporary hack but I updated Wikipedia table
-            figures.loc[pd.to_datetime('2020-03-20'),'Rheinland-Pfalz'] = 801
-            figures.loc[pd.to_datetime('2020-03-31'),'Sachsen-Anhalt'] = 680
+            #figures.loc[pd.to_datetime('2020-04-07'),'Berlin'] = 3845 # temporary hack but I updated Wikipedia table
+            #figures.loc[pd.to_datetime('2020-03-20'),'Rheinland-Pfalz'] = 801
+            #figures.loc[pd.to_datetime('2020-03-31'),'Sachsen-Anhalt'] = 680
             print(figures)
         else: # i==idx_Todesfaelle
             death_figures = collect_data_colwise(rows) # deaths
@@ -343,8 +343,8 @@ if __name__ == '__main__':
                 print()
             if window_length_all[selection] > 0:
                 utils.print_results(selection, results_dict[selection], normalise_by, pop_csv,
-                              window_length_all[selection], exp_or_lin_dict[selection], lang)
+                                window_length_all[selection], exp_or_lin_dict[selection], 'normal', lang)
             else:
                 utils.print_results(selection, results_dict[selection], normalise_by, pop_csv,
-                              selected_window_length_dict[selection], exp_or_lin_dict[selection], lang)
+                      selected_window_length_dict[selection], exp_or_lin_dict[selection], 'normal', lang)
 

@@ -4,7 +4,7 @@ using the JHU CSSE dataset:
 https://github.com/CSSEGISandData
 
 exec(open('comparison_joint.py').read())
-12/3-14/4/2020
+12/3-2/5/2020
 '''
 
 import os, math
@@ -27,64 +27,70 @@ cycle_linestyle = 0 # if 0, then all lines are solid; if 1, then it cycles throu
 #normalise = 'xy' # 'xy' or 'y' if you want to normalise by population size ('xy' normalises both x and y values (unless xaxis = 'date'), 'y' normalises only y values), o.w. None; 'y' alone can be normalised only if incr_or_rate=='incr' & xaxis=='cases'
 normalise_by = int(1e5) # display case numbers per this many people
 
-#window_length = 4 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
+#window_length = 7 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
 window_length = -1
 
-save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
+save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
 lang = 'en' # 'de' for German, anything else for English
 cases = 'confirmed' # 'confirmed' or 'deaths' or 'active' or 'recovered'
 incr_or_rate = 'rate' # Which to display: 'incr' for daily increment, 'rate' for daily growth rate
 xaxis = 'cases' # What to use for x-axis: 'date' for date or 'cases' for number of cases
-exp_or_lin = 'exp' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
+exp_or_lin = 'lin' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
 
 '''
 # Drop-in replacement for original:
 countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = None; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 '''
-#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
+#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=50.; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 # New
-#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
-#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
+#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 '''
 # Drop-in replacement for original:
 countries = ['China', 'EU', 'US']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=55.; normalise = None; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 '''
-#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=55.; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
+#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=45.; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 # New
-#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
-#countries = ['China', 'EU', 'US']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
+#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['China', 'EU', 'US']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 '''
 # Drop-in replacement for original:
 countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=50.; right_bound=10000; bottom_bound=0.; top_bound=80.; normalise = None; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 '''
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=40.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=40.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 # New
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=40.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=40.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=700; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 # Nordic countries
-#countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
-#countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
-#countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
+#countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 # DACH
-#countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'DACH'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
-#countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'DACH'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
-#countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'DACH'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
+#countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'DACH'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'DACH'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'DACH'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 '''
 # Drop-in replacement for original:
 #countries = 'Deutschland'; left_bound=200; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = None; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 '''
-#countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
+#countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=42.; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 # New
-#countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'
-countries = 'Deutschland'; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date';# exp_or_lin = 'exp'
+#countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = 'Deutschland'; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date';# exp_or_lin = 'lin'
 
+
+# Death toll
+#cases = 'deaths'; countries = ['Italy', 'Spain', 'US', 'United Kingdom', 'France', 'Netherlands', 'Belgium', 'Sweden', 'Germany']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=3.; normalise = 'xy'; filename = 'deathtoll'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#cases = 'deaths'; countries = ['Italy', 'Spain', 'US', 'United Kingdom', 'France', 'Netherlands', 'Belgium', 'Sweden', 'Germany']; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=3.; normalise = 'xy'; filename = 'deathtoll'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 # Testing
+
+#countries = ['Japan', 'Korea, South', 'China']; left_bound=None; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 
 #countries = 'Deutschland'; left_bound=1; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'; cases = 'deaths'
 #countries = 'Deutschland'; left_bound=1; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'; cases = 'deaths'
@@ -118,58 +124,14 @@ countries = 'Deutschland'; left_bound=time_start; right_bound=None; bottom_bound
 #country = ['United Kingdom', 'United Kingdom']
 
 ### End of user input ###
-'''
-def analysis_exp_minimal(df_ts, window_length):
-    
-    Because of log2, this requires all entries in df_ts to be positive.
-    
-    if len(df_ts)<window_length:
-        results = 7 * [0]
-        results[-1] = 100
-        return results, None
-    intl_lo_days = 4
-    intl_hi_days = 6
-    ylog2 = np.log2(df_ts.iloc[-window_length:].values)
-    model = linear_model.LinearRegression(fit_intercept=True)
-    model.fit(np.arange(len(ylog2)).reshape(-1, 1), ylog2)
-    results = [(math.pow(2, model.coef_[0])-1)*100, 0, df_ts.iloc[-1], 0, 0,
-                #1/model.coef_[0],
-                #df_ts.iloc[-1],
-                #int(math.pow(2, model.predict(np.array(len(ylog2)-1+intl_lo_days).reshape(1,-1)))),
-                #int(math.pow(2, model.predict(np.array(len(ylog2)-1+intl_hi_days).reshape(1,-1)))),
-                model.score(np.arange(len(ylog2)).reshape(-1, 1), ylog2),
-                model.predict(np.array(len(ylog2)-1).reshape(-1, 1))[0]-ylog2[-1]]
-    return results, model
 
-def analysis_lin_minimal(df_ts, window_length):
-    
-    Because of log2, this requires last entry in df_ts to be positive.
-    
-    if len(df_ts)<window_length:
-        results = 7 * [0]
-        results[-1] = 100
-        return results, None
-    intl_lo_days = 4
-    intl_hi_days = 6
-    y = df_ts.iloc[-window_length:].values
-    model = linear_model.LinearRegression(fit_intercept=True)
-    model.fit(np.arange(len(y)).reshape(-1, 1), y)
-    results = [model.coef_[0]/y[-1]*100, 0, df_ts.iloc[-1], 0, 0,
-                #2*y[-1]/model.coef_[0],
-                #df_ts.iloc[-1],
-                #int(model.predict(np.array(len(y)-1+intl_lo_days).reshape(1,-1))),
-                #int(model.predict(np.array(len(y)-1+intl_hi_days).reshape(1,-1))),
-                model.score(np.arange(len(y)).reshape(-1, 1), y),
-                model.predict(np.array(len(y)-1).reshape(-1, 1))[0]/y[-1]-1]
-    return results, model
 '''
-
 def process_geounit_minimal(df_ts, window_length, exp_or_lin='both'):
-    '''
+    
     This processes one geographical unit.
     df_ts is the time series.
-    '''
-    df_ts = utils.rm_early_zeros(df_ts)
+    
+    #df_ts = utils.rm_early_zeros(df_ts)
     if window_length > 0:
         selected_window_length = window_length
         #results, model = analysis_minimal(df_ts, window_length)
@@ -181,16 +143,6 @@ def process_geounit_minimal(df_ts, window_length, exp_or_lin='both'):
             results, model = utils.analysis(df_ts, window_length, 'exp', 'minimal')
         else:
             results, model = utils.analysis(df_ts, window_length, 'lin', 'minimal')
-        '''
-        if exp_or_lin=='both':
-            results_e, model_e = analysis_exp_minimal(df_ts, window_length)
-            results_l, model_l = analysis_lin_minimal(df_ts, window_length)
-            results, model, exp_or_lin = pick_exp_vs_lin(results_e, model_e, results_l, model_l)
-        elif exp_or_lin=='exp':
-            results, model = analysis_exp_minimal(df_ts, window_length)
-        else:
-            results, model = analysis_lin_minimal(df_ts, window_length)
-        '''
     else: # do a search over window_lengths for best possible fit
         # minimum and maximum allowed window lengths; we test all in this closed interval
         wl_lo = 4
@@ -201,17 +153,6 @@ def process_geounit_minimal(df_ts, window_length, exp_or_lin='both'):
         if wl_hi <= wl_lo: # then abort
             results, model = utils.analysis([], 1, 'exp', 'minimal')
             return results, model, window_length, exp_or_lin
-        '''
-        R = pd.DataFrame(np.zeros((wl_hi-wl_lo, 7)), index=range(wl_lo, wl_hi))
-        models = dict()
-        for wl in range(wl_lo, wl_hi):
-            result_wl, model = analysis_minimal(df_ts, wl)
-            R.iloc[wl-wl_lo, :] = result_wl
-            models[wl] = model
-        #R = R.astype({2: int, 3: int, 4: int})
-        results, selected_window_length = select_window_length(R)
-        model = models[selected_window_length]
-        '''
         if exp_or_lin in ['exp', 'both']:
             R_e = pd.DataFrame(np.zeros((wl_hi-wl_lo, 8)), index=range(wl_lo, wl_hi))
             models_e = dict()
@@ -243,6 +184,7 @@ def process_geounit_minimal(df_ts, window_length, exp_or_lin='both'):
                                      else selected_window_length_l
 
     return results, model, selected_window_length, exp_or_lin
+'''
 
 def call_process_geounit_minimal(df_ts, latest_date, window_length, exp_or_lin='both'):
     '''
@@ -263,8 +205,10 @@ def call_process_geounit_minimal(df_ts, latest_date, window_length, exp_or_lin='
         latest_date = df_ts.index[-1]
 
     for i in range(window_length_for_cutoffs-len(df_ts), 1):
-        results, model, selected_window_length, e_or_l = process_geounit_minimal(
-                                                df_ts[:len(df_ts)+i], window_length, exp_or_lin)
+        #results, model, selected_window_length, e_or_l = process_geounit_minimal(
+        #                                        df_ts[:len(df_ts)+i], window_length, exp_or_lin)
+        results, model, selected_window_length, e_or_l = utils.process_geounit(
+                                            df_ts[:len(df_ts)+i], window_length, exp_or_lin, 'minimal')
         #print(results)
         if incr_or_rate == 'incr':
             dif_optim.append(results[0])
@@ -286,14 +230,20 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, exp_o
     if lang=='de':
         if cases=='confirmed':
             case_txt_0 = 'Fallzahlen'
+            case_txt_0zl = 'den täglichen Zuwachs der Fallzahlen'
+            case_txt_0ze = 'den Logarithmus des täglichen Zuwachses der Fallzahlen'
             case_txt_1 = 'Fallzahl'
         elif cases=='deaths':
             case_txt_0 = 'Todesfälle'
+            case_txt_0zl = 'die täglichen neuen Todesfälle'
+            case_txt_0ze = 'den Logarithmus der täglichen neuen Todesfälle'
             case_txt_1 = 'Todesfälle'
         if window_length<0:
-            ax1.set_title('Lineare Regression auf {0}{1} mit optimaler Fenstergröße.'.format('den Logarithmus der ' if exp_or_lin=='exp' else '', case_txt_0))
+            #ax1.set_title('Lineare Regression auf {0}{1} mit optimaler Fenstergröße.'.format('den Logarithmus des ' if exp_or_lin=='exp' else '', case_txt_0))
+            ax1.set_title('Lineare Regression auf {0} mit optimaler Fenstergröße.'.format(case_txt_0ze if exp_or_lin=='exp' else case_txt_0zl))
         else:
-            ax1.set_title('Lineare Regression auf {0}{1} mit Fenstergröße von {2} Datenpunkten.'.format('den Logarithmus der ' if exp_or_lin=='exp' else '', case_txt_0, window_length))
+            #ax1.set_title('Lineare Regression auf {0}{1} mit Fenstergröße von {2} Datenpunkten.'.format('den Logarithmus des ' if exp_or_lin=='exp' else '', case_txt_0, window_length))
+            ax1.set_title('Lineare Regression auf {0} mit Fenstergröße von {1} Datenpunkten.'.format(case_txt_0ze if exp_or_lin=='exp' else case_txt_0zl, window_length))
 
         if xaxis == 'cases':
             if normalise=='xy':
@@ -323,15 +273,21 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, exp_o
     else: # i.e. 'en'
         if cases=='confirmed':
             case_txt_0 = 'case numbers'
+            case_txt_0zl = 'daily new cases'
+            case_txt_0ze = 'logarithm of daily new cases'
             case_txt_1 = 'cases'
         elif cases=='deaths':
             case_txt_0 = 'number of deaths'
+            case_txt_0zl = 'daily numbers of deaths'
+            case_txt_0ze = 'logarithm of daily numbers of deaths'
             case_txt_1 = 'deaths'
 
         if window_length<0:
-            ax1.set_title('Linear regression for {0}{1} with optimised window length.'.format('logarithm of ' if exp_or_lin=='exp' else '', case_txt_0))
+            #ax1.set_title('Linear regression for {0}{1} with optimised window length.'.format('logarithm of ' if exp_or_lin=='exp' else '', case_txt_0))
+            ax1.set_title('Linear regression for the {0} with optimised window length.'.format(case_txt_0ze if exp_or_lin=='exp' else case_txt_0zl))
         else:
-            ax1.set_title('Linear regression for {0}{1}. Window length: {2} data points.'.format('logarithm of ' if exp_or_lin=='exp' else '', case_txt_0, window_length))
+            #ax1.set_title('Linear regression for {0}{1}. Window length: {2} data points.'.format('logarithm of ' if exp_or_lin=='exp' else '', case_txt_0, window_length))
+            ax1.set_title('Linear regression for the {0}. Window length: {1} data points.'.format(case_txt_0ze if exp_or_lin=='exp' else case_txt_0zl, window_length))
 
         if xaxis == 'cases':
             if cases=='confirmed':

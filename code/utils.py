@@ -2,6 +2,7 @@ import os, math
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.collections import PatchCollection
 from sklearn import linear_model
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
@@ -38,7 +39,6 @@ def open_csvs():
         df[labels[i]] = pd.read_csv(lists[i][-1])
     return df
 
-#def data_preparation(df, country, only_cases=False):
 def data_preparation(df, country, output):
     '''
     This is used for the JHU CSSE dataset.
@@ -50,7 +50,7 @@ def data_preparation(df, country, output):
 #'China': [['Anhui', 'China'], ['Beijing', 'China'], ['Chongqing', 'China'], ['Fujian', 'China'], ['Gansu', 'China'], ['Guangdong', 'China'], ['Guangxi', 'China'], ['Guizhou', 'China'], ['Hainan', 'China'], ['Hebei', 'China'], ['Heilongjiang', 'China'], ['Henan', 'China'], ['Hong Kong', 'China'], ['Hubei', 'China'], ['Hunan', 'China'], ['Inner Mongolia', 'China'], ['Jiangsu', 'China'], ['Jiangxi', 'China'], ['Jilin', 'China'], ['Liaoning', 'China'], ['Macau', 'China'], ['Ningxia', 'China'], ['Qinghai', 'China'], ['Shaanxi', 'China'], ['Shandong', 'China'], ['Shanghai', 'China'], ['Shanxi', 'China'], ['Sichuan', 'China'], ['Tianjin', 'China'], ['Tibet', 'China'], ['Xinjiang', 'China'], ['Yunnan', 'China'], ['Zhejiang', 'China']]})
     #sets = dict({'EU': ['Croatia', 'Hungary']}) # test only
     l = list()
-    if country == 'EU' or country == 'China':
+    if country == 'EU' or country == 'China' or country == 'Australia':
         ''' First, recursive implementation
         l_members = list()
         for member in sets[country]:
@@ -62,7 +62,7 @@ def data_preparation(df, country, output):
         for i in range(3):
             k = labels[i]
             M[k] = list()
-            if country == 'China':
+            if country == 'China' or country == 'Australia':
                 M[k].append((df[k]['Province/State'].notna()) & (df[k]['Country/Region']==country))
                 l.append(df[k][M[k][0]].iloc[:,4:].sum(axis=0))
             else: # country == 'EU'
@@ -100,22 +100,6 @@ def data_preparation(df, country, output):
     df_ts.rename(index=pd.Series(df_ts.index, index=df_ts.index).apply(lambda x: pd.to_datetime(x)), inplace=True)
     #print(df_ts)
     return df_ts
-
-'''
-def rm_early_zeros(ts):
-    
-    Removes early zeros from a pandas time series. It finds last (most recent) zero in time series and
-    omits all elements before and including this last zero. Returns the remaining time series which is
-    free of zeros.
-    pd.Series([0,0,0,0,1,2,0,0,3,6]) -> pd.Series([3,6])
-    
-    zeroindices = ts[ts==0].index
-    if len(zeroindices)==0:
-        return ts
-    else:
-        successor = np.nonzero((ts.index==zeroindices.max()))[0][0] + 1
-        return ts[successor:]
-'''
 
 def rm_early_zeros(ts):
     '''
@@ -166,22 +150,6 @@ def separated(s, lang='en', k=3):
     else:
         return s
 
-'''
-def x2str(x, width):
-    
-    Rounds a number to tenths. If width is greater than its length, then it pads it with space.
-    If width<0, then it does no padding.
-    
-    if x<10 and x>-10:
-        s = str(round(x*10)/10)
-    else:
-        s = str(int(round(x)))
-    if width > len(s):
-        return s.rjust(width)
-    else:
-        return s
-'''
-
 def x2str(x, width):
     '''
     Rounds a number to tenths. If width is greater than its length, then it pads it with space.
@@ -220,7 +188,146 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
       difference of model fit on last date and last data point in log space: float
       ]
             model: sklearn.linear_model
+            #failure: 0 or 1; 1 if it failed due to nonpositive number in exponential fit or too short time series
     '''
+
+    i_ts = (df_ts - df_ts.shift(1))[1:] # i for increments
+    if len(i_ts)<window_length:# or (exp_or_lin=='exp' and (i_ts.iloc[-window_length:]<=0).sum()>=5):
+        results = 8 * [0]
+        results[-1] = 100
+        return results, None
+    intl_lo_days = 4
+    intl_hi_days = 6
+    results = [None] * 8
+    results[3] = df_ts.iloc[-1]
+    model = linear_model.LinearRegression(fit_intercept=True)
+    if exp_or_lin=='exp':
+        i_ts_orig = i_ts.copy()
+        i_ts.iloc[-window_length:][i_ts<=0] = 1
+        y = i_ts.iloc[-window_length:].values
+        ylog = np.log(y)
+        model.fit(np.arange(-window_length+1, 1).reshape(-1, 1), ylog)
+        results[0] = math.exp(model.intercept_)
+        # For doubling, the area of the increments is equal to df_ts[-1]
+        # cf. https://www.wolframalpha.com/input/?i=integrate+%28exp%28a+t+%2Bb%29+dt%29+from+t%3D0+to+x
+        if model.coef_[0]!=0:
+            temp2 = math.exp(model.intercept_)/model.coef_[0]
+            temp = model.coef_[0]*df_ts.iloc[-1]/math.exp(model.intercept_) + 1
+            if temp>0:
+                results[2] = math.log(temp)/model.coef_[0]
+            else:
+                results[2] = np.inf
+        else:
+            results[2] = df_ts.iloc[-1]/math.exp(model.intercept_)
+        if extent == 'full':
+            if model.coef_[0]!=0:
+                results[4] = (math.exp(model.coef_[0]*intl_lo_days)-1)*temp2 + df_ts.iloc[-1]
+                results[5] = (math.exp(model.coef_[0]*intl_hi_days)-1)*temp2 + df_ts.iloc[-1]
+            else:
+                results[4] = math.exp(model.intercept_)*intl_lo_days + df_ts.iloc[-1]
+                results[5] = math.exp(model.intercept_)*intl_hi_days + df_ts.iloc[-1]
+
+        if (i_ts_orig.iloc[-window_length:]>0).all():
+            results[6] = model.score(np.arange(-window_length+1, 1).reshape(-1, 1), ylog)
+        else:
+            results[6] = 0
+        if df_ts.iloc[-1]==df_ts.iloc[-window_length]:
+            results[7] = 100
+        else:
+            if model.coef_[0]!=0:
+                results[7] = temp2*(1-math.exp(model.coef_[0]*(-window_length+1)))/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1
+            else:
+                results[7] = math.exp(model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1
+    else: # 'lin'
+        y = i_ts.iloc[-window_length:].values
+        model.fit(np.arange(-window_length+1, 1).reshape(-1, 1), y)
+        results[0] = model.intercept_
+        if model.coef_[0]!=0:
+            if 2*model.coef_[0]*df_ts.iloc[-1] >= - model.intercept_*model.intercept_:
+                results[2] = (-model.intercept_ + math.sqrt(model.intercept_*model.intercept_ + 2*model.coef_[0]*df_ts.iloc[-1]))/model.coef_[0]
+            else:
+                results[2] = np.inf
+        else:
+            if model.intercept_!=0:
+                results[2] = df_ts.iloc[-1]/model.intercept_
+            else:
+                if df_ts.iloc[-1]!=0:
+                    results[2] = np.inf
+                else:
+                    results[2] = 0 # model.coef_[0]==model.intercept_==0
+        if extent == 'full':
+            if model.coef_[0]*model.intercept_<0 and\
+            ((model.coef_[0]>0 and -model.intercept_<intl_lo_days*model.coef_)\
+            or (model.coef_[0]<0 and -model.intercept_>intl_lo_days*model.coef_)):
+            # there is a zero-crossing until intl_lo_days
+                results[4] = -model.intercept_*model.intercept_/(2*model.coef_[0]) + df_ts.iloc[-1]
+                results[5] = results[4]
+            elif model.coef_[0]*model.intercept_<0 and\
+            ((model.coef_[0]>0 and -model.intercept_<intl_hi_days*model.coef_)\
+            or (model.coef_[0]<0 and -model.intercept_>intl_hi_days*model.coef_)):
+            # there is a zero-crossing after intl_lo_days, before intl_hi_days
+                results[5] = -model.intercept_*model.intercept_/(2*model.coef_[0]) + df_ts.iloc[-1]
+            if results[4] is None:
+                results[4] = (model.coef_[0]*intl_lo_days/2+model.intercept_)*intl_lo_days + df_ts.iloc[-1]
+            if results[5] is None:
+                results[5] = (model.coef_[0]*intl_hi_days/2+model.intercept_)*intl_hi_days + df_ts.iloc[-1]
+        results[6] = model.score(np.arange(-window_length+1, 1).reshape(-1, 1), y)
+        if df_ts.iloc[-1]==df_ts.iloc[-window_length]:
+            if model.coef_[0]==0 and model.intercept_==0:
+                results[7] = 0
+            else:
+                results[7] = 100
+        else:
+            #print(model.coef_[0], model.intercept_, '\n', df_ts.iloc[-window_length:])
+            #print(-(model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1))
+            #print(df_ts.iloc[-1]-df_ts.iloc[-window_length])
+            results[7] = -(model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1 # From the integral
+            #print(window_length*(2*model.intercept_+model.coef_[0]*(-window_length+1))/(2*(df_ts.iloc[-1]-df_ts.iloc[-window_length]))-1) # From summing
+            #print((-model.coef_[0]*(-window_length+1)*(-window_length+1)/2+(model.coef_[0]/2-model.intercept_)*(-window_length+1)+model.intercept_)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1) # From summing
+            #results[7] = np.sum(model.coef_[0]*np.arange(-window_length+1, 1)+model.intercept_)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1 # From summing
+            #print(results[7])
+    if results[2]!=np.inf and results[2]!=0 and results[0]>0:
+        #print(window_length, df_ts.iloc[-window_length-1:], y, model.coef_[0], model.intercept_, results, 1/results[2])
+        results[1] = (math.pow(2, 1/results[2])-1)*100
+    else:
+        #y_last = (df_ts.iloc[-1]+df_ts.iloc[-2]+df_ts.iloc[-3])/3 # smoothening to lessen the impact of penultimate data point
+        y_last = (df_ts.iloc[-1]+df_ts.iloc[-2])/2 # smoothening to lessen the impact of penultimate data point
+        if y_last!=0:
+            results[1] = results[0]*100 / y_last
+        elif model.coef_[0]==0 and model.intercept_==0:
+            results[1] = 0
+        else:
+            results[1] = np.inf
+
+    if extent == 'minimal':
+        #results[2] = 0
+        results[4] = 0
+        results[5] = 0
+    #print(window_length, results)
+    return results, model
+
+'''
+def analysis(df_ts, window_length, exp_or_lin, extent='full'):
+    
+    df_ts: pd.Series, it is a time series, can be totals or no. per e.g. 100,000 ppl
+    window_length: int
+    exp_or_lin in ['exp', 'lin']
+    For 'exp', because of log2, this requires all entries in df_ts to be positive.
+    For 'lin', because of log2, this requires last entry in df_ts to be positive.
+    extent in ['full', 'minimal']
+    'minimal' doesn't compute predictions.
+    output: results = [
+      daily increment in natural units (units of df_ts): float,
+      daily growth rate in percentage: float,
+      doubling time in days: float or 0 for 'minimal',
+      current cases (df_ts.iloc[-1]),
+      projection_lower: type(df_ts.dtype) or 0 for 'minimal',
+      projection_upper: type(df_ts.dtype) or 0 for 'minimal',
+      model_score=R^2: float,
+      difference of model fit on last date and last data point in log space: float
+      ]
+            model: sklearn.linear_model
+    
     if len(df_ts)<window_length:
         results = 8 * [0]
         results[-1] = 100
@@ -260,51 +367,6 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
         results[4] = 0
         results[5] = 0
     return results, model
-
-'''
-def analysis_exp(df_ts, window_length):
-    
-    Because of log2, this requires all entries in df_ts to be positive.
-    
-    if len(df_ts)<window_length:
-        results = 7 * [0]
-        results[-1] = 100
-        return results, None
-    intl_lo_days = 4
-    intl_hi_days = 6
-    ylog2 = np.log2(df_ts.iloc[-window_length:].values)
-    model = linear_model.LinearRegression(fit_intercept=True)
-    model.fit(np.arange(len(ylog2)).reshape(-1, 1), ylog2)
-    results = [(math.pow(2, model.coef_[0])-1)*100,
-                1/model.coef_[0],
-                df_ts.iloc[-1],
-                int(np.round(math.pow(2, model.predict(np.array(len(ylog2)-1+intl_lo_days).reshape(1,-1))))),
-                int(np.round(math.pow(2, model.predict(np.array(len(ylog2)-1+intl_hi_days).reshape(1,-1))))),
-                model.score(np.arange(len(ylog2)).reshape(-1, 1), ylog2),
-                model.predict(np.array(len(ylog2)-1).reshape(-1, 1))[0]-ylog2[-1]]
-    return results, model
-
-def analysis_lin(df_ts, window_length):
-    
-    Because of log2, this requires last entry in df_ts to be positive.
-    
-    if len(df_ts)<window_length:
-        results = 7 * [0]
-        results[-1] = 100
-        return results, None
-    intl_lo_days = 4
-    intl_hi_days = 6
-    y = df_ts.iloc[-window_length:].values
-    model = linear_model.LinearRegression(fit_intercept=True)
-    model.fit(np.arange(len(y)).reshape(-1, 1), y)
-    results = [model.coef_[0]/y[-1]*100,
-                2*y[-1]/model.coef_[0],
-                df_ts.iloc[-1],
-                int(np.round(model.predict(np.array(len(y)-1+intl_lo_days).reshape(1,-1)))),
-                int(np.round(model.predict(np.array(len(y)-1+intl_hi_days).reshape(1,-1)))),
-                model.score(np.arange(len(y)).reshape(-1, 1), y),
-                model.predict(np.array(len(y)-1).reshape(-1, 1))[0]/y[-1]-1]
-    return results, model
 '''
 
 def select_window_length(R, round_output):
@@ -342,22 +404,24 @@ def pick_exp_vs_lin(r_exp, m_exp, r_lin, m_lin):
         return r_lin[:-1], m_lin, 'lin'
 
 #TODO this should have a switch that it should compute in densities when population size is available
-def process_geounit(df_ts, window_length, exp_or_lin='both'):
+def process_geounit(df_ts, window_length, exp_or_lin='both', running_extent='full'):
     '''
     This processes one geographical unit.
     df_ts is the time series.
     '''
-    df_ts = rm_early_zeros(df_ts)
+    #df_ts = rm_early_zeros(df_ts)
     if window_length > 0:
         selected_window_length = window_length
         if exp_or_lin=='both':
-            results_e, model_e = analysis(df_ts, window_length, 'exp')
-            results_l, model_l = analysis(df_ts, window_length, 'lin')
+            results_e, model_e = analysis(df_ts, window_length, 'exp', running_extent)
+            results_l, model_l = analysis(df_ts, window_length, 'lin', running_extent)
             results, model, exp_or_lin = pick_exp_vs_lin(results_e, model_e, results_l, model_l)
+            #print(results_e)
+            #print(results_l)
         elif exp_or_lin=='exp':
-            results, model = analysis(df_ts, window_length, 'exp')
+            results, model = analysis(df_ts, window_length, 'exp', running_extent)
         else:
-            results, model = analysis(df_ts, window_length, 'lin')
+            results, model = analysis(df_ts, window_length, 'lin', running_extent)
     else: # do a search over window_lengths for best possible fit
         # minimum and maximum allowed window lengths; we test all in this closed interval
         wl_lo = 4
@@ -366,7 +430,8 @@ def process_geounit(df_ts, window_length, exp_or_lin='both'):
         #wl_hi = min(wl_hi, 1+len(df_ts[df_ts[df_ts>0].idxmin():]), 1+len(df_ts))
         wl_hi = min(wl_hi, 1+len(df_ts))
         if wl_hi <= wl_lo: # then abort
-            results, model = analysis([], 1, 'exp')
+            #print(df_ts)
+            results, model = analysis(pd.Series([]), 1, 'exp', running_extent)
             return results, model, window_length, exp_or_lin
         '''
         R = pd.DataFrame(np.zeros((wl_hi-wl_lo, 7)), index=range(wl_lo, wl_hi))
@@ -387,19 +452,17 @@ def process_geounit(df_ts, window_length, exp_or_lin='both'):
             models_l = dict()
         for wl in range(wl_lo, wl_hi): # last wl_hi-1 points must be available and positive <==
             if exp_or_lin in ['exp', 'both']:
-                result_wl, model = analysis(df_ts, wl, 'exp') # last wl points must be available and positive
+                result_wl, model = analysis(df_ts, wl, 'exp', running_extent) # last wl points must be available and positive
                 R_e.iloc[wl-wl_lo, :] = result_wl
                 models_e[wl] = model
             if exp_or_lin in ['lin', 'both']:
-                result_wl, model = analysis(df_ts, wl, 'lin')
+                result_wl, model = analysis(df_ts, wl, 'lin', running_extent)
                 R_l.iloc[wl-wl_lo, :] = result_wl
                 models_l[wl] = model
         if exp_or_lin in ['exp', 'both']:
-            #R_e = R_e.astype({2: int, 3: int, 4: int})
             results_e, selected_window_length_e = select_window_length(R_e, round_output=False)
             model_e = models_e[selected_window_length_e]
         if exp_or_lin in ['lin', 'both']:
-            #R_l = R_l.astype({2: int, 3: int, 4: int})
             results_l, selected_window_length_l = select_window_length(R_l, round_output=False)
             model_l = models_l[selected_window_length_l]
         if exp_or_lin == 'exp':
@@ -410,7 +473,6 @@ def process_geounit(df_ts, window_length, exp_or_lin='both'):
             results, model, exp_or_lin = pick_exp_vs_lin(results_e, model_e, results_l, model_l)
             selected_window_length = selected_window_length_e if exp_or_lin=='exp'\
                                      else selected_window_length_l
-    #results = pd.DataFrame(results.values.reshape((1,-1))).astype({2: int, 3: int, 4: int})
     return results, model, selected_window_length, exp_or_lin
 
 def print_header(normalise_by, population_csv=None):
@@ -453,11 +515,18 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
     if not isinstance(country, str): # If it's a province or state of a country or region.
         country = country[0]
 
+    if frmt!='active': # If input is a cumulative number, then don't display negative estimates.
+        if results[0]<0:
+            results[0]=0
+        if results[1]<0:
+            results[1]=0
     if population_csv is not None:
         incr_per_ppl = x2str(normalise_by*results[0]/pop[country], 4 if frmt!='deaths' else 6)
     else:
         incr_per_ppl = ' ' * 4 if frmt!='deaths' else ' ' * 6
-    if ((results[6]>=0.95 and results[7]<=0.5) or (results[7]>=-0.2 and results[7]<=0.1)) and\
+    #if ((results[6]>=0.95 and results[7]<=0.5) or (results[7]>=-0.2 and results[7]<=0.1)) and\
+    #    results[0]>0 and frmt!='deaths':
+    if ((results[6]>=0.75 and results[7]<=0.5) or (results[7]>=-0.3 and results[7]<=0.3)) and\
         results[0]>0 and frmt!='deaths':
         #print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6:4.2f} {7:5.2f}  {8}'.format(
          #country.ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
@@ -470,8 +539,12 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
             nr_cases_per_ppl = ' ' * int(math.log10(normalise_by))
             est_lo_per_ppl = results[4]
             est_hi_per_ppl = results[5]
-        interval = ('[' + x2str(est_lo_per_ppl, -1) +', '\
-                 + x2str(est_hi_per_ppl, -1) + ']').rjust(interval_width)
+        #interval = ('[' + x2str(est_lo_per_ppl, -1) +', '\
+        #         + x2str(est_hi_per_ppl, -1) + ']').rjust(interval_width)
+        est_per_ppl_min = min(est_lo_per_ppl, est_hi_per_ppl)
+        est_per_ppl_max = max(est_lo_per_ppl, est_hi_per_ppl)
+        interval = ('[' + x2str(est_per_ppl_min, -1) +', '\
+                 + x2str(est_per_ppl_max, -1) + ']').rjust(interval_width)
     else:
         if population_csv is not None:
             nr_cases_per_ppl = x2str(normalise_by*results[3]/pop[country], int(math.log10(normalise_by))+1)
@@ -487,7 +560,7 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
         x2str(results[0], 6),
         incr_per_ppl,
         results[1],
-        results[2] if results[1]>=0 else np.NaN,
+        results[2] if results[0]>=0 else np.NaN, # if results[1]>=0 else np.NaN,
         'Tage' if lang=='de' else 'days',
         x2str(results[3], 7),
         nr_cases_per_ppl,
@@ -500,7 +573,8 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
 def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, lang='en'):
     if not isinstance(country, str): # If it's a province or state of a country or region.
         country = country[0]
-    fig, (ax1, ax2) = plt.subplots(1,2, figsize=(9.6, 4.8))
+    #fig, (ax1, ax2) = plt.subplots(1,2, figsize=(9.6, 4.8))
+    fig, (ax0, ax1, ax2) = plt.subplots(1,3, figsize=(14.4, 4.8))
     if lang=='de':
         line0 = 'Beobachtungen'
         line1 = 'Exponentielle Annäherung' if exp_or_lin=='exp' else 'Lineare Annäherung'
@@ -515,28 +589,55 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
     fig.subplots_adjust(bottom=0.2)
     #ax1.plot(df_ts[df_ts>0], label=line0)
     #ax1.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1)
+    plot_x = df_ts.iloc[-window_length:].index
+    i_ts = (df_ts - df_ts.shift(1))[1:] # i for increments
+    ax0.bar(df_ts[1:].index, i_ts[-len(df_ts)+1:], color='tab:blue')
+    #df_ts_no0 = rm_consecutive_early_zeros(df_ts)
+    #df_ts_no0 = df_ts
     if exp_or_lin=='exp':
-        ax1.plot(df_ts.iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1, color='tab:orange', linewidth=3)
-        ax1.plot(rm_consecutive_early_zeros(df_ts), label=line0, color='tab:blue')
-        #ax2.plot(df_ts[df_ts>0], label=line0)
-        ax2.plot(df_ts.iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1, color='tab:orange', linewidth=3)
-        ax2.plot(rm_consecutive_early_zeros(df_ts), label=line0, color='tab:blue')
+        #print(df_ts_no0[1:].index)
+        #print(i_ts[-len(df_ts_no0)+1:])
+        #print(i_ts)
+        if model is not None:
+            ax0.plot(plot_x, np.exp(model.coef_[0]*np.arange(-window_length+1, 1) + model.intercept_), color='tab:orange', linewidth=3)
+        #plot_y = np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_)
+        #temp2 = math.pow(2, model.intercept_)/(math.log(2)*model.coef_[0])
+            if model.coef_[0]!=0:
+                temp2 = math.exp(model.intercept_)/model.coef_[0]
+            #plot_y = (np.power(2, model.coef_[0]*np.arange(-window_length+1, 1))-1)*temp2 + df_ts.iloc[-1]
+            #plot_y = (np.power(2, model.coef_[0]*np.arange(-window_length+1, 1))-1)*temp2 + df_ts.iloc[-window_length]
+                plot_y = (np.exp(model.coef_[0]*np.arange(-window_length+1, 1)) - math.exp(model.coef_[0] * (-window_length+1)))*temp2 + df_ts.iloc[-window_length]
+            else:
+                plot_y = math.exp(model.intercept_)*(np.arange(-window_length+1, 1) - (-window_length+1)) + df_ts.iloc[-window_length]
+            ax1.plot(plot_x, plot_y, label=line1, color='tab:orange', linewidth=3)
+            ax2.plot(plot_x, plot_y, label=line1, color='tab:orange', linewidth=3)
     else:
-        ax1.plot(df_ts.iloc[-window_length:].index, np.arange(0, window_length)*model.coef_ + model.intercept_, label=line1, color='tab:pink', linewidth=3)
-        ax1.plot(rm_consecutive_early_zeros(df_ts), label=line0, color='tab:blue')
-        #ax2.plot(df_ts[df_ts>0], label=line0)
-        ax2.plot(df_ts.iloc[-window_length:].index, np.arange(0, window_length)*model.coef_ + model.intercept_, label=line1, color='tab:pink', linewidth=3)
-        ax2.plot(rm_consecutive_early_zeros(df_ts), label=line0, color='tab:blue')
+        #print(df_ts_no0[1:].index)
+        #print(i_ts[-len(df_ts_no0)+1:])
+        #ax0.bar(df_ts[1:].index, i_ts[-len(df_ts)+1:], color='tab:blue')
+        ax0.plot(plot_x, model.coef_[0]*np.arange(-window_length+1, 1) + model.intercept_, color='tab:pink', linewidth=3)
+        #plot_y = np.arange(0, window_length)*model.coef_ + model.intercept_
+        #plot_y = (model.coef_[0]*np.arange(-window_length+1, 1)/2+model.intercept_)*np.arange(-window_length+1, 1) + df_ts.iloc[-1]
+#        plot_y = (model.coef_[0]*np.arange(0, window_length)/2+model.intercept_)*np.arange(0, window_length) + df_ts.iloc[-window_length]
+        plot_y = (model.coef_[0]*np.arange(-window_length+1, 1)/2+model.intercept_)*np.arange(-window_length+1, 1) - (model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1) + df_ts.iloc[-window_length]
+        ax1.plot(plot_x, plot_y, label=line1, color='tab:pink', linewidth=3)
+        ax2.plot(plot_x, plot_y, label=line1, color='tab:pink', linewidth=3)
+
+    ax1.plot(df_ts, label=line0, color='tab:blue')
+    ax2.plot(df_ts, label=line0, color='tab:blue')
 
     ax2.set_yscale("log")
+    for tick in ax0.get_xticklabels():
+        tick.set_rotation(80)
     for tick in ax1.get_xticklabels():
         tick.set_rotation(80)
     for tick in ax2.get_xticklabels():
         tick.set_rotation(80)
     handles, labs = ax1.get_legend_handles_labels()
-    ax1.legend((handles[1], handles[0]), (labs[1], labs[0]))
-    #plt.gcf().text(0.905, 0.615, "© Bence Mélykúti, Melykuti.me, 2020", fontsize=8, color='lightgray', rotation=90)
-    #plt.gcf().text(0.905, 0.862, "© Bence Mélykúti, http://COVID19.Melykuti.Be, 2020", fontsize=8, color='lightgray', rotation=90)
+    if model is not None:
+        ax1.legend((handles[1], handles[0]), (labs[1], labs[0]))
+    else:
+        ax1.legend([handles[0]], [labs[0]])
     if save_not_show==0:
         plt.show()
     elif save_not_show==1:
@@ -568,7 +669,6 @@ def load_population_BW(incl_density=False):
     pop_ser=pd.Series(pop['Bevölkerung insgesamt'].values, index=pop.Regionalname)
     countries = dict()
     for country in pop_ser.index:
-        #country_new = country.strip()
         countries[country] = pop_ser.loc[country]
     if incl_density:
         pop.rename(index=pop.Regionalname, inplace=True)

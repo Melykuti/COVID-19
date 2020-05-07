@@ -3,7 +3,7 @@ This script analyses multiple countries using the JHU CSSE dataset:
 https://github.com/CSSEGISandData
 
 exec(open('analysis_joint.py').read())
-13/3-11/4/2020
+13/3-1/5/2020
 '''
 
 import os, math
@@ -11,13 +11,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import linear_model
-#from utils import open_csvs, data_preparation, rm_early_zeros, process_geounit, print_header, print_results, plotting
 import utils
 from importlib import reload
 
 ### User input ###
 
-countries = ['US', 'United Kingdom', 'Italy', 'Spain', 'France', 'Russia', 'Germany', 'Netherlands', 'Belgium', 'Iran',  'Sweden', 'Saudi Arabia', 'Japan', 'Singapore', 'Switzerland', 'Belarus', 'Austria', 'Denmark', 'Hungary', 'Korea, South', 'China']
+countries = ['US', 'United Kingdom', 'Russia', 'Italy', 'France', 'Spain', 'Netherlands', 'Belgium', 'Germany', 'Saudi Arabia', 'Singapore', 'Sweden', 'Belarus', 'Iran', 'Japan', 'Switzerland', 'Denmark', 'Hungary', 'Austria', 'Korea, South', 'Australia', 'China', 'New Zealand']
 #countries = ['US', 'Italy', 'France', 'Spain', 'Germany', 'United Kingdom', 'Iran', 'Netherlands', 'Belgium', 'Switzerland', 'Sweden', 'Austria', 'Japan', 'Denmark', 'Hungary', 'Korea, South', 'China']
 #countries = ['US', 'Italy', 'Spain', 'Germany', 'France', 'Iran', 'United Kingdom', 'Switzerland', 'Netherlands', 'Belgium', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', 'China'] # ['Hubei', 'China']]
 #countries = ['United Kingdom']
@@ -53,7 +52,7 @@ if __name__ == '__main__':
                           country[1].replace(',', '_').replace(' ', '_')
 
         df_ts = utils.data_preparation(df, country, cases)
-        df_ts = utils.rm_early_zeros(df_ts)
+        #df_ts = utils.rm_early_zeros(df_ts)
         if max_display_length > 0:
             df_ts = df_ts[-max_display_length:]
         results, model, selected_window_length, e_or_l = utils.process_geounit(
@@ -76,7 +75,7 @@ if __name__ == '__main__':
 
         if window_length > 0:
             utils.print_results(country, results_dict[country_key], normalise_by, pop_csv,
-                                window_length, exp_or_lin_dict[country_key])
+                                window_length, exp_or_lin_dict[country_key], cases, lang)
         else:
             utils.print_results(country, results_dict[country_key], normalise_by, pop_csv,
-                                selected_window_length_dict[country_key], exp_or_lin_dict[country_key])
+                    selected_window_length_dict[country_key], exp_or_lin_dict[country_key], cases, lang)

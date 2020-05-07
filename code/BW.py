@@ -8,7 +8,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from importlib import reload
-#from utils import rm_early_zeros, process_geounit, print_header, print_results, plotting
 import utils
 
 allowed_values = ['Alb-Donau-Kreis', 'Baden-Baden (Stadtkreis)', 'Biberach', 'Böblingen',
@@ -30,7 +29,7 @@ allowed_values = ['Alb-Donau-Kreis', 'Baden-Baden (Stadtkreis)', 'Biberach', 'B�
 
 selection = 'alle' # Choose one of the elements of allowed_values.
 #selection = allowed_values[10] # Alternatively, choose an element index from allowed_values.
-#selection = 'Pforzheim (Stadtkreis)'
+#selection = 'Stuttgart'
 
 cases = 'both' # 'confirmed' or 'deaths' or 'both'
 
@@ -47,10 +46,10 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
     'Deutschland': 13})
 '''
 
-save_not_show = -1 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+save_not_show = -1 # if 0, then shows the plot for individual district (Landkreis); if 1, then saves it; otherwise it does neither.
 # In the case of 'alle', 0 functions as -1.
 
-sc_save_not_show = 1 # In the case of 'alle', if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+sc_save_not_show = 0 # In the case of 'alle', if 0, then shows the joint scatter plot; if 1, then saves it; otherwise it does neither.
 
 normalise_by = 1e5 # report case numbers per this many people
 exp_or_lin = 'both' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
@@ -145,8 +144,7 @@ if __name__ == '__main__':
         cases_list = [cases]
     else:
         cases_list = ['confirmed', 'deaths']
-    #case_type = 'confirmed'
-    #case_type = 'deaths'
+
     figures = open_data()
 
     utils.print_header(normalise_by, pop_csv)
