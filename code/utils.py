@@ -2,7 +2,7 @@ import os, math
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.collections import PatchCollection
+#from matplotlib.collections import PatchCollection
 from sklearn import linear_model
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
@@ -424,7 +424,7 @@ def process_geounit(df_ts, window_length, exp_or_lin='both', running_extent='ful
             results, model = analysis(df_ts, window_length, 'lin', running_extent)
     else: # do a search over window_lengths for best possible fit
         # minimum and maximum allowed window lengths; we test all in this closed interval
-        wl_lo = 4
+        wl_lo = 7
         wl_hi = 15 # this end point is not included
         # Rule out zeros because we take logarithm; rule out windows longer than the time series df_ts.
         #wl_hi = min(wl_hi, 1+len(df_ts[df_ts[df_ts>0].idxmin():]), 1+len(df_ts))
@@ -579,12 +579,14 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
         line0 = 'Beobachtungen'
         line1 = 'Exponentielle Annäherung' if exp_or_lin=='exp' else 'Lineare Annäherung'
         fig.suptitle(country + ', Stand ' + df_ts.index[-1].strftime('%d.%m.%Y'))
-        plt.gcf().text(0.905, 0.86, "© Bence Mélykúti, 2020. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+        #plt.gcf().text(0.905, 0.86, "© Bence Mélykúti, 2020. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+        plt.gcf().text(0.905, 0.268, "© Bence Mélykúti, 2020. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     else:
         line0 = 'Observations'
         line1 = 'Exponential approximation' if exp_or_lin=='exp' else 'Linear approximation'
         fig.suptitle(country + ', ' + df_ts.index[-1].strftime('%d %B %Y'))
-        plt.gcf().text(0.905, 0.862, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+        #plt.gcf().text(0.905, 0.862, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+        plt.gcf().text(0.905, 0.27, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     #fig.tight_layout()
     fig.subplots_adjust(bottom=0.2)
     #ax1.plot(df_ts[df_ts>0], label=line0)
