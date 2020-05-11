@@ -50,7 +50,7 @@ countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Ki
 # Drop-in replacement for original:
 countries = ['China', 'EU', 'US']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=55.; normalise = None; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 '''
-#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=45.; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
+countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=45.; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 # New
 #countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
 #countries = ['China', 'EU', 'US']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
@@ -88,7 +88,13 @@ countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'C
 #cases = 'deaths'; countries = ['Italy', 'Spain', 'US', 'United Kingdom', 'France', 'Netherlands', 'Belgium', 'Sweden', 'Germany']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=3.; normalise = 'xy'; filename = 'deathtoll'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
 #cases = 'deaths'; countries = ['Italy', 'Spain', 'US', 'United Kingdom', 'France', 'Netherlands', 'Belgium', 'Sweden', 'Germany']; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=3.; normalise = 'xy'; filename = 'deathtoll'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
+#cases = 'deaths'; countries = ['China', 'EU', 'US']; left_bound=0.01; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#cases = 'deaths'; countries = ['China', 'EU', 'US']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
+
 # Testing
+
+#countries = ['China', 'EU', 'US']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=None; normalise = None; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
+#countries = ['China', 'EU', 'US']; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'y'; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
 
 #countries = ['Japan', 'Korea, South', 'China']; left_bound=None; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 
@@ -97,8 +103,7 @@ countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'C
 #countries = 'Deutschland'; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'; cases = 'deaths'
 
 
-#countries = ['China', 'EU', 'US']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=None; normalise = None; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
-#countries = ['China', 'EU', 'US']; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'y'; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
+
 
 #countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
 #countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=pd.to_datetime('2020-03-15'); right_bound=pd.to_datetime('2020-04-02'); bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
@@ -339,7 +344,11 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, exp_o
     ax1.legend()
     ax1.grid(True, axis='y')
     #plt.gcf().text(0.905, 0.87, "© Bence Mélykúti, Melykuti.me, 2020", fontsize=8, color='lightgray', rotation=90) # 0.905, 0.37
-    plt.gcf().text(0.905, 0.87, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+    #plt.gcf().text(0.905, 0.87, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+    if lang=='de':
+        plt.gcf().text(0.905, 0.498, "© Bence Mélykúti, 2020. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+    else: # i.e. 'en'
+        plt.gcf().text(0.905, 0.515, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     if save_not_show==0:
         plt.show()
     elif save_not_show==1:

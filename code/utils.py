@@ -92,6 +92,8 @@ def data_preparation(df, country, output):
     if output=='all':
         df_ts = dft
     elif output=='active':
+        print('Number of recovered in the past eight days:')
+        print(dft['recovered'][-8:])
         df_ts = dft['confirmed']-dft['deaths']-dft['recovered'] # On 24 March 2020, recovered is not available; on 28 March 2020 it is there again.
     else:
         df_ts = dft[output]
@@ -580,7 +582,7 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
         line1 = 'Exponentielle Annäherung' if exp_or_lin=='exp' else 'Lineare Annäherung'
         fig.suptitle(country + ', Stand ' + df_ts.index[-1].strftime('%d.%m.%Y'))
         #plt.gcf().text(0.905, 0.86, "© Bence Mélykúti, 2020. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
-        plt.gcf().text(0.905, 0.268, "© Bence Mélykúti, 2020. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+        plt.gcf().text(0.905, 0.242, "© Bence Mélykúti, 2020. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     else:
         line0 = 'Observations'
         line1 = 'Exponential approximation' if exp_or_lin=='exp' else 'Linear approximation'

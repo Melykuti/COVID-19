@@ -22,7 +22,7 @@ allowed_values = \
 
 selection = 'alle' # Choose one of the elements of allowed_values.
 #selection = allowed_values[0] # Alternatively, choose an element index from allowed_values.
-#selection = 'Hamburg'
+#selection = 'Deutschland'
 
 cases = 'confirmed' # 'confirmed' or 'deaths' or 'confirmed_minus_deaths'
 
@@ -250,10 +250,10 @@ def data_preparation_DEU(output):
     #print(soup.prettify())
 
     #tables = soup.find_all('table', {'class':'wikitable sortable mw-collapsible'}) # I expect two tables: 'Bestätigte Infektionsfälle (kumuliert)', 'Bestätigte Todesfälle (kumuliert)'
-    tables = soup.find_all('table', {'class':'wikitable'}) # I expect eight tables
+    tables = soup.find_all('table', {'class':'wikitable'}) # I expect eleven tables
 
     idx_Infektionsfaelle = 1
-    idx_Todesfaelle = 3
+    idx_Todesfaelle = 4
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[2].text:
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
     #if 'Daten über Infektionsfälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
