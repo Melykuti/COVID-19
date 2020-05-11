@@ -5,7 +5,7 @@
 Zusammenfassung am Montag, 11 Mai 2020:
 
 * Nach einem Wochenende sind die gemeldeten Fallzahlen der Neuinfektionen immer niedriger, wie es auch heute der Fall ist. Aber die heutigen Zahlen sind in den meisten Bundesländern niedriger als die von vor einer Woche, das unbedingt eine positive Entwicklung ist.
-* Es gibt leider Ausnahmen: in Bermen, in Schleswig-Holstein und in Thüringen gibt es über den letzten Tagen mehr neue Infekte, als vor einer Woche. Die aus Baden-Württemberg übermittelten Daten sind unzuverlässig, und das Robert-Koch-Institut ermittelt, warum sie sogar gesunken sind.
+* Es gibt leider Ausnahmen: in Bremen, in Schleswig-Holstein und in Thüringen gibt es über die letzten Tagen mehr neue Infekte als vor einer Woche. Die aus Baden-Württemberg übermittelten Daten sind unzuverlässig, und das Robert-Koch-Institut ermittelt, warum sie sogar gesunken sind.
 * 50 Neuinfektionen über eine Woche pro 100.000 Einwohner wurde als Grenze für Landkreise gesetzt, über die etliche Lockerungen müssen zurückgenommen werden. Ich melde diese Zahl nicht, jedoch gebe ich eine Schätzung für Neuinfektionen an einem Tag laut des angepassten Trends. Diese Zahl muss dann ungefähr unter 7 bleiben. Deutschlandweit ist sie nun 0,8, jedoch große Schwankungen sind für einzelne Landkreise zu erwarten.
 
 Zusammenfassung am Donnerstag, 7 Mai 2020:
