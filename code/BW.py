@@ -29,7 +29,8 @@ allowed_values = ['Alb-Donau-Kreis', 'Baden-Baden (Stadtkreis)', 'Biberach', 'B�
 
 selection = 'alle' # Choose one of the elements of allowed_values.
 #selection = allowed_values[10] # Alternatively, choose an element index from allowed_values.
-#selection = 'Stuttgart'
+#selection = allowed_values[-2]
+#selection = 'Rems-Murr-Kreis'
 
 cases = 'both' # 'confirmed' or 'deaths' or 'both'
 
@@ -47,9 +48,8 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
 '''
 
 save_not_show = -1 # if 0, then shows the plot for individual district (Landkreis); if 1, then saves it; otherwise it does neither.
-# In the case of 'alle', 0 functions as -1.
 
-sc_save_not_show = 0 # In the case of 'alle', if 0, then shows the joint scatter plot; if 1, then saves it; otherwise it does neither.
+sc_save_not_show = 1 # In the case of 'alle', if 0, then shows the joint scatter plot; if 1, then saves it; otherwise it does neither.
 
 normalise_by = 1e5 # report case numbers per this many people
 exp_or_lin = 'both' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
@@ -87,7 +87,7 @@ def open_data():
 
 # Scatter plot
 def scp(sc_save_not_show, case_type='confirmed'):
-    lk2kz = {'Baden-Baden (Stadtkreis)': 'BAD', 'Böblingen': 'BB', 'Breisgau-Hochschwarzwald': 'FR*', 'Emmendingen': 'EM', 'Esslingen': 'ES', 'Freiburg im Breisgau (Stadtkreis)': 'FR', 'Freudenstadt': 'FDS', 'Heidelberg (Stadtkreis)': 'HD', 'Heidenheim': 'HDH', 'Heilbronn (Stadtkreis)': 'HN', 'Heilbronn': 'HN*', 'Hohenlohekreis': 'KÜN', 'Karlsruhe (Stadtkreis)': 'KA', 'Konstanz': 'KN', 'Lörrach': 'LÖ', 'Ludwigsburg': 'LB', 'Mannheim (Stadtkreis)': 'MA', 'Ortenaukreis': 'OG', 'Ostalbkreis': 'AA/GD', 'Pforzheim (Stadtkreis)': 'PF', 'Reutlingen': 'RT', 'Rhein-Neckar-Kreis': 'HD*', 'Rottweil': 'RW', 'Schwäbisch Hall': 'SHA', 'Schwarzwald-Baar-Kreis': 'VS', 'Sigmaringen': 'SIG', 'Stuttgart': 'S', 'Tuttlingen': 'TUT', 'Tübingen': 'TÜ', 'Ulm (Stadtkreis)': 'UL', 'Waldshut': 'WT', 'Zollernalbkreis': 'BL'}
+    lk2kz = {'Baden-Baden (Stadtkreis)': 'BAD', 'Böblingen': 'BB', 'Breisgau-Hochschwarzwald': 'FR*', 'Emmendingen': 'EM', 'Esslingen': 'ES', 'Freiburg im Breisgau (Stadtkreis)': 'FR', 'Freudenstadt': 'FDS', 'Heidelberg (Stadtkreis)': 'HD', 'Heidenheim': 'HDH', 'Heilbronn (Stadtkreis)': 'HN', 'Heilbronn': 'HN*', 'Hohenlohekreis': 'KÜN', 'Karlsruhe': 'KA*', 'Karlsruhe (Stadtkreis)': 'KA', 'Konstanz': 'KN', 'Lörrach': 'LÖ', 'Ludwigsburg': 'LB', 'Mannheim (Stadtkreis)': 'MA', 'Ortenaukreis': 'OG', 'Ostalbkreis': 'AA/GD', 'Pforzheim (Stadtkreis)': 'PF', 'Reutlingen': 'RT', 'Rhein-Neckar-Kreis': 'HD*', 'Rottweil': 'RW', 'Schwäbisch Hall': 'SHA', 'Schwarzwald-Baar-Kreis': 'VS', 'Sigmaringen': 'SIG', 'Stuttgart': 'S', 'Tuttlingen': 'TUT', 'Tübingen': 'TÜ', 'Ulm (Stadtkreis)': 'UL', 'Waldshut': 'WT', 'Zollernalbkreis': 'BL'}
     figures = open_data()
     if case_type=='confirmed':
         fallzahl = 'Fallzahl auf {0} Einwohner'.format(utils.separated(str(int(normalise_by)), lang))
@@ -124,7 +124,8 @@ def scp(sc_save_not_show, case_type='confirmed'):
         fig.suptitle('COVID-19-Infizierten in Baden-Württemberg vs Bevölkerungsdichte pro Landkreis\nStand ' + figures[case_type].index[-1].strftime('%d.%m.%Y'))
     elif case_type=='deaths':
         fig.suptitle('COVID-19-Todesfälle in Baden-Württemberg vs Bevölkerungsdichte pro Landkreis\nStand ' + figures[case_type].index[-1].strftime('%d.%m.%Y'))
-    plt.gcf().text(0.905, 0.865, "© Bence Mélykúti, 2020. http://COVID19BW.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+    #plt.gcf().text(0.905, 0.865, "© Bence Mélykúti, 2020. http://COVID19BW.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+    plt.gcf().text(0.905, 0.395, "© Bence Mélykúti, 2020. http://COVID19BW.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     if sc_save_not_show == 0:
         plt.show()
     else:
@@ -218,4 +219,3 @@ if __name__ == '__main__':
             if sc_save_not_show in [0, 1]:
                 scp(sc_save_not_show, case)
     
-

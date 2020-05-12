@@ -305,6 +305,7 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
         #results[2] = 0
         results[4] = 0
         results[5] = 0
+    #print(model.coef_[0], model.intercept_, results[6], results[7])
     #print(window_length, results)
     return results, model
 
@@ -568,7 +569,7 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
         nr_cases_per_ppl,
         interval,
         results[6],
-        results[7],
+        results[7] if results[7]<100 else np.nan,
         str(wl).rjust(2),
         'e' if exp_or_lin=='exp' else 'l').replace('.', ',' if lang=='de' else '.'))
 
