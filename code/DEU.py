@@ -257,7 +257,7 @@ def data_preparation_DEU(output):
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[2].text:
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
     #if 'Daten über Infektionsfälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
-    if 'Infektionsfälle (kumuliert)' not in tables[idx_Infektionsfaelle].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[idx_Todesfaelle].text:
+    if 'Infektionsfälle (kumuliert)' not in tables[idx_Infektionsfaelle].text or ('Bestätigte Todesfälle (kumuliert)' not in tables[idx_Todesfaelle].text and 'Bestätigte\xa0Todesfälle\xa0(kumuliert)' not in tables[idx_Todesfaelle].text):
         print('ERROR at 0: Data format error, results are unreliable.')
 
     for i in [idx_Infektionsfaelle, idx_Todesfaelle]:
