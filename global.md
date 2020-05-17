@@ -3,7 +3,7 @@
 > * Recall that on this page I examine the number of currently infected patients and not the cumulative number of all who have been infected and might have recovered or died.
 > * If you already know my methodology, just skip down to the Plots and the Results sections.
 
-13 March 2020 (updated on 12 May 2020), Freiburg i. Br., Germany, where a lockdown has been in force since 21 March 2020. – The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
+13 March 2020 (updated on 17 May 2020), Freiburg i. Br., Germany, where a lockdown has been in force since 21 March 2020. – The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
 
 Thinking in terms of the classical SIR model of epidemiology, the population comprises three groups: **S**usceptibles, **I**nfected and **R**emoved. _Removed_ are those who have recovered from or died of the disease and thereby are no longer infectious and can no longer catch the disease. _Infected_ are the current patients who are also all infectious. _Susceptibles_ are everybody else: people who have not been infected yet (and hopefully will never be).
 
@@ -105,57 +105,53 @@ The plots present the observed total number of currently infected on the middle 
 
 If the linear model fits better, then pink is the linear fit, which is the same as the fit of a straight line on natural scale on the left panel. If the exponential model fits better, then orange is the fit of the exponential curve, which is the same as the fit of a straight line on logarithmic y-scale (not actually shown) for the data on the left panel.
 
-![US](https://github.com/Melykuti/COVID-19/blob/master/plots/US_2020-05-12.png)
+![US](https://github.com/Melykuti/COVID-19/blob/master/plots/US_2020-05-16.png)
 
-![Russia](https://github.com/Melykuti/COVID-19/blob/master/plots/Russia_2020-05-12.png)
+![Russia](https://github.com/Melykuti/COVID-19/blob/master/plots/Russia_2020-05-16.png)
 
-![Brazil](https://github.com/Melykuti/COVID-19/blob/master/plots/Brazil_2020-05-12.png)
+![Brazil](https://github.com/Melykuti/COVID-19/blob/master/plots/Brazil_2020-05-16.png)
 
-![France](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-05-12.png)
+![France](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-05-16.png)
 
-![Italy](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-05-12.png)
+![Italy](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-05-16.png)
 
-![Spain](https://github.com/Melykuti/COVID-19/blob/master/plots/Spain_2020-05-12.png)
+![Spain](https://github.com/Melykuti/COVID-19/blob/master/plots/Spain_2020-05-16.png)
 
-![India](https://github.com/Melykuti/COVID-19/blob/master/plots/India_2020-05-12.png)
+![India](https://github.com/Melykuti/COVID-19/blob/master/plots/India_2020-05-16.png)
 
-![Belgium](https://github.com/Melykuti/COVID-19/blob/master/plots/Belgium_2020-05-12.png)
+![Belgium](https://github.com/Melykuti/COVID-19/blob/master/plots/Belgium_2020-05-16.png)
 
-![Saudi Arabia](https://github.com/Melykuti/COVID-19/blob/master/plots/Saudi_Arabia_2020-05-12.png)
+![Saudi Arabia](https://github.com/Melykuti/COVID-19/blob/master/plots/Saudi_Arabia_2020-05-16.png)
 
-![Singapore](https://github.com/Melykuti/COVID-19/blob/master/plots/Singapore_2020-05-12.png)
+![Singapore](https://github.com/Melykuti/COVID-19/blob/master/plots/Singapore_2020-05-16.png)
 
 Sweden added 3069 recovered patients on 4 May after nine days with no change in recovered patient numbers. This is why the currently infected cases dropped substantially on that date.
  
-![Sweden](https://github.com/Melykuti/COVID-19/blob/master/plots/Sweden_2020-05-12.png)
+![Sweden](https://github.com/Melykuti/COVID-19/blob/master/plots/Sweden_2020-05-16.png)
 
-![Germany](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2020-05-12.png)
+![Germany](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2020-05-16.png)
 
-![Belarus](https://github.com/Melykuti/COVID-19/blob/master/plots/Belarus_2020-05-12.png)
+![Belarus](https://github.com/Melykuti/COVID-19/blob/master/plots/Belarus_2020-05-16.png)
 
-![Iran](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2020-05-12.png)
+![Iran](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2020-05-16.png)
 
-![Japan](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2020-05-12.png)
+![Japan](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2020-05-16.png)
 
-![Hungary](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2020-05-12.png)
+![Hungary](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2020-05-16.png)
 
-Switzerland added 1399 recovered patients on 27 March (cumulative number went from 131 to 1530). This is why the currently infected cases dropped substantially on that date.
+![Switzerland](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2020-05-16.png)
 
-![Switzerland](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2020-05-12.png)
+![Denmark](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2020-05-16.png)
 
-Denmark added 893 recovered patients on 1 April (cumulative number went from 1 to 894). This is why the currently infected cases dropped so much on that date.
+![Austria](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2020-05-16.png)
 
-![Denmark](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2020-05-12.png)
+![South Korea](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-05-16.png)
 
-![Austria](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2020-05-12.png)
+![Australia](https://github.com/Melykuti/COVID-19/blob/master/plots/Australia_2020-05-16.png)
 
-![South Korea](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-05-12.png)
+![China](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2020-05-16.png)
 
-![Australia](https://github.com/Melykuti/COVID-19/blob/master/plots/Australia_2020-05-12.png)
-
-![China](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2020-05-12.png)
-
-![New Zealand](https://github.com/Melykuti/COVID-19/blob/master/plots/New_Zealand_2020-05-12.png)
+![New Zealand](https://github.com/Melykuti/COVID-19/blob/master/plots/New_Zealand_2020-05-16.png)
 
 ### Results
 
@@ -189,6 +185,32 @@ I focus on countries with a large number of cases and on those to which I have g
     Country              Increment Incr. Growth   Doubling  Active     per      Estimate   R^2  Diff. Win- Exp/Lin
                                     per   rate      time     Cases   100,000                          dow
                                   100,000                                                             size
+
+17 May 2020
+
+    US                       11416  3.4   1.0%     inf days 1110690    334     [346, 350] 0.12  0.02  12  l
+    Russia                    4633  3.3   2.3%     inf days  206340    146     [157, 161] 0.74  0.02  14  l
+    Brazil                   10908  5.2  12.9%     5.7 days  128177     61      [94, 127] 0.69 -0.15   7  e
+    France                    -797 -1.2  -0.9%     nan days   90582    134                0.32 -0.69  11  l
+    Italy                    -3053 -4.9  -4.3%     nan days   70187    112                0.34 -0.04   7  l
+    Spain                    -1489 -3.0  -2.6%     nan days   56689    113                0.10  0.14   7  l
+    India                     1082  0.1   2.0%     inf days   53553    4.0         [4, 4] 0.57  0.05   7  e
+    Belgium                     54  0.5   0.2%     inf days   31524    269     [269, 269] 0.47  0.09  10  l
+    Saudi Arabia               -16 -0.0  -0.1%     nan days   28048     82                0.26  0.13  14  l
+    Sweden                     902  8.8   5.6%    12.7 days   21032    206                0.26 -0.57  13  l
+    Belarus                    243  2.6   1.3%     inf days   19023    201     [205, 205] 0.52  0.04   7  l
+    Singapore                 -675  -11  -3.5%     nan days   18992    306                0.91 -0.50   8  l
+    Iran                       684  0.8   4.2%    17.0 days   18308     22       [25, 27] 0.58 -0.10  14  l
+    Germany                  -1013 -1.3  -6.5%     nan days   15214     19                0.22 -0.26   9  l
+    Japan                      -23 -0.0  -0.4%     nan days    5174    4.1                0.28  0.84   7  l
+    Hungary                    -68 -0.7  -4.1%     nan days    1654     17                0.46 -0.19   7  l
+    Switzerland                -23 -0.3  -1.7%     nan days    1293     15                0.32  0.27  13  l
+    Denmark                    -95 -1.6  -7.6%     nan days    1208     21                0.20 -0.08  14  l
+    Austria                   -4.6 -0.1  -0.4%     nan days    1048     12                0.31  0.13  12  l
+    Korea, South               -31 -0.1  -3.4%     nan days     900    1.7                0.37 -0.23   7  l
+    Australia                 -3.1 -0.0  -0.5%     nan days     582    2.3                0.45  0.17  12  l
+    China                     -7.1 -0.0  -6.1%     nan days     113   0.01                0.70  0.04   7  l
+    New Zealand               -3.8 -0.1  -8.0%     nan days      45   0.91                0.49  0.13  13  l
 
 13 May 2020
 
