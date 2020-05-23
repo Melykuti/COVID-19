@@ -2,17 +2,13 @@
 
 > * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 
-Zusammenfassung am Dienstag, 19 Mai 2020:
+Zusammenfassung am Samstag, 23 Mai 2020:
 
-* Bremen ist das einzige Bundesland, wo die Anzahl der COVID-19 Neuinfektionen steigt. Ich finde es besonders schade, denn Bremen war am Anfang der Coronavirus-Pandemie, bis Anfang April, ziemlich verschont. Heute ist Bremen im Mittelfeld gemessen an bestätigten Fällen pro 100.000 Einwohner. Rein numerisch gesehen ist Bremen mit 5,2 Neuinfektionen pro Tag pro 100.000 noch unter der von Politik gesetzten Grenze von 50 pro Woche, aber ich weiß nicht, wo die neuen Infektionen herkommen.
-* In allen anderen Ländern ist die Lage entspannt. In Baden-Württemberg ist es fast so ruhig geworden, wie in den östlichen ländlichen Bundesländern.
+* Die Anzahl der neuen Coronavirus-Infektionen ist in jedem Bundesland niedrig.
+* Die höchsten Werte an Neuinfektionen weisen Bremen (1,7 Fälle pro Tag pro 100.000 EinwohnerInnen), Hessen, Niedersachsen (jeweils 1,1) und Berlin (1,0) auf. In Baden-Württemberg ist dieser Wert 0,4.
+* Bund und Länder haben vereinbart, Beschränkungen für die Bevölkerung in einzelnen Landkreisen oder kreisfreien Städten zu verschärfen, wenn die Anzahl der Neuinfektionen pro Woche pro 100.000 EinwohnerInnen auf 50 steigt. Einige Bundesländer haben diese Grenze gesenkt: in Berlin und Niedersachsen gilt 30, in Bayern und Brandenburg gilt 35.
 
-Zusammenfassung am Freitag, 15 Mai 2020:
-
-* Die Anzahl der Neuinfektionen hat sich auf einem Niveau stabilisiert wo sie Anfang Mai war. Der Trend ist nicht, dass die COVID-19 aus Deutschland verschwinden würde. Eher würde ich die Lage so interpretieren, dass die Lockerungen der Schutzmaßnahmen keine Verschlechterung der Pandemie verursachten.
-* Bremen und Hamburg zeigen den höchsten Zuwachs mit circa 2,1 neuen Coronavirus-Fällen pro 100.000 EinwohnerInnen pro Tag, oder ungefähr 15 pro Woche.
-
-16 März 2020 (aktualisiert am 19 Mai 2020), Freiburg i. Br. – In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierten Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 23 Mai 2020), Freiburg i. Br. – In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierten Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bis die allgemeinen Ausgangsbeschränkungen angefangen haben ihre Wirkung zu zeigen, stimmten die beobachteten Coronavirus-Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. Freiburg war die erste deutsche Großstadt, die solch einen Lockdown am 21.03.2020 angeordnet hat.
 
@@ -61,49 +57,49 @@ Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das l
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-05-19.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-05-23.png)
 
 Auf diesen drei Schaubildern verwende ich nur das lineare Model. (Wenn ich das exponentielle Modell auch in das Rennen schicken würde, dann bekäme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Varianz der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-05-19_xy_-1_lin_date_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-05-23_xy_-1_lin_date_incr_confirmed.png)
 
-![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-05-19_xy_-1_lin_cases_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-05-23_xy_-1_lin_cases_incr_confirmed.png)
 
-![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-05-19_xy_-1_lin_cases_rate_confirmed.png)
+![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-05-23_xy_-1_lin_cases_rate_confirmed.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-05-19.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-05-23.png)
 
-![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-05-19.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-05-23.png)
 
-![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-05-19.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-05-23.png)
 
-![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-05-19.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-05-23.png)
 
-![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-05-19.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-05-23.png)
 
-![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-05-19.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-05-23.png)
 
-![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-05-19.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-05-23.png)
 
-![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-05-19.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-05-23.png)
 
-![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-05-19.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-05-23.png)
 
-![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-05-19.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-05-23.png)
 
-![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-05-19.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-05-23.png)
 
-![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-05-19.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-05-23.png)
 
-![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-05-19.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-05-23.png)
 
-![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-05-19.png)
+![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-05-23.png)
 
-![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-05-19.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-05-23.png)
 
-![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-05-19.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-05-23.png)
 
 
 ### Resultate
@@ -141,6 +137,27 @@ Die Spalten haben die folgende Bedeutung:
     Bundesland               Zu- Zuwachs Wachst.- Verdoppl.  Gesamte   pro     Schätzung   R^2  Diff. Fenster Exp/Lin
                            wachs   pro    rate      zeit      Fälle  100.000                          größe
                                  100.000
+
+Stand 23.05.2020
+
+    Baden-Württemberg           46  0,4   0,1%     inf Tage   34345    310     [311, 311] 0,25  0,07  12  l
+    Bayern                      93  0,7   0,2%     inf Tage   46132    353     [355, 356] 0,51  0,05  12  l
+    Berlin                      38  1,0   3,2%    22,2 Tage    6614    181     [187, 192] 0,47 -0,10   7  e
+    Brandenburg                4,5  0,2   0,1%     inf Tage    3213    128     [128, 128] 0,23  0,05  11  l
+    Bremen                      11  1,7   0,9%     inf Tage    1296    190     [195, 197] 0,16 -0,16  10  e
+    Hamburg                   0,00  0,0   0,0%     inf Tage    5063    275                0,43  0,56   8  l
+    Hessen                      68  1,1   1,1%    62,2 Tage    9670    154     [159, 162] 0,11 -0,06  13  l
+    Mecklenburg-Vorpommern     1,4  0,1   0,2%     inf Tage     763     47       [48, 48] 0,15  0,18   8  l
+    Niedersachsen               91  1,1   1,8%    39,1 Tage   11521    144     [150, 153] 0,58 -0,11   8  l
+    Nordrhein-Westfalen        120  0,7   0,3%     inf Tage   37139    207     [210, 211] 0,17 -0,04  12  e
+    Rheinland-Pfalz             15  0,4   0,2%     inf Tage    6582    161     [162, 162] 0,14  0,05   9  l
+    Saarland                  0,71  0,1   0,0%     inf Tage    2709    273     [274, 274] 0,54  0,18  10  l
+    Sachsen                     11  0,3   0,2%     inf Tage    5219    128     [128, 128] 0,32  0,23  10  l
+    Sachsen-Anhalt             1,2  0,1   0,1%     inf Tage    1692     77       [77, 77] 0,22  0,05  10  l
+    Schleswig-Holstein          20  0,7   2,0%    35,9 Tage    3062    106     [109, 112] 0,79 -0,12   7  l
+    Thüringen                   14  0,6   0,5%     inf Tage    2830    132     [134, 135] 0,21 -0,05  11  e
+    
+    Deutschland                521  0,6   0,3%     inf Tage  177850    214     [216, 217] 0,32  0,03  12  l
 
 Stand 19.05.2020
 
@@ -747,6 +764,16 @@ Finden Sie mich auf [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), a
 Ich arbeite als selbständiger Data Scientist. Sie können mich mit Ihrem Projekt beauftragen.
 
 ### Archiv
+
+Zusammenfassung am Dienstag, 19 Mai 2020:
+
+* Bremen ist das einzige Bundesland, wo die Anzahl der COVID-19 Neuinfektionen steigt. Ich finde es besonders schade, denn Bremen war am Anfang der Coronavirus-Pandemie, bis Anfang April, ziemlich verschont. Heute ist Bremen im Mittelfeld gemessen an bestätigten Fällen pro 100.000 Einwohner. Rein numerisch gesehen ist Bremen mit 5,2 Neuinfektionen pro Tag pro 100.000 noch unter der vom Bund und Ländern gesetzten Grenze von 50 pro Woche, aber ich weiß nicht, wo die neuen Infektionen herkommen.
+* In allen anderen Ländern ist die Lage entspannt. In Baden-Württemberg ist es fast so ruhig geworden, wie in den östlichen ländlichen Bundesländern.
+
+Zusammenfassung am Freitag, 15 Mai 2020:
+
+* Die Anzahl der Neuinfektionen hat sich auf einem Niveau stabilisiert wo sie Anfang Mai war. Der Trend ist nicht, dass die COVID-19 aus Deutschland verschwinden würde. Eher würde ich die Lage so interpretieren, dass die Lockerungen der Schutzmaßnahmen keine Verschlechterung der Pandemie verursachten.
+* Bremen und Hamburg zeigen den höchsten Zuwachs mit circa 2,1 neuen Coronavirus-Fällen pro 100.000 EinwohnerInnen pro Tag, oder ungefähr 15 pro Woche.
 
 Zusammenfassung am Montag, 11 Mai 2020:
 

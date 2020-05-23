@@ -1,6 +1,6 @@
 '''
 exec(open('DEU.py').read())
-15/3-14/4/2020
+15/3-23/5/2020
 '''
 
 import os, datetime
@@ -58,7 +58,7 @@ def open_data():
     '''
     timestamp = None
     #timestamp = '20200427_14-37-31'
-    df=dict()
+    #df=dict()
     lists = list()
     with os.scandir() as it:
         for entry in it:
@@ -250,10 +250,10 @@ def data_preparation_DEU(output):
     #print(soup.prettify())
 
     #tables = soup.find_all('table', {'class':'wikitable sortable mw-collapsible'}) # I expect two tables: 'Bestätigte Infektionsfälle (kumuliert)', 'Bestätigte Todesfälle (kumuliert)'
-    tables = soup.find_all('table', {'class':'wikitable'}) # I expect eleven tables
+    tables = soup.find_all('table', {'class':'wikitable'}) # I expect thirteen tables
 
-    idx_Infektionsfaelle = 1
-    idx_Todesfaelle = 4
+    idx_Infektionsfaelle = 2
+    idx_Todesfaelle = 6
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[2].text:
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
     #if 'Daten über Infektionsfälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
