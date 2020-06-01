@@ -186,7 +186,7 @@ I focus on countries with a large number of cases and on those to which I have g
                                     per   rate      time     Cases   100,000                          dow
                                   100,000                                                             size
 
-30 May 2020
+31 May 2020
 
     US                       20104  6.0   3.1%    22.4 days 1249928    376                0.39 -0.38   9  l
     Brazil                   18983  9.0  10.0%     7.3 days  268714    127     [178, 219] 0.91 -0.08   7  e
