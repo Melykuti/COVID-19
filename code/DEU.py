@@ -312,7 +312,7 @@ if __name__ == '__main__':
                                                                     df_ts, window_length, exp_or_lin)
 
         utils.print_results(selection, results, normalise_by, pop_csv, selected_window_length, e_or_l,
-                             lang)
+                             'normal', lang)
 
         if save_not_show in [0, 1]:
             utils.plotting(figures_diff[selection], model, save_not_show, selection,
