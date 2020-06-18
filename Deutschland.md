@@ -2,19 +2,21 @@
 
 > * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 
+Zusammenfassung am Donnerstag, 18 Juni 2020:
+
+* Die Daten, die ich heute auf Wikipedia fand, waren am 16 Juni um 0 Uhr durch das Robert-Koch-Institut gemeldet worden.
+* In Nordrhein-Westfalen, wo ein großer Coronavirus-Ausbruch in einem fleischverarbeitenden Betrieb in Gütersloh geschehen ist, sind inzwischen mindestens 362 mehr bestätigte Fälle, als ich hier berichte.
+* In vielen Bundesländern ist die Anzahl der neuen bestätigten COVID-19-Fälle rückläufig (z.B. Baden-Württemberg, Bayern, Bremen) oder stabil auf einem niedrigen Niveau (z.B. Hamburg, Mecklenburg-Vorpommern, Saarland, Sachsen, Schleswig-Holstein, Thüringen).
+* In Berlin und NRW sind vermehrt Neuinfektionen zu beobachten.
+* In ganz Deutschland gibt es immer noch täglich insgesamt um 300 neue Coronavirus-Fälle.
+
 Zusammenfassung am Dienstag, 9 Juni 2020:
 
 * Laut Daten bis vorgestern stagniert die Anzahl der neuen SARS-CoV-2-Infektionen in mehreren Bundesländern, wie Bremen, Niedersachsen, Berlin, sie tendiert nicht gegen null.
 * Pro 100.000 Personen meldet Bremen täglich 2,8, Niedersachsen 1,2, Berlin 1,0, NRW 0,7, Saarland 0,6 neue COVID-19-Fälle.
 * Im gesamten Deutschland gibt es täglich insgesamt um 300 neue Coronavirus-Fälle.
 
-Zusammenfassung am Montag, 1 Juni 2020:
-
-* Aus Bremen wurden in den letzten zwei Tagen keine Daten übermittelt. Dort muss es mehr COVID-19-Fälle geben, als ich hier berichte. In Baden-Württemberg sind die Schätzungen unzuverlässig wegen Datenkorrekturen in der letzten Woche.
-* In Thüringen und in Bayern gab es Ausbrüche in Pflegeheimen.
-* In ganz Deutschland gibt es täglich weniger als 500 Neuinfektionen. An den schwierigsten Tagen der Pandemie gab es über 6000. Die Anzahl der neuen Fälle ist ungefähr so hoch, wie es am 11-12. März war, zehn Tage bevor der Lockdown in Freiburg anfing.
-
-16 März 2020 (aktualisiert am 9 Juni 2020), Freiburg i. Br. – In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierten Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 18 Juni 2020), Freiburg i. Br. – In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierten Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bis die allgemeinen Ausgangsbeschränkungen angefangen haben ihre Wirkung zu zeigen, stimmten die beobachteten Coronavirus-Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. Freiburg war die erste deutsche Großstadt, die solch einen Lockdown am 21.03.2020 angeordnet hat.
 
@@ -63,49 +65,49 @@ Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das l
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-06-07.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-06-16.png)
 
 Auf diesen drei Schaubildern verwende ich nur das lineare Model. (Wenn ich das exponentielle Modell auch in das Rennen schicken würde, dann bekäme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Varianz der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-06-07_xy_-1_lin_date_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-06-16_xy_-1_lin_date_incr_confirmed.png)
 
-![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-06-07_xy_-1_lin_cases_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-06-16_xy_-1_lin_cases_incr_confirmed.png)
 
-![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-06-07_xy_-1_lin_cases_rate_confirmed.png)
+![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-06-16_xy_-1_lin_cases_rate_confirmed.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-06-07.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-06-16.png)
 
-![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-06-07.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-06-16.png)
 
-![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-06-07.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-06-16.png)
 
-![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-06-07.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-06-16.png)
 
-![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-06-07.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-06-16.png)
 
-![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-06-07.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-06-16.png)
 
-![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-06-07.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-06-16.png)
 
-![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-06-07.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-06-16.png)
 
-![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-06-07.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-06-16.png)
 
-![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-06-07.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-06-16.png)
 
-![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-06-07.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-06-16.png)
 
-![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-06-07.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-06-16.png)
 
-![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-06-07.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-06-16.png)
 
-![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-06-07.png)
+![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-06-16.png)
 
-![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-06-07.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-06-16.png)
 
-![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-06-07.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-06-16.png)
 
 
 ### Resultate
@@ -143,6 +145,27 @@ Die Spalten haben die folgende Bedeutung:
     Bundesland               Zu- Zuwachs Wachst.- Verdoppl.  Gesamte   pro     Schätzung   R^2  Diff. Fenster Exp/Lin
                            wachs   pro    rate      zeit      Fälle  100.000                          größe
                                  100.000
+
+Stand 16.06.2020
+
+    Baden-Württemberg           31  0,3   0,3%   203,1 Tage   35150    318     [319, 319] 0,04 -0,05  10  l
+    Bayern                      25  0,2   0,1%     inf Tage   47690    365     [365, 365] 0,38  0,05   8  l
+    Berlin                      52  1,4   2,3%    31,0 Tage    7369    202     [209, 213] 0,34 -0,12  11  e
+    Brandenburg               0,29  0,0   0,0%     inf Tage    3334    133     [133, 133] 0,01  0,10   7  l
+    Bremen                     1,0  0,1   0,1%     inf Tage    1593    233     [233, 233] 0,84  0,14   7  l
+    Hamburg                    3,2  0,2   0,1%     inf Tage    5147    280     [280, 280] 0,08 -0,01   7  l
+    Hessen                      15  0,2   0,1%     inf Tage   10371    166     [166, 167] 0,09  0,11  13  l
+    Mecklenburg-Vorpommern     1,9  0,1   1,2%    56,3 Tage     784     49                0,29 -0,51   7  l
+    Niedersachsen               35  0,4   0,3%     inf Tage   12950    162     [163, 164] 0,38  0,05  12  l
+    Nordrhein-Westfalen        101  0,6   1,0%    67,6 Tage   39415    220     [222, 224] 0,13 -0,09   9  e
+    Rheinland-Pfalz           0,00  0,0   0,0%     inf Tage    6846    168                0,53  0,40   7  l
+    Saarland                  0,00  0,0   0,0%     inf Tage    2773    280                0,72  0,20   8  l
+    Sachsen                   0,22  0,0   0,0%     inf Tage    5349    131     [131, 131] 0,29  0,22   9  l
+    Sachsen-Anhalt              11  0,5   1,6%    42,6 Tage    1771     80       [83, 84] 0,29 -0,11   9  l
+    Schleswig-Holstein        0,17  0,0   0,0%     inf Tage    3122    108                0,44  0,31   8  l
+    Thüringen                  4,1  0,2   0,1%     inf Tage    3175    148     [149, 149] 0,39 -0,18   7  e
+    
+    Deutschland                271  0,3   0,1%     inf Tage  186839    225     [226, 227] 0,16 -0,03  13  e
 
 Stand 08.06.2020
 
@@ -834,6 +857,12 @@ Finden Sie mich auf [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), a
 Ich arbeite als selbständiger Data Scientist. Sie können mich mit Ihrem Projekt beauftragen.
 
 ### Archiv
+
+Zusammenfassung am Montag, 1 Juni 2020:
+
+* Aus Bremen wurden in den letzten zwei Tagen keine Daten übermittelt. Dort muss es mehr COVID-19-Fälle geben, als ich hier berichte. In Baden-Württemberg sind die Schätzungen unzuverlässig wegen Datenkorrekturen in der letzten Woche.
+* In Thüringen und in Bayern gab es Ausbrüche in Pflegeheimen.
+* In ganz Deutschland gibt es täglich weniger als 500 Neuinfektionen. An den schwierigsten Tagen der Pandemie gab es über 6000. Die Anzahl der neuen Fälle ist ungefähr so hoch, wie es am 11-12. März war, zehn Tage bevor der Lockdown in Freiburg anfing.
 
 Zusammenfassung am Donnerstag, 28 Mai 2020:
 
