@@ -5,7 +5,7 @@
 Zusammenfassung am Samstag, 4 Juli 2020:
 
 * Die neuen Coronavirus-Fallzahlen sind ungefähr so hoch, wie am Anfang der Woche.
-* Die meisten Neuinfektionen werden von den folgenden Bundesländern gemeldet (Anzahl pro Tag pro 100,000 EinwohnerInnen): NRW (0,8), Berlin und Bremen (0,7), Hessen (0,6), Baden-Württemberg und Rheinland-Pfalz (0,5).
+* Die meisten Neuinfektionen werden aus den folgenden Bundesländern gemeldet (Anzahl pro Tag pro 100,000 EinwohnerInnen): NRW (0,8), Berlin und Bremen (0,7), Hessen (0,6), Baden-Württemberg und Rheinland-Pfalz (0,5).
 
 Zusammenfassung am Montag, 29 Juni 2020:
 
@@ -36,13 +36,13 @@ Mich interessiert sehr, **wie hoch die Wahrscheinlichkeit ist, dass ich mich mit
 
 ### Datenquelle
 
-Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html). Da ich auf der Webseite nur die aktuellen Fallzahlen finde, verwende ich [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Deutschland#Infektionsf%C3%A4lle_nach_Bundesl%C3%A4ndern), wo Freiwillige die ganzen Zeitreihen gespeichert haben.
+Die Daten werden durch das Robert Koch Institut gesammelt und [veröffentlicht](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html). Da ich auf der Webseite nur die aktuellen Fallzahlen finde, verwende ich [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Deutschland/Statistik), wo Freiwillige die ganzen Zeitreihen gespeichert haben.
 
 Die zu den relativen Fallzahlen verwendeten Bevölkerungsgrößen stammen aus dem [Gemeinsamen Statistikportal der Statistischen Ämter des Bundes und der Länder](https://www.statistikportal.de/de/bevoelkerung/flaeche-und-bevoelkerung).
 
 ### Programmdateien
 
-* **download_DEU.py** ist das Skript um die Daten von [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-F%C3%A4lle_in_Deutschland) herunterzuladen.
+* **download_DEU.py** ist das Skript um die Daten von [Wikipedia](https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Deutschland/Statistik) herunterzuladen.
 
 * **DEU.py** ist das für Deutschland spezifische Skript, das hauptsächlich für die Vorbereitung der Daten von Wikipedia zuständig ist.
 
