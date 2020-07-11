@@ -195,11 +195,13 @@ def extract_number(s):
             t = s[:i+1]
     return int(t)
 
-def collect_data_colwise(rows): #, table_no):
+#def collect_data_colwise(rows):
+def collect_data_colwise(rows, shift_right=0):
     # Header
     firstrowcells = rows[0].find_all('th')
     col_names = list()
-    for t in range(1, len(firstrowcells)-2):
+    #for t in range(1, len(firstrowcells)-2):
+    for t in range(1+shift_right, len(firstrowcells)-2):
         col_names.append(convert_abbr_to_bl(firstrowcells[t].find('a').text))
     #for t in range(len(firstrowcells)-2, len(firstrowcells)):
     # Deutschland:
@@ -222,14 +224,16 @@ def collect_data_colwise(rows): #, table_no):
         #print(' '.join(tds[0].text.replace('\n','').split()).split(' '))
         #day, month, year = ' '.join(tds[0].text.replace('\n','').split()).split(' ')[:3]
         #day, month, year = tds[0].text.replace('\n','').split()[:3] # until 1/4/2020
-        text_temp = tds[0].text.replace('\n','')
+        #text_temp = tds[0].text.replace('\n','')
+        text_temp = tds[shift_right].text.replace('\n','')
         day, month, year = text_temp[text_temp.find('♠')+1:].split()[:3] # on 12/4/2020
         year = year[:4]
         #print(day, month, year)
         ymd.append('{0}-{1}-{2}'.format(year, convert_months_to_nr(month), day.replace('.', '')))
         cases_date[ymd[-1]]=list()
-        for j in tds[1:]:
-            # The - character is not the standard minus, it's a longer one so safer to do with
+        #for j in tds[1:]:
+        for j in tds[1+shift_right:]:
+            # The character - is not the standard minus, it's a longer one so safer to do with
             # try & except.
             try:
              #cases_date[ymd[-1]].append(int(j.text.replace('\n','').replace('.','').replace('-','0')))
@@ -271,13 +275,13 @@ def data_preparation_DEU(output):
         #print(dates)
         if i==idx_Infektionsfaelle:
             #figures = collect_data(rows, i) # infections
-            figures = collect_data_colwise(rows) # infections
+            figures = collect_data_colwise(rows, 1) # infections
             #figures.loc[pd.to_datetime('2020-04-07'),'Berlin'] = 3845 # temporary hack but I updated Wikipedia table
             #figures.loc[pd.to_datetime('2020-03-20'),'Rheinland-Pfalz'] = 801
             #figures.loc[pd.to_datetime('2020-03-31'),'Sachsen-Anhalt'] = 680
             print(figures)
         else: # i==idx_Todesfaelle
-            death_figures = collect_data_colwise(rows) # deaths
+            death_figures = collect_data_colwise(rows, 0) # deaths
             #print(death_figures)
             # Extend it to the size of cases and fill missing values with 0
             death_figures = pd.DataFrame(death_figures, index=figures.index).fillna(value=0).astype('int64')
