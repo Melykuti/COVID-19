@@ -2,7 +2,7 @@
 
 > * On this page I examine the cumulative number of all confirmed coronavirus patients who may be ill or may have recovered or died by now.
 
-22 March 2020 (updated on 15 July 2020), Freiburg i. Br., Germany – There are different visualisations of the spread of the coronavirus pandemic mushrooming on the internet. Many of them are more alarmist than insightful. My goal on this page is to present an innovation in how to look at the problem.
+22 March 2020 (updated on 16 July 2020), Freiburg i. Br., Germany – There are different visualisations of the spread of the coronavirus pandemic mushrooming on the internet. Many of them are more alarmist than insightful. My goal on this page is to present an innovation in how to look at the problem.
 
 ### Background
 
