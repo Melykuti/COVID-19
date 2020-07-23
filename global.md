@@ -99,9 +99,9 @@ I show projections for the number of infected 4-to-6 days from now (which, as I 
 
 ### Plots
 
-Since 1 May 2020, when I started fitting curves to daily changes instead of cumulative numbers, I display the daily change for each individual country on the left panel, together with the fitted curve.
+Since 1 May 2020, when I started fitting curves to daily changes instead of cumulative numbers, I have been displaying the daily change for each individual country on the left panel, together with the fitted curve.
 
-The plots present the observed total number of currently infected on the middle panel, and the same data on logarithmic scale on the right panel. These lines are in blue.
+On the right panel, the plots present the observed total number of currently infected. These lines are in blue.
 
 If the linear model fits better, then pink is the linear fit, which is the same as the fit of a straight line on natural scale on the left panel. If the exponential model fits better, then orange is the fit of the exponential curve, which is the same as the fit of a straight line on logarithmic y-scale (not actually shown) for the data on the left panel.
 
