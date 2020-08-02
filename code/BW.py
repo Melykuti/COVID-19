@@ -29,8 +29,9 @@ allowed_values = ['Alb-Donau-Kreis', 'Baden-Baden (Stadtkreis)', 'Biberach', 'B�
 
 selection = 'alle' # Choose one of the elements of allowed_values.
 #selection = allowed_values[10] # Alternatively, choose an element index from allowed_values.
+#selection = allowed_values[4]
 #selection = allowed_values[-2]
-#selection = 'Böblingen'
+#selection = 'Ostalbkreis'
 
 cases = 'both' # 'confirmed' or 'deaths' or 'both'
 
@@ -53,7 +54,8 @@ sc_save_not_show = 1 # In the case of 'alle', if 0, then shows the joint scatter
 
 normalise_by = 1e5 # report case numbers per this many people
 exp_or_lin = 'both' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
-max_display_length = 45 # in days; if positive, then it plots the most recent max_display_length days only
+max_display_length = 60 #45 # in days; if positive, then it plots the most recent max_display_length days only
+panels = 2 # 2 or 3, to plot only two panels or all three, that is, the logarithmically scaled cumulative numbers also
 
 ### End of user input ###
 
@@ -173,7 +175,7 @@ if __name__ == '__main__':
                 else:
                     country += 'Todesfälle'
                 utils.plotting(df_ts, model, save_not_show, country, selected_window_length, e_or_l,
-                                 lang)
+                                 lang, panels)
 
     else: # analysis of all counties and complete BW
 
@@ -201,7 +203,7 @@ if __name__ == '__main__':
                     else:
                         country += 'Todesfälle'
                     utils.plotting(df_ts, model, save_not_show, country,
-                        selected_window_length, e_or_l, lang)
+                        selected_window_length, e_or_l, lang, panels)
             print()
             #for selection in allowed_values[:3]:
             for selection in allowed_values[:-1]:

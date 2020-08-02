@@ -170,6 +170,69 @@ def x2str(x, width):
     else:
         return s
 
+def n2str(n, width):
+    '''
+    Takes integers. If width is greater than its length, then it pads it with space.
+    If width<0, then it does no padding.
+    '''
+    s = str(n)
+    if width > len(s):
+        return s.rjust(width)
+    else:
+        return s
+
+def interpolate(df_ts, window_length):
+    '''
+    This returns (or interpolates, if not found) from the time series the entry at last entry minus
+     (window_length-1) days.
+    '''
+    # date of interest:
+    doi = df_ts.index[-1]-pd.Timedelta(f'{window_length-1} days')
+    if doi in df_ts.index:
+        return df_ts.loc[doi]
+    else:
+        prv = df_ts[df_ts.index<doi]
+        nxt = df_ts[df_ts.index>doi]
+        if len(prv)>0 and len(nxt)>0:
+            i_prv = prv.index[-1]
+            i_nxt = nxt.index[0]
+            c_prv = (i_nxt-doi).days/(i_nxt-i_prv).days
+            c_nxt = (doi-i_prv).days/(i_nxt-i_prv).days
+            return c_prv*df_ts.loc[i_prv] + c_nxt*df_ts.loc[i_nxt]
+        elif len(nxt)>0:
+            return nxt.iloc[0]
+        elif len(prv)>0: # It can never come this far, df_ts.iloc[-1] exists so nxt is not empty.
+            return prv.iloc[-1]
+
+def truncate_before(df_ts, window_length):
+    '''
+    This returns (or interpolates, if not found) from the time series the entry at last entry minus
+     (window_length-1) days.
+    '''
+    # date of interest:
+    doi = df_ts.index[-1]-pd.Timedelta(f'{window_length-1} days')
+    if doi in df_ts.index:
+        return df_ts.loc[doi:]
+    else:
+        prv = df_ts[df_ts.index<doi]
+        nxt = df_ts[df_ts.index>doi]
+        if len(prv)>0 and len(nxt)>0:
+            i_prv = prv.index[-1]
+            i_nxt = nxt.index[0]
+            c_prv = (i_nxt-doi).days/(i_nxt-i_prv).days
+            c_nxt = (doi-i_prv).days/(i_nxt-i_prv).days
+            df_ts.loc[doi] = c_prv*df_ts.loc[i_prv] + c_nxt*df_ts.loc[i_nxt]
+            df_ts = df_ts.sort_index(inplace=False)
+            return df_ts.loc[doi:]
+        elif len(nxt)>0:
+            df_ts.loc[doi] = nxt.iloc[0]
+            df_ts = df_ts.sort_index(inplace=False)
+            return df_ts.loc[doi:]
+        elif len(prv)>0: # It can never come this far, df_ts.iloc[-1] exists so nxt is not empty.
+            df_ts.loc[doi] = prv.iloc[-1]
+            df_ts = df_ts.sort_index(inplace=False)
+            return df_ts.loc[doi:]
+
 def analysis(df_ts, window_length, exp_or_lin, extent='full'):
     '''
     df_ts: pd.Series, it is a time series, can be totals or no. per e.g. 100,000 ppl
@@ -194,7 +257,8 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
     '''
 
     i_ts = (df_ts - df_ts.shift(1))[1:] # i for increments
-    if len(i_ts)<window_length:# or (exp_or_lin=='exp' and (i_ts.iloc[-window_length:]<=0).sum()>=5):
+    #if len(i_ts)<window_length:# or (exp_or_lin=='exp' and (i_ts.iloc[-window_length:]<=0).sum()>=5):
+    if len(i_ts)==0 or (i_ts.index[-1]-i_ts.index[0]).days<window_length-1:
         results = 8 * [0]
         results[-1] = 100
         return results, None
@@ -205,10 +269,14 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
     model = linear_model.LinearRegression(fit_intercept=True)
     if exp_or_lin=='exp':
         i_ts_orig = i_ts.copy()
-        i_ts.iloc[-window_length:][i_ts<=0] = 1
-        y = i_ts.iloc[-window_length:].values
+        #i_ts.iloc[-window_length:][i_ts<=0] = 1
+        i_ts = truncate_before(i_ts, window_length)
+        i_ts[i_ts<=0] = 1
+        #y = i_ts.iloc[-window_length:].values
+        y = i_ts.values
         ylog = np.log(y)
-        model.fit(np.arange(-window_length+1, 1).reshape(-1, 1), ylog)
+        #model.fit(np.arange(-window_length+1, 1).reshape(-1, 1), ylog)
+        model.fit((i_ts.index-i_ts.index[-1]).days.values.reshape(-1, 1), ylog)
         results[0] = math.exp(model.intercept_)
         # For doubling, the area of the increments is equal to df_ts[-1]
         # cf. https://www.wolframalpha.com/input/?i=integrate+%28exp%28a+t+%2Bb%29+dt%29+from+t%3D0+to+x
@@ -229,20 +297,28 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
                 results[4] = math.exp(model.intercept_)*intl_lo_days + df_ts.iloc[-1]
                 results[5] = math.exp(model.intercept_)*intl_hi_days + df_ts.iloc[-1]
 
-        if (i_ts_orig.iloc[-window_length:]>0).all():
-            results[6] = model.score(np.arange(-window_length+1, 1).reshape(-1, 1), ylog)
+        #if (i_ts_orig.iloc[-window_length:]>0).all():
+        if (truncate_before(i_ts_orig, window_length)>0).all():
+            #results[6] = model.score(np.arange(-window_length+1, 1).reshape(-1, 1), ylog)
+            results[6] = model.score((i_ts.index-i_ts.index[-1]).days.values.reshape(-1, 1), ylog)
         else:
             results[6] = 0
-        if df_ts.iloc[-1]==df_ts.iloc[-window_length]:
+        #if df_ts.iloc[-1]==df_ts.iloc[-window_length]:
+        if df_ts.iloc[-1]==interpolate(df_ts, window_length):
             results[7] = 100
         else:
             if model.coef_[0]!=0:
-                results[7] = temp2*(1-math.exp(model.coef_[0]*(-window_length+1)))/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1
+                #results[7] = temp2*(1-math.exp(model.coef_[0]*(-window_length+1)))/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1
+                results[7] = temp2*(1-math.exp(model.coef_[0]*(-window_length+1)))/(df_ts.iloc[-1]-interpolate(df_ts, window_length))-1
             else:
-                results[7] = math.exp(model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1
+                #results[7] = math.exp(model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1
+                results[7] = math.exp(model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-interpolate(df_ts, window_length))-1
     else: # 'lin'
-        y = i_ts.iloc[-window_length:].values
-        model.fit(np.arange(-window_length+1, 1).reshape(-1, 1), y)
+        #y = i_ts.iloc[-window_length:].values
+        i_ts = truncate_before(i_ts, window_length)
+        y = i_ts.values
+        #model.fit(np.arange(-window_length+1, 1).reshape(-1, 1), y)
+        model.fit((i_ts.index-i_ts.index[-1]).days.values.reshape(-1, 1), y)
         results[0] = model.intercept_
         if model.coef_[0]!=0:
             if 2*model.coef_[0]*df_ts.iloc[-1] >= - model.intercept_*model.intercept_:
@@ -273,8 +349,10 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
                 results[4] = (model.coef_[0]*intl_lo_days/2+model.intercept_)*intl_lo_days + df_ts.iloc[-1]
             if results[5] is None:
                 results[5] = (model.coef_[0]*intl_hi_days/2+model.intercept_)*intl_hi_days + df_ts.iloc[-1]
-        results[6] = model.score(np.arange(-window_length+1, 1).reshape(-1, 1), y)
-        if df_ts.iloc[-1]==df_ts.iloc[-window_length]:
+        #results[6] = model.score(np.arange(-window_length+1, 1).reshape(-1, 1), y)
+        results[6] = model.score((i_ts.index-i_ts.index[-1]).days.values.reshape(-1, 1), y)
+        #if df_ts.iloc[-1]==df_ts.iloc[-window_length]:
+        if df_ts.iloc[-1]==interpolate(df_ts, window_length):
             if model.coef_[0]==0 and model.intercept_==0:
                 results[7] = 0
             else:
@@ -283,7 +361,8 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
             #print(model.coef_[0], model.intercept_, '\n', df_ts.iloc[-window_length:])
             #print(-(model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1))
             #print(df_ts.iloc[-1]-df_ts.iloc[-window_length])
-            results[7] = -(model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1 # From the integral
+            #results[7] = -(model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1 # From the integral
+            results[7] = -(model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-interpolate(df_ts, window_length))-1 # From the integral
             #print(window_length*(2*model.intercept_+model.coef_[0]*(-window_length+1))/(2*(df_ts.iloc[-1]-df_ts.iloc[-window_length]))-1) # From summing
             #print((-model.coef_[0]*(-window_length+1)*(-window_length+1)/2+(model.coef_[0]/2-model.intercept_)*(-window_length+1)+model.intercept_)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1) # From summing
             #results[7] = np.sum(model.coef_[0]*np.arange(-window_length+1, 1)+model.intercept_)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1 # From summing
@@ -308,69 +387,6 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
     #print(model.coef_[0], model.intercept_, results[6], results[7])
     #print(window_length, results)
     return results, model
-
-'''
-def analysis(df_ts, window_length, exp_or_lin, extent='full'):
-    
-    df_ts: pd.Series, it is a time series, can be totals or no. per e.g. 100,000 ppl
-    window_length: int
-    exp_or_lin in ['exp', 'lin']
-    For 'exp', because of log2, this requires all entries in df_ts to be positive.
-    For 'lin', because of log2, this requires last entry in df_ts to be positive.
-    extent in ['full', 'minimal']
-    'minimal' doesn't compute predictions.
-    output: results = [
-      daily increment in natural units (units of df_ts): float,
-      daily growth rate in percentage: float,
-      doubling time in days: float or 0 for 'minimal',
-      current cases (df_ts.iloc[-1]),
-      projection_lower: type(df_ts.dtype) or 0 for 'minimal',
-      projection_upper: type(df_ts.dtype) or 0 for 'minimal',
-      model_score=R^2: float,
-      difference of model fit on last date and last data point in log space: float
-      ]
-            model: sklearn.linear_model
-    
-    if len(df_ts)<window_length:
-        results = 8 * [0]
-        results[-1] = 100
-        return results, None
-    intl_lo_days = 4
-    intl_hi_days = 6
-    results = [None] * 8
-    results[3] = df_ts.iloc[-1]
-    if exp_or_lin=='exp':
-        ylog2 = np.log2(df_ts.iloc[-window_length:].values)
-        model = linear_model.LinearRegression(fit_intercept=True)
-        model.fit(np.arange(len(ylog2)).reshape(-1, 1), ylog2)
-        y_last = (ylog2[-1]+ylog2[-2])/2 # smoothening to lessen the impact of last data point
-        results[0] = (math.pow(2, model.coef_[0])-1) * math.pow(2, y_last)
-        results[1] = (math.pow(2, model.coef_[0])-1)*100
-        if extent == 'full':
-            results[2] = 1/model.coef_[0]
-            results[4] = math.pow(2, model.predict(np.array(len(ylog2)-1+intl_lo_days).reshape(1,-1)))
-            results[5] = math.pow(2, model.predict(np.array(len(ylog2)-1+intl_hi_days).reshape(1,-1)))
-        results[6] = model.score(np.arange(len(ylog2)).reshape(-1, 1), ylog2)
-        results[7] = model.predict(np.array(len(ylog2)-1).reshape(-1, 1))[0]-ylog2[-1]
-    else: # 'lin'
-        y = df_ts.iloc[-window_length:].values
-        model = linear_model.LinearRegression(fit_intercept=True)
-        model.fit(np.arange(len(y)).reshape(-1, 1), y)
-        results[0] = model.coef_[0]
-        y_last = (y[-1]+y[-2])/2 # smoothening to lessen the impact of last data point
-        results[1] = model.coef_[0]/y_last*100
-        if extent == 'full':
-            results[2] = 2*y_last/model.coef_[0]
-            results[4] = model.predict(np.array(len(y)-1+intl_lo_days).reshape(1,-1))
-            results[5] = model.predict(np.array(len(y)-1+intl_hi_days).reshape(1,-1))
-        results[6] = model.score(np.arange(len(y)).reshape(-1, 1), y)
-        results[7] = model.predict(np.array(len(y)-1).reshape(-1, 1))[0]/y[-1]-1
-    if extent == 'minimal':
-        results[2] = 0
-        results[4] = 0
-        results[5] = 0
-    return results, model
-'''
 
 def select_window_length(R, round_output):
     '''
@@ -565,7 +581,7 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
         results[1],
         results[2] if results[0]>=0 else np.NaN, # if results[1]>=0 else np.NaN,
         'Tage' if lang=='de' else 'days',
-        x2str(results[3], 7),
+        n2str(int(results[3]), 7),
         nr_cases_per_ppl,
         interval,
         results[6],
@@ -573,11 +589,13 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
         str(wl).rjust(2),
         'e' if exp_or_lin=='exp' else 'l').replace('.', ',' if lang=='de' else '.'))
 
-def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, lang='en'):
+def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, lang='en', panels=2):
     if not isinstance(country, str): # If it's a province or state of a country or region.
         country = country[0]
-    #fig, (ax1, ax2) = plt.subplots(1,2, figsize=(9.6, 4.8))
-    fig, (ax0, ax1, ax2) = plt.subplots(1,3, figsize=(14.4, 4.8))
+    if panels==2:
+        fig, (ax0, ax1) = plt.subplots(1,2, figsize=(14.4, 4.8))
+    elif panels==3:
+        fig, (ax0, ax1, ax2) = plt.subplots(1,3, figsize=(14.4, 4.8))
     if lang=='de':
         line0 = 'Beobachtungen'
         line1 = 'Exponentielle Annäherung' if exp_or_lin=='exp' else 'Lineare Annäherung'
@@ -587,14 +605,15 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
     else:
         line0 = 'Observations'
         line1 = 'Exponential approximation' if exp_or_lin=='exp' else 'Linear approximation'
-        fig.suptitle(country + ', ' + df_ts.index[-1].strftime('%d %B %Y'))
+        fig.suptitle(country + ', ' + df_ts.index[-1].strftime('%d %B %Y').lstrip('0'))
         #plt.gcf().text(0.905, 0.862, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
         plt.gcf().text(0.905, 0.27, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     #fig.tight_layout()
     fig.subplots_adjust(bottom=0.2)
     #ax1.plot(df_ts[df_ts>0], label=line0)
     #ax1.plot(df_ts[df_ts>0].iloc[-window_length:].index, np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_), label=line1)
-    plot_x = df_ts.iloc[-window_length:].index
+    #plot_x = df_ts.iloc[-window_length:].index
+    plot_x = pd.date_range(df_ts.index[-1]-pd.Timedelta(f'{window_length-1} days'), df_ts.index[-1])
     i_ts = (df_ts - df_ts.shift(1))[1:] # i for increments
     ax0.bar(df_ts[1:].index, i_ts[-len(df_ts)+1:], color='tab:blue')
     #df_ts_no0 = rm_consecutive_early_zeros(df_ts)
@@ -611,11 +630,14 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
                 temp2 = math.exp(model.intercept_)/model.coef_[0]
             #plot_y = (np.power(2, model.coef_[0]*np.arange(-window_length+1, 1))-1)*temp2 + df_ts.iloc[-1]
             #plot_y = (np.power(2, model.coef_[0]*np.arange(-window_length+1, 1))-1)*temp2 + df_ts.iloc[-window_length]
-                plot_y = (np.exp(model.coef_[0]*np.arange(-window_length+1, 1)) - math.exp(model.coef_[0] * (-window_length+1)))*temp2 + df_ts.iloc[-window_length]
+                #plot_y = (np.exp(model.coef_[0]*np.arange(-window_length+1, 1)) - math.exp(model.coef_[0] * (-window_length+1)))*temp2 + df_ts.iloc[-window_length]
+                plot_y = (np.exp(model.coef_[0]*np.arange(-window_length+1, 1)) - math.exp(model.coef_[0] * (-window_length+1)))*temp2 + interpolate(df_ts, window_length)
             else:
-                plot_y = math.exp(model.intercept_)*(np.arange(-window_length+1, 1) - (-window_length+1)) + df_ts.iloc[-window_length]
+                #plot_y = math.exp(model.intercept_)*(np.arange(-window_length+1, 1) - (-window_length+1)) + df_ts.iloc[-window_length]
+                plot_y = math.exp(model.intercept_)*(np.arange(-window_length+1, 1) - (-window_length+1)) + interpolate(df_ts, window_length)
             ax1.plot(plot_x, plot_y, label=line1, color='tab:orange', linewidth=3)
-            ax2.plot(plot_x, plot_y, label=line1, color='tab:orange', linewidth=3)
+            if panels==3:
+                ax2.plot(plot_x, plot_y, label=line1, color='tab:orange', linewidth=3)
     else:
         #print(df_ts_no0[1:].index)
         #print(i_ts[-len(df_ts_no0)+1:])
@@ -624,20 +646,23 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
         #plot_y = np.arange(0, window_length)*model.coef_ + model.intercept_
         #plot_y = (model.coef_[0]*np.arange(-window_length+1, 1)/2+model.intercept_)*np.arange(-window_length+1, 1) + df_ts.iloc[-1]
 #        plot_y = (model.coef_[0]*np.arange(0, window_length)/2+model.intercept_)*np.arange(0, window_length) + df_ts.iloc[-window_length]
-        plot_y = (model.coef_[0]*np.arange(-window_length+1, 1)/2+model.intercept_)*np.arange(-window_length+1, 1) - (model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1) + df_ts.iloc[-window_length]
+        #plot_y = (model.coef_[0]*np.arange(-window_length+1, 1)/2+model.intercept_)*np.arange(-window_length+1, 1) - (model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1) + df_ts.iloc[-window_length]
+        plot_y = (model.coef_[0]*np.arange(-window_length+1, 1)/2+model.intercept_)*np.arange(-window_length+1, 1) - (model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1) + interpolate(df_ts, window_length)
         ax1.plot(plot_x, plot_y, label=line1, color='tab:pink', linewidth=3)
-        ax2.plot(plot_x, plot_y, label=line1, color='tab:pink', linewidth=3)
+        if panels==3:
+            ax2.plot(plot_x, plot_y, label=line1, color='tab:pink', linewidth=3)
 
     ax1.plot(df_ts, label=line0, color='tab:blue')
-    ax2.plot(df_ts, label=line0, color='tab:blue')
-
-    ax2.set_yscale("log")
+    if panels==3:
+        ax2.plot(df_ts, label=line0, color='tab:blue')
+        ax2.set_yscale("log")
     for tick in ax0.get_xticklabels():
         tick.set_rotation(80)
     for tick in ax1.get_xticklabels():
         tick.set_rotation(80)
-    for tick in ax2.get_xticklabels():
-        tick.set_rotation(80)
+    if panels==3:
+        for tick in ax2.get_xticklabels():
+            tick.set_rotation(80)
     handles, labs = ax1.get_legend_handles_labels()
     if model is not None:
         ax1.legend((handles[1], handles[0]), (labs[1], labs[0]))

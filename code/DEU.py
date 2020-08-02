@@ -44,7 +44,7 @@ save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; otherwise it
 
 normalise_by = 1e5 # report case numbers per this many people
 exp_or_lin = 'both' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
-max_display_length = 45 # in days; if positive, then it plots the most recent max_display_length days only
+max_display_length = 90 # in days; if positive, then it plots the most recent max_display_length days only
 #max_display_length = -1
 lang = 'de' # 'de' for German, anything else for English
 
@@ -112,7 +112,7 @@ def convert_months_to_nr(s: str) -> int:
 
 def convert_abbr_to_bl(s: str) -> str:
     i = ['BW', 'BY', 'BE', 'BB', 'HB', 'HH', 'HE', 'MV', 'NI', 'NW', 'RP', 'SL', 'SN', 'ST', 'SH', 'TH',
-         'Gesamt', 'Diff.'].index(s)
+         'Gesamt', 'DifferenzzumVortag'].index(s)
     return allowed_values[i]
 '''
 def collect_dates(rows, table_no):
@@ -201,13 +201,13 @@ def collect_data_colwise(rows, shift_right=0):
     firstrowcells = rows[0].find_all('th')
     col_names = list()
     #for t in range(1, len(firstrowcells)-2):
-    for t in range(1+shift_right, len(firstrowcells)-2):
+    for t in range(1+shift_right, len(firstrowcells)-3):
         col_names.append(convert_abbr_to_bl(firstrowcells[t].find('a').text))
     #for t in range(len(firstrowcells)-2, len(firstrowcells)):
     # Deutschland:
-    col_names.append(convert_abbr_to_bl(firstrowcells[len(firstrowcells)-2].text.replace('\n','')))
+    col_names.append(convert_abbr_to_bl(firstrowcells[len(firstrowcells)-3].text.replace('\n','')))
     # Diff.:
-    col_names.append(firstrowcells[len(firstrowcells)-1].text.replace('\n',' '))
+    col_names.append(firstrowcells[len(firstrowcells)-2].text.replace('\n',' '))
     # Diff over week.:
     #col_names.append(firstrowcells[len(firstrowcells)-1].text.replace('\n',''))
 
@@ -215,6 +215,7 @@ def collect_data_colwise(rows, shift_right=0):
     ymd = list()
     cases_date = dict()
     rows_list = list()
+    row_counter = 0
     for r in rows[1:-1]:
         #print(r.text)
         tds = r.find_all('td')
@@ -225,14 +226,16 @@ def collect_data_colwise(rows, shift_right=0):
         #day, month, year = ' '.join(tds[0].text.replace('\n','').split()).split(' ')[:3]
         #day, month, year = tds[0].text.replace('\n','').split()[:3] # until 1/4/2020
         #text_temp = tds[0].text.replace('\n','')
-        text_temp = tds[shift_right].text.replace('\n','')
+        #text_temp = tds[shift_right].text.replace('\n','')
+        text_temp = tds[shift_right - (row_counter%7 != 0)].text.replace('\n','')
+        #print(text_temp[text_temp.find('♠')+1:])
         day, month, year = text_temp[text_temp.find('♠')+1:].split()[:3] # on 12/4/2020
         year = year[:4]
         #print(day, month, year)
         ymd.append('{0}-{1}-{2}'.format(year, convert_months_to_nr(month), day.replace('.', '')))
         cases_date[ymd[-1]]=list()
         #for j in tds[1:]:
-        for j in tds[1+shift_right:]:
+        for j in tds[1+shift_right - (row_counter%7 != 0) :-1]:
             # The character - is not the standard minus, it's a longer one so safer to do with
             # try & except.
             try:
@@ -241,6 +244,7 @@ def collect_data_colwise(rows, shift_right=0):
             except:
                 cases_date[ymd[-1]].append(0)
         rows_list.append(pd.Series(cases_date[ymd[-1]], index=col_names))
+        row_counter += 1
 
     #print(col_names)
     #print(pd.concat(cases_date.values(), axis=0, columns=col_names))
@@ -254,15 +258,15 @@ def data_preparation_DEU(output):
     #print(soup.prettify())
 
     #tables = soup.find_all('table', {'class':'wikitable sortable mw-collapsible'}) # I expect two tables: 'Bestätigte Infektionsfälle (kumuliert)', 'Bestätigte Todesfälle (kumuliert)'
-    tables = soup.find_all('table', {'class':'wikitable'}) # I expect three tables
+    tables = soup.find_all('table', {'class':'wikitable'}) # I expect four tables
 
     idx_Infektionsfaelle = 0
     idx_Todesfaelle = 2
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[2].text:
     #if 'Elektronisch übermittelte Fälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
     #if 'Daten über Infektionsfälle (kumuliert)' not in tables[0].text or 'Bestätigte Todesfälle (kumuliert)' not in tables[3].text:
-    if 'Infektionsfälle (kumuliert)' not in tables[idx_Infektionsfaelle].text or ('Bestätigte Todesfälle (kumuliert)' not in tables[idx_Todesfaelle].text and 'Bestätigte\xa0Todesfälle\xa0(kumuliert)' not in tables[idx_Todesfaelle].text):
-        print('ERROR at 0: Data format error, results are unreliable.')
+    #if 'Infektionsfälle (kumuliert)' not in tables[idx_Infektionsfaelle].text or ('Bestätigte Todesfälle (kumuliert)' not in tables[idx_Todesfaelle].text and 'Bestätigte\xa0Todesfälle\xa0(kumuliert)' not in tables[idx_Todesfaelle].text):
+    #    print('ERROR at 0: Data format error, results are unreliable.')
 
     for i in [idx_Infektionsfaelle, idx_Todesfaelle]:
         rows = tables[i].find_all('tr')
@@ -281,7 +285,7 @@ def data_preparation_DEU(output):
             #figures.loc[pd.to_datetime('2020-03-31'),'Sachsen-Anhalt'] = 680
             print(figures)
         else: # i==idx_Todesfaelle
-            death_figures = collect_data_colwise(rows, 0) # deaths
+            death_figures = collect_data_colwise(rows, 1) # deaths
             #print(death_figures)
             # Extend it to the size of cases and fill missing values with 0
             death_figures = pd.DataFrame(death_figures, index=figures.index).fillna(value=0).astype('int64')

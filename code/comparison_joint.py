@@ -20,15 +20,15 @@ from importlib import reload
 
 left_bound=0.8
 bottom_bound=-10.; top_bound=100.
-max_display_length = 45 # in days; if positive, then it plots the most recent max_display_length days only
+max_display_length = 100 #45 # in days; if positive, then it plots the most recent max_display_length days only
 time_start = pd.Timestamp.date(pd.Timestamp('today'))-max_display_length*pd.DateOffset()
 cycle_linestyle = 0 # if 0, then all lines are solid; if 1, then it cycles through solid, dotted, dashed, dash-dotted
 #normalise = 1 # 1 if you want to normalise by population size, o.w. 0
 #normalise = 'xy' # 'xy' or 'y' if you want to normalise by population size ('xy' normalises both x and y values (unless xaxis = 'date'), 'y' normalises only y values), o.w. None; 'y' alone can be normalised only if incr_or_rate=='incr' & xaxis=='cases'
 normalise_by = int(1e5) # display case numbers per this many people
 
-#window_length = 7 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
-window_length = -1
+window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
+#window_length = 7
 
 save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
 lang = 'en' # 'de' for German, anything else for English
@@ -41,28 +41,37 @@ exp_or_lin = 'lin' # Use 'exp' model (fitting linear model on logarithmic scale)
 # Drop-in replacement for original:
 countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = None; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 '''
-#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=50.; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
+countries = ['United Kingdom', 'Spain', 'Sweden', 'Belarus', 'Italy', 'France', 'Germany', 'Iran', 'Turkey', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; left_bound=4.; right_bound=None; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 # New
-#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
-#countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
+#countries = ['United Kingdom', 'Spain', 'Sweden', 'Belarus', 'Italy', 'France', 'Germany', 'Iran', 'Turkey', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['United Kingdom', 'Spain', 'Sweden', 'Belarus', 'Italy', 'France', 'Germany', 'Iran', 'Turkey', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 '''
 # Drop-in replacement for original:
 countries = ['China', 'EU', 'US']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=55.; normalise = None; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 '''
-countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=45.; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 # New
-#countries = ['China', 'EU', 'US']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
-#countries = ['China', 'EU', 'US']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
+#countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 '''
 # Drop-in replacement for original:
 countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=50.; right_bound=10000; bottom_bound=0.; top_bound=80.; normalise = None; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 '''
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=40.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=35.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 # New
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=700; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=1100; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
 #countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
+
+'''
+# Drop-in replacement for original:
+#countries = 'Deutschland'; left_bound=200; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = None; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
+'''
+#countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=27.5; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
+# New
+#countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = 'Deutschland'; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date';# exp_or_lin = 'lin' left_bound=time_start;
 
 # Nordic countries
 #countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
@@ -74,22 +83,20 @@ countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'C
 #countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'DACH'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
 #countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'DACH'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
-'''
-# Drop-in replacement for original:
-#countries = 'Deutschland'; left_bound=200; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = None; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
-'''
-#countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=42.; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
-# New
-#countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
-#countries = 'Deutschland'; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date';# exp_or_lin = 'lin'
-
+#countries = ['United Kingdom', 'Spain', 'Sweden', 'Denmark', 'Italy', 'France', 'Germany', 'Netherlands', 'Belgium']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'WesternEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 # Death toll
+#cases = 'deaths'; countries = ['US', 'Brazil', 'United Kingdom', 'Spain', 'Sweden', 'Belarus', 'Italy', 'France', 'Belgium', 'Germany']; left_bound=1; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#cases = 'deaths'; countries = ['US', 'Brazil', 'United Kingdom', 'Spain', 'Sweden', 'Belarus', 'Italy', 'France', 'Belgium', 'Germany']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
+#cases = 'deaths'; countries = ['United Kingdom', 'Spain', 'Sweden', 'Denmark', 'Italy', 'France', 'Germany', 'Netherlands', 'Belgium']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'WesternEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
+
 #cases = 'deaths'; countries = ['Italy', 'Spain', 'US', 'United Kingdom', 'France', 'Netherlands', 'Belgium', 'Sweden', 'Germany']; left_bound=0.1; right_bound=None; bottom_bound=0.; top_bound=3.; normalise = 'xy'; filename = 'deathtoll'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
 #cases = 'deaths'; countries = ['Italy', 'Spain', 'US', 'United Kingdom', 'France', 'Netherlands', 'Belgium', 'Sweden', 'Germany']; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=3.; normalise = 'xy'; filename = 'deathtoll'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
-#cases = 'deaths'; countries = ['China', 'EU', 'US']; left_bound=0.01; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
-#cases = 'deaths'; countries = ['China', 'EU', 'US']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
+#cases = 'deaths'; countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; left_bound=0.01; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#cases = 'deaths'; countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
+
+#cases = 'deaths'; countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=0.01; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
 
 # Testing
 
@@ -129,67 +136,6 @@ countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'C
 #country = ['United Kingdom', 'United Kingdom']
 
 ### End of user input ###
-
-'''
-def process_geounit_minimal(df_ts, window_length, exp_or_lin='both'):
-    
-    This processes one geographical unit.
-    df_ts is the time series.
-    
-    #df_ts = utils.rm_early_zeros(df_ts)
-    if window_length > 0:
-        selected_window_length = window_length
-        #results, model = analysis_minimal(df_ts, window_length)
-        if exp_or_lin=='both':
-            results_e, model_e = utils.analysis(df_ts, window_length, 'exp', 'minimal')
-            results_l, model_l = utils.analysis(df_ts, window_length, 'lin', 'minimal')
-            results, model, exp_or_lin = utils.pick_exp_vs_lin(results_e, model_e, results_l, model_l)
-        elif exp_or_lin=='exp':
-            results, model = utils.analysis(df_ts, window_length, 'exp', 'minimal')
-        else:
-            results, model = utils.analysis(df_ts, window_length, 'lin', 'minimal')
-    else: # do a search over window_lengths for best possible fit
-        # minimum and maximum allowed window lengths; we test all in this closed interval
-        wl_lo = 4
-        wl_hi = 15 # this end point is not included
-        # Rule out zeros because we take logarithm; rule out windows longer than the time series df_ts.
-        #wl_hi = min(wl_hi, 1+len(df_ts[df_ts[df_ts>0].idxmin():]), 1+len(df_ts))
-        wl_hi = min(wl_hi, 1+len(df_ts))
-        if wl_hi <= wl_lo: # then abort
-            results, model = utils.analysis([], 1, 'exp', 'minimal')
-            return results, model, window_length, exp_or_lin
-        if exp_or_lin in ['exp', 'both']:
-            R_e = pd.DataFrame(np.zeros((wl_hi-wl_lo, 8)), index=range(wl_lo, wl_hi))
-            models_e = dict()
-        if exp_or_lin in ['lin', 'both']:
-            R_l = pd.DataFrame(np.zeros((wl_hi-wl_lo, 8)), index=range(wl_lo, wl_hi))
-            models_l = dict()
-        for wl in range(wl_lo, wl_hi): # last wl_hi-1 points must be available and positive <==
-            if exp_or_lin in ['exp', 'both']:
-                result_wl, model = utils.analysis(df_ts, wl, 'exp', 'minimal') # last wl points must be available and positive
-                R_e.iloc[wl-wl_lo, :] = result_wl
-                models_e[wl] = model
-            if exp_or_lin in ['lin', 'both']:
-                result_wl, model = utils.analysis(df_ts, wl, 'lin', 'minimal')
-                R_l.iloc[wl-wl_lo, :] = result_wl
-                models_l[wl] = model
-        if exp_or_lin in ['exp', 'both']:
-            results_e, selected_window_length_e = utils.select_window_length(R_e, round_output=False)
-            model_e = models_e[selected_window_length_e]
-        if exp_or_lin in ['lin', 'both']:
-            results_l, selected_window_length_l = utils.select_window_length(R_l, round_output=False)
-            model_l = models_l[selected_window_length_l]
-        if exp_or_lin == 'exp':
-            results, model, selected_window_length = results_e[:-1], model_e, selected_window_length_e
-        if exp_or_lin == 'lin':
-            results, model, selected_window_length = results_l[:-1], model_l, selected_window_length_l
-        if exp_or_lin == 'both':
-            results, model, exp_or_lin = utils.pick_exp_vs_lin(results_e, model_e, results_l, model_l)
-            selected_window_length = selected_window_length_e if exp_or_lin=='exp'\
-                                     else selected_window_length_l
-
-    return results, model, selected_window_length, exp_or_lin
-'''
 
 def call_process_geounit_minimal(df_ts, latest_date, window_length, exp_or_lin='both'):
     '''
@@ -322,7 +268,8 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, exp_o
         if cycle_linestyle==1:
             ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], linestyle=['solid', 'dotted', 'dashed', 'dashdot'][i % 4])
         elif filename == 'great_powers':
-            ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], color=['tab:red', 'tab:blue', 'tab:gray'][i % 3])
+            #ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], color=['tab:red', 'tab:blue', 'tab:gray'][i % 3])
+            ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], color=['tab:orange', 'tab:blue', 'tab:gray', 'tab:purple', 'tab:green', 'tab:olive'][i % 6])
         else:
             ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i])
 
@@ -396,32 +343,6 @@ if __name__ == '__main__':
                 else:
                     df_ts = normalise_by*df_ts/pop_world[country]
             #print(df_ts)
-            '''
-            df_ts = utils.rm_consecutive_early_zeros(df_ts, 0) #window_length_for_cutoffs-2)
-            #print(df_ts)
-            if isinstance(left_bound, int) or isinstance(left_bound, float):
-                df_ts = df_ts[(df_ts>left_bound).idxmax()-wl_hi*pd.DateOffset():]
-            elif left_bound is not None:
-                df_ts = df_ts[left_bound-wl_hi*pd.DateOffset():]
-            #print(df_ts)
-            if latest_date==None or latest_date<df_ts.index[-1]:
-                latest_date = df_ts.index[-1]
-
-            for i in range(window_length_for_cutoffs-len(df_ts), 1):
-                results, model, selected_window_length, e_or_l = process_geounit_minimal(
-                                                        df_ts[:len(df_ts)+i], window_length, exp_or_lin)
-                #print(results)
-                if incr_or_rate == 'incr':
-                    dif_optim.append(results[0])
-                else: # 'rate'
-                    dif_optim.append(results[1])
-                if xaxis == 'cases':
-                    case_no.append(results[3])
-                #else: # 'date'
-                #    case_no.append(df_ts.index[len(df_ts)+i-1])
-            if xaxis == 'date':
-                case_no = df_ts.index[window_length_for_cutoffs-1:]
-            '''
             df_ts, dif_optim, case_no, latest_date, e_or_l = call_process_geounit_minimal(
                 df_ts, latest_date, window_length, exp_or_lin)
             dif_all[country] = pd.Series(dif_optim, index=case_no)
@@ -461,46 +382,10 @@ if __name__ == '__main__':
             dif_all[allowed_values[j]] = pd.Series(dif_optim, index=case_no)
             if normalise == 'y' and incr_or_rate=='incr':
                 dif_all[allowed_values[j]] = normalise_by*dif_all[allowed_values[j]]/pop_DEU[j]
-            '''
-            df_ts = utils.rm_consecutive_early_zeros(df_ts, 0) #window_length_for_cutoffs-2)
-            if isinstance(left_bound, int) or isinstance(left_bound, float):
-                df_ts = df_ts[(df_ts>left_bound).idxmax()-wl_hi*pd.DateOffset():]
-            elif left_bound is not None:
-                df_ts = df_ts[left_bound-wl_hi*pd.DateOffset():]
-            if latest_date==None or latest_date<df_ts.index[-1]:
-                latest_date = df_ts.index[-1]
-            for i in range(window_length_for_cutoffs-len(df_ts), 1):
-                results, model, selected_window_length, e_or_l = process_geounit_minimal(
-                                                        df_ts[:len(df_ts)+i], window_length, exp_or_lin)
-                if incr_or_rate == 'incr':
-                    dif_optim.append(results[0])
-                else:
-                    dif_optim.append(results[1])
-                if xaxis == 'cases':
-                    case_no.append(results[3])
-            if xaxis == 'date':
-                case_no = df_ts.index[window_length_for_cutoffs-1:]
-            if exp_or_lin=='both':
-                print(e_or_l) # If this is 'both', then it is because process_geounit_minimal() was aborted due to wl_hi <= wl_lo.
-            dif_all[allowed_values[j]] = pd.Series(dif_optim, index=case_no)
-            '''
-
     
-    #print(dif_fixed)
-    #dif_fixed = pd.Series(dif_fixed, index=[df_ts.index[t] for t in range(window_length-len(df_ts), 0)])
-    #dif_optim = pd.Series(dif_optim, index=[df_ts.index[t] for t in range(window_length-len(df_ts), 0)])
-    #dif_fixed = pd.Series(dif_fixed, index=[df_ts.index[len(df_ts)+t-1] for t in range(window_length-len(df_ts), 1)])
-    #dif_optim = pd.Series(dif_optim, index=[df_ts.index[len(df_ts)+t-1] for t in range(window_length-len(df_ts), 1)])
-    #dif_trivi = pd.Series(dif_trivi, index=[df_ts.index[len(df_ts)+t-1] for t in range(window_length-len(df_ts), 1)])
-    #print(dif_fixed)
-
-    #dif_ts = pd.concat([dif_fixed, dif_optim, dif_trivi], axis=1, keys=['fixed window', 'optimised window', 'trivial ratio'])
-    #dif_ts = pd.concat([dif_fixed, dif_optim, dif_trivi], axis=1, keys=['fixed window', 'optimised window', 'trivial ratio'])
     #print(df_ts)
     #print(dif_ts)
     print(dif_all)
-    #print_header()
-    #print_results(country, results, selected_window_length, lang)
 
     if save_not_show in [0, 1]:
         plotting_countries(dif_all, save_not_show, latest_date, window_length, e_or_l, left_bound, right_bound, bottom_bound, top_bound, cycle_linestyle, lang)
