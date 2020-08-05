@@ -926,7 +926,10 @@ Für das medizinische Personal war es zu erwarten, dass die Anzahl der neuen Pat
 
 ### Bitte um Spenden
 
-Wenn Sie meine Arbeit unterstützen können, dann bitte ich Sie, mein [Ocean Plastic Detector](https://www.gofundme.com/OceanPlasticDetector) Projekt aufzusuchen und dort eine Spende durchzuführen. Danke!
+Wenn Sie meine Arbeit unterstützen können, dann bitte ich Sie um eine Spende. Danke!
+
+* Adresse für Bitcoin (BTC): `13veK2ecjhtNenTxhGKJjP83QiMmNd1M7p`
+* Adresse für Ether (ETH) und Tokens: `0x49fC2a73e1eC76248324E411e699f92adD6565Ff`
 
 Finden Sie mich auf [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), auf meiner Webseite/Blog: [Melykuti.me](https://melykuti.me), oder folgen Sie mir auf [Facebook](https://www.facebook.com/bence.melykuti) für meine öffentlichen Posts.
 
