@@ -5,7 +5,7 @@
 Zusammenfassung am Donnerstag, 3 September 2020:
 
 * Es gibt wesentlich mehr neue bewiesene Coronavirus-Infektionen in Deutschland als in der ersten Hälfte des Sommers.
-* Jedoch hat die Anzahl der täglichen Neuinfektionen in den letzten drei Wochen ungefähr stabilisiert. Die Zahlen gehen sicherlich nicht unkontrolliert nach oben.
+* Jedoch hat sich die Anzahl der täglichen Neuinfektionen in den letzten drei Wochen ungefähr stabilisiert. Die Zahlen gehen sicherlich nicht unkontrolliert nach oben.
 
 Zusammenfassung am Freitag, 21 August 2020:
 
