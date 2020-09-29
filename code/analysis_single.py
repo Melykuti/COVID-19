@@ -16,7 +16,7 @@ from importlib import reload
 
 ### User input ###
 
-country = 'Israel' # 'US', 'Switzerland' 'United Kingdom' 'Netherlands' 'Denmark' 'Spain' 'France' 'Germany' 'Sweden' 'Singapore' 'Saudi Arabia' 'Tunisia' 'Turkey' 'Azerbaijan' 'Korea, South'
+country = 'Hungary' # 'Israel', 'US', 'Switzerland' 'United Kingdom' 'Netherlands' 'Denmark' 'Spain' 'France' 'Germany' 'Sweden' 'Singapore' 'Saudi Arabia' 'Tunisia' 'Turkey' 'Azerbaijan' 'Korea, South'
 #country = 'Korea, South'
 #country = ['New South Wales', 'Australia']
 #country = 'EU'
@@ -26,7 +26,7 @@ save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; o.w. it does
 lang = 'en' # 'de' for German, anything else for English
 normalise_by = 1e5 # report case numbers per this many people
 exp_or_lin = 'lin' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
-max_display_length = 120 # in days; if positive, then it plots the most recent max_display_length days only
+max_display_length = 140#140 #35 # in days; if positive, then it plots the most recent max_display_length days only
 #max_display_length = -1
 latest_date = None
 #latest_date = 1

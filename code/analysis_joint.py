@@ -17,12 +17,15 @@ from importlib import reload
 ### User input ###
 max_display_length = 140 #45 # in days; if positive, then it plots the most recent max_display_length days only
 
-#countries = ['US', 'United Kingdom', 'Russia', 'France', 'Italy', 'Spain', 'Netherlands', 'Belgium', 'Saudi Arabia', 'Germany', 'Singapore', 'Sweden', 'Belarus', 'Iran', 'Japan', 'Switzerland', 'Hungary', 'Denmark', 'Austria', 'Korea, South', 'Australia', 'China', 'New Zealand']
+#countries = ['US', 'India', 'Brazil', 'United Kingdom', 'Russia', 'France', 'Italy', 'Spain', 'Netherlands', 'Belgium', 'Germany', 'Austria', 'Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Bulgaria', 'Croatia', 'Serbia', 'Israel', 'Saudi Arabia', 'Iran', 'Singapore', 'Sweden', 'Belarus',  'Switzerland', 'Denmark', 'Japan', 'Korea, South', 'China', 'Australia', 'New Zealand']; cases = 'confirmed'
 # Active cases:
-countries = ['US', 'Brazil', 'India', 'Russia', 'France', 'Spain', 'Belgium', 'Saudi Arabia', 'Israel', 'Iran', 'Italy', 'Japan', 'Germany', 'Australia', 'Singapore', 'Belarus', 'China', 'Switzerland', 'Austria', 'Korea, South', 'Denmark', 'Hungary', 'New Zealand']; cases = 'active'
+countries = ['US', 'India', 'France', 'Brazil', 'Russia', 'Israel', 'Italy', 'Iran', 'Germany', 'Hungary', 'Saudi Arabia', 'Austria', 'Switzerland', 'Denmark', 'Japan', 'Bulgaria', 'Belarus', 'Korea, South', 'Australia', 'China', 'Singapore', 'New Zealand']; cases = 'active'
 # Confirmed cases:
+# 2nd wave/to monitor
+#countries = ['US', 'Brazil', 'India', 'Spain', 'Italy', 'Netherlands', 'Belgium', 'Sweden', 'Singapore', 'Germany', 'Switzerland', 'Austria', 'Japan', 'Korea, South', 'Australia', 'China', 'Romania', 'Serbia', 'Bulgaria', 'Iceland', 'Czechia', 'Poland', 'Hungary']; cases = 'confirmed'
+
 #countries = ['Hungary', 'Serbia', 'Montenegro', 'Georgia', 'Korea, South', 'Japan', 'Canada', 'Australia', 'New Zealand', 'Algeria', 'Morocco', 'Tunisia', 'Rwanda', 'Uruguay', 'Thailand', 'Austria']; cases = 'confirmed'
-#countries = ['US', 'Brazil', 'Russia', 'United Kingdom', 'France', 'India', 'Spain', 'Italy', 'Belgium', 'Sweden', 'Iran', 'Saudi Arabia', 'Belarus', 'Singapore', 'Germany', 'Japan', 'Hungary', 'Korea, South', 'Denmark', 'Switzerland', 'Austria', 'Australia', 'China', 'New Zealand']; cases = 'confirmed'
+#countries = ['US', 'Brazil', 'Russia', 'United Kingdom', 'France', 'India', 'Spain', 'Italy', 'Netherlands', 'Belgium', 'Sweden', 'Iran', 'Saudi Arabia', 'Belarus', 'Singapore', 'Germany', 'Japan', 'Hungary', 'Korea, South', 'Denmark', 'Switzerland', 'Austria', 'Australia', 'China', 'New Zealand']; cases = 'confirmed'
 #countries = ['Argentina', 'Brazil', 'Chile', 'Peru', 'Mexico', 'Canada', 'Russia', 'Belarus', 'United Kingdom', 'India', 'Belgium', 'Sweden', 'Iran', 'Saudi Arabia', 'Qatar', 'Singapore', 'Argentina', 'Korea, South']; cases = 'confirmed'; max_display_length = 90
 #countries = ['US', 'Italy', 'Spain', 'Germany', 'France', 'Iran', 'United Kingdom', 'Switzerland', 'Netherlands', 'Belgium', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', 'China'] # ['Hubei', 'China']]
 #countries = ['United Kingdom']
@@ -32,7 +35,7 @@ countries = ['US', 'Brazil', 'India', 'Russia', 'France', 'Spain', 'Belgium', 'S
 #countries = ['Italy', 'France', 'Spain', 'Germany', 'Switzerland', 'Japan', 'Denmark', 'Netherlands', 'Sweden', 'United Kingdom', 'Austria', 'Korea, South', 'China'] # , 'Belgium'
 #cases = 'confirmed' # 'confirmed' or 'deaths' or 'active' or 'recovered'
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
-save_plots = 1 # if 1, then saves all plots; otherwise it neither shows nor saves
+save_plots = -1 # if 1, then saves all plots; otherwise it neither shows nor saves
 lang = 'en' # 'de' for German, anything else for English
 normalise_by = 1e5 # report case numbers per this many people
 exp_or_lin = 'both' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.

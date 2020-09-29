@@ -41,7 +41,7 @@ exp_or_lin = 'lin' # Use 'exp' model (fitting linear model on logarithmic scale)
 # Drop-in replacement for original:
 countries = ['Italy', 'Spain', 'France', 'Germany', 'Iran', 'Turkey', 'United Kingdom', 'Netherlands', 'Switzerland', 'Japan', 'Korea, South', 'China']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = None; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
 '''
-countries = ['United Kingdom', 'Spain', 'Sweden', 'Belarus', 'Italy', 'France', 'Germany', 'Iran', 'Turkey', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; left_bound=4.; right_bound=None; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['United Kingdom', 'Spain', 'Sweden', 'Belarus', 'Italy', 'France', 'Germany', 'Iran', 'Turkey', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; left_bound=4.; right_bound=None; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 # New
 #countries = ['United Kingdom', 'Spain', 'Sweden', 'Belarus', 'Italy', 'France', 'Germany', 'Iran', 'Turkey', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
 #countries = ['United Kingdom', 'Spain', 'Sweden', 'Belarus', 'Italy', 'France', 'Germany', 'Iran', 'Turkey', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
@@ -61,7 +61,7 @@ countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'C
 '''
 #countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=35.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 # New
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=1100; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=2; right_bound=2100; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
 #countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 '''
@@ -71,7 +71,7 @@ countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'C
 #countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=27.5; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 # New
 #countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
-#countries = 'Deutschland'; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date';# exp_or_lin = 'lin' left_bound=time_start;
+countries = 'Deutschland'; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date';# exp_or_lin = 'lin' left_bound=time_start;
 
 # Nordic countries
 #countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
@@ -85,6 +85,11 @@ countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'C
 
 #countries = ['United Kingdom', 'Spain', 'Sweden', 'Denmark', 'Italy', 'France', 'Germany', 'Netherlands', 'Belgium']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'WesternEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
+# Confirmed
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Germany', 'Austria']; left_bound=2; right_bound=1200; bottom_bound=0.; top_bound=12.; normalise = 'xy'; filename = 'CentralEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Germany', 'Austria']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=12.; normalise = 'xy'; filename = 'CentralEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
+
+
 # Death toll
 #cases = 'deaths'; countries = ['US', 'Brazil', 'United Kingdom', 'Spain', 'Sweden', 'Belarus', 'Italy', 'France', 'Belgium', 'Germany']; left_bound=1; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
 #cases = 'deaths'; countries = ['US', 'Brazil', 'United Kingdom', 'Spain', 'Sweden', 'Belarus', 'Italy', 'France', 'Belgium', 'Germany']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
@@ -97,6 +102,9 @@ countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'C
 #cases = 'deaths'; countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 #cases = 'deaths'; countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; left_bound=0.01; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Nordic'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+
+#cases = 'deaths'; countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Germany', 'Austria']; left_bound=0.01; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'CentralEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
+#cases = 'deaths'; countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Germany', 'Austria']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'CentralEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 # Testing
 
@@ -126,6 +134,7 @@ countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'C
 #countries = ['Hungary']; left_bound=50*normalise_by/10e6; right_bound=None; normalise = 'y'; filename = 'Visegrad'
 #countries = ['Iceland']; left_bound=None; right_bound=None; normalise = None; filename = 'Iceland'
 #countries = ['Iceland']; left_bound=0.8; right_bound=None; normalise = 'y'; filename = 'Iceland'
+#countries = ['Czechia']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Czechia'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 #, 'Netherlands', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', ]
 #countries = [ 'Japan']; left_bound=400; right_bound=None
@@ -251,15 +260,15 @@ def plotting_countries(dif_all, save_not_show, latest_date, window_length, exp_o
         if incr_or_rate == 'rate':
             ax1.set_ylabel('Daily growth rate')
             fig.suptitle('Daily growth rate of number of {} ('.format(case_txt_1) +\
-             latest_date.strftime('%d %B %Y')+')')
+             latest_date.strftime('%d %B %Y').lstrip('0')+')')
         else:
             if normalise is None:
                 ax1.set_ylabel('Daily increment')
                 fig.suptitle('Daily increment of number of {} ('.format(case_txt_1) +\
-                 latest_date.strftime('%d %B %Y')+')')
+                 latest_date.strftime('%d %B %Y').lstrip('0')+')')
             else:
                 ax1.set_ylabel('Daily increment per {} people'.format(utils.separated(str(normalise_by), lang)))
-                fig.suptitle('Daily increment of number of {0} per {1} people ({2})'.format(case_txt_1, utils.separated(str(normalise_by), lang), latest_date.strftime('%d %B %Y')))
+                fig.suptitle('Daily increment of number of {0} per {1} people ({2})'.format(case_txt_1, utils.separated(str(normalise_by), lang), latest_date.strftime('%d %B %Y').lstrip('0')))
 
     #fig.tight_layout()
 
