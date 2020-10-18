@@ -2,6 +2,17 @@
 
 > * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 
+Zusammenfassung am Sonntag, 18 Oktober 2020:
+
+* Die zweite Welle der Coronavirus-Pandemie hat in Deutschland ein besorgniserregendes Maß erreicht. In Deutschland gibt es täglich bereits mehr bestätigte neue Coronavirus-Fälle als im Frühling am Anfang des Lockdowns.
+* Die Lage ist in einigen Aspekten besser:
+    - Es wird viel mehr getestet, vorsichtshalber werden viele Reisende auch. Dadurch werden mehr, sogar symptomlose Infektionen entdeckt. Diese werden dann auch schneller mit häuslicher Isolation vom öffentlichen Leben entfernt.
+    - Die Bevölkerung hat die Lernphase schon durchgemacht: wir tragen Alltagsmasken, wir halten Abstand von einander häufiger als damals.
+* Aber es gibt keinen Lockdown. Ich glaube, dass viele die Ernsthaftigkeit der Lage von den geltenden Maßnahmen ablesen, nicht von den tatsächlichen Infektionszahlen. Das kann zu Leichtsinnigkeit führen.
+* In vielen Bundesländern sieht die Entwicklung der Infektionszahlen nach exponentiellem Wachstum aus.
+* Die Bundesländer mit den meisten bewiesenen Coronafällen pro Tag pro 100.000 EinwohnerInnen sind Bremen (19), Saarland (18), Berlin (16), Bayern (15), Hessen (13), Nordrhein-Westfalen (11), Hamburg (10), Baden-Württemberg (9,7). Der Durchschnitt für Deutschland steht bei 8,3.
+* Im Sommer war es nur noch 0,5 pro Tag pro 100.000 EinwohnerInnen.
+
 Zusammenfassung am Samstag, 3 Oktober 2020:
 
 * Die ruhige Lage des Sommers ist längst vorbei. Die Anzahl der bestätigten Neuinfektionen zeigt eine klare steigende Tendenz.
@@ -9,16 +20,7 @@ Zusammenfassung am Samstag, 3 Oktober 2020:
 * Bremen ist in einer ähnlichen Situation mit 6,4 neue Fälle pro Tag pro 100.000 EinwohnerInnen.
 * Sie werden durch Hamburg (5,0), Nordrhein-Westfalen (4,4), Hessen (3,5), Niedersachsen (3,3), Bayern (3,2), Saarland (3,1) gefolgt. Der Durchschnitt für das gesamte Deutschland ist 3,3.
 
-Zusammenfassung am Samstag, 19 September 2020:
-
-* Es ist so, dass die täglichen neuen Coronavirus-Fallzahlen und die Anzahl der Todesfälle das Niveau von ca. 18. März erreicht haben, die Zeit nur ein paar Tage vor dem Lockdown. Jedoch ist die Lage besser:
-    - Es wird viel mehr getestet, und sogar symptomlose Infektionen werden dadurch entdeckt.
-    - Die Anzahl der Neuinfektionen steigt heute viel weniger drastisch an, als damals.
-    - Die Bevölkerung hat die Lernphase schon durchgemacht: wir tragen Alltagsmasken, wir halten Abstand von einander häufiger als damals.
-* Die Bundesländer, die mir die meisten Sorgen machen: Berlin (4,9 neue bestätigte Fälle pro Tag pro 100000 EinwohnerInnen), Bayern (4,4), Baden-Württemberg (3,6), Hamburg und Nordrhein-Westfalen (3,3).
-
-
-16 März 2020 (aktualisiert am 3 Oktober 2020), Freiburg i. Br. – In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierten Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 18 Oktober 2020), Freiburg i. Br. – In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierten Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bis die allgemeinen Ausgangsbeschränkungen angefangen haben ihre Wirkung zu zeigen, stimmten die beobachteten Coronavirus-Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. Freiburg war die erste deutsche Großstadt, die solch einen Lockdown am 21.03.2020 angeordnet hat.
 
@@ -67,49 +69,49 @@ Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das l
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-10-03.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-10-18.png)
 
 Auf diesen drei Schaubildern verwende ich nur das lineare Model. (Wenn ich das exponentielle Modell auch in das Rennen schicken würde, dann bekäme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Varianz der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-03_xy_-1_lin_date_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-18_xy_-1_lin_date_incr_confirmed.png)
 
-![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-03_xy_-1_lin_cases_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-18_xy_-1_lin_cases_incr_confirmed.png)
 
-![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-03_xy_-1_lin_cases_rate_confirmed.png)
+![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-18_xy_-1_lin_cases_rate_confirmed.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-10-03.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-10-18.png)
 
-![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-10-03.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-10-18.png)
 
-![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-10-03.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-10-18.png)
 
-![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-10-03.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-10-18.png)
 
-![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-10-03.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-10-18.png)
 
-![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-10-03.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-10-18.png)
 
-![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-10-03.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-10-18.png)
 
-![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-10-03.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-10-18.png)
 
-![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-10-03.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-10-18.png)
 
-![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-10-03.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-10-18.png)
 
-![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-10-03.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-10-18.png)
 
-![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-10-03.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-10-18.png)
 
-![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-10-03.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-10-18.png)
 
-![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-10-03.png)
+![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-10-18.png)
 
-![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-10-03.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-10-18.png)
 
-![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-10-03.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-10-18.png)
 
 
 ### Resultate
@@ -147,6 +149,27 @@ Die Spalten haben die folgende Bedeutung:
     Bundesland               Zu- Zuwachs Wachst.- Verdoppl.  Gesamte   pro     Schätzung   R^2  Diff. Fenster Exp/Lin
                            wachs   pro    rate      zeit      Fälle  100.000                          größe
                                  100.000
+
+Stand 18.10.2020
+
+    Baden-Württemberg         1073  9,7   3,8%    18,5 Tage   59353    536     [584, 616] 0,71 -0,08  14  e
+    Bayern                    1934   15   7,6%     9,5 Tage   79940    611     [716, 826] 0,94 -0,13   7  e
+    Berlin                     599   16   4,3%    16,6 Tage   21127    580     [658, 707] 0,36 -0,13  14  e
+    Brandenburg                116  4,6   4,2%    17,0 Tage    5414    216     [238, 254] 0,41 -0,17  14  e
+    Bremen                     132   19   8,8%     8,2 Tage    3564    522     [655, 792] 0,73 -0,15   7  e
+    Hamburg                    187   10   3,2%    22,3 Tage    9750    530     [580, 612] 0,27 -0,09   7  l
+    Hessen                     831   13   7,7%     9,3 Tage   25440    406     [491, 570] 0,51 -0,18   7  e
+    Mecklenburg-Vorpommern      67  4,1   5,2%    13,7 Tage    1680    104     [125, 138] 0,33 -0,12   8  l
+    Niedersachsen              505  6,3   2,4%    28,7 Tage   25581    320     [348, 365] 0,32 -0,05  14  l
+    Nordrhein-Westfalen       1937   11   3,7%    19,0 Tage   89681    500     [551, 584] 0,65 -0,08  14  e
+    Rheinland-Pfalz            256  6,3   3,3%    21,1 Tage   13404    328     [357, 376] 0,51 -0,09  14  e
+    Saarland                   180   18  10,4%     7,0 Tage    4356    440     [581, 750] 0,51 -0,24   7  e
+    Sachsen                    327  8,0   5,7%    12,5 Tage    9935    244     [285, 316] 0,53 -0,14  14  e
+    Sachsen-Anhalt              92  4,2   4,5%    15,8 Tage    3242    147     [169, 184] 0,82 -0,06   7  l
+    Schleswig-Holstein          64  2,2   1,7%    41,4 Tage    5626    194     [204, 210] 0,12 -0,07   8  l
+    Thüringen                   98  4,6   3,2%    21,8 Tage    4881    228     [250, 265] 0,76 -0,13   7  l
+    
+    Deutschland               6919  8,3   2,4%    29,2 Tage  361974    436     [473, 494] 0,68 -0,05  14  l
 
 Stand 03.10.2020
 
@@ -1030,6 +1053,14 @@ Finden Sie mich auf [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), a
 Ich arbeite als selbständiger Data Scientist. Sie können mich mit Ihrem Projekt beauftragen.
 
 ### Archiv
+
+Zusammenfassung am Samstag, 19 September 2020:
+
+* Es ist so, dass die täglichen neuen Coronavirus-Fallzahlen und die Anzahl der Todesfälle das Niveau von ca. 18. März erreicht haben, die Zeit nur ein paar Tage vor dem Lockdown. Jedoch ist die Lage besser:
+    - Es wird viel mehr getestet, und sogar symptomlose Infektionen werden dadurch entdeckt.
+    - Die Anzahl der Neuinfektionen steigt heute viel weniger drastisch an, als damals.
+    - Die Bevölkerung hat die Lernphase schon durchgemacht: wir tragen Alltagsmasken, wir halten Abstand von einander häufiger als damals.
+* Die Bundesländer, die mir die meisten Sorgen machen: Berlin (4,9 neue bestätigte Fälle pro Tag pro 100000 EinwohnerInnen), Bayern (4,4), Baden-Württemberg (3,6), Hamburg und Nordrhein-Westfalen (3,3).
 
 Zusammenfassung am Donnerstag, 3 September 2020:
 
