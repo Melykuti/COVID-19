@@ -87,9 +87,6 @@ Auf diesen drei Schaubildern verwende ich nur das lineare Model. (Wenn ich das e
 
 ![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-30_xy_-1_lin_cases_rate_confirmed.png)
 
-Todesfälle
-![Täglicher relativer Zuwachs der Todesfälle in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-30_xy_-1_lin_date_incr_deaths.png)
-
 #### Die einzelnen Bundesländer
 
 ![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-10-30.png)
@@ -124,6 +121,8 @@ Todesfälle
 
 ![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-10-30.png)
 
+#### Todesfälle
+![Täglicher relativer Zuwachs der Todesfälle in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-30_xy_-1_lin_date_incr_deaths.png)
 
 ### Resultate
 
