@@ -2,6 +2,14 @@
 
 > * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 
+Zusammenfassung am Freitag, 30 Oktober 2020:
+
+* Die Anzahl der bestätigten Neuinfektionen mit dem Coronavirus hat in Deutschland eine noch nie dagewesene Höhe erreicht. Pro Tag stecken sich 20 Menschen pro 100.000 EinwohnerInnen mit SARS-CoV-2 an.
+* Dieses Ausmaß kennzeichnete die USA anhaltend, mit verheerenden Folgen.
+* Die Bundesländer mit der höchsten Ansteckungsrate (pro Tag pro 100.000 EW) sind Berlin (32), Bremen (30), Hessen (27), Nordrhein-Westfalen und Saarland (26), Bayern (23), Baden-Württemberg und Hamburg (21), Sachsen (20).
+* Die Anzahl der Todesfälle durch COVID-19 hat auch angefangen zu steigen. Sie ist weitgehend noch unter dem Niveau im April, jedoch in Sachsen mit 0,3 pro Tag pro 100.000 hat sie das gleiche Niveau erreicht.
+* Mit dem neuen Lockdown (#Lockdown2 oder #LockdownLight) werden die Zahlen langsam sicherlich wieder fallen. Es ist selbstverständlich immer eine sehr schwere Entscheidung, welche Branchen darunter am meisten leiden müssen, welche die größte Umsatzeinbußen trägen.
+
 Zusammenfassung am Sonntag, 18 Oktober 2020:
 
 * Die zweite Welle der Coronavirus-Pandemie hat in Deutschland ein besorgniserregendes Maß erreicht. In Deutschland gibt es täglich bereits mehr bestätigte neue Coronavirus-Fälle als im Frühling am Anfang des Lockdowns.
@@ -20,7 +28,7 @@ Zusammenfassung am Samstag, 3 Oktober 2020:
 * Bremen ist in einer ähnlichen Situation mit 6,4 neue Fälle pro Tag pro 100.000 EinwohnerInnen.
 * Sie werden durch Hamburg (5,0), Nordrhein-Westfalen (4,4), Hessen (3,5), Niedersachsen (3,3), Bayern (3,2), Saarland (3,1) gefolgt. Der Durchschnitt für das gesamte Deutschland ist 3,3.
 
-16 März 2020 (aktualisiert am 18 Oktober 2020), Freiburg i. Br. – In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierten Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 30 Oktober 2020), Freiburg i. Br. – In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierten Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bis die allgemeinen Ausgangsbeschränkungen angefangen haben ihre Wirkung zu zeigen, stimmten die beobachteten Coronavirus-Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. Freiburg war die erste deutsche Großstadt, die solch einen Lockdown am 21.03.2020 angeordnet hat.
 
@@ -69,49 +77,52 @@ Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das l
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-10-18.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2020-10-30.png)
 
 Auf diesen drei Schaubildern verwende ich nur das lineare Model. (Wenn ich das exponentielle Modell auch in das Rennen schicken würde, dann bekäme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Varianz der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-18_xy_-1_lin_date_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-30_xy_-1_lin_date_incr_confirmed.png)
 
-![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-18_xy_-1_lin_cases_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-30_xy_-1_lin_cases_incr_confirmed.png)
 
-![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-18_xy_-1_lin_cases_rate_confirmed.png)
+![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-30_xy_-1_lin_cases_rate_confirmed.png)
+
+Todesfälle
+![Täglicher relativer Zuwachs der Todesfälle in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2020-10-30_xy_-1_lin_date_incr_deaths.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-10-18.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2020-10-30.png)
 
-![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-10-18.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2020-10-30.png)
 
-![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-10-18.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2020-10-30.png)
 
-![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-10-18.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2020-10-30.png)
 
-![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-10-18.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2020-10-30.png)
 
-![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-10-18.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2020-10-30.png)
 
-![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-10-18.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2020-10-30.png)
 
-![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-10-18.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2020-10-30.png)
 
-![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-10-18.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2020-10-30.png)
 
-![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-10-18.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2020-10-30.png)
 
-![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-10-18.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2020-10-30.png)
 
-![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-10-18.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2020-10-30.png)
 
-![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-10-18.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2020-10-30.png)
 
-![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-10-18.png)
+![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2020-10-30.png)
 
-![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-10-18.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2020-10-30.png)
 
-![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-10-18.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2020-10-30.png)
 
 
 ### Resultate
@@ -149,6 +160,27 @@ Die Spalten haben die folgende Bedeutung:
     Bundesland               Zu- Zuwachs Wachst.- Verdoppl.  Gesamte   pro     Schätzung   R^2  Diff. Fenster Exp/Lin
                            wachs   pro    rate      zeit      Fälle  100.000                          größe
                                  100.000
+
+Stand 30.10.2020
+
+    Baden-Württemberg         2361   21   4,8%    14,8 Tage   77477    700     [804, 873] 0,67 -0,07  13  e
+    Bayern                    2996   23   4,6%    15,4 Tage  102074    781     [891, 964] 0,74 -0,06  13  e
+    Berlin                    1154   32   4,6%    15,4 Tage   30356    833    [983, 1075] 0,44  0,01   7  l
+    Brandenburg                246  9,8   3,6%    19,8 Tage    7468    297     [341, 366] 0,28 -0,03  14  l
+    Bremen                     204   30   4,4%    16,1 Tage    5100    747     [883, 963] 0,34 -0,07  12  l
+    Hamburg                    388   21   3,4%    20,9 Tage   12947    703     [797, 851] 0,63 -0,04  12  l
+    Hessen                    1687   27   4,5%    15,8 Tage   39093    624     [744, 814] 0,65 -0,05  13  l
+    Mecklenburg-Vorpommern     126  7,8   5,1%    14,1 Tage    2616    163     [198, 219] 0,43 -0,06  12  l
+    Niedersachsen             1153   14   5,3%    13,4 Tage   34228    429     [501, 550] 0,59 -0,10  13  e
+    Nordrhein-Westfalen       4731   26   4,0%    17,6 Tage  127447    711     [829, 898] 0,75 -0,04  13  l
+    Rheinland-Pfalz            691   17   3,9%    18,2 Tage   19108    468     [543, 587] 0,75 -0,05  13  l
+    Saarland                   253   26   4,6%    15,4 Tage    6142    620     [738, 808] 0,19 -0,05  12  l
+    Sachsen                    804   20   6,2%    11,5 Tage   16493    404     [500, 563] 0,51 -0,11  13  e
+    Sachsen-Anhalt             221   10   5,0%    14,2 Tage    4804    218     [264, 291] 0,82 -0,06  12  l
+    Schleswig-Holstein         246  8,5   3,5%    20,1 Tage    7716    266     [304, 326] 0,60 -0,03  14  l
+    Thüringen                  212  9,9   3,5%    20,2 Tage    6625    309     [353, 378] 0,41 -0,03  14  l
+    
+    Deutschland              16937   20   3,7%    19,0 Tage  499694    602     [693, 746] 0,77 -0,04  13  l
 
 Stand 18.10.2020
 
