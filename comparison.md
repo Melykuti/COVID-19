@@ -106,6 +106,6 @@ If you can afford to support my work, then please consider donating. Thank you!
 * Address for bitcoin (BTC): `13veK2ecjhtNenTxhGKJjP83QiMmNd1M7p`
 * Address for ether (ETH) and tokens: `0x49fC2a73e1eC76248324E411e699f92adD6565Ff`
 
-Find me on [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), on my website/blog: [Melykuti.me](https://melykuti.me), or follow me on [Facebook](https://www.facebook.com/bence.melykuti) for my public posts.
+Find me on [Twitter (@BMelykuti)](https://twitter.com/BMelykuti), on my website/blog: [Melykuti.me](https://melykuti.me), or follow me on [Facebook](https://www.facebook.com/bence.melykuti) for my public posts.
 
 I work as a data science freelancer. You can contact me with your project proposal.
