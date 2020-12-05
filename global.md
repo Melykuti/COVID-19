@@ -3,32 +3,15 @@
 > * Recall that on this page I examine the number of currently infected patients and not the cumulative number of all who have been infected and might have recovered or died.
 > * If you already know my methodology, just skip down to the Plots and the Results sections.
 
-13 March 2020 (updated on 23 November 2020), Freiburg i. Br., Germany, where a lockdown was in force from 21 March 2020. – The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
+13 March 2020 (updated on 5 December 2020), Freiburg i. Br., Germany – The WHO releases [daily situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
 
 Thinking in terms of the classical SIR model of epidemiology, the population comprises three groups: **S**usceptibles, **I**nfected and **R**emoved. _Removed_ are those who have recovered from or died of the disease and thereby are no longer infectious and can no longer catch the disease. _Infected_ are the current patients who are also all infectious. _Susceptibles_ are everybody else: people who have not been infected yet (and hopefully will never be).
-
-In the initial stage of an epidemic, we expect that most contacts by infected people will be with a susceptible person. This provides a fertile ground for the disease to spread. The number of infected people is rising exponentially (in the mathematical, not in the vague and overused marketing sense) until there are so many of them that it is becoming harder for the disease to find susceptibles.
-
-**Unfortunately, most countries saw exponential growth of case numbers without introducing lockdowns. (As far as I know, Singapore, South Korea, Taiwan are a few which have avoided this. In Singapore, entering migrant workers caused a new wave of infections from mid-April.) With lockdowns of varying stringency in force for several weeks now, a subsiding of the pandemic is seen in Italy, Spain, France, Germany.**
-
-Exponential growth means that from one day to the next, the total number of infected people increases not by a fixed number but by a fixed multiple. In any one hospital, the number of new patients per day is not the same as the number of new patients was yesterday. Instead, it is increasing by the same factor every day. For example, today the hospital gets 11 new patients, tomorrow 13, the day after 16, on day&nbsp;4 already 19, on day&nbsp;5 23. If the stream doesn't stop, then on day&nbsp;10 it will be 57 new patients, and so on. Each patient spends one to three weeks hospitalised, and the people being removed from the hospital are the lower numbers that arrived one to three weeks ago. If you are medical personnel and had a hard day at work, you can be sure that tomorrow will be even harder, the day after still harder. There is no system capable of meeting this demand.
-
-**Our intuition is also caught off guard. The risk of contracting the disease is not constant; it is increasing by the same factor every day. It's silently, imperceptibly creeping up until the disease is everywhere around us unless we stop it.**
-
-### How shall I think about the danger which I'm exposed to?...
-
-_What is the probability of coming into contact with the disease if I leave my home?_ While I cannot answer that, a good proxy is the number of currently infected people.
-
-Some of the infected people will be in hospital, some at home, but some will be around us on the streets, in the grocery shops, on public transport. I assume that the ratio between infected people in isolation (in hospital or at their home) and those among us is independent of how many people are infected in total. With the growth of the infected population, the count of infected people on the street and in grocery shops grows proportionally (unless social distancing takes hold or a lockdown is introduced and people start avoiding public spaces).
-
-**From day to day, your chance of encountering an infected person on the street is growing by a fixed factor as long as the disease is spreading exponentially (and people don't vanish from the streets). The daily growth rate of cases across several countries was about 15-30% without extreme control measures, such as a lockdown.**
-
 
 ### Data
 
 The Center for Systems Science and Engineering at the Johns Hopkins University is kindly providing [the time series data with daily sampling frequency in tabular format](https://github.com/CSSEGISandData).
 
-Remember that the true number of cases is probably multiple times higher than the number of confirmed cases. For an extreme example, on the 27th March, Scotland’s Chief Medical Officer Catherine Calderwood [estimated that more than 65,000 people in Scotland had the virus](https://www.bbc.com/news/live/world-52058788) when confirmed cases stood at 1059.
+Remember that the true number of cases is probably multiple times higher than the number of confirmed cases. For an extreme example, on the 27th March 2020, Scotland’s Chief Medical Officer Catherine Calderwood [estimated that more than 65,000 people in Scotland had the virus](https://www.bbc.com/news/live/world-52058788) when confirmed cases stood at 1059. On the 26th November, [according to the claims of Prof Béla Merkely, the head of Semmelweis University, Budapest](https://hvg.hu/itthon/20201126_Merkely_Bela_felepult_es_ujra_gyogyit), we can put the ratio of infected people to the number of registered infections in Hungary to eight.
 
 ### Program files
 
@@ -45,6 +28,8 @@ Remember that the true number of cases is probably multiple times higher than th
 I compute the number of currently infectious people as the number of total confirmed cases minus the number of deaths minus the number of recovered patients for all days where there is data:
 
 `no. of currently infected = no. of cases - no. of deaths - no. of recovered.`
+
+It has to be said that the number of recoveries is the least reliable time series for each country. For some, it is clearly so inaccurate that I had to omit the country from this analysis.
 
 (On 24 March 2020, I reported the total number of confirmed cases for each country because the number of recoveries was not included in the JHU CSSE dataset.)
 
@@ -72,7 +57,7 @@ From this fit I compute:
 
 4. I make a crude estimate of what I guess the total number of infected people might currently be.
 
-The third one is only my guesswork. The idea is that in the case of a SARS-CoV-2 infection, it takes on average 5-6 days to develop symptoms (fever, a usually dry cough and others). This incubation time varies between 1 to 14 days. The people who were infected today will present symptoms and will be tested perhaps 4-6 days from now. They will enter the figure in the situation report only thereafter. Also, they are likely to be already infectious sooner than that and that is what worries us as ordinary people.
+The third one is only my guesswork. The idea is that in the case of a SARS-CoV-2 infection, it takes on average 5-6 days to develop symptoms (fever, a usually dry cough, loss of smell or taste, and others). This incubation time varies between 1 to 14 days. The people who were infected today will present symptoms and will be tested perhaps 4-6 days from now. They will enter the figure in the situation report only thereafter. Also, they are likely to be already infectious sooner than that and that is what worries us as ordinary people.
 
 So I project from my curve fit the number of infected four, respectively, six days from the latest data point, and that is the estimate for the current total case number. This is probably too conservative and may be a low estimate not only because many cases never get tested and recorded but also because from developing symptoms, one still needs perhaps 1-5 days to get tested and for the test result to enter the international statistical tables. There are also wide differences between how much testing different countries do; low testing intensity is bound to bias the confirmed case number downwards.
 
@@ -105,55 +90,55 @@ On the right panel, the plots present the observed total number of currently inf
 
 If the linear model fits better, then pink is the linear fit, which is the same as the fit of a straight line on natural scale on the left panel. If the exponential model fits better, then orange is the fit of the exponential curve, which is the same as the fit of a straight line on logarithmic y-scale (not actually shown) for the data on the left panel.
 
-![US](https://github.com/Melykuti/COVID-19/blob/master/plots/US_2020-11-22.png)
+![US](https://github.com/Melykuti/COVID-19/blob/master/plots/US_2020-12-04.png)
 
-![France](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-11-22.png)
+![France](https://github.com/Melykuti/COVID-19/blob/master/plots/France_2020-12-04.png)
 
-![Italy](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-11-22.png)
+![Italy](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2020-12-04.png)
 
-![India](https://github.com/Melykuti/COVID-19/blob/master/plots/India_2020-11-22.png)
+![India](https://github.com/Melykuti/COVID-19/blob/master/plots/India_2020-12-04.png)
 
-![Russia](https://github.com/Melykuti/COVID-19/blob/master/plots/Russia_2020-11-22.png)
+![Russia](https://github.com/Melykuti/COVID-19/blob/master/plots/Russia_2020-12-04.png)
 
-![Germany](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2020-11-22.png)
+![Germany](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2020-12-04.png)
 
-![Iran](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2020-11-22.png)
+![Iran](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2020-12-04.png)
 
-![Argentina](https://github.com/Melykuti/COVID-19/blob/master/plots/Argentina_2020-11-22.png)
+![Argentina](https://github.com/Melykuti/COVID-19/blob/master/plots/Argentina_2020-12-04.png)
 
-![Hungary](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2020-11-22.png)
+![Hungary](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2020-12-04.png)
 
-![Switzerland](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2020-11-22.png)
+![Switzerland](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2020-12-04.png)
 
-![Czechia](https://github.com/Melykuti/COVID-19/blob/master/plots/Czechia_2020-11-22.png)
+![Czechia](https://github.com/Melykuti/COVID-19/blob/master/plots/Czechia_2020-12-04.png)
 
-![Austria](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2020-11-22.png)
+![Austria](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2020-12-04.png)
 
-![Bulgaria](https://github.com/Melykuti/COVID-19/blob/master/plots/Bulgaria_2020-11-22.png)
+![Bulgaria](https://github.com/Melykuti/COVID-19/blob/master/plots/Bulgaria_2020-12-04.png)
 
-![Peru](https://github.com/Melykuti/COVID-19/blob/master/plots/Peru_2020-11-22.png)
+![Peru](https://github.com/Melykuti/COVID-19/blob/master/plots/Peru_2020-12-04.png)
 
-![Belarus](https://github.com/Melykuti/COVID-19/blob/master/plots/Belarus_2020-11-22.png)
+![Belarus](https://github.com/Melykuti/COVID-19/blob/master/plots/Belarus_2020-12-04.png)
 
-![Japan](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2020-11-22.png)
+![Japan](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2020-12-04.png)
 
-![Denmark](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2020-11-22.png)
+![Denmark](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2020-12-04.png)
 
-![Chile](https://github.com/Melykuti/COVID-19/blob/master/plots/Chile_2020-11-22.png)
+![Chile](https://github.com/Melykuti/COVID-19/blob/master/plots/Chile_2020-12-04.png)
 
-![Israel](https://github.com/Melykuti/COVID-19/blob/master/plots/Israel_2020-11-22.png)
+![Israel](https://github.com/Melykuti/COVID-19/blob/master/plots/Israel_2020-12-04.png)
 
-![Saudi Arabia](https://github.com/Melykuti/COVID-19/blob/master/plots/Saudi_Arabia_2020-11-22.png)
+![Saudi Arabia](https://github.com/Melykuti/COVID-19/blob/master/plots/Saudi_Arabia_2020-12-04.png)
 
-![South Korea](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-11-22.png)
+![South Korea](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2020-12-04.png)
 
-![Australia](https://github.com/Melykuti/COVID-19/blob/master/plots/Australia_2020-11-22.png)
+![Australia](https://github.com/Melykuti/COVID-19/blob/master/plots/Australia_2020-12-04.png)
 
-![China](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2020-11-22.png)
+![China](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2020-12-04.png)
 
-![Singapore](https://github.com/Melykuti/COVID-19/blob/master/plots/Singapore_2020-11-22.png)
+![Singapore](https://github.com/Melykuti/COVID-19/blob/master/plots/Singapore_2020-12-04.png)
 
-![New Zealand](https://github.com/Melykuti/COVID-19/blob/master/plots/New_Zealand_2020-11-22.png)
+![New Zealand](https://github.com/Melykuti/COVID-19/blob/master/plots/New_Zealand_2020-12-04.png)
 
 
 
@@ -190,6 +175,35 @@ I focus on countries with a large number of cases and on those to which I have g
     Country              Increment Incr. Growth   Doubling  Active     per      Estimate   R^2  Diff. Win- Exp/Lin
                                     per   rate      time     Cases   100,000                          dow
                                   100,000                                                             size
+
+5 December 2020
+
+    US                      142256   43   3.8%    18.6 days 8618141   2591   [2805, 2953] 0.77 -0.05   7  e
+    France                    8280   12   0.4%     inf days 2067279   3047   [3092, 3112] 0.07  0.04  10  l
+    Italy                    -9001  -14  -1.2%     nan days  757702   1214                0.28 -0.47  14  l
+    Russia                   -1897 -1.3  -0.4%     nan days  468068    330                0.28 -0.20   7  l
+    India                   -10361 -0.8  -2.5%     nan days  409689     31                0.70 -0.25  11  l
+    Germany                  -3678 -4.6  -1.2%     nan days  307002    383                0.21 -1.95  10  l
+    Iran                      2681  3.2   1.0%     inf days  259034    305     [315, 317] 0.57  0.04  11  l
+    Hungary                   3963   41   3.0%    23.5 days  164018   1678   [1862, 1969] 0.07 -0.09   9  l
+    Argentina                 1048  2.3   2.6%    27.1 days  133164    293     [307, 318] 0.33  0.15  14  l
+    Bulgaria                  1087   16   2.3%    31.0 days   94480   1356   [1433, 1483] 0.43 -0.01   7  l
+    Switzerland               1293   15   6.5%    11.1 days   78604    935   [1097, 1253] 0.08 -0.14   7  l
+    Czechia                   1020  9.5   8.6%     8.4 days   59674    558                0.35  1.33   7  l
+    Austria                  -1494  -17  -2.9%     nan days   49819    562                0.36  0.06   7  l
+    Peru                     -3222  -10 -11.0%     nan days   27041     85                0.45 -0.64   8  l
+    Japan                      900  0.7   5.9%    12.0 days   25157     20       [24, 27] 0.03 -0.02   7  l
+    Belarus                     92  1.0   0.4%     inf days   21622    228     [230, 230] 0.08  0.21  12  l
+    Denmark                    295  5.0   2.4%    29.8 days   17244    294     [317, 330] 0.14 -0.05  10  l
+    Israel                     377  4.3   3.7%    19.1 days   12043    139     [159, 170] 0.18 -0.09  14  l
+    Chile                      253  1.4   5.2%    13.8 days   10034     55                0.14  1.63   7  l
+    Korea, South               307  0.6   4.1%    17.4 days    7458     14       [17, 18] 0.27 -0.03   8  e
+    Saudi Arabia              -106 -0.3  -2.5%     nan days    4158     12                0.60  0.04  14  l
+    Australia                  5.1  0.0   1.6%    44.8 days    1414    5.6                0.21 -0.85   9  l
+    China                       73  0.0   4.3%    16.3 days    1398   0.10         [0, 0] 0.17 -0.04  14  e
+    Singapore                  2.2  0.0   7.4%     9.7 days      61   0.98                0.24  0.35  10  l
+    New Zealand               -5.1 -0.1  -8.5%     nan days      59    1.2                0.66 -0.87   9  l
+
 
 23 November 2020
 
