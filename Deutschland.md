@@ -2,7 +2,7 @@
 
 > * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 
-16 März 2020 (aktualisiert am 3 Januar 2021), Freiburg i. Br. – In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierten Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
+16 März 2020 (aktualisiert am 16 Januar 2021), Freiburg i. Br. – In der Anfangsphase der Verbreitung der Epidemie ist fast die ganze Bevölkerung empfindlich und jeder Erkrankte kann eine erhebliche Anzahl von gesunden Menschen anstecken. So kann die Anzahl der Infizierten Schritt für Schritt immer ein Faktor größer werden. Dieser Verlauf ist exponentielles Wachstum.
 
 Bis die allgemeinen Ausgangsbeschränkungen angefangen haben ihre Wirkung zu zeigen, stimmten die beobachteten Coronavirus-Fallzahlen mit diesem Verlauf überein, sowohl in vielen europäischen Ländern als auch in Deutschland und in jedem einzigen Bundesland. Freiburg war die erste deutsche Großstadt, die solch einen Lockdown am 21.03.2020 angeordnet hat.
 
@@ -51,52 +51,52 @@ Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das l
 
 #### Die gesamte Bundesrepublik
 
-![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2021-01-03.png)
+![Deutschland](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_2021-01-16.png)
 
 Auf diesen drei Schaubildern verwende ich nur das lineare Model. (Wenn ich das exponentielle Modell auch in das Rennen schicken würde, dann bekäme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Varianz der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-01-03_xy_-1_lin_date_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-01-16_xy_-1_lin_date_incr_confirmed.png)
 
-![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-01-03_xy_-1_lin_cases_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-01-16_xy_-1_lin_cases_incr_confirmed.png)
 
-![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-01-03_xy_-1_lin_cases_rate_confirmed.png)
+![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-01-16_xy_-1_lin_cases_rate_confirmed.png)
 
 #### Die einzelnen Bundesländer
 
-![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2021-01-03.png)
+![Baden-Württemberg](https://github.com/Melykuti/COVID-19/blob/master/plots/Baden-Württemberg_2021-01-16.png)
 
-![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2021-01-03.png)
+![Bayern](https://github.com/Melykuti/COVID-19/blob/master/plots/Bayern_2021-01-16.png)
 
-![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2021-01-03.png)
+![Berlin](https://github.com/Melykuti/COVID-19/blob/master/plots/Berlin_2021-01-16.png)
 
-![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2021-01-03.png)
+![Brandenburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Brandenburg_2021-01-16.png)
 
-![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2021-01-03.png)
+![Bremen](https://github.com/Melykuti/COVID-19/blob/master/plots/Bremen_2021-01-16.png)
 
-![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2021-01-03.png)
+![Hamburg](https://github.com/Melykuti/COVID-19/blob/master/plots/Hamburg_2021-01-16.png)
 
-![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2021-01-03.png)
+![Hessen](https://github.com/Melykuti/COVID-19/blob/master/plots/Hessen_2021-01-16.png)
 
-![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2021-01-03.png)
+![Mecklenburg-Vorpommern](https://github.com/Melykuti/COVID-19/blob/master/plots/Mecklenburg-Vorpommern_2021-01-16.png)
 
-![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2021-01-03.png)
+![Niedersachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Niedersachsen_2021-01-16.png)
 
-![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2021-01-03.png)
+![Nordrhein-Westfalen](https://github.com/Melykuti/COVID-19/blob/master/plots/Nordrhein-Westfalen_2021-01-16.png)
 
-![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2021-01-03.png)
+![Rheinland-Pfalz](https://github.com/Melykuti/COVID-19/blob/master/plots/Rheinland-Pfalz_2021-01-16.png)
 
-![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2021-01-03.png)
+![Saarland](https://github.com/Melykuti/COVID-19/blob/master/plots/Saarland_2021-01-16.png)
 
-![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2021-01-03.png)
+![Sachsen](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen_2021-01-16.png)
 
-![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2021-01-03.png)
+![Sachsen-Anhalt](https://github.com/Melykuti/COVID-19/blob/master/plots/Sachsen-Anhalt_2021-01-16.png)
 
-![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2021-01-03.png)
+![Schleswig-Holstein](https://github.com/Melykuti/COVID-19/blob/master/plots/Schleswig-Holstein_2021-01-16.png)
 
-![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2021-01-03.png)
+![Thüringen](https://github.com/Melykuti/COVID-19/blob/master/plots/Thüringen_2021-01-16.png)
 
 #### Todesfälle
-![Täglicher relativer Zuwachs der Todesfälle in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-01-03_xy_-1_lin_date_incr_deaths.png)
+![Täglicher relativer Zuwachs der Todesfälle in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-01-16_xy_-1_lin_date_incr_deaths.png)
 
 ### Resultate
 
@@ -133,6 +133,28 @@ Die Spalten haben die folgende Bedeutung:
     Bundesland               Zu- Zuwachs Wachst.- Verdoppl.  Gesamte   pro     Schätzung   R^2  Diff. Fenster Exp/Lin
                            wachs   pro    rate      zeit      Fälle  100.000                          größe
                                  100.000
+
+Stand 16.01.2021
+
+    Baden-Württemberg         1838   17   0,7%     inf Tage  271976   2457   [2514, 2535] 0,18  0,09   9  l
+    Bayern                    3434   26   2,0%    34,6 Tage  372696   2850   [2968, 3038] 0,17 -0,04   7  e
+    Berlin                    1231   34   1,9%    37,2 Tage  111730   3065   [3222, 3315] 0,43 -0,04   7  l
+    Brandenburg               1385   55   3,6%    19,5 Tage   56036   2231   [2500, 2670] 0,29 -0,14   7  l
+    Bremen                     108   16   1,6%    44,0 Tage   14796   2166   [2242, 2289] 0,25 -0,02   7  l
+    Hamburg                    243   13   0,6%     inf Tage   42349   2300   [2339, 2347] 0,55  0,08  11  l
+    Hessen                    1101   18   0,7%     inf Tage  157255   2510   [2570, 2594] 0,21  0,03  11  l
+    Mecklenburg-Vorpommern     391   24   3,4%    20,7 Tage   16361   1016   [1133, 1205] 0,40 -0,02   7  l
+    Niedersachsen             1617   20   2,0%    34,5 Tage  127115   1592   [1685, 1741] 0,33 -0,00   7  l
+    Nordrhein-Westfalen       4111   23   1,6%    44,0 Tage  447493   2495   [2599, 2661] 0,37 -0,00   7  l
+    Rheinland-Pfalz            863   21   2,4%    29,4 Tage   84229   2062   [2160, 2220] 0,63 -0,04   7  e
+    Saarland                   147   15   0,6%     inf Tage   22939   2316   [2358, 2366] 0,26  0,03  10  l
+    Sachsen                   1604   39   1,0%     inf Tage  165292   4053   [4184, 4229] 0,26  0,07  10  l
+    Sachsen-Anhalt            1092   49   2,8%    25,5 Tage   42249   1913   [2127, 2246] 0,20 -0,02  13  l
+    Schleswig-Holstein         459   16   3,6%    19,8 Tage   30581   1056   [1134, 1188] 0,25 -0,03   7  e
+    Thüringen                 1079   50   3,6%    19,8 Tage   56539   2638   [2879, 3034] 0,18 -0,04   7  e
+    
+    Deutschland              22325   27   2,6%    27,1 Tage 2019636   2433   [2558, 2637] 0,39 -0,03   7  e
+
 
 Stand 03.01.2021
 
