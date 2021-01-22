@@ -449,9 +449,9 @@ def process_geounit(df_ts, window_length, exp_or_lin='both', running_extent='ful
         #wl_hi = min(wl_hi, 1+len(df_ts[df_ts[df_ts>0].idxmin():]), 1+len(df_ts))
         wl_hi = min(wl_hi, 1+len(df_ts))
         if wl_hi <= wl_lo: # then abort
-            #print(df_ts)
             results, model = analysis(pd.Series([]), 1, 'exp', running_extent)
-            return results, model, window_length, exp_or_lin
+            #return results, model, window_length, exp_or_lin
+            return pd.DataFrame([results+[window_length, exp_or_lin]]), model
         '''
         R = pd.DataFrame(np.zeros((wl_hi-wl_lo, 7)), index=range(wl_lo, wl_hi))
         models = dict()
@@ -492,7 +492,8 @@ def process_geounit(df_ts, window_length, exp_or_lin='both', running_extent='ful
             results, model, exp_or_lin = pick_exp_vs_lin(results_e, model_e, results_l, model_l)
             selected_window_length = selected_window_length_e if exp_or_lin=='exp'\
                                      else selected_window_length_l
-    return results, model, selected_window_length, exp_or_lin
+    #return results, model, selected_window_length, exp_or_lin
+    return pd.DataFrame([results+[selected_window_length, exp_or_lin]]), model
 
 def print_header(normalise_by, population_csv=None):
     print('The number of cases increases daily by /')
@@ -601,13 +602,13 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
         line1 = 'Exponentielle Annäherung' if exp_or_lin=='exp' else 'Lineare Annäherung'
         fig.suptitle(country + ', Stand ' + df_ts.index[-1].strftime('%d.%m.%Y'))
         #plt.gcf().text(0.905, 0.86, "© Bence Mélykúti, 2020. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
-        plt.gcf().text(0.905, 0.242, "© Bence Mélykúti, 2020. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+        plt.gcf().text(0.905, 0.242, "© Bence Mélykúti, 2021. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     else:
         line0 = 'Observations'
         line1 = 'Exponential approximation' if exp_or_lin=='exp' else 'Linear approximation'
         fig.suptitle(country + ', ' + df_ts.index[-1].strftime('%d %B %Y').lstrip('0'))
         #plt.gcf().text(0.905, 0.862, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
-        plt.gcf().text(0.905, 0.27, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+        plt.gcf().text(0.905, 0.27, "© Bence Mélykúti, 2021. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     #fig.tight_layout()
     fig.subplots_adjust(bottom=0.2)
     #ax1.plot(df_ts[df_ts>0], label=line0)

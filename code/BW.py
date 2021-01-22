@@ -1,6 +1,6 @@
 '''
 exec(open('BW.py').read())
-15/3-15/4/2020
+15/3-20/12/2020
 '''
 
 import os, datetime
@@ -31,7 +31,7 @@ selection = 'alle' # Choose one of the elements of allowed_values.
 #selection = allowed_values[10] # Alternatively, choose an element index from allowed_values.
 #selection = allowed_values[4]
 #selection = allowed_values[-2]
-§selection = 'Breisgau-Hochschwarzwald'
+#selection = 'Tuttlingen' #'Breisgau-Hochschwarzwald'
 
 cases = 'both' # 'confirmed' or 'deaths' or 'both'
 
@@ -126,8 +126,7 @@ def scp(sc_save_not_show, case_type='confirmed'):
         fig.suptitle('COVID-19-Infizierten in Baden-Württemberg vs Bevölkerungsdichte pro Landkreis\nStand ' + figures[case_type].index[-1].strftime('%d.%m.%Y'))
     elif case_type=='deaths':
         fig.suptitle('COVID-19-Todesfälle in Baden-Württemberg vs Bevölkerungsdichte pro Landkreis\nStand ' + figures[case_type].index[-1].strftime('%d.%m.%Y'))
-    #plt.gcf().text(0.905, 0.865, "© Bence Mélykúti, 2020. http://COVID19BW.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
-    plt.gcf().text(0.905, 0.395, "© Bence Mélykúti, 2020. http://COVID19BW.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
+    plt.gcf().text(0.905, 0.395, "© Bence Mélykúti, 2021. http://COVID19BW.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     if sc_save_not_show == 0:
         plt.show()
     else:
@@ -149,11 +148,11 @@ if __name__ == '__main__':
         cases_list = ['confirmed', 'deaths']
 
     figures = open_data()
-
+    #print(figures['confirmed'])
     utils.print_header(normalise_by, pop_csv)
 
     if selection != 'alle': # single run
-    #print(figures['confirmed'])
+
         for case in cases_list:
             if max_display_length > 0:
                 figures[case] = figures[case].iloc[-max_display_length:,:]
@@ -162,11 +161,10 @@ if __name__ == '__main__':
             #if max_display_length > 0:
             #    df_ts = df_ts[-max_display_length:]
 
-            results, model, selected_window_length, e_or_l = utils.process_geounit(
-                                                                df_ts, window_length, exp_or_lin)
+            results, model = utils.process_geounit(df_ts, window_length, exp_or_lin)
             print()
-            utils.print_results(selection, results, normalise_by, pop_csv,
-                     selected_window_length, e_or_l, case, lang)
+            utils.print_results(selection, results.iloc[0, 0:8], normalise_by, pop_csv,
+                                results.iloc[0,8], results.iloc[0,9], case, lang)
 
             if save_not_show in [0, 1]:
                 country = selection + ' '
@@ -174,50 +172,46 @@ if __name__ == '__main__':
                     country += 'Fallzahl'
                 else:
                     country += 'Todesfälle'
-                utils.plotting(df_ts, model, save_not_show, country, selected_window_length, e_or_l,
-                                 lang, panels)
+                utils.plotting(df_ts, model, save_not_show, country, results.iloc[0,8],
+                               results.iloc[0,9], lang, panels)
 
     else: # analysis of all counties and complete BW
 
-        results_dict = dict()
-        selected_window_length_dict = dict()
-        exp_or_lin_dict = dict()
         for case in cases_list:
             if max_display_length > 0:
                 figures[case] = figures[case].iloc[-max_display_length:,:]
+            results_list = list()
             #for selection in allowed_values[:3]:
             for selection in allowed_values[:-1]:
                 print(selection)
                 df_ts = figures[case][selection]
                 df_ts = utils.rm_early_zeros(df_ts)
-                results, model, selected_window_length, e_or_l = utils.process_geounit(
-                                                                        df_ts, window_length, exp_or_lin)
+                results, model = utils.process_geounit(df_ts, window_length, exp_or_lin)
 
-                results_dict[selection] = results
-                selected_window_length_dict[selection] = selected_window_length
-                exp_or_lin_dict[selection] = e_or_l
+                results = results.assign(selection=selection)
+                results = results.set_index('selection')
+                results_list.append(results)
                 if save_not_show in [0, 1]:
                     country = selection + ' '
                     if case=='confirmed':
                         country += 'Fallzahl'
                     else:
                         country += 'Todesfälle'
-                    utils.plotting(df_ts, model, save_not_show, country,
-                        selected_window_length, e_or_l, lang, panels)
+                    utils.plotting(df_ts, model, save_not_show, country, results.iloc[0,8],
+                                   results.iloc[0,9], lang, panels)
+            df_results = pd.concat(results_list)
             print()
-            #for selection in allowed_values[:3]:
             for selection in allowed_values[:-1]:
                 if selection == 'Baden-Württemberg':
                     print()
                 if window_length_all[selection] > 0:
-                    utils.print_results(selection, results_dict[selection], normalise_by, pop_csv,
-                            window_length_all[selection], exp_or_lin_dict[selection], case, lang)
+                    utils.print_results(selection, df_results.loc[selection,:].iloc[0:8], normalise_by,
+                                        pop_csv, window_length_all[selection],
+                                        df_results.loc[selection,:].iloc[9], case, lang)
                 else:
-                    #print(results)
-                    #print(pop[])
-                    utils.print_results(selection, results_dict[selection], normalise_by, pop_csv,
-                     selected_window_length_dict[selection], exp_or_lin_dict[selection], case, lang)
-
+                    utils.print_results(selection, df_results.loc[selection,:].iloc[0:8], normalise_by,
+                                        pop_csv, df_results.loc[selection,:].iloc[8],
+                                        df_results.loc[selection,:].iloc[9], case, lang)
             if sc_save_not_show in [0, 1]:
                 scp(sc_save_not_show, case)
     

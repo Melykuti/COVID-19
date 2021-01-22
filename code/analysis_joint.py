@@ -3,7 +3,7 @@ This script analyses multiple countries using the JHU CSSE dataset:
 https://github.com/CSSEGISandData
 
 exec(open('analysis_joint.py').read())
-13/3-1/5/2020
+13/3-20/12/2020
 '''
 
 import os, math
@@ -19,7 +19,7 @@ max_display_length = 140 #45 # in days; if positive, then it plots the most rece
 
 #countries = ['US', 'India', 'Brazil', 'United Kingdom', 'Russia', 'France', 'Italy', 'Spain', 'Netherlands', 'Belgium', 'Germany', 'Austria', 'Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Bulgaria', 'Croatia', 'Serbia', 'Israel', 'Saudi Arabia', 'Iran', 'Singapore', 'Sweden', 'Belarus',  'Switzerland', 'Denmark', 'Japan', 'Korea, South', 'China', 'Australia', 'New Zealand']; cases = 'confirmed'
 # Active cases:
-countries = ['US', 'India', 'France', 'Brazil', 'Russia', 'Israel', 'Italy', 'Iran', 'Germany', 'Hungary', 'Saudi Arabia', 'Austria', 'Switzerland', 'Denmark', 'Japan', 'Bulgaria', 'Belarus', 'Korea, South', 'Australia', 'China', 'Singapore', 'New Zealand']; cases = 'active'
+countries = ['Italy', 'Russia', 'India', 'Germany', 'Iran', 'Hungary', 'Argentina', 'Bulgaria', 'Switzerland', 'Czechia', 'Austria', 'Peru', 'Japan', 'Belarus', 'Denmark', 'Israel', 'Chile', 'Korea, South', 'Saudi Arabia', 'Australia', 'China', 'Singapore', 'New Zealand']; cases = 'active'
 # Confirmed cases:
 # 2nd wave/to monitor
 #countries = ['US', 'Brazil', 'India', 'Spain', 'Italy', 'Netherlands', 'Belgium', 'Sweden', 'Singapore', 'Germany', 'Switzerland', 'Austria', 'Japan', 'Korea, South', 'Australia', 'China', 'Romania', 'Serbia', 'Bulgaria', 'Iceland', 'Czechia', 'Poland', 'Hungary']; cases = 'confirmed'
@@ -28,14 +28,16 @@ countries = ['US', 'India', 'France', 'Brazil', 'Russia', 'Israel', 'Italy', 'Ir
 #countries = ['US', 'Brazil', 'Russia', 'United Kingdom', 'France', 'India', 'Spain', 'Italy', 'Netherlands', 'Belgium', 'Sweden', 'Iran', 'Saudi Arabia', 'Belarus', 'Singapore', 'Germany', 'Japan', 'Hungary', 'Korea, South', 'Denmark', 'Switzerland', 'Austria', 'Australia', 'China', 'New Zealand']; cases = 'confirmed'
 #countries = ['Argentina', 'Brazil', 'Chile', 'Peru', 'Mexico', 'Canada', 'Russia', 'Belarus', 'United Kingdom', 'India', 'Belgium', 'Sweden', 'Iran', 'Saudi Arabia', 'Qatar', 'Singapore', 'Argentina', 'Korea, South']; cases = 'confirmed'; max_display_length = 90
 #countries = ['US', 'Italy', 'Spain', 'Germany', 'France', 'Iran', 'United Kingdom', 'Switzerland', 'Netherlands', 'Belgium', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', 'China'] # ['Hubei', 'China']]
-#countries = ['United Kingdom']
+#countries = ['Italy', 'United Kingdom']
+#countries = ['United Kingdom']; cases = 'confirmed'
 #countries = ['Korea, South']
+#countries = ['Turkey']; cases = 'confirmed'
 #countries = ['Italy', 'Spain', 'Japan', 'Korea, South', 'China']
 #countries = ['Italy', 'Japan', 'Denmark', 'France', 'Germany', 'Spain', 'Switzerland']
 #countries = ['Italy', 'France', 'Spain', 'Germany', 'Switzerland', 'Japan', 'Denmark', 'Netherlands', 'Sweden', 'United Kingdom', 'Austria', 'Korea, South', 'China'] # , 'Belgium'
 #cases = 'confirmed' # 'confirmed' or 'deaths' or 'active' or 'recovered'
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
-save_plots = -1 # if 1, then saves all plots; otherwise it neither shows nor saves
+save_plots = 1 # if 1, then saves all plots; otherwise it neither shows nor saves
 lang = 'en' # 'de' for German, anything else for English
 normalise_by = 1e5 # report case numbers per this many people
 exp_or_lin = 'both' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
@@ -48,43 +50,30 @@ if __name__ == '__main__':
     pop_csv = 'world'
     df = utils.open_csvs() # filename is used to create name of image file if saving plot
 
-    results_dict = dict()
-    selected_window_length_dict = dict()
-    exp_or_lin_dict = dict()
-
+    results_list = list()
     for country in countries:
         print(country)
-        if isinstance(country, str):
-            country_key = country
-        elif len(country)==2: # if it's a pair of [Province/State, Country/Region]
-            country_key = country[0].replace(',', '_').replace(' ', '_') + '__' +\
-                          country[1].replace(',', '_').replace(' ', '_')
 
         df_ts = utils.data_preparation(df, country, cases)
         #df_ts = utils.rm_early_zeros(df_ts)
         if max_display_length > 0:
             df_ts = df_ts[-max_display_length:]
-        results, model, selected_window_length, e_or_l = utils.process_geounit(
-                                                            df_ts, window_length, exp_or_lin)
+        results, model = utils.process_geounit(df_ts, window_length, exp_or_lin)
+        results = results.assign(country=country)
+        results = results.set_index('country')
+        results_list.append(results)
 
-        results_dict[country_key] = results
-        selected_window_length_dict[country_key] = selected_window_length
-        exp_or_lin_dict[country_key] = e_or_l
         if save_plots == 1:
-            utils.plotting(df_ts, model, 1, country, selected_window_length, e_or_l, lang, panels)
+            utils.plotting(df_ts, model, 1, country, results.iloc[0,8], results.iloc[0,9], lang, panels)
 
     utils.print_header(normalise_by, pop_csv)
+    df_results = pd.concat(results_list)
+    df_results = df_results.sort_values(3, ascending=False)
 
-    for country in countries:
-        if isinstance(country, str):
-            country_key = country
-        elif len(country)==2: # if it's a pair of [Province/State, Country/Region]
-            country_key = country[0].replace(',', '_').replace(' ', '_') + '__' +\
-                          country[1].replace(',', '_').replace(' ', '_')
-
+    for country in df_results.index:
         if window_length > 0:
-            utils.print_results(country, results_dict[country_key], normalise_by, pop_csv,
-                                window_length, exp_or_lin_dict[country_key], cases, lang)
+            utils.print_results(country, df_results.loc[country,:].iloc[0:8], normalise_by, pop_csv,
+                                window_length, df_results.loc[country,:].iloc[9], cases, lang)
         else:
-            utils.print_results(country, results_dict[country_key], normalise_by, pop_csv,
-                    selected_window_length_dict[country_key], exp_or_lin_dict[country_key], cases, lang)
+            utils.print_results(country, df_results.loc[country,:].iloc[0:8], normalise_by, pop_csv,
+                      df_results.loc[country,:].iloc[8], df_results.loc[country,:].iloc[9], cases, lang)

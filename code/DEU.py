@@ -1,6 +1,6 @@
 '''
 exec(open('DEU.py').read())
-15/3-23/5/2020
+15/3-20/12/2020
 '''
 
 import os, datetime
@@ -20,11 +20,12 @@ allowed_values = \
 
 ### User input ###
 
-selection = 'alle' # Choose one of the elements of allowed_values.
+#selection = 'alle' # Choose one of the elements of allowed_values.
 #selection = allowed_values[0] # Alternatively, choose an element index from allowed_values.
+selection = 'Sachsen'
 #selection = 'Deutschland'
 
-cases = 'confirmed' # 'confirmed' or 'deaths' or 'confirmed_minus_deaths'
+cases = 'deaths' # 'confirmed' or 'deaths' or 'confirmed_minus_deaths'
 
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
 window_length_all = dict({bl: window_length for bl in allowed_values[:-1]})
@@ -195,7 +196,6 @@ def extract_number(s):
             t = s[:i+1]
     return int(t)
 
-#def collect_data_colwise(rows):
 def collect_data_colwise(rows, shift_right=0):
     # Header
     firstrowcells = rows[0].find_all('th')
@@ -291,11 +291,8 @@ def data_preparation_DEU(output):
             death_figures = pd.DataFrame(death_figures, index=figures.index).fillna(value=0).astype('int64')
             print(death_figures)
 
-    #if only_cases==True:
     if output == 'confirmed':
         figures_diff = pd.DataFrame(figures.iloc[:,:17])
-    #else:
-    #    figures_diff = pd.DataFrame(figures.iloc[:,:17] - death_figures.iloc[:,:17])
     elif output == 'deaths':
         figures_diff = pd.DataFrame(death_figures.iloc[:,:17])
     elif output == 'confirmed_minus_deaths':
@@ -316,43 +313,40 @@ if __name__ == '__main__':
     if selection != 'alle': # single run
         df_ts = figures_diff[selection]
         df_ts = utils.rm_early_zeros(df_ts)
-        results, model, selected_window_length, e_or_l = utils.process_geounit(
-                                                                    df_ts, window_length, exp_or_lin)
+        results, model = utils.process_geounit(df_ts, window_length, exp_or_lin)
 
-        utils.print_results(selection, results, normalise_by, pop_csv, selected_window_length, e_or_l,
-                             'normal', lang)
+        utils.print_results(selection, results.iloc[0, 0:8], normalise_by, pop_csv,
+                                results.iloc[0,8], results.iloc[0,9], 'normal', lang)
 
         if save_not_show in [0, 1]:
-            utils.plotting(figures_diff[selection], model, save_not_show, selection,
-                selected_window_length, e_or_l, lang)
+            utils.plotting(figures_diff[selection], model, save_not_show, selection, results.iloc[0,8],
+                               results.iloc[0,9], lang)
 
     else: # analysis of all federal states and complete Germany
 
-        results_dict = dict()
-        selected_window_length_dict = dict()
-        exp_or_lin_dict = dict()
-
+        results_list = list()
         for selection in allowed_values[:-1]:
             print(selection)
             df_ts = figures_diff[selection]
             df_ts = utils.rm_early_zeros(df_ts)
-            results, model, selected_window_length, e_or_l = utils.process_geounit(
-                                                                    df_ts, window_length, exp_or_lin)
+            results, model = utils.process_geounit(df_ts, window_length, exp_or_lin)
 
-            results_dict[selection] = results
-            selected_window_length_dict[selection] = selected_window_length
-            exp_or_lin_dict[selection] = e_or_l
+            results = results.assign(selection=selection)
+            results = results.set_index('selection')
+            results_list.append(results)
             if save_not_show == 1:
                 utils.plotting(figures_diff[selection], model, save_not_show, selection,
-                    selected_window_length, e_or_l, lang)
+                               results.iloc[0,8], results.iloc[0,9], lang)
 
+        df_results = pd.concat(results_list)
         for selection in allowed_values[:-1]:
             if selection == 'Deutschland':
                 print()
             if window_length_all[selection] > 0:
-                utils.print_results(selection, results_dict[selection], normalise_by, pop_csv,
-                                window_length_all[selection], exp_or_lin_dict[selection], 'normal', lang)
+                utils.print_results(selection, df_results.loc[selection,:].iloc[0:8], normalise_by,
+                                    pop_csv, window_length_all[selection],
+                                    df_results.loc[selection,:].iloc[9], 'normal', lang)
             else:
-                utils.print_results(selection, results_dict[selection], normalise_by, pop_csv,
-                      selected_window_length_dict[selection], exp_or_lin_dict[selection], 'normal', lang)
-
+                utils.print_results(selection, df_results.loc[selection,:].iloc[0:8], normalise_by,
+                                    pop_csv, df_results.loc[selection,:].iloc[8],
+                                    df_results.loc[selection,:].iloc[9], 'normal', lang)

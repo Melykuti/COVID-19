@@ -3,7 +3,7 @@ Analyses a single country using the JHU CSSE dataset:
 https://github.com/CSSEGISandData
 
 exec(open('analysis_single.py').read())
-12/3-1/5/2020
+12/3-20/12/2020
 '''
 
 import os, math
@@ -16,7 +16,7 @@ from importlib import reload
 
 ### User input ###
 
-country = 'Hungary' # 'Israel', 'US', 'Switzerland' 'United Kingdom' 'Netherlands' 'Denmark' 'Spain' 'France' 'Germany' 'Sweden' 'Singapore' 'Saudi Arabia' 'Tunisia' 'Turkey' 'Azerbaijan' 'Korea, South'
+country = 'Germany' # 'Ireland' 'Turkey', 'Israel', 'US', 'Switzerland' 'United Kingdom' 'Netherlands' 'Denmark' 'Spain' 'France' 'Germany' 'Sweden' 'Singapore' 'Saudi Arabia' 'Tunisia' 'Turkey' 'Azerbaijan' 'Korea, South'
 #country = 'Korea, South'
 #country = ['New South Wales', 'Australia']
 #country = 'EU'
@@ -36,7 +36,10 @@ panels = 2 # 2 or 3, to plot only two panels or all three, that is, the logarith
 
 
 if __name__ == '__main__':
-    pop_csv = 'world' #None
+    if isinstance(country, str):
+        pop_csv = 'world'
+    else:
+        pop_csv = None
     df = utils.open_csvs()
     df_ts = utils.data_preparation(df, country, cases)
     #df_ts = utils.rm_early_zeros(df_ts)
@@ -44,13 +47,12 @@ if __name__ == '__main__':
         df_ts = df_ts.iloc[-max_display_length:]
     if latest_date != None:
         df_ts = df_ts[:-latest_date]
-    #df_ts = df_ts[:50]
-    results, model, selected_window_length, e_or_l = utils.process_geounit(
-                                                        df_ts, window_length, exp_or_lin)
+    results, model = utils.process_geounit(df_ts, window_length, exp_or_lin)
 
     utils.print_header(normalise_by, pop_csv)
-    utils.print_results(country, results, normalise_by, pop_csv, selected_window_length, e_or_l, lang)
+    utils.print_results(country, results.iloc[0, 0:8], normalise_by, pop_csv, results.iloc[0,8],
+                        results.iloc[0,9], lang)
     
     if save_not_show in [0, 1]:
-        utils.plotting(df_ts, model, save_not_show, country, selected_window_length,
-                       e_or_l, lang, panels)
+        utils.plotting(df_ts, model, save_not_show, country, results.iloc[0,8],
+                       results.iloc[0,9], lang, panels)
