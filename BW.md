@@ -144,6 +144,8 @@ Die Spalten haben die folgende Bedeutung:
 
 * e wenn das exponentielle Modell, l wenn das lineare Modell die bessere Annäherung gab und die Zahlen in der dazugehörenden Reihe der Tabelle lieferte. Man darf dem Vorzug des exponentiellen Modells vor dem linearen nicht allzu viel Bedeutung beimessen wenn beides im Zeitfenster sehr genau ist.
 
+[Direkt zu den Todesfällen.](#todesfaelle)
+
 &nbsp;
 #### Infizierte
 
@@ -1634,6 +1636,7 @@ Stand 01.04.2020
 
 ---
 
+<a name="todesfaelle"></a>
 #### Todesfälle
 
 
