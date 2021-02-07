@@ -2,7 +2,7 @@
 
 > * On this page I examine the cumulative number of all confirmed coronavirus patients – who may be ill or may have recovered or died by now.
 
-22 March 2020 (updated on 30 January 2021), Freiburg i. Br., Germany – There are different visualisations of the spread of the coronavirus pandemic. Many of them are more alarmist than insightful. My goal on this page is to present an innovation in how to look at the problem.
+22 March 2020 (updated on 7 February 2021), Freiburg i. Br., Germany – There are different visualisations of the spread of the coronavirus pandemic. Many of them are more alarmist than insightful. My goal on this page is to present an innovation in how to look at the problem.
 
 ### Background
 
@@ -43,13 +43,13 @@ Let us start with the European countries which experienced the first outbreaks a
 
 First, a plot of daily increments of coronavirus cases per 100,000 population indexed simply by time.
 
-![Joint relative increments through time](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2021-01-29_xy_-1_lin_date_incr_confirmed.png)
+![Joint relative increments through time](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2021-02-06_xy_-1_lin_date_incr_confirmed.png)
 
 Next is the case where I measure progress in terms of cumulative case numbers and not time. For the normalisation with the population sizes, in the case of China I had used the population of Hubei province and not of the entire country for plots created until 24th March 2020. This choice used to present their effort in a more critical light (it suggested that they succeeded only after more people had caught the disease). In general, China being the first country to face the epidemic, I think it is unfair to criticise them harshly. All other countries, which have seen the Chinese example, had a warning to prepare and had the opportunity to learn from the effect of Chinese measures on the pandemic. They are fair targets.
 
-![Joint relative increments against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2021-01-29_xy_-1_lin_cases_incr_confirmed.png)
+![Joint relative increments against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2021-02-06_xy_-1_lin_cases_incr_confirmed.png)
 
-![Joint daily growth rates against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2021-01-29_xy_-1_lin_cases_rate_confirmed.png)
+![Joint daily growth rates against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Joint_DGR_2021-02-06_xy_-1_lin_cases_rate_confirmed.png)
 
 I moved the analogous plots for Germany and its federal states [to the page that focuses on Germany (in German).](https://github.com/Melykuti/COVID-19/blob/master/Deutschland.md)
 
@@ -57,24 +57,24 @@ I moved the analogous plots for Germany and its federal states [to the page that
 
 On 18 May 2020, I added Russia, Brazil and India due to the increasing case numbers they are confronted with in the COVID-19 pandemic.
 
-![Daily relative increments for China, EU, USA, Russia, Brazil and India through time](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2021-01-29_xy_-1_lin_date_incr_confirmed.png)
+![Daily relative increments for China, EU, USA, Russia, Brazil and India through time](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2021-02-06_xy_-1_lin_date_incr_confirmed.png)
 
-![Daily relative increments for China, EU, USA, Russia, Brazil and India against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2021-01-29_xy_-1_lin_cases_incr_confirmed.png)
+![Daily relative increments for China, EU, USA, Russia, Brazil and India against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2021-02-06_xy_-1_lin_cases_incr_confirmed.png)
 
-![Daily growth rates for China, EU, USA, Russia, Brazil and India against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2021-01-29_xy_-1_lin_cases_rate_confirmed.png)
+![Daily growth rates for China, EU, USA, Russia, Brazil and India against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/great_powers_DGR_2021-02-06_xy_-1_lin_cases_rate_confirmed.png)
 
 
 #### The Visegrád Group (Poland, Czech Republic, Slovakia, Hungary) and some small countries
 
 In this block there are East European countries. There is Iceland, which has a rather high infection rate. This is more due to broad testing than to a comparatively bad situation. As far as I know, from very early on Iceland tested even randomly selected members of the population who did not show any symptoms to get a clearer idea of the extent of infections. San Marino, being in Italy, is a proxy for the North Italian situation as its case numbers are from a small, concentrated region. The trajectories of Italy and Spain are included for comparison.
 
-![Daily relative increments for East Europe through time](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2021-01-29_xy_-1_lin_date_incr_confirmed.png)
+![Daily relative increments for East Europe through time](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2021-02-06_xy_-1_lin_date_incr_confirmed.png)
 
 In San Marino, there are some 34,000 inhabitants. Iceland has got about 350,000.
 
-![Daily relative increments for East Europe against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2021-01-29_xy_-1_lin_cases_incr_confirmed.png)
+![Daily relative increments for East Europe against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2021-02-06_xy_-1_lin_cases_incr_confirmed.png)
 
-![Daily growth rates for East Europe against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2021-01-29_xy_-1_lin_cases_rate_confirmed.png)
+![Daily growth rates for East Europe against relative numbers](https://github.com/Melykuti/COVID-19/blob/master/plots/Visegrad_DGR_2021-02-06_xy_-1_lin_cases_rate_confirmed.png)
 
 ### Data
 
