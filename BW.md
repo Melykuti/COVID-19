@@ -1748,52 +1748,52 @@ Stand 01.04.2020
 
 Stand 16.02.2021
 
-    Alb-Donau-Kreis            9,0  4,6   0,2%     inf Tage    5347   2727   [2742, 2746] 0,31 -0,06   8  e
-    Baden-Baden (Stadtkreis    1,5  2,7   0,1%     inf Tage    1221   2215   [2219, 2219] 0,49  0,14   8  l
-    Biberach                   3,5  1,8   0,1%     inf Tage    4677   2342   [2342, 2342] 0,33  0,29   7  l
-    Böblingen                   16  4,2   0,1%     inf Tage   10904   2784   [2796, 2798] 0,16  0,17  13  l
-    Bodenseekreis              2,6  1,2   0,1%     inf Tage    4675   2162                0,23  0,34  12  l
-    Breisgau-Hochschwarzwal    3,9  1,5   0,1%     inf Tage    5948   2263   [2265, 2265] 0,70  0,17   8  l
-    Calw                       1,4  0,9   0,0%     inf Tage    5546   3501                0,63  0,36   7  l
-    Emmendingen                1,1  0,7   0,0%     inf Tage    4103   2481                0,65  0,32   7  l
-    Enzkreis                   4,5  2,3   0,1%     inf Tage    6244   3139   [3141, 3141] 0,53  0,20   7  l
-    Esslingen                   22  4,2   0,1%     inf Tage   16052   3007   [3020, 3024] 0,29  0,05  14  l
-    Freiburg im Breisgau (S    4,2  1,8   0,1%     inf Tage    5240   2276   [2278, 2278] 0,51  0,15   8  l
-    Freudenstadt               3,8  3,2   0,1%     inf Tage    3253   2758   [2769, 2773] 0,18 -0,11   8  e
-    Göppingen                  7,2  2,8   0,1%     inf Tage    7101   2760   [2764, 2764] 0,44  0,10   7  l
-    Heidelberg (Stadtkreis)    3,1  1,9   0,1%     inf Tage    3736   2330   [2335, 2335] 0,28  0,06  14  l
-    Heidenheim                 2,9  2,2   0,1%     inf Tage    3209   2422   [2425, 2425] 0,32  0,21   7  l
-    Heilbronn                  4,2  1,2   0,0%     inf Tage    9504   2770   [2771, 2771] 0,41  0,13  14  l
-    Heilbronn (Stadtkreis)     1,5  1,2   0,0%     inf Tage    5588   4436                0,44  0,48   7  l
-    Hohenlohekreis             2,6  2,4   0,1%     inf Tage    2985   2665   [2666, 2666] 0,57  0,12   7  l
-    Karlsruhe                   14  3,2   0,1%     inf Tage   11345   2554   [2563, 2565] 0,19 -0,18   8  e
-    Karlsruhe (Stadtkreis)     7,5  2,4   0,1%     inf Tage    6289   2009   [2011, 2011] 0,48  0,08   8  l
-    Konstanz                    15  5,2   0,2%     inf Tage    6602   2314   [2328, 2329] 0,32  0,13   9  l
-    Lörrach                    3,3  1,4   0,0%     inf Tage    7158   3131   [3131, 3131] 0,83  0,15   7  l
-    Ludwigsburg                 11  2,0   0,1%     inf Tage   16647   3060   [3062, 3062] 0,45  0,09   8  l
-    Main-Tauber-Kreis         0,54  0,4   0,0%     inf Tage    3099   2342   [2342, 2342] 0,95  0,15   7  l
-    Mannheim (Stadtkreis)      9,1  2,9   0,1%     inf Tage   10414   3366   [3369, 3369] 0,77  0,17   8  l
-    Neckar-Odenwald-Kreis      2,2  1,5   0,1%     inf Tage    4187   2917   [2918, 2918] 0,80  0,11   8  l
-    Ortenaukreis               7,6  1,8   0,1%     inf Tage   12505   2912   [2913, 2913] 0,61  0,12  14  l
-    Ostalbkreis                7,1  2,3   0,1%     inf Tage    9212   2934   [2936, 2936] 0,62  0,16   7  l
-    Pforzheim (Stadtkreis)     2,3  1,8   0,0%     inf Tage    5164   4113   [4115, 4115] 0,56  0,06  11  l
-    Rastatt                    5,3  2,3   0,1%     inf Tage    5385   2331   [2337, 2338] 0,25 -0,19   8  e
-    Ravensburg                 8,2  2,9   0,1%     inf Tage    6527   2296   [2305, 2309] 0,21 -0,14  14  e
-    Rems-Murr-Kreis             10  2,4   0,1%     inf Tage   12493   2932   [2935, 2935] 0,45  0,07   8  l
-    Reutlingen                 7,9  2,7   0,1%     inf Tage    8702   3035   [3041, 3042] 0,23  0,11   7  l
-    Rhein-Neckar-Kreis          27  4,9   0,2%     inf Tage   14878   2717   [2727, 2727] 0,49  0,10   8  l
-    Rottweil                   3,8  2,7   0,1%     inf Tage    4881   3500   [3502, 3502] 0,31 -0,04   7  l
-    Schwäbisch Hall             16  8,3   0,3%     inf Tage    5005   2555   [2567, 2567] 0,56  0,07   7  l
-    Schwarzwald-Baar-Kreis     2,2  1,0   0,0%     inf Tage    6033   2841   [2841, 2841] 0,72  0,17   7  l
-    Sigmaringen               0,59  0,5   0,0%     inf Tage    2913   2226   [2226, 2226] 0,42  0,21  13  l
-    Stuttgart                   17  2,7   0,1%     inf Tage   18151   2859   [2864, 2864] 0,43  0,14   8  l
-    Tübingen                    13  5,6   0,7%   103,8 Tage    5993   2636   [2662, 2677] 0,28 -0,09  10  l
-    Tuttlingen                 2,8  2,0   0,1%     inf Tage    4611   3290   [3295, 3295] 0,57 -0,15   7  e
-    Ulm (Stadtkreis)           3,3  2,6   0,1%     inf Tage    3420   2707   [2714, 2716] 0,24 -0,19   8  e
-    Waldshut                   3,5  2,1   0,1%     inf Tage    4824   2827   [2829, 2829] 0,61  0,12  14  l
-    Zollernalbkreis             19  9,9   0,7%    94,3 Tage    5319   2815   [2858, 2882] 0,05 -0,06   9  l
+    Alb-Donau-Kreis            0,00   0,00   0,0%     inf Tage     140     71    0,43  0,00   7  l
+    Baden-Baden (Stadtkreis)   0,00   0,00   0,0%     inf Tage      46     83    1,00  0,00   7  l
+    Biberach                   0,36   0,18   0,3%     inf Tage     124     62    0,14 -0,05   7  l
+    Böblingen                  0,00   0,00   0,0%     inf Tage     198     51    0,29  1,11  13  l
+    Bodenseekreis              0,05   0,02   0,0%     inf Tage     134     62    0,13  0,83  12  l
+    Breisgau-Hochschwarzwald    1,3   0,51   2,0%    35,5 Tage     152     58    0,21 -0,11   9  l
+    Calw                        1,7    1,1   2,7%    25,9 Tage     143     90    0,17 -0,12   8  l
+    Emmendingen                0,53   0,32   1,1%    62,9 Tage     131     79    0,19 -0,08  13  l
+    Enzkreis                    4,0    2,0   4,6%    15,5 Tage     204    103    0,23 -0,80   7  l
+    Esslingen                   1,7   0,31   1,0%    71,9 Tage     428     80    0,06 -0,12   8  l
+    Freiburg im Breisgau (St   0,00   0,00   0,0%     inf Tage     128     56    1,00  0,00   7  l
+    Freudenstadt               0,13   0,11   0,1%     inf Tage     119    101    0,13  0,33   9  l
+    Göppingen                  0,71   0,28   1,7%    41,4 Tage     152     59    0,40 -0,14   7  l
+    Heidelberg (Stadtkreis)    0,00   0,00   0,0%     inf Tage      52     32    1,00  0,00   7  l
+    Heidenheim                 0,00   0,00   0,0%     inf Tage     128     97    1,00  0,00   7  l
+    Heilbronn                  0,00   0,00   0,0%     inf Tage     178     52    0,45  0,05   7  l
+    Heilbronn (Stadtkreis)     0,00   0,00   0,0%     inf Tage     104     83    0,62  0,71   7  l
+    Hohenlohekreis             0,33   0,30   1,3%    53,2 Tage     102     91    0,17 -0,13   8  l
+    Karlsruhe                  0,11   0,02   0,0%     inf Tage     383     86    0,54  0,16  10  l
+    Karlsruhe (Stadtkreis)      1,2   0,38   1,6%    43,7 Tage     155     50    0,24 -0,20  12  l
+    Konstanz                   0,18   0,06   0,1%     inf Tage     212     74    0,26  0,43   7  l
+    Lörrach                    0,00   0,00   0,0%     inf Tage     227     99    0,36  0,16  10  l
+    Ludwigsburg                 1,2   0,22   0,3%     inf Tage     385     71    0,14  0,07   7  l
+    Main-Tauber-Kreis          0,89   0,67   2,2%    31,2 Tage      62     47    0,21 -0,07  14  l
+    Mannheim (Stadtkreis)      0,00   0,00   0,0%     inf Tage     250     81    0,33  0,32  13  l
+    Neckar-Odenwald-Kreis      0,00   0,00   0,0%     inf Tage     122     85    0,40  0,71   7  l
+    Ortenaukreis                3,2   0,76   0,7%     inf Tage     454    106    0,24  0,13   8  l
+    Ostalbkreis                0,00   0,00   0,0%     inf Tage     253     81    0,45  0,62   7  l
+    Pforzheim (Stadtkreis)     0,73   0,58   0,5%     inf Tage     147    117    0,09  0,33   9  l
+    Rastatt                    0,00   0,00   0,0%     inf Tage     110     48    1,00  0,00   7  l
+    Ravensburg                 0,00   0,00   0,0%     inf Tage      94     33    0,43  0,47  12  l
+    Rems-Murr-Kreis            0,06   0,01   0,0%     inf Tage     297     70    0,40  0,08  14  l
+    Reutlingen                 0,00   0,00   0,0%     inf Tage     221     77    0,26  0,08  14  l
+    Rhein-Neckar-Kreis         0,14   0,03   0,0%     inf Tage     341     62    0,26  0,39  14  l
+    Rottweil                   0,93   0,67   2,2%    31,3 Tage     134     96    0,38 -0,14   7  l
+    Schwäbisch Hall            0,00   0,00   0,0%     inf Tage     151     77    0,40  1,00   9  l
+    Schwarzwald-Baar-Kreis      2,5    1,2   2,3%    30,6 Tage     174     82    0,21 -0,09  11  l
+    Sigmaringen                0,00   0,00   0,0%     inf Tage      60     46    1,00  0,00   7  l
+    Stuttgart                   4,5   0,72   2,6%    27,0 Tage     295     46    0,09 -0,09  11  l
+    Tübingen                   0,00   0,00   0,0%     inf Tage     159     70    0,25  0,33  14  l
+    Tuttlingen                 0,04   0,03   0,0%     inf Tage     108     77    0,24  0,71   7  l
+    Ulm (Stadtkreis)           0,92   0,73   2,9%    23,9 Tage      56     44    0,15 -0,12   8  l
+    Waldshut                   0,86   0,50   0,5%     inf Tage     158     93    0,20  0,14   7  l
+    Zollernalbkreis             1,7   0,89   2,0%    34,9 Tage     143     76    0,17 -0,07  14  l
     
-    Baden-Württemberg          414  3,7   0,1%     inf Tage  307090   2774   [2782, 2782] 0,56  0,05   8  l
+    Baden-Württemberg            28   0,25   0,4%     inf Tage    7814     71    0,26  0,10   9  l
 
 Stand 29.01.2021
 
