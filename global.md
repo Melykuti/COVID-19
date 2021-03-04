@@ -3,7 +3,7 @@
 > * Recall that on this page I examine the number of currently infected patients and not the cumulative number of all who have been infected and might have recovered or died.
 > * If you already know my methodology, just skip down to the Plots and the Results sections.
 
-13 March 2020 (updated on 5 February 2021), Freiburg i. Br., Germany – The WHO releases [weekly situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
+13 March 2020 (updated on 4 March 2021), Freiburg i. Br., Germany – The WHO releases [weekly situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) with the numbers of diagnosed COVID-19 cases for each country. We can see the total number of confirmed cases and the total deaths since the beginning of the outbreak. We also get the changes from the last report, that is, these two figures for the last day only.
 
 Thinking in terms of the classical SIR model of epidemiology, the population comprises three groups: **S**usceptibles, **I**nfected and **R**emoved. _Removed_ are those who have recovered from or died of the disease and thereby are no longer infectious and can no longer catch the disease. _Infected_ are the current patients who are also all infectious. _Susceptibles_ are everybody else: people who have not been infected yet (and hopefully will never be).
 
@@ -90,53 +90,53 @@ On the right panel, the plots present the observed total number of currently inf
 
 If the linear model fits better, then pink is the linear fit, which is the same as the fit of a straight line on natural scale on the left panel. If the exponential model fits better, then orange is the fit of the exponential curve, which is the same as the fit of a straight line on logarithmic y-scale (not actually shown) for the data on the left panel.
 
-![Russia](https://github.com/Melykuti/COVID-19/blob/master/plots/Russia_2021-02-04.png)
+![Italy](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2021-03-03.png)
 
-![Italy](https://github.com/Melykuti/COVID-19/blob/master/plots/Italy_2021-02-04.png)
+![Russia](https://github.com/Melykuti/COVID-19/blob/master/plots/Russia_2021-03-03.png)
 
-![Switzerland](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2021-02-04.png)
+![Switzerland](https://github.com/Melykuti/COVID-19/blob/master/plots/Switzerland_2021-03-03.png)
 
-![India](https://github.com/Melykuti/COVID-19/blob/master/plots/India_2021-02-04.png)
+![Iran](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2021-03-03.png)
 
-![Portugal](https://github.com/Melykuti/COVID-19/blob/master/plots/Portugal_2021-02-04.png)
+![India](https://github.com/Melykuti/COVID-19/blob/master/plots/India_2021-03-03.png)
 
-![Argentina](https://github.com/Melykuti/COVID-19/blob/master/plots/Argentina_2021-02-04.png)
+![Czechia](https://github.com/Melykuti/COVID-19/blob/master/plots/Czechia_2021-03-03.png)
 
-![Iran](https://github.com/Melykuti/COVID-19/blob/master/plots/Iran_2021-02-04.png)
+![Argentina](https://github.com/Melykuti/COVID-19/blob/master/plots/Argentina_2021-03-03.png)
 
-![Hungary](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2021-02-04.png)
+![Germany](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2021-03-03.png)
 
-![Czechia](https://github.com/Melykuti/COVID-19/blob/master/plots/Czechia_2021-02-04.png)
+![Hungary](https://github.com/Melykuti/COVID-19/blob/master/plots/Hungary_2021-03-03.png)
 
-![Germany](https://github.com/Melykuti/COVID-19/blob/master/plots/Germany_2021-02-04.png)
+![Portugal](https://github.com/Melykuti/COVID-19/blob/master/plots/Portugal_2021-03-03.png)
 
-![Israel](https://github.com/Melykuti/COVID-19/blob/master/plots/Israel_2021-02-04.png)
+![Peru](https://github.com/Melykuti/COVID-19/blob/master/plots/Peru_2021-03-03.png)
 
-![Japan](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2021-02-04.png)
+![Israel](https://github.com/Melykuti/COVID-19/blob/master/plots/Israel_2021-03-03.png)
 
-![Peru](https://github.com/Melykuti/COVID-19/blob/master/plots/Peru_2021-02-04.png)
+![Bulgaria](https://github.com/Melykuti/COVID-19/blob/master/plots/Bulgaria_2021-03-03.png)
 
-![Bulgaria](https://github.com/Melykuti/COVID-19/blob/master/plots/Bulgaria_2021-02-04.png)
+![Chile](https://github.com/Melykuti/COVID-19/blob/master/plots/Chile_2021-03-03.png)
 
-![Chile](https://github.com/Melykuti/COVID-19/blob/master/plots/Chile_2021-02-04.png)
+![Austria](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2021-03-03.png)
 
-![Austria](https://github.com/Melykuti/COVID-19/blob/master/plots/Austria_2021-02-04.png)
+![Japan](https://github.com/Melykuti/COVID-19/blob/master/plots/Japan_2021-03-03.png)
 
-![Belarus](https://github.com/Melykuti/COVID-19/blob/master/plots/Belarus_2021-02-04.png)
+![Belarus](https://github.com/Melykuti/COVID-19/blob/master/plots/Belarus_2021-03-03.png)
 
-![Denmark](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2021-02-04.png)
+![South Korea](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2021-03-03.png)
 
-![South Korea](https://github.com/Melykuti/COVID-19/blob/master/plots/Korea__South_2021-02-04.png)
+![Denmark](https://github.com/Melykuti/COVID-19/blob/master/plots/Denmark_2021-03-03.png)
 
-![China](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2021-02-04.png)
+![Australia](https://github.com/Melykuti/COVID-19/blob/master/plots/Australia_2021-03-03.png)
 
-![Saudi Arabia](https://github.com/Melykuti/COVID-19/blob/master/plots/Saudi_Arabia_2021-02-04.png)
+![Saudi Arabia](https://github.com/Melykuti/COVID-19/blob/master/plots/Saudi_Arabia_2021-03-03.png)
 
-![Australia](https://github.com/Melykuti/COVID-19/blob/master/plots/Australia_2021-02-04.png)
+![China](https://github.com/Melykuti/COVID-19/blob/master/plots/China_2021-03-03.png)
 
-![Singapore](https://github.com/Melykuti/COVID-19/blob/master/plots/Singapore_2021-02-04.png)
+![Singapore](https://github.com/Melykuti/COVID-19/blob/master/plots/Singapore_2021-03-03.png)
 
-![New Zealand](https://github.com/Melykuti/COVID-19/blob/master/plots/New_Zealand_2021-02-04.png)
+![New Zealand](https://github.com/Melykuti/COVID-19/blob/master/plots/New_Zealand_2021-03-03.png)
 
 
 
@@ -173,6 +173,33 @@ I focus on countries with a large number of cases and on those to which I have g
     Country              Increment Incr. Growth   Doubling  Active     per      Estimate   R^2  Diff. Win- Exp/Lin
                                     per   rate      time     Cases   100,000                          dow
                                   100,000                                                             size
+
+4 March 2021
+
+    Italy                     8458   14   2.9%    24.5 days  437421    701     [765, 804] 0.54 -0.15  14  l
+    Russia                   -4278 -3.0  -1.3%     nan days  334479    236                0.17 -0.08  10  l
+    Switzerland               1313   16   1.2%    56.1 days  232231   2763   [2835, 2879] 0.06  0.02   7  l
+    Iran                      1677  2.0   1.7%    40.2 days  182629    215     [224, 230] 0.56 -0.02   7  l
+    India                     1831  0.1   1.1%     inf days  173413     13       [13, 13] 0.35  0.07   8  l
+    Czechia                   2417   23   1.6%     inf days  154580   1444   [1496, 1497] 0.29  0.08   8  l
+    Argentina                 -310 -0.7  -0.2%     nan days  152489    335                0.08  0.20   9  l
+    Germany                  -3614 -4.5  -3.2%     nan days  114900    143                0.14 -0.93   7  l
+    Hungary                   2801   29   3.8%    18.7 days   98361   1007   [1143, 1227] 0.40 -0.07  10  l
+    Portugal                 -1238  -12  -1.9%     nan days   64797    629                0.27  0.02  14  l
+    Peru                     -2531 -7.9  -5.0%     nan days   47374    148                0.18 -1.61  14  l
+    Israel                    1587   18   6.1%    11.8 days   42741    493                0.41  0.59  14  l
+    Bulgaria                   342  4.9   1.0%     inf days   33770    485     [495, 495] 0.16  0.06  10  l
+    Chile                     -281 -1.5  -1.2%     nan days   24320    134                0.38  0.37   7  l
+    Austria                    206  2.3   1.0%     inf days   21028    237     [240, 240] 0.25  0.17   7  l
+    Japan                     -337 -0.3  -2.5%     nan days   13698     11                0.38  0.04  14  l
+    Belarus                     64  0.7   3.8%    18.7 days    7679     81                0.18  0.30   8  l
+    Korea, South                58  0.1   3.0%    23.4 days    7459     14                0.53  0.47  10  l
+    Denmark                     87  1.5   1.2%     inf days    6995    119     [124, 125] 0.47 -0.01   7  e
+    Australia                  7.4  0.0   0.7%   101.2 days    5178     20       [20, 21] 0.36 -0.22   9  l
+    Saudi Arabia               -23 -0.1  -0.9%     nan days    2546    7.5                0.46  3.84   8  l
+    China                      7.6  0.0   7.9%     9.1 days     449   0.03                0.44  0.86   8  l
+    Singapore                   11  0.2  14.4%     5.1 days     101    1.6                0.64 -0.94   7  l
+    New Zealand              -0.36 -0.0  -0.6%     nan days      68    1.4                0.12  0.10  11  l
 
 5 February 2021
 
