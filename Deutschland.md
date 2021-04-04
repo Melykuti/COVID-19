@@ -55,11 +55,11 @@ Nachdem die optimale Fenstergröße für sowohl das exponentielle als auch das l
 
 Auf den nächsten zwei Schaubildern rechne ich nicht mit linearem Fitten sondern mit dem sieben-Tage Durschnitt, um wöchentliche Schwankungen zu vermeiden. Auf dem dritten Schaubild verwende ich das lineare Model. (Wenn ich das exponentielle Modell auch in das Rennen schicken würde, dann bekäme ich ein hin und her Schalten zwischen den beiden Modellen für jede Linie, was zu einer großen Varianz der Wachstumsraten führt.) [Eine Begründung der angewandten Methodik findet man hier.](https://github.com/Melykuti/COVID-19/blob/master/comparison.md)
 
-![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-04-04_xy_-1_lin_date_incr_confirmed.png)
+![Täglicher relativer Zuwachs in Deutschland im Zeitablauf](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-04-04_xy_-1_mean_date_incr_confirmed.png)
 
 ![Täglicher relativer Zuwachs in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-04-04_xy_-1_mean_cases_incr_confirmed.png)
 
-![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-04-04_xy_-1_mean_cases_rate_confirmed.png)
+![Tägliche Wachstumsrate in Deutschland als Funktion der Infekten pro 100.000 Einwohner](https://github.com/Melykuti/COVID-19/blob/master/plots/Deutschland_DGR_2021-04-04_xy_-1_lin_cases_rate_confirmed.png)
 
 #### Die einzelnen Bundesländer
 
@@ -1280,17 +1280,6 @@ Neben der Nichtlinearität ist die durch die Inkubationszeit ausgelöste Zeitver
 
 Für das medizinische Personal war es zu erwarten, dass die Anzahl der neuen Patienten auch exponentiell mit der gleichen Rate wachsen wird. Wenn ein Tag schwierig war, dann wird der nächste z.B. 5-12% schwieriger, und der übernächste noch 5-12% schwieriger werden.
 
-### Bitte um Spenden
-
-Wenn Sie meine Arbeit unterstützen können, dann bitte ich Sie um eine Spende. Danke!
-
-* Adresse für Bitcoin (BTC): `13veK2ecjhtNenTxhGKJjP83QiMmNd1M7p`
-* Adresse für Ether (ETH) und Tokens: `0x49fC2a73e1eC76248324E411e699f92adD6565Ff`
-
-Finden Sie mich auf [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), auf meiner Webseite/Blog: [Melykuti.me](https://melykuti.me), oder folgen Sie mir auf [Facebook](https://www.facebook.com/bence.melykuti) für meine öffentlichen Posts.
-
-Ich arbeite als selbständiger Data Scientist. Sie können mich mit Ihrem Projekt beauftragen.
-
 ### Archiv
 
 Zusammenfassung am Freitag, 30 Oktober 2020:
@@ -1485,3 +1474,15 @@ Zusammenfassung am Montag, 23 März 2020:
 * In Baden-Württemberg, Berlin, Brandenburg, Bremen, Hamburg, Hessen, Mecklenburg-Vorpommern, Saarland, Sachsen, Sachsen-Anhalt war es schon vor sieben Tagen, am 16.03., eine nur vorübergehende Verlangsamung der Fallzahlen zu beobachten. Ich vermute, dass nur eine Verspätung der Datenübertragung am Wochenende deren zugrunde liegt.
 * **Überall, wo die heutigen Daten auf eine Verlangsamung hinweisen, gab es vor einer Woche, nach dem Wochenende, schon eine ähnliche Verlangsamung, ohne langfristigen Effekt an der Ausbreitung der Coronavirus-Pandemie.**
 * [Diese Vermutung bestätigt heute das Robert Koch Institut:](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html) „Am aktuellen Wochenende wurden nicht aus allen Ämtern Daten übermittelt, sodass der hier berichtete Anstieg der Fallzahlen nicht dem tatsächlichen Anstieg der Fallzahlen entspricht. Die Daten werden am Montag nachübermittelt und ab Dienstag auch in dieser Statistik verfügbar sein.“
+
+
+### Bitte um Spenden
+
+Wenn Sie meine Arbeit unterstützen können, dann bitte ich Sie um eine Spende. Danke!
+
+* Adresse für Bitcoin (BTC): `13veK2ecjhtNenTxhGKJjP83QiMmNd1M7p`
+* Adresse für Ether (ETH) und Tokens: `0x49fC2a73e1eC76248324E411e699f92adD6565Ff`
+
+Finden Sie mich auf [Twitter (@BMelykuti)](https://www.twitter.com/BMelykuti), auf meiner Webseite/Blog: [Melykuti.me](https://melykuti.me), oder folgen Sie mir auf [Facebook](https://www.facebook.com/bence.melykuti) für meine öffentlichen Posts.
+
+Ich arbeite als selbständiger Data Scientist. Sie können mich mit Ihrem Projekt beauftragen.
