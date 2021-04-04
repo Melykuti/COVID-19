@@ -157,7 +157,7 @@ The columns have the following meaning:
 
 * R^2 of linear regression fit
 
-* Normalised difference between change in active cases over the selected time window between curve fit and real data
+* Normalised difference of the changes in active cases over the selected time window between curve fit and real data
 
 * (Since 18 March 2020) The number of days in the time window in which I fit the linear regression. It is automatically optimised to minimise the vector (10 * (1-R^2), normalised difference) in l_2.
 

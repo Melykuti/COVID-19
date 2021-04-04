@@ -3,7 +3,7 @@
 > * Auf dieser Seite untersuche ich die gesamte oder kumulierte Anzahl der bestätigten Coronavirus-Fälle und nicht die Anzahl der zur Zeit infizierten.
 > * Zusätzlich präsentiere ich die Anzahl der Todesfälle, sowohl grafisch als auch numerisch.
 
-15 April 2020 (aktualisiert am 10 März 2021), Freiburg i. Br. – In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die COVID-19-Pandemie sich zur Zeit ausbreitet.
+15 April 2020 (aktualisiert am 4 April 2021), Freiburg i. Br. – In dieser Analyse versuche ich es in begreifbarer Form zu beantworten, wie schnell die COVID-19-Pandemie sich zur Zeit ausbreitet.
 
 ### Analyse
 
@@ -54,6 +54,7 @@ Die Schaubilder zeigen die Coronavirus-Fälle, bzw. die Todesfälle für alle La
 Für die andere Achse hatte ich die Bevölkerungsdichte des Landkreises gewählt. Ich hatte vermutet, je dichter ein Kreis besiedelt ist, desto höhere Fallzahlen ich finden werde. Meine Vermutung war total falsch!
 
 So war der Korrelationskoeffizient zwischen Bevölkerungsdichte (Einwohner/km²) und Fallzahl auf 100.000 Einwohner  
+am 03.04.2021  0,082,  
 am 09.03.2021  0,155,  
 am 16.02.2021  0,166,  
 am 29.01.2021  0,190,  
@@ -83,6 +84,7 @@ am 07.05.2020 -0,361,
 am 03.05.2020 -0,359,  
 am 14.04.2020 -0,275,  
 während zwischen Bevölkerungsdichte (Einwohner/km²) und Todesfälle auf 100.000 Einwohner  
+am 03.04.2021 -0,246,  
 am 09.03.2021 -0,233,  
 am 16.02.2021 -0,258,  
 am 29.01.2021 -0,308,  
@@ -116,9 +118,9 @@ Viele Landkreise markierte ich mit dem zu ihnen gehörenden Kfz-Kennzeichen. Wo 
 
 Es ist zu beachten, dass es auch in einem Bundesland Unterschiede geben kann, wieviele Tests in den einzelnen Landkreisen durchgeführt werden. Wenn man zu wenig Tests durchführt, dann detektiert man automatisch auch wenigere Neuinfektionen. Ein Infekt oder ein Todesfall wird dem Wohnort zugeordnet auch wenn der Patient zum Beispiel in einem ländlichen Kreis wohnt aber in einer großstädtischen Universitätsklinik behandelt wird.
 
-![Baden-Württemberg, Populationsdichte abgebildet auf Coronavirus-Fallzahlen](https://github.com/Melykuti/COVID-19/blob/master/plots/BW_population_density_scatter_confirmed_2021-03-09.png)
+![Baden-Württemberg, Populationsdichte abgebildet auf Coronavirus-Fallzahlen](https://github.com/Melykuti/COVID-19/blob/master/plots/BW_population_density_scatter_confirmed_2021-04-02.png)
 
-![Baden-Württemberg, Populationsdichte abgebildet auf Coronavirus-Todesfälle](https://github.com/Melykuti/COVID-19/blob/master/plots/BW_population_density_scatter_deaths_2021-03-09.png)
+![Baden-Württemberg, Populationsdichte abgebildet auf Coronavirus-Todesfälle](https://github.com/Melykuti/COVID-19/blob/master/plots/BW_population_density_scatter_deaths_2021-04-02.png)
 
 ### Resultate
 
@@ -130,7 +132,7 @@ Die Spalten haben die folgende Bedeutung:
 
 * Die Gesamtanzahl der Infekten wächst täglich um diese Zahl. Sie wird aus der Annäherung errechnet und nicht direkt aus dem Zuwachs zwischen den letzten beiden Tagen.
 
-* Die Gesamtanzahl der Infekten pro 100.000 Einwohner wächst täglich um diese Zahl. Sie wird aus der Annäherung errechnet und nicht direkt aus dem Zuwachs zwischen den letzten beiden Tagen.
+* Die Gesamtanzahl der Infekten pro 100.000 Einwohner wächst täglich um diese Zahl. Sie wird aus der Annäherung errechnet und nicht direkt aus dem Zuwachs zwischen den letzten beiden Tagen. (Der in Deutschland häufig verwendete _7-Tage-Inzidenzwert_ ist im Prinzip der siebenfache dieser Zahl. Während die 7-Tage-Inzidenz eine Summe über die letzten sieben Tage ist, rechne ich von einer Annäherung über 7 bis 14 Tagen den Trend aus und melde den Wert für den letzten Tag. Mein Indikator reagiert schneller auf schnell wachsende oder fallende Fallzahlen.)
 
 * Die Gesamtanzahl der Infekten wächst täglich um diesen Faktor (prozentual ausgedrückt)
 
@@ -158,6 +160,56 @@ Die Spalten haben die folgende Bedeutung:
     Landkreis                Zu- Zuwachs Wachst.- Verdoppl.  Gesamte   pro     Schätzung   R^2  Diff. Fenster Exp/Lin
                            wachs   pro    rate      zeit      Fälle  100.000                          größe
                                  100.000
+
+Stand 03.04.2021
+
+    Alb-Donau-Kreis             43   22   1,3%    52,7 Tage    6467   3299   [3398, 3457] 0,24  0,02   7  l
+    Baden-Baden (Stadtkreis     20   36   2,4%    29,2 Tage    1555   2821   [2998, 3112] 0,43 -0,08   7  l
+    Biberach                    35   18   0,6%     inf Tage    5974   2991   [3049, 3069] 0,34  0,04  10  l
+    Böblingen                  107   27   2,0%    35,6 Tage   12624   3223   [3361, 3451] 0,34 -0,03   7  l
+    Bodenseekreis               41   19   1,4%    49,6 Tage    5717   2644   [2731, 2783] 0,23  0,01   7  l
+    Breisgau-Hochschwarzwal     24  9,2   0,3%     inf Tage    7146   2719   [2743, 2745] 0,23  0,19   9  l
+    Calw                        26   17   3,3%    21,4 Tage    6289   3970   [4067, 4147] 0,24 -0,20   7  e
+    Emmendingen                 36   22   2,0%    34,5 Tage    5104   3086   [3187, 3249] 0,19 -0,17  13  e
+    Enzkreis                    45   23   1,6%    44,4 Tage    7029   3534   [3645, 3716] 0,13 -0,10   7  l
+    Esslingen                  126   24   1,3%    54,5 Tage   19350   3625   [3731, 3794] 0,20  0,01   7  l
+    Freiburg im Breisgau (S     16  6,9   0,3%     inf Tage    6046   2626   [2641, 2641] 0,20  0,26   9  l
+    Freudenstadt                42   35   2,4%    29,2 Tage    3907   3313   [3497, 3621] 0,45 -0,02   7  l
+    Göppingen                   57   22   2,1%    33,7 Tage    8655   3364   [3467, 3531] 0,37 -0,08   7  e
+    Heidelberg (Stadtkreis)     24   15   1,2%    60,5 Tage    4349   2712   [2781, 2821] 0,17 -0,01   7  l
+    Heidenheim                  35   27   1,8%    38,2 Tage    3826   2888   [3016, 3095] 0,49 -0,05   7  l
+    Heilbronn                  116   34   4,0%    17,6 Tage   11417   3328   [3518, 3670] 0,36 -0,22  13  e
+    Heilbronn (Stadtkreis)      51   40   1,4%    50,4 Tage    6329   5025   [5205, 5309] 0,28 -0,04  14  l
+    Hohenlohekreis              74   66   3,0%    23,3 Tage    4179   3731   [4060, 4273] 0,32  0,04   7  l
+    Karlsruhe                  120   27   1,4%    50,7 Tage   14164   3188   [3308, 3377] 0,23 -0,07  13  l
+    Karlsruhe (Stadtkreis)      65   21   1,3%    51,9 Tage    8009   2558   [2649, 2702] 0,24 -0,06  13  l
+    Konstanz                    76   27   1,7%    41,4 Tage    8774   3075   [3200, 3276] 0,10  0,05   7  l
+    Lörrach                     40   17   1,3%    55,4 Tage    8225   3597   [3680, 3732] 0,43  0,01   7  l
+    Ludwigsburg                155   28   1,7%    40,8 Tage   19525   3589   [3726, 3813] 0,35  0,03   7  l
+    Main-Tauber-Kreis           58   44   2,7%    25,6 Tage    4097   3096   [3321, 3470] 0,46 -0,06   7  l
+    Mannheim (Stadtkreis)       48   16   0,4%     inf Tage   12725   4113   [4167, 4188] 0,19 -0,07  11  e
+    Neckar-Odenwald-Kreis       43   30   1,7%    41,5 Tage    4789   3336   [3476, 3560] 0,63 -0,08  13  l
+    Ortenaukreis               136   32   1,9%    36,1 Tage   14868   3462   [3617, 3715] 0,39 -0,14   7  l
+    Ostalbkreis                 88   28   2,3%    31,0 Tage   10878   3464   [3595, 3676] 0,19 -0,17  13  e
+    Pforzheim (Stadtkreis)      31   25   1,4%    50,0 Tage    5725   4560   [4680, 4756] 0,22 -0,06   8  l
+    Rastatt                    113   49   2,8%    24,9 Tage    7390   3199   [3446, 3607] 0,61 -0,09   7  l
+    Ravensburg                  54   19   1,3%    52,8 Tage    7830   2754   [2841, 2891] 0,11  0,03   7  l
+    Rems-Murr-Kreis            123   29   1,6%    43,0 Tage   14629   3433   [3567, 3649] 0,19  0,03   7  l
+    Reutlingen                  98   34   2,0%    34,7 Tage   10402   3628   [3796, 3905] 0,78 -0,06   7  l
+    Rhein-Neckar-Kreis          94   17   0,5%     inf Tage   17721   3236   [3298, 3323] 0,08  0,04   9  l
+    Rottweil                    38   27   1,6%    43,6 Tage    5648   4050   [4184, 4269] 0,28 -0,06   7  l
+    Schwäbisch Hall             81   41   1,0%     inf Tage    8269   4222   [4364, 4420] 0,80  0,02  10  e
+    Schwarzwald-Baar-Kreis      47   22   1,6%    44,1 Tage    6850   3225   [3332, 3399] 0,35  0,02   7  l
+    Sigmaringen                 63   48   2,8%    25,3 Tage    4078   3116   [3356, 3512] 0,14  0,02   7  l
+    Stuttgart                  133   21   1,4%    49,6 Tage   21241   3346   [3445, 3505] 0,45 -0,05   7  l
+    Tübingen                    59   26   1,5%    46,9 Tage    6932   3049   [3167, 3236] 0,72 -0,06  13  l
+    Tuttlingen                  29   21   0,9%    73,5 Tage    5432   3876   [3966, 4016] 0,11 -0,07  12  l
+    Ulm (Stadtkreis)            28   22   2,2%    31,7 Tage    4049   3205   [3308, 3374] 0,15 -0,24  13  e
+    Waldshut                    38   22   3,0%    23,8 Tage    5826   3415   [3530, 3614] 0,19 -0,22   8  e
+    Zollernalbkreis             51   27   2,5%    27,6 Tage    6267   3317   [3448, 3533] 0,21 -0,17  13  e
+
+    Baden-Württemberg         2854   26   1,5%    46,2 Tage  370306   3345   [3465, 3536] 0,40 -0,00   7  l
+
 
 Stand 09.03.2021
 
@@ -1796,6 +1848,55 @@ Stand 01.04.2020
     Landkreis               Zuwachs Zuwachs Wachst.- Verdoppl.  Gesamte   pro     R^2  Diff. Fenster Exp/Lin
                                       pro    rate      zeit      Fälle  100.000              größe
                                     100.000
+
+Stand 03.04.2021
+
+    Alb-Donau-Kreis            0,00   0,00   0,0%     inf Tage     161     82    1,00  0,00   7  l
+    Baden-Baden (Stadtkreis)   0,00   0,00   0,0%     inf Tage      49     89    1,00  0,00   7  l
+    Biberach                   0,00   0,00   0,0%     inf Tage     143     72    0,31  0,10  12  l
+    Böblingen                  0,83   0,21   1,2%    56,0 Tage     252     64    0,19 -0,12   8  l
+    Bodenseekreis              0,20   0,09   0,6%   108,4 Tage     138     64    0,10 -0,07  14  l
+    Breisgau-Hochschwarzwald   0,32   0,12   0,7%    98,3 Tage     164     62    0,08 -0,08  13  l
+    Calw                       0,54   0,34   1,0%    68,3 Tage     155     98    0,13 -0,07  14  l
+    Emmendingen                0,00   0,00   0,0%     inf Tage     143     86    1,00  0,00   7  l
+    Enzkreis                   0,37   0,19   0,7%   102,0 Tage     221    111    0,16 -0,07  14  l
+    Esslingen                  0,12   0,02   0,0%     inf Tage     466     87    0,10  0,10  12  l
+    Freiburg im Breisgau (St   0,33   0,14   1,1%    62,5 Tage     137     60    0,17 -0,13   8  l
+    Freudenstadt               0,00   0,00   0,0%     inf Tage     139    118    0,31  1,25  10  l
+    Göppingen                  0,32   0,12   0,2%     inf Tage     169     66    0,12  0,04  11  l
+    Heidelberg (Stadtkreis)    0,00   0,00   0,0%     inf Tage      56     35    0,17 -0,12   8  l
+    Heidenheim                 0,00   0,00   0,0%     inf Tage     139    105    1,00  0,00   7  l
+    Heilbronn                  0,00   0,00   0,0%     inf Tage     185     54    1,00  0,00   7  l
+    Heilbronn (Stadtkreis)     0,60   0,48   1,3%    55,1 Tage     123     98    0,10 -0,07  14  l
+    Hohenlohekreis             0,00   0,00   0,0%     inf Tage     109     97    1,00  0,00   7  l
+    Karlsruhe                  0,92   0,21   0,9%    76,0 Tage     413     93    0,15 -0,12   8  l
+    Karlsruhe (Stadtkreis)     0,00   0,00   0,0%     inf Tage     174     56    0,45  0,50  10  l
+    Konstanz                   0,14   0,05   0,1%     inf Tage     253     89    0,14  0,33  14  l
+    Lörrach                    0,18   0,08   0,1%     inf Tage     269    118    0,31 -0,06   7  l
+    Ludwigsburg                 1,5   0,27   0,8%    89,0 Tage     435     80    0,13 -0,08  13  l
+    Main-Tauber-Kreis          0,95   0,72   2,4%    29,8 Tage      81     61    0,34 -0,09  11  l
+    Mannheim (Stadtkreis)       1,8   0,58   2,1%    33,7 Tage     263     85    0,66 -0,14   7  l
+    Neckar-Odenwald-Kreis      0,00   0,00   0,0%     inf Tage     124     86    1,00  0,00   7  l
+    Ortenaukreis               0,38   0,09   0,1%     inf Tage     497    116    0,04  0,04   9  l
+    Ostalbkreis                 1,5   0,49   1,2%    60,3 Tage     305     97    0,19 -0,07  14  l
+    Pforzheim (Stadtkreis)     0,00   0,00   0,0%     inf Tage     166    132    1,00  0,00   7  l
+    Rastatt                    0,91   0,40   1,4%    50,9 Tage     129     56    0,12 -0,07  14  l
+    Ravensburg                 0,00   0,00   0,0%     inf Tage     109     38    0,17 -0,14   7  l
+    Rems-Murr-Kreis            0,46   0,11   0,6%   117,6 Tage     312     73    0,13 -0,07  14  l
+    Reutlingen                 0,45   0,16   0,2%     inf Tage     243     85    0,08  0,50  10  l
+    Rhein-Neckar-Kreis         0,82   0,15   1,0%    73,2 Tage     368     67    0,27 -0,10  10  l
+    Rottweil                   0,20   0,14   0,6%   111,8 Tage     146    105    0,10 -0,07  14  l
+    Schwäbisch Hall            0,95   0,49   0,5%     inf Tage     183     93    0,05  0,12  11  l
+    Schwarzwald-Baar-Kreis     0,33   0,16   1,0%    73,2 Tage     184     87    0,17 -0,13   8  l
+    Sigmaringen                0,00   0,00   0,0%     inf Tage      68     52    1,00  0,00   7  l
+    Stuttgart                  0,67   0,11   0,8%    86,3 Tage     368     58    0,21 -0,11   9  l
+    Tübingen                   0,00   0,00   0,0%     inf Tage     167     73    0,17 -0,12   8  l
+    Tuttlingen                  1,6    1,1   2,9%    24,5 Tage     121     86    0,40 -0,12   8  l
+    Ulm (Stadtkreis)           0,00   0,00   0,0%     inf Tage      70     55    0,43  2,50   8  l
+    Waldshut                   0,82   0,48   1,7%    41,3 Tage     186    109    0,62 -0,14   7  l
+    Zollernalbkreis            0,17   0,09   0,5%   130,8 Tage     154     82    0,06 -0,07  14  l
+
+    Baden-Württemberg            19   0,17   1,0%    70,5 Tage    8737     79    0,12 -0,13  14  e
 
 Stand 09.03.2021
 

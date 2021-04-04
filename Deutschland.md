@@ -108,7 +108,7 @@ Die Spalten haben die folgende Bedeutung:
 
 * (Ab 15.04.2020) Die Gesamtanzahl der Infekten wächst täglich um diese Zahl. Sie wird aus der Annäherung errechnet und nicht direkt aus dem Zuwachs zwischen den letzten beiden Tagen.
 
-* (Ab 15.04.2020) Die Gesamtanzahl der Infekten pro 100.000 Einwohner wächst täglich um diese Zahl. Sie wird aus der Annäherung errechnet und nicht direkt aus dem Zuwachs zwischen den letzten beiden Tagen.
+* (Ab 15.04.2020) Die Gesamtanzahl der Infekten pro 100.000 Einwohner wächst täglich um diese Zahl. Sie wird aus der Annäherung errechnet und nicht direkt aus dem Zuwachs zwischen den letzten beiden Tagen. (Der in Deutschland häufig verwendete _7-Tage-Inzidenzwert_ ist im Prinzip der siebenfache dieser Zahl. Während die 7-Tage-Inzidenz eine Summe über die letzten sieben Tage ist, rechne ich von einer Annäherung über 7 bis 14 Tagen den Trend aus und melde den Wert für den letzten Tag. Mein Indikator reagiert schneller auf schnell wachsende oder fallende Fallzahlen.)
 
 * Die Gesamtanzahl der Infekten wächst täglich um diesen Faktor (prozentual ausgedrückt)
 
