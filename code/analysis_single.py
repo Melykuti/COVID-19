@@ -16,17 +16,17 @@ from importlib import reload
 
 ### User input ###
 
-country = 'Germany' # 'Ireland' 'Turkey', 'Israel', 'US', 'Switzerland' 'United Kingdom' 'Netherlands' 'Denmark' 'Spain' 'France' 'Germany' 'Sweden' 'Singapore' 'Saudi Arabia' 'Tunisia' 'Turkey' 'Azerbaijan' 'Korea, South'
+country = 'Hungary' # 'Ireland' 'Turkey', 'Israel', 'US', 'Switzerland' 'United Kingdom' 'Netherlands' 'Denmark' 'Spain' 'France' 'Germany' 'Sweden' 'Singapore' 'Saudi Arabia' 'Tunisia' 'Turkey' 'Azerbaijan' 'Korea, South'
 #country = 'Korea, South'
 #country = ['New South Wales', 'Australia']
 #country = 'EU'
 cases = 'confirmed' # 'confirmed' or 'deaths' or 'active' or 'recovered'
-window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
+window_length = 7 # from latest data point back into past if positive; for exp and lin models, if nonpositive, then it searches for optimum for model fitting (recommended); for mean, if nonpositive, then it uses the default 7 days
 save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; o.w. it does neither
 lang = 'en' # 'de' for German, anything else for English
 normalise_by = 1e5 # report case numbers per this many people
-exp_or_lin = 'lin' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
-max_display_length = 140#140 #35 # in days; if positive, then it plots the most recent max_display_length days only
+exp_or_lin = 'mean' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better. Use 'mean' with a positive window length for a simple average over the window.
+max_display_length = 35#140 #35 # in days; if positive, then it plots the most recent max_display_length days only
 #max_display_length = -1
 latest_date = None
 #latest_date = 1

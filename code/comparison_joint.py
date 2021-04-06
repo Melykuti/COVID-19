@@ -4,7 +4,7 @@ using the JHU CSSE dataset:
 https://github.com/CSSEGISandData
 
 exec(open('comparison_joint.py').read())
-12/3/2020-2/1/2021
+12/3/2020-6/4/2021
 '''
 
 import os, math, time
@@ -26,7 +26,7 @@ class PlotSpecs():
         self.bottom_bound=-10.
         self.top_bound=100.
         self.cycle_linestyle = 0 # if 0, then all lines are solid; if 1, then it cycles through solid, dotted, dashed, dash-dotted
-        self.exp_or_lin = 'lin' # Use 'exp' model (fitting linear model on logarithmic scale) or 'lin' model or 'both' for trying both and selecting the better.
+        self.exp_or_lin = 'mean' # Use 'exp' model for fitting linear model on logarithmic scale or 'lin' model for fitting a linear model or 'both' for trying both and selecting the better. Use 'mean' for moving averages, by default with 7 days. 'mean' is recommended for long time series to smoothen the curves.
         self.lang = 'en' # 'de' for German, anything else for English
         self.max_display_length = 100 #45 # in days; if positive, then it plots the most recent max_display_length days only
         self.normalise_by = int(1e5) # display case numbers per this many people
@@ -38,34 +38,34 @@ class PlotSpecs():
 ### User input ###
 
 intl0 = PlotSpecs()
-intl0.countries = ['United Kingdom', 'Spain', 'Sweden', 'Belgium', 'Italy', 'France', 'Germany', 'Ireland', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; intl0.left_bound=4.; intl0.right_bound=None; intl0.bottom_bound=0.; intl0.top_bound=30.; intl0.normalise = 'xy'; intl0.filename = 'Joint'; intl0.cycle_linestyle = 1; intl0.incr_or_rate = 'rate'; intl0.xaxis = 'cases'; intl0.exp_or_lin = 'lin' #'Turkey', 
+intl0.countries = ['United Kingdom', 'Spain', 'Sweden', 'Belgium', 'Italy', 'France', 'Germany', 'Ireland', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; intl0.left_bound=7.; intl0.right_bound=None; intl0.bottom_bound=0.; intl0.top_bound=30.; intl0.normalise = 'xy'; intl0.filename = 'Joint'; intl0.cycle_linestyle = 1; intl0.incr_or_rate = 'rate'; intl0.xaxis = 'cases'; intl0.exp_or_lin = 'lin' #'Turkey', 
 intl1 = PlotSpecs()
-intl1.countries = ['United Kingdom', 'Spain', 'Sweden', 'Belgium', 'Italy', 'France', 'Germany', 'Ireland', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; intl1.left_bound=3.; intl1.right_bound=None; intl1.bottom_bound=0.; intl1.top_bound=None; intl1.normalise = 'xy'; intl1.filename = 'Joint'; intl1.cycle_linestyle = 1; intl1.incr_or_rate = 'incr'; intl1.xaxis = 'cases'; intl1.exp_or_lin = 'lin' #'Turkey', 
+intl1.countries = ['United Kingdom', 'Spain', 'Sweden', 'Belgium', 'Italy', 'France', 'Germany', 'Ireland', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; intl1.left_bound=7.; intl1.right_bound=None; intl1.bottom_bound=0.; intl1.top_bound=None; intl1.normalise = 'xy'; intl1.filename = 'Joint'; intl1.cycle_linestyle = 1; intl1.incr_or_rate = 'incr'; intl1.xaxis = 'cases'; intl1.exp_or_lin = 'mean'; intl1.window_length = 7; #'Turkey', 
 intl2 = PlotSpecs()
-intl2.countries = ['United Kingdom', 'Spain', 'Sweden', 'Belgium', 'Italy', 'France', 'Germany', 'Ireland', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; intl2.left_bound=intl2.time_start; intl2.right_bound=None; intl2.bottom_bound=0.; intl2.top_bound=None; intl2.normalise = 'xy'; intl2.filename = 'Joint'; intl2.cycle_linestyle = 1; intl2.incr_or_rate = 'incr'; intl2.xaxis = 'date'; intl2.exp_or_lin = 'lin' #'Turkey', 
+intl2.countries = ['United Kingdom', 'Spain', 'Sweden', 'Belgium', 'Italy', 'France', 'Germany', 'Ireland', 'Netherlands', 'Switzerland', 'Korea, South', 'Japan', 'China']; intl2.left_bound=intl2.time_start; intl2.right_bound=None; intl2.bottom_bound=0.; intl2.top_bound=None; intl2.normalise = 'xy'; intl2.filename = 'Joint'; intl2.cycle_linestyle = 1; intl2.incr_or_rate = 'incr'; intl2.xaxis = 'date'; intl2.exp_or_lin = 'mean'; intl2.window_length = 7; #'Turkey', 
 
 gp0 = PlotSpecs()
-gp0.countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; gp0.left_bound=0.1; gp0.right_bound=None; gp0.bottom_bound=0.; gp0.top_bound=25.; gp0.normalise = 'xy'; gp0.filename = 'great_powers'; gp0.lang = 'en'; gp0.cycle_linestyle = 0; gp0.incr_or_rate = 'rate'; gp0.xaxis = 'cases'; gp0.exp_or_lin = 'lin'
+gp0.countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; gp0.left_bound=5.; gp0.right_bound=None; gp0.bottom_bound=0.; gp0.top_bound=25.; gp0.normalise = 'xy'; gp0.filename = 'great_powers'; gp0.lang = 'en'; gp0.cycle_linestyle = 0; gp0.incr_or_rate = 'rate'; gp0.xaxis = 'cases'; gp0.exp_or_lin = 'lin'
 gp1 = PlotSpecs()
-gp1.countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; gp1.left_bound=0.1; gp1.right_bound=None; gp1.bottom_bound=0.; gp1.top_bound=None; gp1.normalise = 'xy'; gp1.filename = 'great_powers'; gp1.lang = 'en'; gp1.cycle_linestyle = 0; gp1.incr_or_rate = 'incr'; gp1.xaxis = 'cases'; gp1.exp_or_lin = 'lin'
+gp1.countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; gp1.left_bound=5.; gp1.right_bound=None; gp1.bottom_bound=0.; gp1.top_bound=None; gp1.normalise = 'xy'; gp1.filename = 'great_powers'; gp1.lang = 'en'; gp1.cycle_linestyle = 0; gp1.incr_or_rate = 'incr'; gp1.xaxis = 'cases'; gp1.exp_or_lin = 'mean'; gp1.window_length = 7;
 gp2 = PlotSpecs()
-gp2.countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; gp2.left_bound=gp2.time_start; gp2.right_bound=None; gp2.bottom_bound=0.; gp2.top_bound=None; gp2.normalise = 'xy'; gp2.filename = 'great_powers'; gp2.lang = 'en'; gp2.cycle_linestyle = 0; gp2.incr_or_rate = 'incr'; gp2.xaxis = 'date'; gp2.exp_or_lin = 'lin'
+gp2.countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; gp2.left_bound=gp2.time_start; gp2.right_bound=None; gp2.bottom_bound=0.; gp2.top_bound=None; gp2.normalise = 'xy'; gp2.filename = 'great_powers'; gp2.lang = 'en'; gp2.cycle_linestyle = 0; gp2.incr_or_rate = 'incr'; gp2.xaxis = 'date'; gp2.exp_or_lin = 'mean'; gp2.window_length = 7;
 
 vis0 = PlotSpecs()
-vis0.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; vis0.left_bound=2; vis0.right_bound=None; vis0.bottom_bound=0.; vis0.top_bound=35.; vis0.normalise = 'xy'; vis0.filename = 'Visegrad'; vis0.cycle_linestyle = 1; vis0.incr_or_rate = 'rate'; vis0.xaxis = 'cases'; vis0.exp_or_lin = 'lin'
+vis0.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; vis0.left_bound=20.; vis0.right_bound=None; vis0.bottom_bound=0.; vis0.top_bound=35.; vis0.normalise = 'xy'; vis0.filename = 'Visegrad'; vis0.cycle_linestyle = 1; vis0.incr_or_rate = 'rate'; vis0.xaxis = 'cases'; vis0.exp_or_lin = 'lin'
 vis1 = PlotSpecs()
-vis1.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; vis1.left_bound=2; vis1.right_bound=None; vis1.bottom_bound=0.; vis1.top_bound=None; vis1.normalise = 'xy'; vis1.filename = 'Visegrad'; vis1.cycle_linestyle = 1; vis1.incr_or_rate = 'incr'; vis1.xaxis = 'cases'; vis1.exp_or_lin = 'lin'
+vis1.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; vis1.left_bound=20.; vis1.right_bound=None; vis1.bottom_bound=0.; vis1.top_bound=None; vis1.normalise = 'xy'; vis1.filename = 'Visegrad'; vis1.cycle_linestyle = 1; vis1.incr_or_rate = 'incr'; vis1.xaxis = 'cases'; vis1.exp_or_lin = 'mean'; vis1.window_length = 7;
 vis2 = PlotSpecs()
-vis2.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; vis2.left_bound=vis2.time_start; vis2.right_bound=None; vis2.bottom_bound=0.; vis2.top_bound=None; vis2.normalise = 'xy'; vis2.filename = 'Visegrad'; vis2.cycle_linestyle = 1; vis2.incr_or_rate = 'incr'; vis2.xaxis = 'date'; vis2.exp_or_lin = 'lin'
+vis2.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; vis2.left_bound=vis2.time_start; vis2.right_bound=None; vis2.bottom_bound=0.; vis2.top_bound=None; vis2.normalise = 'xy'; vis2.filename = 'Visegrad'; vis2.cycle_linestyle = 1; vis2.incr_or_rate = 'incr'; vis2.xaxis = 'date'; vis2.exp_or_lin = 'mean'; vis2.window_length = 7;
 
 deu0 = PlotSpecs()
-deu0.countries = 'Deutschland'; deu0.left_bound=9; deu0.right_bound=None; deu0.bottom_bound=0.; deu0.top_bound=27.5; deu0.normalise = 'xy'; deu0.filename = 'Deutschland'; deu0.lang = 'de'; deu0.cycle_linestyle = 1; deu0.incr_or_rate = 'rate'; deu0.xaxis = 'cases'; deu0.exp_or_lin = 'lin'
+deu0.countries = 'Deutschland'; deu0.left_bound=250; deu0.right_bound=None; deu0.bottom_bound=0.; deu0.top_bound=10.; deu0.normalise = 'xy'; deu0.filename = 'Deutschland'; deu0.lang = 'de'; deu0.cycle_linestyle = 1; deu0.incr_or_rate = 'rate'; deu0.xaxis = 'cases'; deu0.exp_or_lin = 'lin'; #deu0.top_bound=27.5; deu0.left_bound=9;
 deu1 = PlotSpecs()
-deu1.countries = 'Deutschland'; deu1.left_bound=9; deu1.right_bound=None; deu1.bottom_bound=0.; deu1.top_bound=None; deu1.normalise = 'xy'; deu1.filename = 'Deutschland'; deu1.lang = 'de'; deu1.cycle_linestyle = 1; deu1.incr_or_rate = 'incr'; deu1.xaxis = 'cases'; deu1.exp_or_lin = 'lin'
+deu1.countries = 'Deutschland'; deu1.left_bound=250; deu1.right_bound=None; deu1.bottom_bound=0.; deu1.top_bound=None; deu1.normalise = 'xy'; deu1.filename = 'Deutschland'; deu1.lang = 'de'; deu1.cycle_linestyle = 1; deu1.incr_or_rate = 'incr'; deu1.xaxis = 'cases'; deu1.exp_or_lin = 'mean'; deu1.window_length = 7;
 deu2 = PlotSpecs()
-deu2.countries = 'Deutschland'; deu2.left_bound=pd.to_datetime('2020-10-01'); deu2.right_bound=None; deu2.bottom_bound=0.; deu2.top_bound=None; deu2.normalise = 'xy'; deu2.filename = 'Deutschland'; deu2.lang = 'de'; deu2.cycle_linestyle = 1; deu2.incr_or_rate = 'incr'; deu2.xaxis = 'date'; deu2.exp_or_lin = 'lin' #deu2.left_bound=deu2.time_start; pd.to_datetime('2020-03-01');
+deu2.countries = 'Deutschland'; deu2.left_bound=pd.to_datetime('2020-10-01'); deu2.right_bound=None; deu2.bottom_bound=0.; deu2.top_bound=None; deu2.normalise = 'xy'; deu2.filename = 'Deutschland'; deu2.lang = 'de'; deu2.cycle_linestyle = 1; deu2.incr_or_rate = 'incr'; deu2.xaxis = 'date'; deu2.exp_or_lin = 'mean'; deu2.window_length = 7; #deu2.left_bound=deu2.time_start; pd.to_datetime('2020-03-01');
 deu3 = PlotSpecs()
-deu3.countries = 'Deutschland'; deu3.left_bound=pd.to_datetime('2020-10-01'); deu3.right_bound=None; deu3.bottom_bound=0.; deu3.top_bound=None; deu3.normalise = 'xy'; deu3.filename = 'Deutschland'; deu3.lang = 'de'; deu3.cycle_linestyle = 1; deu3.incr_or_rate = 'incr'; deu3.xaxis = 'date'; deu3.exp_or_lin = 'lin'; deu3.cases = 'deaths'; # deu3.left_bound=pd.to_datetime('2020-03-01');
+deu3.countries = 'Deutschland'; deu3.left_bound=pd.to_datetime('2020-10-01'); deu3.right_bound=None; deu3.bottom_bound=0.; deu3.top_bound=None; deu3.normalise = 'xy'; deu3.filename = 'Deutschland'; deu3.lang = 'de'; deu3.cycle_linestyle = 1; deu3.incr_or_rate = 'incr'; deu3.xaxis = 'date'; deu3.exp_or_lin = 'mean'; deu3.window_length = 7; deu3.cases = 'deaths'; # deu3.left_bound=pd.to_datetime('2020-03-01');
 
 # Nordic countries
 nordic0 = PlotSpecs()
@@ -82,12 +82,6 @@ dach1 = PlotSpecs()
 dach1.countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; dach1.left_bound=2; dach1.right_bound=None; dach1.bottom_bound=0.; dach1.top_bound=None; dach1.normalise = 'xy'; dach1.filename = 'DACH'; dach1.cycle_linestyle = 1; dach1.incr_or_rate = 'incr'; dach1.xaxis = 'cases'; dach1.exp_or_lin = 'lin'
 dach2 = PlotSpecs()
 dach2.countries = ['Germany', 'Switzerland', 'Liechtenstein', 'Austria']; dach2.left_bound=dach2.time_start; dach2.right_bound=None; dach2.bottom_bound=0.; dach2.top_bound=None; dach2.normalise = 'xy'; dach2.filename = 'DACH'; dach2.cycle_linestyle = 1; dach2.incr_or_rate = 'incr'; dach2.xaxis = 'date'; dach2.exp_or_lin = 'lin'
-
-#countries = ['United Kingdom', 'Spain', 'Sweden', 'Denmark', 'Italy', 'France', 'Germany', 'Netherlands', 'Belgium']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'WesternEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
-
-# Confirmed
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia']; left_bound=2; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'CentralEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'CentralEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
 
 
 # Death toll
@@ -115,11 +109,6 @@ vis0d = PlotSpecs()
 vis0d.cases = 'deaths'; vis0d.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia']; vis0d.left_bound=0.01; vis0d.right_bound=None; vis0d.bottom_bound=0.; vis0d.top_bound=None; vis0d.normalise = 'xy'; vis0d.filename = 'Visegrad'; vis0d.cycle_linestyle = 1; vis0d.incr_or_rate = 'incr'; vis0d.xaxis = 'cases'; vis0d.exp_or_lin = 'lin'
 vis1d = PlotSpecs()
 vis1d.cases = 'deaths'; vis1d.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia']; vis1d.left_bound=vis1d.time_start; vis1d.right_bound=None; vis1d.bottom_bound=0.; vis1d.top_bound=None; vis1d.normalise = 'xy'; vis1d.filename = 'Visegrad'; vis1d.cycle_linestyle = 1; vis1d.incr_or_rate = 'incr'; vis1d.xaxis = 'date'; vis1d.exp_or_lin = 'lin'
-# countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia']; left_bound=0.01; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'CentralEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'lin'
-#cases = 'deaths'; countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'CentralEurope'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
-
-vis2.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; vis2.left_bound=vis2.time_start; vis2.right_bound=None; vis2.bottom_bound=0.; vis2.top_bound=None; vis2.normalise = 'xy'; vis2.filename = 'Visegrad'; vis2.cycle_linestyle = 1; vis2.incr_or_rate = 'incr'; vis2.xaxis = 'date'; vis2.exp_or_lin = 'lin'
-
 
 nordic0d = PlotSpecs()
 nordic0d.cases = 'deaths'; nordic0d.countries = ['Norway', 'Sweden', 'Finland', 'Denmark', 'Iceland']; nordic0d.left_bound=0.01; nordic0d.right_bound=None; nordic0d.bottom_bound=0.; nordic0d.top_bound=None; nordic0d.normalise = 'xy'; nordic0d.filename = 'Nordic'; nordic0d.cycle_linestyle = 1; nordic0d.incr_or_rate = 'incr'; nordic0d.xaxis = 'cases'; nordic0d.exp_or_lin = 'lin'
@@ -129,47 +118,20 @@ nordic1d.cases = 'deaths'; nordic1d.countries = ['Norway', 'Sweden', 'Finland', 
 USAGER1d = PlotSpecs()
 USAGER1d.cases = 'deaths'; USAGER1d.countries = ['US', 'Germany']; USAGER1d.left_bound=USAGER1d.time_start; USAGER1d.right_bound=None; USAGER1d.bottom_bound=0.; USAGER1d.top_bound=None; USAGER1d.normalise = 'xy'; USAGER1d.filename = 'USA_GER'; USAGER1d.cycle_linestyle = 0; USAGER1d.incr_or_rate = 'incr'; USAGER1d.xaxis = 'date'; USAGER1d.exp_or_lin = 'lin'; USAGER1d.save_not_show = 0
 
+
 # Testing
 
-#countries = ['China', 'EU', 'US']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=None; normalise = None; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
-#countries = ['China', 'EU', 'US']; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'y'; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'; filename = 'great_powers'; lang = 'en'; cycle_linestyle = 0
+test = PlotSpecs()
+test.cases = 'confirmed'; test.countries = ['Hungary']; test.left_bound=pd.Timestamp.date(pd.Timestamp('today'))-20*pd.DateOffset(); test.right_bound=None; test.bottom_bound=0.; test.top_bound=None; test.normalise = 'xy'; test.filename = 'Hungary'; test.cycle_linestyle = 1; test.incr_or_rate = 'incr'; test.xaxis = 'date'; test.exp_or_lin = 'mean'; test.save_not_show = 0
 
-#countries = ['Japan', 'Korea, South', 'China']; left_bound=None; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'xy'; filename = 'Joint'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'lin'
 
-#countries = 'Deutschland'; left_bound=1; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'; cases = 'deaths'
-#countries = 'Deutschland'; left_bound=1; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'cases'; exp_or_lin = 'exp'; cases = 'deaths'
-#countries = 'Deutschland'; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'; cases = 'deaths'
+#p = PlotSpecs()
+#p.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; p.left_bound=2; p.right_bound=None; p.bottom_bound=0.; p.top_bound=35.; p.normalise = 'xy'; p.filename = 'Visegrad'; p.cycle_linestyle = 1; p.incr_or_rate = 'rate'; p.xaxis = 'cases'; p.exp_or_lin = 'lin'
 
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=pd.to_datetime('2020-03-01'); right_bound=None; bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
-#countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; left_bound=pd.to_datetime('2020-03-15'); right_bound=pd.to_datetime('2020-04-02'); bottom_bound=0.; top_bound=None; normalise = 'xy'; filename = 'Visegrad'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'exp'
-
-#countries = 'Deutschland'; left_bound=200; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = None; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
-#countries = 'Deutschland'; left_bound=9; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = 'xy'; filename = 'Deutschland'; lang = 'de'; cycle_linestyle = 1; incr_or_rate = 'rate'; xaxis = 'cases'; exp_or_lin = 'exp'
-
-#countries = ['US', 'Italy', 'China', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=1000; right_bound=None; bottom_bound=0.; top_bound=60.; normalise = None; filename = 'Joint'; cycle_linestyle = 1
-#countries = ['US', 'Italy', 'China', 'Spain', 'Germany', 'Iran', 'France', 'Korea, South', 'Switzerland', 'United Kingdom', 'Netherlands', 'Japan']; left_bound=1.; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'y'; filename = 'Joint'; cycle_linestyle = 1
-
-#countries = ['Switzerland', 'United Kingdom']; left_bound=10.; right_bound=None; bottom_bound=0.; top_bound=80.; normalise = 'y'; filename = 'test';
-#countries = ['Italy', 'Spain', 'France', 'Germany', 'Switzerland', ['United Kingdom', 'United Kingdom'], 'Netherlands', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', 'China']
-#countries = ['Hungary']; left_bound=50*normalise_by/10e6; right_bound=None; normalise = 'y'; filename = 'Visegrad'
-#countries = ['Iceland']; left_bound=None; right_bound=None; normalise = None; filename = 'Iceland'
-#countries = ['Iceland']; left_bound=0.8; right_bound=None; normalise = 'y'; filename = 'Iceland'
-#countries = ['Czechia']; left_bound=time_start; right_bound=None; bottom_bound=0.; top_bound=30.; normalise = 'xy'; filename = 'Czechia'; cycle_linestyle = 1; incr_or_rate = 'incr'; xaxis = 'date'; exp_or_lin = 'lin'
-
-#, 'Netherlands', 'Austria', 'Sweden', 'Denmark', 'Japan', 'Hungary', 'Korea, South', ]
-#countries = [ 'Japan']; left_bound=400; right_bound=None
-#countries = ['Italy']
-#countries = ['Italy', 'Japan', 'Denmark', 'France', 'Germany', 'Spain', 'Switzerland']
-#country = 'France' #'Switzerland' #'Netherlands' #'Denmark' # Denmark, Spain, France, Germany, Sweden
-#country = 'Korea, South'
-#country = ['United Kingdom', 'United Kingdom']
-
-p = PlotSpecs()
-p.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; p.left_bound=2; p.right_bound=None; p.bottom_bound=0.; p.top_bound=35.; p.normalise = 'xy'; p.filename = 'Visegrad'; p.cycle_linestyle = 1; p.incr_or_rate = 'rate'; p.xaxis = 'cases'; p.exp_or_lin = 'lin'
-
-p = PlotSpecs()
+#p = PlotSpecs()
 #p.countries = ['Poland', 'Czechia']; p.left_bound=200; p.right_bound=None; p.bottom_bound=0.; p.top_bound=35.; p.normalise = 'xy'; p.filename = 'Visegrad'; p.cycle_linestyle = 1; p.incr_or_rate = 'rate'; p.xaxis = 'cases'; p.exp_or_lin = 'lin'
 
+p = PlotSpecs()
 p.countries = 'Deutschland'; p.left_bound=900; p.right_bound=None; p.bottom_bound=0.; p.top_bound=27.5; p.normalise = 'xy'; p.filename = 'Deutschland'; p.lang = 'de'; p.cycle_linestyle = 1; p.incr_or_rate = 'rate'; p.xaxis = 'cases'; p.exp_or_lin = 'lin'
 
 
@@ -184,7 +146,10 @@ p.countries = 'Deutschland'; p.left_bound=900; p.right_bound=None; p.bottom_boun
 #specs_list = [nordic0d, nordic1d]
 #specs_list = [vis0d, vis1d]
 #specs_list = [intl0, gp0, vis0]
-specs_list = [USAGER1d]
+#specs_list = [USAGER1d]
+#specs_list = [test]
+#specs_list = [deu3]
+specs_list = [gp1]
 
 ### End of user input ###
 
@@ -207,8 +172,6 @@ def call_process_geounit_minimal(df_ts, latest_date, p):
         latest_date = df_ts.index[-1]
 
     for i in range(window_length_for_cutoffs-len(df_ts), 1):
-        #results, model, selected_window_length, e_or_l = process_geounit_minimal(
-        #                                        df_ts[:len(df_ts)+i], window_length, exp_or_lin)
         results, model = utils.process_geounit(
                                             df_ts[:len(df_ts)+i], p.window_length, p.exp_or_lin, 'minimal')
         #print(results)
@@ -227,7 +190,6 @@ def call_process_geounit_minimal(df_ts, latest_date, p):
 
 def plotting_countries(dif_all, latest_date, p):
     fig, ax1 = plt.subplots(1,1, figsize=(12., 8.))
-    #fig, ax1 = plt.subplots(1,1, figsize=(9.6, 6.4))
     space_below = 0.2 # in the case of dates which are rotated
     if p.lang=='de':
         if p.cases=='confirmed':
@@ -259,8 +221,6 @@ def plotting_countries(dif_all, latest_date, p):
             elif cases=='deaths':
                 ax1.set_xlabel('{0} auf {1} Einwohner'.format(case_txt_1, utils.separated(str(normalise_by), lang)) if normalise=='xy' else 'Todesfälle')
             '''
-        #else:
-        #    fig.subplots_adjust(bottom=space_below)
 
         if p.incr_or_rate == 'rate':
             ax1.set_ylabel('Wachstumsrate der {}'.format(case_txt_0sh))
@@ -298,8 +258,6 @@ def plotting_countries(dif_all, latest_date, p):
                 ax1.set_xlabel('Number of {0} per {1} people'.format(case_txt_1, utils.separated(str(p.normalise_by), p.lang)) if p.normalise=='xy' else 'Number of cases')
             elif p.cases=='deaths':
                 ax1.set_xlabel('Number of {0} per {1} people'.format(case_txt_1, utils.separated(str(p.normalise_by), p.lang)) if p.normalise=='xy' else 'Number of deaths')
-        #else:
-        #    fig.subplots_adjust(bottom=space_below)
 
         if p.incr_or_rate == 'rate':
             ax1.set_ylabel('Daily growth rate')
@@ -322,16 +280,18 @@ def plotting_countries(dif_all, latest_date, p):
 
     geounit_list = list(dif_all.keys())
     for i in range(len(geounit_list)):
+        cmap=plt.get_cmap('tab10')
         if p.cycle_linestyle==1:
-            ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], linestyle=['solid', 'dotted', 'dashed', 'dashdot'][i % 4])
+            ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], linestyle=['solid', 'dotted', 'dashed', 'dashdot'][i % 4], color=cmap.colors[i%10])
+            ax1.plot(dif_all[geounit_list[i]].index[-1], dif_all[geounit_list[i]].iloc[-1], marker='o', color=cmap.colors[i%10])
         elif p.filename == 'great_powers':
             #ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], color=['tab:red', 'tab:blue', 'tab:gray'][i % 3])
             ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], color=['tab:orange', 'tab:blue', 'tab:gray', 'tab:purple', 'tab:green', 'tab:olive'][i % 6])
+            ax1.plot(dif_all[geounit_list[i]].index[-1], dif_all[geounit_list[i]].iloc[-1], marker='o', color=['tab:orange', 'tab:blue', 'tab:gray', 'tab:purple', 'tab:green', 'tab:olive'][i % 6])
         else:
-            ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i])
+            ax1.plot(dif_all[geounit_list[i]], label=geounit_list[i], color=cmap.colors[i%10])
+            ax1.plot(dif_all[geounit_list[i]].index[-1], dif_all[geounit_list[i]].iloc[-1], marker='o', color=cmap.colors[i%10])
 
-    #for tick in ax1.get_yticklabels():
-    #    tick = str(tick) + '%'
     if p.xaxis == 'cases':
         #ax1.set_xscale("log")
         ax1.set_xlim(left=p.left_bound, right=p.right_bound)
@@ -390,10 +350,7 @@ if __name__ == '__main__':
             df = utils.open_csvs()
             for country in p.countries:
                 print(country)
-                #case_no = list()
-                #dif_optim = list() # list of daily increase factors
                 df_ts = utils.data_preparation(df, country, p.cases)
-                #print(df_ts)
                 if not isinstance(country, str): # If it's a province or state of a country or region.
                     country = country[0]
                 if p.normalise=='xy':
@@ -401,15 +358,12 @@ if __name__ == '__main__':
                         df_ts = p.normalise_by*df_ts/58500000 # Population of Hubei province
                     else:
                         df_ts = p.normalise_by*df_ts/pop_world[country]
-                #print(df_ts)
+                # dif_optim is the list of daily increase factors
                 df_ts, dif_optim, case_no, latest_date, e_or_l = call_process_geounit_minimal(
                     df_ts, latest_date, p)
                 dif_all[country] = pd.Series(dif_optim, index=case_no)
                 if p.normalise == 'y' and p.incr_or_rate=='incr':
                     dif_all[country] = p.normalise_by*dif_all[country]/pop_world[country]
-                #print(dif_optim)
-                #dif_all[country] = pd.Series(dif_optim, index=case_no, name=country)
-                #dif_all[country] = pd.Series(dif_optim, index=case_no)
 
         else:
             #lang = 'de'

@@ -183,7 +183,7 @@ def n2str(n, width):
 
 def interpolate(df_ts, window_length):
     '''
-    This returns (or interpolates, if not found) from the time series the entry at last entry minus
+    This returns (or interpolates, if not found) from the cumulatives' time series the entry at last entry minus
      (window_length-1) days.
     '''
     # date of interest:
@@ -204,11 +204,12 @@ def interpolate(df_ts, window_length):
         elif len(prv)>0: # It can never come this far, df_ts.iloc[-1] exists so nxt is not empty.
             return prv.iloc[-1]
 
+'''
 def truncate_before(df_ts, window_length):
-    '''
-    This returns (or interpolates, if not found) from the time series the entry at last entry minus
-     (window_length-1) days.
-    '''
+    
+    #This returns (or interpolates, if not found) from the time series the entry at last entry minus
+    # (window_length-1) days.
+    
     # date of interest:
     doi = df_ts.index[-1]-pd.Timedelta(f'{window_length-1} days')
     if doi in df_ts.index:
@@ -232,6 +233,38 @@ def truncate_before(df_ts, window_length):
             df_ts.loc[doi] = prv.iloc[-1]
             df_ts = df_ts.sort_index(inplace=False)
             return df_ts.loc[doi:]
+'''
+
+def truncate_before(df_ts, window_length, fill_all_missing):
+    '''
+    This returns (or interpolates, if not found) from the cumulatives' time series the entries from (last entry minus
+      (window_length-1) days) until the last entry.
+    When some days are missing from the cumulative time series df_ts, then I could assign them zero increments and
+      assign all increments to the first day after the gap. Instead, I spread out the growth uniformly across the
+      missing days. The first solution (0, 0, all increment) would give the fitting a tendency to see quickly
+      growing cumulatives.
+    '''
+    df_ts_new = df_ts.copy()
+    r = range(window_length-1, 0, -1) if fill_all_missing else [window_length-1]
+    for i in r:
+        # date of interest:
+        #doi = df_ts.index[-1]-pd.Timedelta(f'{window_length-1} days')
+        doi = df_ts.index[-1]-pd.Timedelta(f'{i} days')
+        if doi not in df_ts.index:
+            prv = df_ts[df_ts.index<doi]
+            nxt = df_ts[df_ts.index>doi]
+            if len(prv)>0 and len(nxt)>0:
+                i_prv = prv.index[-1]
+                i_nxt = nxt.index[0]
+                c_prv = (i_nxt-doi).days/(i_nxt-i_prv).days
+                c_nxt = (doi-i_prv).days/(i_nxt-i_prv).days
+                df_ts_new.loc[doi] = c_prv*df_ts.loc[i_prv] + c_nxt*df_ts.loc[i_nxt]
+            elif len(nxt)>0:
+                df_ts_new.loc[doi] = nxt.iloc[0]
+            elif len(prv)>0: # It can never come this far, df_ts.iloc[-1] exists so nxt is not empty.
+                df_ts_new.loc[doi] = prv.iloc[-1]
+    df_ts_new = df_ts_new.sort_index(inplace=False)
+    return df_ts_new.loc[df_ts.index[-1]-pd.Timedelta(f'{window_length-1} days'):]
 
 def analysis(df_ts, window_length, exp_or_lin, extent='full'):
     '''
@@ -268,14 +301,13 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
     results[3] = df_ts.iloc[-1]
     model = linear_model.LinearRegression(fit_intercept=True)
     if exp_or_lin=='exp':
-        i_ts_orig = i_ts.copy()
-        #i_ts.iloc[-window_length:][i_ts<=0] = 1
-        i_ts = truncate_before(i_ts, window_length)
+        df_ts_orig = df_ts.copy()
+        df_ts_0 = truncate_before(df_ts_orig, window_length+1, fill_all_missing=False) # For the fit to increments.
+        df_ts = truncate_before(df_ts, window_length+1, fill_all_missing=True)
+        i_ts = (df_ts - df_ts.shift(1))[1:] # i for increments
         i_ts[i_ts<=0] = 1
-        #y = i_ts.iloc[-window_length:].values
         y = i_ts.values
         ylog = np.log(y)
-        #model.fit(np.arange(-window_length+1, 1).reshape(-1, 1), ylog)
         model.fit((i_ts.index-i_ts.index[-1]).days.values.reshape(-1, 1), ylog)
         results[0] = math.exp(model.intercept_)
         # For doubling, the area of the increments is equal to df_ts[-1]
@@ -298,26 +330,33 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
                 results[5] = math.exp(model.intercept_)*intl_hi_days + df_ts.iloc[-1]
 
         #if (i_ts_orig.iloc[-window_length:]>0).all():
-        if (truncate_before(i_ts_orig, window_length)>0).all():
+        #if (truncate_before(i_ts_orig, window_length, fill_all_missing=False)>0).all():
+        i_ts_0 = (df_ts_0 - df_ts_0.shift(1))[1:]
+        if (i_ts_0>0).all():
             #results[6] = model.score(np.arange(-window_length+1, 1).reshape(-1, 1), ylog)
-            results[6] = model.score((i_ts.index-i_ts.index[-1]).days.values.reshape(-1, 1), ylog)
+            results[6] = model.score((i_ts_0.index-i_ts_0.index[-1]).days.values.reshape(-1, 1), ylog)
         else:
             results[6] = 0
         #if df_ts.iloc[-1]==df_ts.iloc[-window_length]:
-        if df_ts.iloc[-1]==interpolate(df_ts, window_length):
-            results[7] = 100
+        #if df_ts.iloc[-1]==interpolate(df_ts, window_length): # If there is no growth, then exp is not good approx.
+        first_day = df_ts.index[-1]-pd.Timedelta(f'{window_length-1} days')
+        if df_ts.iloc[-1]==df_ts.loc[first_day]: # If there is no growth, then exp is not good approx.
+            results[7] = 100 # Exp overestimates growth by a factor of infinity.
         else:
             if model.coef_[0]!=0:
                 #results[7] = temp2*(1-math.exp(model.coef_[0]*(-window_length+1)))/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1
-                results[7] = temp2*(1-math.exp(model.coef_[0]*(-window_length+1)))/(df_ts.iloc[-1]-interpolate(df_ts, window_length))-1
+                #results[7] = temp2*(1-math.exp(model.coef_[0]*(-window_length+1)))/(df_ts.iloc[-1]-interpolate(df_ts, window_length))-1
+                results[7] = temp2*(1-math.exp(model.coef_[0]*(-window_length+1)))/(df_ts.iloc[-1]-df_ts.loc[first_day])-1
             else:
                 #results[7] = math.exp(model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1
-                results[7] = math.exp(model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-interpolate(df_ts, window_length))-1
-    else: # 'lin'
-        #y = i_ts.iloc[-window_length:].values
-        i_ts = truncate_before(i_ts, window_length)
+                #results[7] = math.exp(model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-interpolate(df_ts, window_length))-1
+                results[7] = math.exp(model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-df_ts.loc[first_day])-1
+    elif exp_or_lin=='lin':
+        df_ts_orig = df_ts.copy()
+        df_ts_0 = truncate_before(df_ts_orig, window_length+1, fill_all_missing=False) # For the fit to increments.
+        df_ts = truncate_before(df_ts, window_length+1, fill_all_missing=True)
+        i_ts = (df_ts - df_ts.shift(1))[1:] # i for increments
         y = i_ts.values
-        #model.fit(np.arange(-window_length+1, 1).reshape(-1, 1), y)
         model.fit((i_ts.index-i_ts.index[-1]).days.values.reshape(-1, 1), y)
         results[0] = model.intercept_
         if model.coef_[0]!=0:
@@ -350,23 +389,61 @@ def analysis(df_ts, window_length, exp_or_lin, extent='full'):
             if results[5] is None:
                 results[5] = (model.coef_[0]*intl_hi_days/2+model.intercept_)*intl_hi_days + df_ts.iloc[-1]
         #results[6] = model.score(np.arange(-window_length+1, 1).reshape(-1, 1), y)
-        results[6] = model.score((i_ts.index-i_ts.index[-1]).days.values.reshape(-1, 1), y)
+        i_ts_0 = (df_ts_0 - df_ts_0.shift(1))[1:]
+        results[6] = model.score((i_ts_0.index-i_ts_0.index[-1]).days.values.reshape(-1, 1), y)
         #if df_ts.iloc[-1]==df_ts.iloc[-window_length]:
-        if df_ts.iloc[-1]==interpolate(df_ts, window_length):
+        first_day = df_ts.index[-1]-pd.Timedelta(f'{window_length-1} days')
+        if df_ts.iloc[-1]==df_ts.loc[first_day]: # If there is no growth, then
             if model.coef_[0]==0 and model.intercept_==0:
                 results[7] = 0
             else:
-                results[7] = 100
+                results[7] = 100 # a nonzero linear function overestimates growth by a factor of infinity.
         else:
             #print(model.coef_[0], model.intercept_, '\n', df_ts.iloc[-window_length:])
             #print(-(model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1))
             #print(df_ts.iloc[-1]-df_ts.iloc[-window_length])
             #results[7] = -(model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1 # From the integral
-            results[7] = -(model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-interpolate(df_ts, window_length))-1 # From the integral
+            #results[7] = -(model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-interpolate(df_ts, window_length))-1 # From the integral
+            results[7] = -(model.coef_[0]*(-window_length+1)/2+model.intercept_)*(-window_length+1)/(df_ts.iloc[-1]-df_ts.loc[first_day])-1 # From the integral
+            #print(df_ts.iloc[-1], df_ts.loc[first_day], results[7])
             #print(window_length*(2*model.intercept_+model.coef_[0]*(-window_length+1))/(2*(df_ts.iloc[-1]-df_ts.iloc[-window_length]))-1) # From summing
             #print((-model.coef_[0]*(-window_length+1)*(-window_length+1)/2+(model.coef_[0]/2-model.intercept_)*(-window_length+1)+model.intercept_)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1) # From summing
             #results[7] = np.sum(model.coef_[0]*np.arange(-window_length+1, 1)+model.intercept_)/(df_ts.iloc[-1]-df_ts.iloc[-window_length])-1 # From summing
             #print(results[7])
+    elif exp_or_lin=='mean':
+        df_ts_orig = df_ts.copy()
+        df_ts_0 = truncate_before(df_ts_orig, window_length+1, fill_all_missing=False) # For the fit to increments.
+        df_ts = truncate_before(df_ts, window_length+1, fill_all_missing=True)
+        i_ts = (df_ts - df_ts.shift(1))[1:] # i for increments
+        #y = i_ts.values
+        i_mean = i_ts.mean()
+        results[0] = i_mean
+        if results[0]!=0:
+            results[2] = df_ts.iloc[-1]/i_mean
+        else:
+            if df_ts.iloc[-1]!=0:
+                results[2] = np.inf
+            else:
+                results[2] = 0 # df_ts.iloc[-1]==i_ts.mean()==0
+        if extent == 'full':
+            results[4] = i_mean*intl_lo_days + df_ts.iloc[-1]
+            results[5] = i_mean*intl_hi_days + df_ts.iloc[-1]
+        results[6] = 0 # coefficient of determination R^2
+        first_day = df_ts.index[-1]-pd.Timedelta(f'{window_length-1} days')
+        if df_ts.iloc[-1]==df_ts.loc[first_day]: # If there is no growth, then
+            if i_mean==0:
+                results[7] = 0
+            else:
+                results[7] = 100 # a nonzero linear function overestimates growth by a factor of infinity.
+        else:
+            results[7] = -i_mean*(-window_length+1)/(df_ts.iloc[-1]-df_ts.loc[first_day])-1 # From the integral
+
+        class SkeletonModel():
+            def __init__(self, intercept):
+                self.coef_ = [0]
+                self.intercept_ = intercept
+        model = SkeletonModel(results[0])
+
     if results[2]!=np.inf and results[2]!=0 and results[0]>0:
         #print(window_length, df_ts.iloc[-window_length-1:], y, model.coef_[0], model.intercept_, results, 1/results[2])
         results[1] = (math.pow(2, 1/results[2])-1)*100
@@ -429,6 +506,8 @@ def process_geounit(df_ts, window_length, exp_or_lin='both', running_extent='ful
     df_ts is the time series.
     '''
     #df_ts = rm_early_zeros(df_ts)
+    if exp_or_lin=='mean' and not window_length > 0:
+        window_length = 7
     if window_length > 0:
         selected_window_length = window_length
         if exp_or_lin=='both':
@@ -439,8 +518,10 @@ def process_geounit(df_ts, window_length, exp_or_lin='both', running_extent='ful
             #print(results_l)
         elif exp_or_lin=='exp':
             results, model = analysis(df_ts, window_length, 'exp', running_extent)
-        else:
+        elif exp_or_lin=='lin':
             results, model = analysis(df_ts, window_length, 'lin', running_extent)
+        elif exp_or_lin=='mean':
+            results, model = analysis(df_ts, window_length, 'mean', running_extent)
     else: # do a search over window_lengths for best possible fit
         # minimum and maximum allowed window lengths; we test all in this closed interval
         wl_lo = 7
@@ -492,7 +573,6 @@ def process_geounit(df_ts, window_length, exp_or_lin='both', running_extent='ful
             results, model, exp_or_lin = pick_exp_vs_lin(results_e, model_e, results_l, model_l)
             selected_window_length = selected_window_length_e if exp_or_lin=='exp'\
                                      else selected_window_length_l
-    #return results, model, selected_window_length, exp_or_lin
     return pd.DataFrame([results+[selected_window_length, exp_or_lin]]), model
 
 def print_header(normalise_by, population_csv=None):
@@ -548,9 +628,6 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
     #    results[0]>0 and frmt!='deaths':
     if ((results[6]>=0.75 and results[7]<=0.5) or (results[7]>=-0.3 and results[7]<=0.3)) and\
         results[0]>0 and frmt!='deaths':
-        #print('{0} {1:4.1f}% {2:7.1f} {3}  {4}  {5}  {6:4.2f} {7:5.2f}  {8}'.format(
-         #country.ljust(country_width), results[0], results[1] if results[1]>=0 else np.NaN, 'Tage' if lang=='de' else 'days',
-         #str(results[2]).rjust(7), ('[' + str(results[3]) +', '+ str(results[4]) + ']').rjust(interval_width), results[5], results[6], str(wl).rjust(2)).replace('.', ',' if lang=='de' else '.'))
         if population_csv is not None:
             nr_cases_per_ppl = x2str(normalise_by*results[3]/pop[country], int(math.log10(normalise_by))+1)
             est_lo_per_ppl = normalise_by*results[4]/pop[country]
@@ -559,8 +636,6 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
             nr_cases_per_ppl = ' ' * int(math.log10(normalise_by))
             est_lo_per_ppl = results[4]
             est_hi_per_ppl = results[5]
-        #interval = ('[' + x2str(est_lo_per_ppl, -1) +', '\
-        #         + x2str(est_hi_per_ppl, -1) + ']').rjust(interval_width)
         est_per_ppl_min = min(est_lo_per_ppl, est_hi_per_ppl)
         est_per_ppl_max = max(est_lo_per_ppl, est_hi_per_ppl)
         interval = ('[' + x2str(est_per_ppl_min, -1) +', '\
@@ -575,6 +650,12 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
         else:
             interval = '  '
 
+    if exp_or_lin=='exp':
+        letter = 'e'
+    elif exp_or_lin=='lin':
+        letter = 'l'
+    elif exp_or_lin=='mean':
+        letter = 'm'
     print('{0} {1} {2} {3:5.1f}% {4:7.1f} {5} {6} {7} {8} {9:4.2f} {10:5.2f}  {11}  {12}'.format(
         country[:country_width].ljust(country_width),
         x2str(results[0], 6),
@@ -588,7 +669,7 @@ def print_results(country, results, normalise_by, population_csv, wl, exp_or_lin
         results[6],
         results[7] if results[7]<100 else np.nan,
         str(wl).rjust(2),
-        'e' if exp_or_lin=='exp' else 'l').replace('.', ',' if lang=='de' else '.'))
+        letter).replace('.', ',' if lang=='de' else '.'))
 
 def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, lang='en', panels=2):
     if not isinstance(country, str): # If it's a province or state of a country or region.
@@ -599,13 +680,25 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
         fig, (ax0, ax1, ax2) = plt.subplots(1,3, figsize=(14.4, 4.8))
     if lang=='de':
         line0 = 'Beobachtungen'
-        line1 = 'Exponentielle Annäherung' if exp_or_lin=='exp' else 'Lineare Annäherung'
+        #line1 = 'Exponentielle Annäherung' if exp_or_lin=='exp' else 'Lineare Annäherung'
+        if exp_or_lin=='exp':
+            line1 = 'Exponentielle Annäherung'
+        elif exp_or_lin=='lin':
+            line1 = 'Lineare Annäherung'
+        elif exp_or_lin=='mean':
+            line1 = 'Annäherung mit Durchschnitt'
         fig.suptitle(country + ', Stand ' + df_ts.index[-1].strftime('%d.%m.%Y'))
         #plt.gcf().text(0.905, 0.86, "© Bence Mélykúti, 2020. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
         plt.gcf().text(0.905, 0.242, "© Bence Mélykúti, 2021. http://COVID19de.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
     else:
         line0 = 'Observations'
-        line1 = 'Exponential approximation' if exp_or_lin=='exp' else 'Linear approximation'
+        #line1 = 'Exponential approximation' if exp_or_lin=='exp' else 'Linear approximation'
+        if exp_or_lin=='exp':
+            line1 = 'Exponential approximation'
+        elif exp_or_lin=='lin':
+            line1 = 'Linear approximation'
+        elif exp_or_lin=='mean':
+            line1 = 'Approximation with mean'
         fig.suptitle(country + ', ' + df_ts.index[-1].strftime('%d %B %Y').lstrip('0'))
         #plt.gcf().text(0.905, 0.862, "© Bence Mélykúti, 2020. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
         plt.gcf().text(0.905, 0.27, "© Bence Mélykúti, 2021. http://COVID19.Melykuti.Be", fontsize=8, color='lightgray', rotation=90)
@@ -620,17 +713,10 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
     #df_ts_no0 = rm_consecutive_early_zeros(df_ts)
     #df_ts_no0 = df_ts
     if exp_or_lin=='exp':
-        #print(df_ts_no0[1:].index)
-        #print(i_ts[-len(df_ts_no0)+1:])
-        #print(i_ts)
         if model is not None:
             ax0.plot(plot_x, np.exp(model.coef_[0]*np.arange(-window_length+1, 1) + model.intercept_), color='tab:orange', linewidth=3)
-        #plot_y = np.power(2, np.arange(0, window_length)*model.coef_ + model.intercept_)
-        #temp2 = math.pow(2, model.intercept_)/(math.log(2)*model.coef_[0])
             if model.coef_[0]!=0:
                 temp2 = math.exp(model.intercept_)/model.coef_[0]
-            #plot_y = (np.power(2, model.coef_[0]*np.arange(-window_length+1, 1))-1)*temp2 + df_ts.iloc[-1]
-            #plot_y = (np.power(2, model.coef_[0]*np.arange(-window_length+1, 1))-1)*temp2 + df_ts.iloc[-window_length]
                 #plot_y = (np.exp(model.coef_[0]*np.arange(-window_length+1, 1)) - math.exp(model.coef_[0] * (-window_length+1)))*temp2 + df_ts.iloc[-window_length]
                 plot_y = (np.exp(model.coef_[0]*np.arange(-window_length+1, 1)) - math.exp(model.coef_[0] * (-window_length+1)))*temp2 + interpolate(df_ts, window_length)
             else:
@@ -639,10 +725,7 @@ def plotting(df_ts, model, save_not_show, country, window_length, exp_or_lin, la
             ax1.plot(plot_x, plot_y, label=line1, color='tab:orange', linewidth=3)
             if panels==3:
                 ax2.plot(plot_x, plot_y, label=line1, color='tab:orange', linewidth=3)
-    else:
-        #print(df_ts_no0[1:].index)
-        #print(i_ts[-len(df_ts_no0)+1:])
-        #ax0.bar(df_ts[1:].index, i_ts[-len(df_ts)+1:], color='tab:blue')
+    elif exp_or_lin=='lin' or exp_or_lin=='mean':
         ax0.plot(plot_x, model.coef_[0]*np.arange(-window_length+1, 1) + model.intercept_, color='tab:pink', linewidth=3)
         #plot_y = np.arange(0, window_length)*model.coef_ + model.intercept_
         #plot_y = (model.coef_[0]*np.arange(-window_length+1, 1)/2+model.intercept_)*np.arange(-window_length+1, 1) + df_ts.iloc[-1]

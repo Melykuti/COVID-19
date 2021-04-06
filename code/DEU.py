@@ -25,7 +25,7 @@ allowed_values = \
 selection = 'Sachsen'
 #selection = 'Deutschland'
 
-cases = 'deaths' # 'confirmed' or 'deaths' or 'confirmed_minus_deaths'
+cases = 'confirmed' # 'confirmed' or 'deaths' or 'confirmed_minus_deaths'
 
 window_length = -1 # from latest data point back into past if positive; if nonpositive, then it searches for optimum for model fitting (recommended)
 window_length_all = dict({bl: window_length for bl in allowed_values[:-1]})
@@ -40,7 +40,7 @@ window_length_all = dict({'Baden-Württemberg': 7, 'Bayern': window_length,
     'Deutschland': 13})
 '''
 
-save_not_show = 1 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
+save_not_show = 0 # if 0, then shows the plot; if 1, then saves it; otherwise it does neither.
 # In the case of 'alle', 0 functions as -1.
 
 normalise_by = 1e5 # report case numbers per this many people

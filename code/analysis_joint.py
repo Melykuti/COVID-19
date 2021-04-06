@@ -19,11 +19,11 @@ max_display_length = 140 #45 # in days; if positive, then it plots the most rece
 
 #countries = ['US', 'India', 'Brazil', 'United Kingdom', 'Russia', 'France', 'Italy', 'Spain', 'Netherlands', 'Belgium', 'Germany', 'Austria', 'Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Bulgaria', 'Croatia', 'Serbia', 'Israel', 'Saudi Arabia', 'Iran', 'Singapore', 'Sweden', 'Belarus',  'Switzerland', 'Denmark', 'Japan', 'Korea, South', 'China', 'Australia', 'New Zealand']; cases = 'confirmed'
 # Active cases:
-countries = ['Italy', 'Russia', 'India', 'Germany', 'Iran', 'Hungary', 'Argentina', 'Bulgaria', 'Switzerland', 'Czechia', 'Austria', 'Peru', 'Japan', 'Belarus', 'Denmark', 'Israel', 'Chile', 'Korea, South', 'Saudi Arabia', 'Australia', 'China', 'Singapore', 'New Zealand']; cases = 'active'
+countries = ['Italy', 'Russia', 'India', 'Germany', 'Portugal', 'Iran', 'Hungary', 'Argentina', 'Bulgaria', 'Czechia', 'Austria', 'Peru', 'Japan', 'Belarus', 'Denmark', 'Israel', 'Chile', 'Korea, South', 'Saudi Arabia', 'Australia', 'China', 'Singapore', 'New Zealand']; cases = 'active'
 # Confirmed cases:
-# 2nd wave/to monitor
 #countries = ['US', 'Brazil', 'India', 'Spain', 'Italy', 'Netherlands', 'Belgium', 'Sweden', 'Singapore', 'Germany', 'Switzerland', 'Austria', 'Japan', 'Korea, South', 'Australia', 'China', 'Romania', 'Serbia', 'Bulgaria', 'Iceland', 'Czechia', 'Poland', 'Hungary']; cases = 'confirmed'
-
+#countries = ['United Kingdom', 'Portugal', 'Ireland', 'Hungary']; cases = 'confirmed'; max_display_length = 180
+#countries = ['Slovakia']; cases = 'confirmed'; max_display_length = 180
 #countries = ['Hungary', 'Serbia', 'Montenegro', 'Georgia', 'Korea, South', 'Japan', 'Canada', 'Australia', 'New Zealand', 'Algeria', 'Morocco', 'Tunisia', 'Rwanda', 'Uruguay', 'Thailand', 'Austria']; cases = 'confirmed'
 #countries = ['US', 'Brazil', 'Russia', 'United Kingdom', 'France', 'India', 'Spain', 'Italy', 'Netherlands', 'Belgium', 'Sweden', 'Iran', 'Saudi Arabia', 'Belarus', 'Singapore', 'Germany', 'Japan', 'Hungary', 'Korea, South', 'Denmark', 'Switzerland', 'Austria', 'Australia', 'China', 'New Zealand']; cases = 'confirmed'
 #countries = ['Argentina', 'Brazil', 'Chile', 'Peru', 'Mexico', 'Canada', 'Russia', 'Belarus', 'United Kingdom', 'India', 'Belgium', 'Sweden', 'Iran', 'Saudi Arabia', 'Qatar', 'Singapore', 'Argentina', 'Korea, South']; cases = 'confirmed'; max_display_length = 90
@@ -55,7 +55,6 @@ if __name__ == '__main__':
         print(country)
 
         df_ts = utils.data_preparation(df, country, cases)
-        #df_ts = utils.rm_early_zeros(df_ts)
         if max_display_length > 0:
             df_ts = df_ts[-max_display_length:]
         results, model = utils.process_geounit(df_ts, window_length, exp_or_lin)
