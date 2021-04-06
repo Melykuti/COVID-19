@@ -97,6 +97,7 @@ For the case numbers per 100,000 citizens, I retrieved the populations of countr
 
 If you can afford to support my work, then please consider donating. Thank you!
 
+* Address for PayPal payments: [https://PayPal.me/BenceM](https://PayPal.me/BenceM)
 * Address for bitcoin (BTC): `13veK2ecjhtNenTxhGKJjP83QiMmNd1M7p`
 * Address for ether (ETH) and tokens: `0x49fC2a73e1eC76248324E411e699f92adD6565Ff`
 

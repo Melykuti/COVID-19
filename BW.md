@@ -3531,6 +3531,7 @@ Stand 01.04.2020
 
 Wenn Sie meine Arbeit unterstützen können, dann bitte ich Sie um eine Spende. Danke!
 
+* Adresse für PayPal-Zahlungen: [https://PayPal.me/BenceM](https://PayPal.me/BenceM)
 * Adresse für Bitcoin (BTC): `13veK2ecjhtNenTxhGKJjP83QiMmNd1M7p`
 * Adresse für Ether (ETH) und Tokens: `0x49fC2a73e1eC76248324E411e699f92adD6565Ff`
 
