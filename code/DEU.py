@@ -1,6 +1,6 @@
 '''
 exec(open('DEU.py').read())
-15/3-20/12/2020
+15/3/2020-12/6/2021
 '''
 
 import os, datetime
@@ -216,7 +216,8 @@ def collect_data_colwise(rows, shift_right=0):
     cases_date = dict()
     rows_list = list()
     row_counter = 0
-    for r in rows[1:-1]:
+    #for r in rows[1:-1]:
+    for r in rows[2:-1]:
         #print(r.text)
         tds = r.find_all('td')
         # https://stackoverflow.com/a/1546251/9486169, we remove accidental multiple spaces from date:
@@ -227,15 +228,17 @@ def collect_data_colwise(rows, shift_right=0):
         #day, month, year = tds[0].text.replace('\n','').split()[:3] # until 1/4/2020
         #text_temp = tds[0].text.replace('\n','')
         #text_temp = tds[shift_right].text.replace('\n','')
-        text_temp = tds[shift_right - (row_counter%7 != 0)].text.replace('\n','')
+        #text_temp = tds[shift_right - (row_counter%7 != 0)].text.replace('\n','')
+        text_temp = tds[shift_right - (row_counter%7 != 3)].text.replace('\n','').replace('\xa0', ' ')
         #print(text_temp[text_temp.find('♠')+1:])
-        day, month, year = text_temp[text_temp.find('♠')+1:].split()[:3] # on 12/4/2020
+        #day, month, year = text_temp[text_temp.find('♠')+1:].split()[:3] # on 12/4/2020
+        day, month, year = text_temp.split()[:3] # on 12/6/2021
         year = year[:4]
         #print(day, month, year)
         ymd.append('{0}-{1}-{2}'.format(year, convert_months_to_nr(month), day.replace('.', '')))
         cases_date[ymd[-1]]=list()
         #for j in tds[1:]:
-        for j in tds[1+shift_right - (row_counter%7 != 0) :-1]:
+        for j in tds[1+shift_right - (row_counter%7 != 3) :-1]:
             # The character - is not the standard minus, it's a longer one so safer to do with
             # try & except.
             try:
@@ -258,7 +261,7 @@ def data_preparation_DEU(output):
     #print(soup.prettify())
 
     #tables = soup.find_all('table', {'class':'wikitable sortable mw-collapsible'}) # I expect two tables: 'Bestätigte Infektionsfälle (kumuliert)', 'Bestätigte Todesfälle (kumuliert)'
-    tables = soup.find_all('table', {'class':'wikitable'}) # I expect four tables
+    tables = soup.find_all('table', {'class':'wikitable'}) # I expect six tables
 
     idx_Infektionsfaelle = 0
     idx_Todesfaelle = 2

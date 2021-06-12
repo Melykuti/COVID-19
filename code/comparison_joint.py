@@ -59,13 +59,13 @@ vis2 = PlotSpecs()
 vis2.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia', 'Iceland', 'San Marino', 'Italy', 'Spain']; vis2.left_bound=vis2.time_start; vis2.right_bound=None; vis2.bottom_bound=0.; vis2.top_bound=None; vis2.normalise = 'xy'; vis2.filename = 'Visegrad'; vis2.cycle_linestyle = 1; vis2.incr_or_rate = 'incr'; vis2.xaxis = 'date'; vis2.exp_or_lin = 'mean'; vis2.window_length = 7;
 
 deu0 = PlotSpecs()
-deu0.countries = 'Deutschland'; deu0.left_bound=250; deu0.right_bound=None; deu0.bottom_bound=0.; deu0.top_bound=10.; deu0.normalise = 'xy'; deu0.filename = 'Deutschland'; deu0.lang = 'de'; deu0.cycle_linestyle = 1; deu0.incr_or_rate = 'rate'; deu0.xaxis = 'cases'; deu0.exp_or_lin = 'lin'; #deu0.top_bound=27.5; deu0.left_bound=9;
+deu0.countries = 'Deutschland'; deu0.left_bound=500; deu0.right_bound=None; deu0.bottom_bound=0.; deu0.top_bound=10.; deu0.normalise = 'xy'; deu0.filename = 'Deutschland'; deu0.lang = 'de'; deu0.cycle_linestyle = 1; deu0.incr_or_rate = 'rate'; deu0.xaxis = 'cases'; deu0.exp_or_lin = 'lin'; #deu0.top_bound=27.5; deu0.left_bound=9;
 deu1 = PlotSpecs()
-deu1.countries = 'Deutschland'; deu1.left_bound=250; deu1.right_bound=None; deu1.bottom_bound=0.; deu1.top_bound=None; deu1.normalise = 'xy'; deu1.filename = 'Deutschland'; deu1.lang = 'de'; deu1.cycle_linestyle = 1; deu1.incr_or_rate = 'incr'; deu1.xaxis = 'cases'; deu1.exp_or_lin = 'mean'; deu1.window_length = 7;
+deu1.countries = 'Deutschland'; deu1.left_bound=500; deu1.right_bound=None; deu1.bottom_bound=0.; deu1.top_bound=None; deu1.normalise = 'xy'; deu1.filename = 'Deutschland'; deu1.lang = 'de'; deu1.cycle_linestyle = 1; deu1.incr_or_rate = 'incr'; deu1.xaxis = 'cases'; deu1.exp_or_lin = 'mean'; deu1.window_length = 7;
 deu2 = PlotSpecs()
-deu2.countries = 'Deutschland'; deu2.left_bound=pd.to_datetime('2020-10-01'); deu2.right_bound=None; deu2.bottom_bound=0.; deu2.top_bound=None; deu2.normalise = 'xy'; deu2.filename = 'Deutschland'; deu2.lang = 'de'; deu2.cycle_linestyle = 1; deu2.incr_or_rate = 'incr'; deu2.xaxis = 'date'; deu2.exp_or_lin = 'mean'; deu2.window_length = 7; #deu2.left_bound=deu2.time_start; pd.to_datetime('2020-03-01');
+deu2.countries = 'Deutschland'; deu2.left_bound=pd.to_datetime('2021-01-08'); deu2.right_bound=None; deu2.bottom_bound=0.; deu2.top_bound=None; deu2.normalise = 'xy'; deu2.filename = 'Deutschland'; deu2.lang = 'de'; deu2.cycle_linestyle = 1; deu2.incr_or_rate = 'incr'; deu2.xaxis = 'date'; deu2.exp_or_lin = 'mean'; deu2.window_length = 7; #deu2.left_bound=deu2.time_start; pd.to_datetime('2020-03-01');
 deu3 = PlotSpecs()
-deu3.countries = 'Deutschland'; deu3.left_bound=pd.to_datetime('2020-10-01'); deu3.right_bound=None; deu3.bottom_bound=0.; deu3.top_bound=None; deu3.normalise = 'xy'; deu3.filename = 'Deutschland'; deu3.lang = 'de'; deu3.cycle_linestyle = 1; deu3.incr_or_rate = 'incr'; deu3.xaxis = 'date'; deu3.exp_or_lin = 'mean'; deu3.window_length = 7; deu3.cases = 'deaths'; # deu3.left_bound=pd.to_datetime('2020-03-01');
+deu3.countries = 'Deutschland'; deu3.left_bound=pd.to_datetime('2021-01-08'); deu3.right_bound=None; deu3.bottom_bound=0.; deu3.top_bound=None; deu3.normalise = 'xy'; deu3.filename = 'Deutschland'; deu3.lang = 'de'; deu3.cycle_linestyle = 1; deu3.incr_or_rate = 'incr'; deu3.xaxis = 'date'; deu3.exp_or_lin = 'mean'; deu3.window_length = 7; deu3.cases = 'deaths'; # deu3.left_bound=pd.to_datetime('2020-03-01');
 
 # Nordic countries
 nordic0 = PlotSpecs()
@@ -101,9 +101,9 @@ west2_1d = PlotSpecs()
 west2_1d.cases = 'deaths'; west2_1d.countries = ['Italy', 'Spain', 'US', 'United Kingdom', 'France', 'Netherlands', 'Belgium', 'Sweden', 'Germany']; west2_1d.left_bound=pd.to_datetime('2020-03-01'); west2_1d.right_bound=None; west2_1d.bottom_bound=0.; west2_1d.top_bound=3.; west2_1d.normalise = 'xy'; west2_1d.filename = 'deathtoll'; west2_1d.cycle_linestyle = 1; west2_1d.incr_or_rate = 'incr'; west2_1d.xaxis = 'date'; west2_1d.exp_or_lin = 'lin' # left_bound=time_start?
 
 gp0d = PlotSpecs()
-gp0d.cases = 'deaths'; gp0d.countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; gp0d.left_bound=0.01; gp0d.right_bound=None; gp0d.bottom_bound=0.; gp0d.top_bound=None; gp0d.normalise = 'xy'; gp0d.filename = 'great_powers'; gp0d.lang = 'en'; gp0d.cycle_linestyle = 0; gp0d.incr_or_rate = 'incr'; gp0d.xaxis = 'cases'; gp0d.exp_or_lin = 'lin'
+gp0d.cases = 'deaths'; gp0d.countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; gp0d.left_bound=0.01; gp0d.right_bound=None; gp0d.bottom_bound=0.; gp0d.top_bound=None; gp0d.normalise = 'xy'; gp0d.filename = 'great_powers'; gp0d.lang = 'en'; gp0d.cycle_linestyle = 0; gp0d.incr_or_rate = 'incr'; gp0d.xaxis = 'cases'; gp0d.exp_or_lin = 'mean'; gp0d.window_length = 7;
 gp1d = PlotSpecs()
-gp1d.cases = 'deaths'; gp1d.countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; gp1d.left_bound=gp1d.time_start; gp1d.right_bound=None; gp1d.bottom_bound=0.; gp1d.top_bound=None; gp1d.normalise = 'xy'; gp1d.filename = 'great_powers'; gp1d.lang = 'en'; gp1d.cycle_linestyle = 0; gp1d.incr_or_rate = 'incr'; gp1d.xaxis = 'date'; gp1d.exp_or_lin = 'lin'
+gp1d.cases = 'deaths'; gp1d.countries = ['China', 'EU', 'US', 'Russia', 'Brazil', 'India']; gp1d.left_bound=gp1d.time_start; gp1d.right_bound=None; gp1d.bottom_bound=0.; gp1d.top_bound=None; gp1d.normalise = 'xy'; gp1d.filename = 'great_powers'; gp1d.lang = 'en'; gp1d.cycle_linestyle = 0; gp1d.incr_or_rate = 'incr'; gp1d.xaxis = 'date'; gp1d.exp_or_lin = 'mean'; gp1d.window_length = 7;
 
 vis0d = PlotSpecs()
 vis0d.cases = 'deaths'; vis0d.countries = ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Serbia', 'Croatia', 'Slovenia']; vis0d.left_bound=0.01; vis0d.right_bound=None; vis0d.bottom_bound=0.; vis0d.top_bound=None; vis0d.normalise = 'xy'; vis0d.filename = 'Visegrad'; vis0d.cycle_linestyle = 1; vis0d.incr_or_rate = 'incr'; vis0d.xaxis = 'cases'; vis0d.exp_or_lin = 'lin'
@@ -148,7 +148,7 @@ p.countries = 'Deutschland'; p.left_bound=900; p.right_bound=None; p.bottom_boun
 #specs_list = [intl0, gp0, vis0]
 #specs_list = [USAGER1d]
 #specs_list = [test]
-#specs_list = [deu3]
+#specs_list = [deu0]
 specs_list = [gp1]
 
 ### End of user input ###
@@ -171,7 +171,7 @@ def call_process_geounit_minimal(df_ts, latest_date, p):
     if latest_date==None or latest_date<df_ts.index[-1]:
         latest_date = df_ts.index[-1]
 
-    for i in range(window_length_for_cutoffs-len(df_ts), 1):
+    for i in range(window_length_for_cutoffs-len(df_ts)+1, 1):
         results, model = utils.process_geounit(
                                             df_ts[:len(df_ts)+i], p.window_length, p.exp_or_lin, 'minimal')
         #print(results)
@@ -184,7 +184,7 @@ def call_process_geounit_minimal(df_ts, latest_date, p):
         #else: # 'date'
         #    case_no.append(df_ts.index[len(df_ts)+i-1])
     if p.xaxis == 'date':
-        case_no = df_ts.index[window_length_for_cutoffs-1:]
+        case_no = df_ts.index[window_length_for_cutoffs:]
 
     return df_ts, dif_optim, case_no, latest_date, results.iloc[0,9]
 
@@ -333,8 +333,9 @@ if __name__ == '__main__':
             wl_hi = 15
         fixed_positive_window_length = 2
         if p.window_length < fixed_positive_window_length:
-            if p.window_length <= 0: # run rm_consecutive_early_zeros w. 0, for i in range from wl_lo=4
-                window_length_for_cutoffs = 4 #fixed_positive_window_length
+            if p.window_length <= 0: # run rm_consecutive_early_zeros w. 0, for i in range from wl_lo=7
+                # This must be wl_lo from utils.process_geounit().
+                window_length_for_cutoffs = 7 #fixed_positive_window_length
             else: # run rm_consecutive_early_zeros w. 0, for i in range from fixed_positive_window_length=2
                 p.window_length = fixed_positive_window_length
                 window_length_for_cutoffs = fixed_positive_window_length
@@ -385,7 +386,7 @@ if __name__ == '__main__':
             #figures_diff['Baden-Württemberg'][-2] = 2800 # test
             #figures_diff['Baden-Württemberg'][-1] = 3000 # test
             for j in range(0, figures_diff.shape[1]):
-            #for j in [0, 1, 2, 16]:
+            #for j in [0, 1, 16]:
                 print(allowed_values[j])
                 #case_no = list()
                 #dif_optim = list() # list of daily increase factors
