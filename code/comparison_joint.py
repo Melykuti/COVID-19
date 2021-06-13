@@ -4,7 +4,7 @@ using the JHU CSSE dataset:
 https://github.com/CSSEGISandData
 
 exec(open('comparison_joint.py').read())
-12/3/2020-6/4/2021
+12/3/2020-12/6/2021
 '''
 
 import os, math, time
